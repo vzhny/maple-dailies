@@ -1,0 +1,33 @@
+<app-container>
+  <div class="mb-5 font-light">
+    The following information is from
+    <a
+      class="text-blue-400"
+      href="https://strategywiki.org/wiki/MapleStory/Arcane_River"
+      target="_blank"
+      >StrategyWiki</a
+    >
+    — any <span class="text-red-500">red colored dailies</span> should be
+    exchanged as they take longer than the other available dailies.
+  </div>
+
+  <app-accordion>
+    <app-accordion-item
+      *ngFor="let item of dailiesLists"
+      [headerTitle]="item.townName"
+    >
+      <div *ngIf="item.canExchangeDailiesFlg" class="mb-2">
+        These dailies can be exchanged one (1) time before accepting them.
+      </div>
+      <ul>
+        <li
+          *ngFor="let daily of item.dailies"
+          class="font-thin ml-5"
+          [ngClass]="{ 'font-normal text-red-500': daily.exchangeFlag }"
+        >
+          {{ daily.name }}
+        </li>
+      </ul>
+    </app-accordion-item>
+  </app-accordion>
+</app-container>
