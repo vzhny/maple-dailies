@@ -3,3 +3,20 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@layer base {
+  @font-face {
+    font-family: "DotGothic16";
+    src: url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
+  }
+
+  @font-face {
+    font-family: "Ubuntu Mono";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400&display=swap");
+  }
+}
+
+body,
+html {
+  height: calc(100vh - 64px);
+}
