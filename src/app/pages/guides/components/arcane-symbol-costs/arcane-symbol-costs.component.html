@@ -1,0 +1,10 @@
+<app-container>
+  <app-accordion>
+    <app-accordion-item headerTitle="Vanishing Journey" [fluidContent]="true">
+      <app-table [columns]="columns" [data]="vjData"></app-table>
+    </app-accordion-item>
+    <app-accordion-item headerTitle="All Other Areas" [fluidContent]="true">
+      <app-table [columns]="columns" [data]="nonVjData"></app-table>
+    </app-accordion-item>
+  </app-accordion>
+</app-container>
