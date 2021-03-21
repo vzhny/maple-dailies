@@ -1,5 +1,6 @@
 require("dotenv").config();
 const enablePurge = process.env.ENABLE_PURGE || false;
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   purge: {
@@ -8,10 +9,15 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["DotGothic16", ...defaultTheme.fontFamily.sans],
+        mono: ["Ubuntu Mono", ...defaultTheme.fontFamily.mono],
+      },
+    },
   },
   variants: {
-    extend: {},
+    extend: { backgroundColor: ["checked"], borderColor: ["checked"] },
   },
   plugins: [],
 };
