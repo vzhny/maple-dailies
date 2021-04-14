@@ -16,6 +16,30 @@
   }
 }
 
+@layer components {
+  // * Table specific Tailwind components
+
+  .table-header-row {
+    @apply bg-gray-800 text-white uppercase text-sm leading-normal;
+  }
+
+  .table-header-cell {
+    @apply py-3 px-6;
+  }
+
+  .table-body-row {
+    @apply border-b border-gray-200 hover:bg-gray-100;
+  }
+
+  .table-body-cell {
+    @apply py-3 px-6 whitespace-nowrap font-light;
+  }
+
+  .table-no-data-available-cell {
+    @apply p-2 bg-gray-300 text-gray-600 text-center uppercase;
+  }
+}
+
 body,
 html {
   height: calc(100vh - 64px);
