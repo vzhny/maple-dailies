@@ -20,31 +20,28 @@ export class ArcaneSymbolCostsComponent implements OnInit {
   columns: TableColumn[] = [
     {
       headerTitle: 'Level',
-      headerAlign: 'center',
+      textAlign: 'center',
       property: 'level',
     },
     {
       headerTitle: 'Total Symbols',
-      headerAlign: 'center',
+      textAlign: 'center',
       property: 'totalSymbols',
-      format: this.displayService.displayCurrency,
     },
     {
       headerTitle: 'Symbols to Next Level',
-      headerAlign: 'center',
+      textAlign: 'center',
       property: 'symbolsToNextLevel',
     },
     {
       headerTitle: 'Total Mesos Used',
-      headerAlign: 'center',
+      textAlign: 'center',
       property: 'totalMesosUsed',
-      format: this.displayService.displayCurrency,
     },
     {
       headerTitle: 'Mesos to Next Level',
-      headerAlign: 'center',
+      textAlign: 'center',
       property: 'mesosToNextLevel',
-      format: this.displayService.displayCurrency,
     },
   ];
 
@@ -141,5 +138,9 @@ export class ArcaneSymbolCostsComponent implements OnInit {
     } else {
       return null;
     }
+  }
+
+  displayCurrency(value: number) {
+    return this.displayService.displayCurrency(value);
   }
 }

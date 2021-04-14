@@ -1,10 +1,82 @@
 <app-container>
   <app-accordion>
-    <app-accordion-item headerTitle="Vanishing Journey" [fluidContent]="true">
-      <app-table [columns]="columns" [data]="vjData"></app-table>
+    <app-accordion-item
+      headerTitle="Vanishing Journey"
+      [fluidContent]="true"
+      [expanded]="true"
+    >
+      <app-table [data]="vjData" #vjTable>
+        <thead table-header>
+          <tr class="table-header-row">
+            <th
+              *ngFor="let column of columns"
+              class="table-header-cell"
+              ngClass="text-{{ column.textAlign }}"
+            >
+              {{ column.headerTitle }}
+            </th>
+          </tr>
+        </thead>
+        <tbody table-body>
+          <tr
+            *ngFor="let row of vjTable.rows; let i = index"
+            class="table-body-row"
+          >
+            <td class="table-body-cell text-center">
+              {{ row.level }}
+            </td>
+            <td class="table-body-cell text-center">
+              {{ displayCurrency(row.totalSymbols) }}
+            </td>
+            <td class="table-body-cell text-center">
+              {{ row.symbolsToNextLevel || "–" }}
+            </td>
+            <td class="table-body-cell text-center">
+              {{ displayCurrency(row.totalMesosUsed) }}
+            </td>
+            <td class="table-body-cell text-center">
+              {{ displayCurrency(row.mesosToNextLevel) || "–" }}
+            </td>
+          </tr>
+        </tbody>
+      </app-table>
     </app-accordion-item>
     <app-accordion-item headerTitle="All Other Areas" [fluidContent]="true">
-      <app-table [columns]="columns" [data]="nonVjData"></app-table>
+      <app-table [data]="nonVjData" #nonVjTable>
+        <thead table-header>
+          <tr class="table-header-row">
+            <th
+              *ngFor="let column of columns"
+              class="table-header-cell"
+              ngClass="text-{{ column.textAlign }}"
+            >
+              {{ column.headerTitle }}
+            </th>
+          </tr>
+        </thead>
+        <tbody table-body>
+          <tr
+            *ngFor="let row of nonVjTable.rows; let i = index"
+            class="table-body-row"
+          >
+            <td class="table-body-cell text-center">
+              {{ row.level }}
+            </td>
+            <td class="table-body-cell text-center">
+              {{ displayCurrency(row.totalSymbols) }}
+            </td>
+            <td class="table-body-cell text-center">
+              {{ row.symbolsToNextLevel || "–" }}
+            </td>
+            <td class="table-body-cell text-center">
+              {{ displayCurrency(row.totalMesosUsed) }}
+            </td>
+            <td class="table-body-cell text-center">
+              {{ displayCurrency(row.mesosToNextLevel) || "–" }}
+            </td>
+          </tr>
+        </tbody>
+      </app-table>
     </app-accordion-item>
   </app-accordion>
 </app-container>
