@@ -15,6 +15,7 @@ import { SettingsModule } from './settings/settings.module';
     BossesModule,
     GuidesModule,
     SettingsModule,
+    FrameworkModule,
   ],
 })
 export class PagesModule {}
