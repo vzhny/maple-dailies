@@ -1,0 +1,9 @@
+<div class="cursor-pointer" #popoverBase>
+  <ng-content></ng-content>
+</div>
+<div
+  #popoverContent
+  class="bg-gray-100 p-3 border-2 border-gray-200 rounded-md"
+>
+  <ng-content select="[popoverContent]"></ng-content>
+</div>
