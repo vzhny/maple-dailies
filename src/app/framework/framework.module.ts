@@ -6,15 +6,18 @@ import { AccordionComponent } from './accordion/accordion.component';
 import { AccordionModule } from './accordion/accordion.module';
 import { TableComponent } from './table/table.component';
 import { PopoverComponent } from './popover/popover.component';
+import { FormModule } from './form/form.module';
+import { TableModule } from './table/table.module';
 
 @NgModule({
-  declarations: [ContainerComponent, TableComponent, PopoverComponent],
-  imports: [CommonModule, FontAwesomeModule, AccordionModule],
-  exports: [
+  declarations: [ContainerComponent, PopoverComponent],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
     AccordionModule,
-    ContainerComponent,
-    TableComponent,
-    PopoverComponent,
+    FormModule,
+    TableModule,
   ],
+  exports: [AccordionModule, ContainerComponent, PopoverComponent],
 })
 export class FrameworkModule {}
