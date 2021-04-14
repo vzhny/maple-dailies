@@ -1,6 +1,34 @@
-<div
-  class="container mx-auto h-full flex justify-center items-center space-x-2"
->
-  <app-daily-list headerTitle="To-do"></app-daily-list>
-  <app-daily-list headerTitle="Done"></app-daily-list>
-</div>
+<app-container>
+  <app-accordion>
+    <app-accordion-item
+      headerTitle="Arcane River Dailies"
+      [fluidContent]="true"
+      [expanded]="true"
+    >
+      <div class="flex" item-actions>
+        <button
+          class="rounded-full border border-grey w-7 h-7 flex items-center justify-center cursor-pointer select-none bg-gray-800 text-white hover:bg-gray-700 focus:outline-black"
+          (click)="addDaily()"
+          title="Add a New Daily"
+          type="button"
+        >
+          <fa-icon [icon]="addIcon"></fa-icon>
+        </button>
+      </div>
+      <app-daily-list [dailies]="arcaneRiverDailies"></app-daily-list>
+    </app-accordion-item>
+    <app-accordion-item headerTitle="Other Dailies" [fluidContent]="true">
+      <div class="flex" item-actions>
+        <button
+          class="rounded-full border border-grey w-7 h-7 flex items-center justify-center cursor-pointer select-none bg-gray-800 text-white hover:bg-gray-700"
+          (click)="addDaily()"
+          title="Add a New Daily"
+          type="button"
+        >
+          <fa-icon [icon]="addIcon"></fa-icon>
+        </button>
+      </div>
+      <app-daily-list [dailies]="otherDailies"></app-daily-list>
+    </app-accordion-item>
+  </app-accordion>
+</app-container>

@@ -1,0 +1,24 @@
+<app-table [data]="dailies" #table>
+  <thead table-header>
+    <tr class="table-header-row">
+      <th
+        *ngFor="let column of columns"
+        class="table-header-cell"
+        ngClass="text-{{ column.textAlign }}"
+      >
+        {{ column.headerTitle }}
+      </th>
+    </tr>
+  </thead>
+  <tbody table-body>
+    <tr *ngFor="let row of table.rows; let i = index" class="table-body-row">
+      <td class="table-body-cell">{{ row.text }}</td>
+      <td class="table-body-cell">
+        <app-checkbox
+          [value]="row.completed"
+          (click)="toggleCompletedDaily(i)"
+        ></app-checkbox>
+      </td>
+    </tr>
+  </tbody>
+</app-table>
