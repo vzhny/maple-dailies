@@ -1,12 +1,16 @@
-<div class="flex justify-between items-center p-5 pl-8 pr-8 border-b">
-  <span class="text-grey-darkest font-thin text-xl">
+<div class="flex justify-between items-center p-5 pl-8 pr-8 border-b bg-white">
+  <span class="text-grey-darkest font-normal text-xl">
     {{ headerTitle }}
   </span>
-  <div
-    class="rounded-full border border-grey w-7 h-7 flex items-center justify-center cursor-pointer select-none"
-    (click)="toggleAccordion()"
-  >
-    <fa-icon [icon]="isExpanded ? collapseIcon : expandIcon"></fa-icon>
+  <div class="flex space-x-2 items-center">
+    <ng-content *ngIf="isExpanded" select="[item-actions]"></ng-content>
+    <div
+      class="rounded-full border border-grey w-7 h-7 flex items-center justify-center cursor-pointer select-none"
+      (click)="toggleAccordion()"
+      [title]="isExpanded ? 'Collapse' : 'Expand'"
+    >
+      <fa-icon [icon]="isExpanded ? collapseIcon : expandIcon"></fa-icon>
+    </div>
   </div>
 </div>
 <div

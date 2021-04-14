@@ -10,6 +10,7 @@ import { AccordionService } from '../accordion.service';
 export class AccordionItemComponent implements OnInit {
   @Input() headerTitle!: string;
   @Input() fluidContent = false;
+  @Input() expanded = false;
 
   isExpanded = false;
   expandIcon = faChevronDown;
@@ -23,6 +24,8 @@ export class AccordionItemComponent implements OnInit {
         this.isExpanded = !event.collapsed;
       }
     });
+
+    this.isExpanded = this.expanded;
   }
 
   toggleAccordion() {
