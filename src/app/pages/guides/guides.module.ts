@@ -10,6 +10,8 @@ import { HardMutoRecipesComponent } from './components/hard-muto-recipes/hard-mu
 import { ArcaneSymbolCostsComponent } from './components/arcane-symbol-costs/arcane-symbol-costs.component';
 import { MutoRecipeComponent } from './components/hard-muto-recipes/components/muto-recipe/muto-recipe.component';
 import { MutoRecipeIngredientInfoComponent } from './components/hard-muto-recipes/components/muto-recipe-ingredient-info/muto-recipe-ingredient-info.component';
+import { FormModule } from 'src/app/framework/form/form.module';
+import { TableModule } from 'src/app/framework/table/table.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,13 @@ import { MutoRecipeIngredientInfoComponent } from './components/hard-muto-recipe
     MutoRecipeComponent,
     MutoRecipeIngredientInfoComponent,
   ],
-  imports: [CommonModule, GuidesRoutingModule, LayoutModule, FrameworkModule],
+  imports: [
+    CommonModule,
+    GuidesRoutingModule,
+    LayoutModule,
+    FrameworkModule,
+    FormModule,
+    TableModule,
+  ],
 })
 export class GuidesModule {}
