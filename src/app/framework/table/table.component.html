@@ -1,41 +1,18 @@
-<div class="bg-white rounded" [ngClass]="tableClasses">
+<div class="bg-white rounded overflow-x-auto" [ngClass]="tableClasses">
   <table class="min-w-max w-full table-auto">
-    <thead>
-      <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-        <th
-          *ngFor="let column of columns"
-          class="py-3 px-6"
-          ngClass="text-{{ column.headerAlign }}"
-        >
-          {{ column.headerTitle }}
-        </th>
-      </tr>
-    </thead>
-    <ng-container *ngIf="data.length > 0; else noDataAvailable">
-      <tbody>
-        <tr
-          *ngFor="let datum of data"
-          class="border-b border-gray-200 hover:bg-gray-100"
-        >
-          <td
-            *ngFor="let tuple of convertToTuples(datum)"
-            class="py-3 px-6 whitespace-nowrap"
-            ngClass="text-{{ textAlignPropertyMap[tuple.key] }}"
-          >
-            {{ formatValue(tuple.key, tuple.value) || emDash }}
-          </td>
-        </tr>
-      </tbody>
+    <ng-content select="[table-header]"></ng-content>
+    <ng-container *ngIf="rows.length > 0; else noDataAvailable">
+      <ng-content select="[table-body]"></ng-content>
     </ng-container>
     <ng-template #noDataAvailable>
-      <tbody>
+      <!-- <tbody>
         <td
           class="p-2 bg-gray-300 text-gray-600 text-center uppercase"
           [attr.colspan]="columns.length"
         >
           No Data Available
         </td>
-      </tbody>
+      </tbody> -->
     </ng-template>
   </table>
 </div>

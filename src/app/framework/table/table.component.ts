@@ -1,14 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable, of, Subscription } from 'rxjs';
 
 type Alignment = 'left' | 'center' | 'right';
 
-type FormatFunc = (value: any) => any;
-
 export interface TableColumn {
   headerTitle: string;
-  headerAlign: Alignment;
+  textAlign: Alignment;
   property: string;
-  format?: FormatFunc | undefined;
 }
 
 export interface TableData {
@@ -21,50 +19,33 @@ export interface TableData {
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  @Input() columns: TableColumn[] = [];
-  @Input() data: TableData[] = [];
-  @Input() tableClasses!: string | string[];
+  private subscription!: Subscription | null;
 
-  emDash = '—';
-  textAlignPropertyMap: { [key: string]: Alignment } = {};
-  formatFuncPropertyMap: { [key: string]: FormatFunc } = {};
+  @Input() set data(data: Observable<TableData[]> | TableData[]) {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      this.subscription = null;
+    }
 
-  constructor() {}
+    if (data) {
+      if (!(data instanceof Observable)) {
+        data = of(data);
+      }
 
-  ngOnInit(): void {
-    this.textAlignPropertyMap = this.columns.reduce(
-      (map, { headerAlign, property }) => {
-        map[property] = headerAlign;
-
-        return map;
-      },
-      this.textAlignPropertyMap
-    );
-
-    this.formatFuncPropertyMap = this.columns.reduce(
-      (map, { format, property }) => {
-        if (format !== undefined) {
-          map[property] = format;
-        }
-
-        return map;
-      },
-      this.formatFuncPropertyMap
-    );
-  }
-
-  formatValue(key: string, value: any) {
-    if (this.formatFuncPropertyMap[key]) {
-      return this.formatFuncPropertyMap[key](value);
-    } else {
-      return value;
+      this.subscription = data.subscribe((rows: TableData[]) => {
+        this.rows = rows;
+      });
     }
   }
 
-  convertToTuples(datum: any) {
-    return Object.entries(datum).map(([key, value]) => ({
-      key,
-      value,
-    }));
-  }
+  @Input() columns: TableColumn[] = [];
+  @Input() tableClasses!: string | string[];
+
+  rows: TableData[] = [];
+
+  emDash = '—';
+
+  constructor() {}
+
+  ngOnInit(): void {}
 }
