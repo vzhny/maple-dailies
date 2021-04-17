@@ -10,6 +10,9 @@ module.exports = {
   },
   darkMode: "class", // or 'media' or 'class'
   theme: {
+    container: {
+      padding: "1rem",
+    },
     extend: {
       colors: {
         transparent: "transparent",
@@ -32,6 +35,7 @@ module.exports = {
       backgroundColor: ["checked"],
       borderColor: ["checked", "last"],
       borderWidth: ["last"],
+      textColor: ["visited"],
     },
   },
   plugins: [],
