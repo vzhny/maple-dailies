@@ -1,5 +1,8 @@
-<div *ngIf="recipe !== null" class="h-full shadow border-b rounded-md">
-  <div class="p-2 border-b">
+<div
+  *ngIf="recipe !== null"
+  class="h-full shadow border-b dark:border-black rounded-md bg-white dark:bg-gray-800"
+>
+  <div class="p-2 border-b dark:border-black">
     {{ recipe.name }}
   </div>
   <div class="flex justify-between items-center p-2">
