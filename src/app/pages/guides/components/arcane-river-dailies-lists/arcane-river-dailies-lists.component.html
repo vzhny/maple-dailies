@@ -22,7 +22,7 @@
       <ul>
         <li
           *ngFor="let daily of item.dailies"
-          class="font-normal ml-5"
+          class="font-normal md:ml-5"
           [ngClass]="{ 'font-medium text-red-500': daily.exchangeFlag }"
         >
           {{ daily.name }}
