@@ -1,15 +1,26 @@
 require("dotenv").config();
 const enablePurge = process.env.ENABLE_PURGE || false;
 const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   purge: {
     enabled: enablePurge,
     content: ["./src/**/*.html", "./src/**/*.scss"],
   },
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
+      colors: {
+        transparent: "transparent",
+        current: "currentColor",
+        black: colors.black,
+        white: colors.white,
+        gray: colors.trueGray,
+        indigo: colors.indigo,
+        red: colors.rose,
+        yellow: colors.amber,
+      },
       fontFamily: {
         sans: ["DotGothic16", ...defaultTheme.fontFamily.sans],
         mono: ["Ubuntu Mono", ...defaultTheme.fontFamily.mono],
@@ -17,7 +28,11 @@ module.exports = {
     },
   },
   variants: {
-    extend: { backgroundColor: ["checked"], borderColor: ["checked"] },
+    extend: {
+      backgroundColor: ["checked"],
+      borderColor: ["checked", "last"],
+      borderWidth: ["last"],
+    },
   },
   plugins: [],
 };
