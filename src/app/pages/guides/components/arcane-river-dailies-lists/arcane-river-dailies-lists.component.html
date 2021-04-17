@@ -22,8 +22,8 @@
       <ul>
         <li
           *ngFor="let daily of item.dailies"
-          class="font-thin ml-5"
-          [ngClass]="{ 'font-normal text-red-500': daily.exchangeFlag }"
+          class="font-normal ml-5"
+          [ngClass]="{ 'font-medium text-red-500': daily.exchangeFlag }"
         >
           {{ daily.name }}
           <hr class="block md:hidden my-1" />

@@ -14,13 +14,18 @@
     font-family: "Ubuntu Mono";
     src: url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400&display=swap");
   }
+
+  body,
+  html {
+    @apply bg-gray-50 dark:bg-gray-900 dark:text-white h-screen;
+  }
 }
 
 @layer components {
   // * Table specific Tailwind components
 
   .table-header-row {
-    @apply bg-gray-800 text-white uppercase text-sm leading-normal;
+    @apply bg-gray-800 dark:bg-black text-white uppercase text-sm leading-normal;
   }
 
   .table-header-cell {
@@ -28,7 +33,7 @@
   }
 
   .table-body-row {
-    @apply border-b border-gray-200 hover:bg-gray-100;
+    @apply border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600 hover:bg-gray-100;
   }
 
   .table-body-cell {
@@ -38,9 +43,4 @@
   .table-no-data-available-cell {
     @apply p-2 bg-gray-300 text-gray-600 text-center uppercase;
   }
-}
-
-body,
-html {
-  height: calc(100vh - 64px);
 }

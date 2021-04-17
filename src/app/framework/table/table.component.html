@@ -1,4 +1,4 @@
-<div class="bg-white rounded overflow-x-auto" [ngClass]="tableClasses">
+<div class="bg-white overflow-x-auto" [ngClass]="tableClasses">
   <table class="min-w-max w-full table-auto">
     <ng-content select="[table-header]"></ng-content>
     <ng-container *ngIf="rows.length > 0; else noDataAvailable">
