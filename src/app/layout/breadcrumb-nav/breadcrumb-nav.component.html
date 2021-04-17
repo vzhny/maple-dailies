@@ -1,7 +1,7 @@
 <ul class="flex md:flex-row flex-col items-center lowercase space-x-3 mb-3">
   <li *ngFor="let navLink of navLinks; index as i" class="space-x-2 font-thin">
     <a
-      class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-200"
+      class="text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-200 dark:visited:text-white"
       [routerLink]="navLink.route"
       [routerLinkActiveOptions]="{ exact: true }"
       routerLinkActive="text-gray-900 dark:text-white font-normal"
