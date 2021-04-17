@@ -67,11 +67,7 @@ export class DailiesComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    of(this.arcaneRiverDailies).subscribe((data) => {
-      console.log('data was updated', data);
-    });
-  }
+  ngOnInit(): void {}
 
   addDaily() {
     this.arcaneRiverDailies.push({
