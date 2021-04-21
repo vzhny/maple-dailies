@@ -18,5 +18,15 @@
         >{{ navLink.name }}</a
       >
     </li>
+    <li
+      class="text-white hover:text-gray-100 cursor-pointer"
+      (click)="openSettingsModal()"
+    >
+      <span>Settings</span>
+    </li>
   </ul>
 </header>
+
+<app-modal [id]="settingsModalId" #modal>
+  <div>Settings coming soon!</div>
+</app-modal>
