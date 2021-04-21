@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalService } from 'src/app/framework/modal/modal.service';
 
 export interface NavLink {
   name: string;
@@ -33,14 +34,15 @@ export class HeaderComponent implements OnInit {
       route: '/guides',
       matchExactRouteUrl: false,
     },
-    {
-      name: 'Settings',
-      route: '/settings',
-      matchExactRouteUrl: false,
-    },
   ];
 
-  constructor() {}
+  settingsModalId = 'settingsModal';
+
+  constructor(private modalService: ModalService) {}
 
   ngOnInit(): void {}
+
+  openSettingsModal() {
+    this.modalService.open(this.settingsModalId);
+  }
 }
