@@ -1,0 +1,13 @@
+﻿<div [id]="id" class="fixed top-0 right-0 bottom-0 left-0 z-1000 overflow-auto">
+  <div
+    class="rounded-lg my-10 mx-auto bg-white dark:bg-gray-800"
+    [ngStyle]="{ width: maxWidthPixels }"
+  >
+    <app-container>
+      <ng-content></ng-content>
+    </app-container>
+  </div>
+</div>
+<div
+  class="fixed top-0 right-0 bottom-0 left-0 bg-black opacity-75 z-900"
+></div>
