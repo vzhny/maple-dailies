@@ -2,6 +2,7 @@ require("dotenv").config();
 const enablePurge = process.env.ENABLE_PURGE || false;
 const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
+const forms = require("@tailwindcss/forms");
 
 module.exports = {
   purge: {
@@ -13,30 +14,29 @@ module.exports = {
     container: {
       padding: "1rem",
     },
+    zIndex: {
+      ...defaultTheme.zIndex,
+      900: 900,
+      1000: 1000,
+    },
+    fontFamily: {
+      sans: ["DotGothic16", ...defaultTheme.fontFamily.sans],
+      mono: ["Ubuntu Mono", ...defaultTheme.fontFamily.mono],
+    },
     extend: {
       colors: {
-        transparent: "transparent",
-        current: "currentColor",
-        black: colors.black,
-        white: colors.white,
+        ...defaultTheme.colors,
         gray: colors.trueGray,
-        indigo: colors.indigo,
-        red: colors.rose,
-        yellow: colors.amber,
-      },
-      fontFamily: {
-        sans: ["DotGothic16", ...defaultTheme.fontFamily.sans],
-        mono: ["Ubuntu Mono", ...defaultTheme.fontFamily.mono],
+        green: colors.emerald,
       },
     },
   },
+  plugins: [forms],
   variants: {
     extend: {
       backgroundColor: ["checked"],
-      borderColor: ["checked", "last"],
-      borderWidth: ["last"],
+      borderColor: ["checked"],
       textColor: ["visited"],
     },
   },
-  plugins: [],
 };

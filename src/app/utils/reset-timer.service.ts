@@ -6,11 +6,11 @@ import { BehaviorSubject, Subject, interval, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ResetTimerService {
-  private midnightUTC: moment.Moment = null;
-  private weeklyMidnightUTC: moment.Moment = null;
+  private midnightUTC: moment.Moment | null = null;
+  private weeklyMidnightUTC: moment.Moment | null = null;
 
-  private $remainingTime = new BehaviorSubject<string>(null);
-  private $remainingWeeklyDays = new BehaviorSubject<string>(null);
+  private $remainingTime = new BehaviorSubject<string | null>(null);
+  private $remainingWeeklyDays = new BehaviorSubject<string | null>(null);
 
   private $onReset = new Subject<void>();
 
@@ -39,14 +39,25 @@ export class ResetTimerService {
     const wednesdayEnum = this.thursdayEnum - 1;
 
     if (todayEnum <= this.thursdayEnum) {
-      return moment().utc().isoWeekday(wednesdayEnum).endOf('day').add(1, 'second');
+      return moment()
+        .utc()
+        .isoWeekday(wednesdayEnum)
+        .endOf('day')
+        .add(1, 'second');
     } else {
-      return moment().utc().add(1, 'weeks').isoWeekday(wednesdayEnum).endOf('day').add(1, 'second');
+      return moment()
+        .utc()
+        .add(1, 'weeks')
+        .isoWeekday(wednesdayEnum)
+        .endOf('day')
+        .add(1, 'second');
     }
   };
 
   private calculateRemainingTime = (_: number) => {
-    const difference = moment.utc(moment(this.midnightUTC, this.datetimeFormat).diff(moment(moment().utc(), this.datetimeFormat)));
+    const difference = moment.utc(
+      moment(this.midnightUTC, this.datetimeFormat).diff(moment(moment().utc(), this.datetimeFormat))
+    );
     const secondsUntilReset = difference.unix();
 
     if (secondsUntilReset === 0) {
@@ -64,7 +75,9 @@ export class ResetTimerService {
   };
 
   private calculateRemainingWeeklyDays = (_: number) => {
-    const difference = moment.utc(moment(this.weeklyMidnightUTC, this.datetimeFormat).diff(moment(moment().utc(), this.datetimeFormat)));
+    const difference = moment.utc(
+      moment(this.weeklyMidnightUTC, this.datetimeFormat).diff(moment(moment().utc(), this.datetimeFormat))
+    );
     const secondsUntilReset = difference.unix();
 
     if (secondsUntilReset === 0) {

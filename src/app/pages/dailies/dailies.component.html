@@ -1,34 +1,53 @@
 <app-container>
-  <app-accordion>
-    <app-accordion-item
-      headerTitle="Arcane River Dailies"
-      [fluidContent]="true"
-      [expanded]="true"
+  <div class="mb-5 flex justify-between items-center flex-col md:flex-row">
+    <span
+      class="font-light mb-3 md:mb-0 whitespace-nowrap overflow-hidden overflow-ellipsis"
     >
-      <div class="flex" item-actions>
-        <button
-          class="rounded-full border border-grey w-7 h-7 flex items-center justify-center cursor-pointer select-none bg-gray-800 text-white hover:bg-gray-700 focus:outline-black"
-          (click)="addDaily()"
-          title="Add a New Daily"
-          type="button"
-        >
-          <fa-icon [icon]="addIcon"></fa-icon>
-        </button>
-      </div>
-      <app-daily-list [dailies]="arcaneRiverDailies"></app-daily-list>
-    </app-accordion-item>
-    <app-accordion-item headerTitle="Other Dailies" [fluidContent]="true">
-      <div class="flex" item-actions>
-        <button
-          class="rounded-full border border-grey w-7 h-7 flex items-center justify-center cursor-pointer select-none bg-gray-800 text-white hover:bg-gray-700"
-          (click)="addDaily()"
-          title="Add a New Daily"
-          type="button"
-        >
-          <fa-icon [icon]="addIcon"></fa-icon>
-        </button>
-      </div>
-      <app-daily-list [dailies]="otherDailies"></app-daily-list>
-    </app-accordion-item>
-  </app-accordion>
+      <span class="hidden md:inline-block">Dailies reset in</span>
+      {{ remainingTime !== null ? remainingTime : "..." }}
+    </span>
+    <div>
+      <app-button color="success" (click)="openSettingsModal()">
+        <fa-icon class="mr-1" [icon]="addIcon"></fa-icon>
+        <span>Add New List</span>
+      </app-button>
+    </div>
+  </div>
+
+  <div class="w-full h-full space-y-4 flex flex-col items-center">
+    <div class="w-full md:w-2/3">
+      <app-daily-list
+        headerTitle="Arcane River Dailies"
+        [dailies]="arcaneRiverDailies"
+      ></app-daily-list>
+    </div>
+    <div class="w-full md:w-2/3">
+      <app-daily-list
+        headerTitle="Hotel Maple Dailies"
+        [dailies]="hotelMapleDailies"
+      ></app-daily-list>
+    </div>
+    <div class="w-full md:w-2/3">
+      <app-daily-list
+        headerTitle="Other Dailies"
+        [dailies]="otherDailies"
+      ></app-daily-list>
+    </div>
+  </div>
 </app-container>
+
+<app-modal headerTitle="Add a New List" [id]="addNewDailyListModalId" #modal>
+  <form class="grid grid-cols-1 gap-6 mb-2">
+    <label class="block">
+      <span>List Name</span>
+      <input
+        type="text"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm text-black focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+      />
+    </label>
+  </form>
+  <div class="flex justify-end space-x-3" footer-content>
+    <app-button color="success" (click)="modal.close()">Save</app-button>
+    <app-button color="secondary" (click)="modal.close()">Cancel</app-button>
+  </div>
+</app-modal>

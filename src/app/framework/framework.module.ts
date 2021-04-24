@@ -13,6 +13,7 @@ import { AccordionModule } from './accordion/accordion.module';
 import { ContainerModule } from './container/container.module';
 import { ModalModule } from './modal/modal.module';
 import { PopoverModule } from './popover/popover.module';
+import { ButtonModule } from './button/button.module';
 
 @NgModule({
   declarations: [],
@@ -20,6 +21,7 @@ import { PopoverModule } from './popover/popover.module';
   exports: [
     CommonModule,
     AccordionModule,
+    ButtonModule,
     ContainerModule,
     FormModule,
     ModalModule,
