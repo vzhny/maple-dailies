@@ -14,30 +14,28 @@ module.exports = {
     container: {
       padding: "1rem",
     },
+    zIndex: {
+      ...defaultTheme.zIndex,
+      900: 900,
+      1000: 1000,
+    },
+    fontFamily: {
+      sans: ["DotGothic16", ...defaultTheme.fontFamily.sans],
+      mono: ["Ubuntu Mono", ...defaultTheme.fontFamily.mono],
+    },
     extend: {
       colors: {
-        transparent: "transparent",
-        current: "currentColor",
-        black: colors.black,
-        white: colors.white,
+        ...defaultTheme.colors,
         gray: colors.trueGray,
-        indigo: colors.indigo,
-        red: colors.rose,
-        yellow: colors.amber,
-      },
-      fontFamily: {
-        sans: ["DotGothic16", ...defaultTheme.fontFamily.sans],
-        mono: ["Ubuntu Mono", ...defaultTheme.fontFamily.mono],
+        green: colors.emerald,
       },
     },
-  },
   },
   plugins: [forms],
   variants: {
     extend: {
       backgroundColor: ["checked"],
-      borderColor: ["checked", "last"],
-      borderWidth: ["last"],
+      borderColor: ["checked"],
       textColor: ["visited"],
     },
   },
