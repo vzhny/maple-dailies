@@ -2,6 +2,7 @@ require("dotenv").config();
 const enablePurge = process.env.ENABLE_PURGE || false;
 const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
+const forms = require("@tailwindcss/forms");
 
 module.exports = {
   purge: {
@@ -30,6 +31,8 @@ module.exports = {
       },
     },
   },
+  },
+  plugins: [forms],
   variants: {
     extend: {
       backgroundColor: ["checked"],
@@ -38,5 +41,4 @@ module.exports = {
       textColor: ["visited"],
     },
   },
-  plugins: [],
 };
