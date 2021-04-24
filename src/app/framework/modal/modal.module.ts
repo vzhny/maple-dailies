@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ModalComponent } from './modal.component';
 import { ModalService } from './modal.service';
 import { ContainerModule } from '../container/container.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 /*
     All modal related files are courtesy of:
@@ -12,7 +13,7 @@ import { ContainerModule } from '../container/container.module';
 
 @NgModule({
   declarations: [ModalComponent],
-  imports: [CommonModule, ContainerModule],
+  imports: [CommonModule, FontAwesomeModule, ContainerModule],
   exports: [ModalComponent],
   providers: [ModalService],
 })

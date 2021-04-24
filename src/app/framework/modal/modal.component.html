@@ -1,11 +1,30 @@
 ﻿<div [id]="id" class="fixed top-0 right-0 bottom-0 left-0 z-1000 overflow-auto">
   <div
-    class="rounded-lg my-10 mx-auto bg-white dark:bg-gray-800"
-    [ngStyle]="{ width: maxWidthPixels }"
+    class="shadow-lg rounded-md my-10 mx-4 md:mx-auto bg-white dark:bg-gray-800 border-gray-800"
+    [ngStyle]="{ 'max-width': maxWidthPixels }"
   >
-    <app-container>
-      <ng-content></ng-content>
-    </app-container>
+    <div
+      class="uppercase font-semibold text-xl p-3 border-b-2 border-indigo-900 bg-indigo-800 dark:bg-gray-800 dark:border-gray-700 text-white rounded-t-md"
+    >
+      <div class="flex justify-between">
+        <span>
+          {{ headerTitle }}
+        </span>
+        <fa-icon
+          class="dark:text-gray-50 dark:hover:text-white cursor-pointer"
+          [icon]="closeIcon"
+          (click)="close()"
+        ></fa-icon>
+      </div>
+    </div>
+    <div class="dark:bg-gray-700">
+      <app-container>
+        <ng-content></ng-content>
+      </app-container>
+    </div>
+    <footer class="p-3 dark:bg-gray-800 rounded-b-md">
+      <ng-content select="[footer-content]"></ng-content>
+    </footer>
   </div>
 </div>
 <div

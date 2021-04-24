@@ -7,6 +7,7 @@
   OnDestroy,
   HostListener,
 } from '@angular/core';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { ModalService } from './modal.service';
 
@@ -19,8 +20,12 @@ import { ModalService } from './modal.service';
 })
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() id!: string;
+  @Input() headerTitle!: string;
   @Input() maxWidth = 600;
+
   private element: HTMLElement;
+
+  closeIcon = faTimesCircle;
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(
     event: KeyboardEvent
