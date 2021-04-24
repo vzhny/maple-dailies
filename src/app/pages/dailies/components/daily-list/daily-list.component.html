@@ -1,24 +1,83 @@
-<app-table [data]="dailies" #table>
-  <thead table-header>
-    <tr class="table-header-row">
-      <th
-        *ngFor="let column of columns"
-        class="table-header-cell"
-        ngClass="text-{{ column.textAlign }}"
+<div
+  class="flex flex-col p-1 shadow bg-white h-full dark:border-gray-900 dark:bg-gray-800"
+>
+  <div
+    class="flex justify-between items-center border-b border-gray-300 dark:border-gray-900 p-4"
+  >
+    <div
+      class="uppercase text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis"
+    >
+      {{ headerTitle }}
+    </div>
+    <div class="flex justify-center items-center space-x-2">
+      <app-button
+        *ngIf="!isEditing"
+        color="success"
+        (click)="addNewDaily()"
+        title="Add a New Daily"
       >
-        {{ column.headerTitle }}
-      </th>
-    </tr>
-  </thead>
-  <tbody table-body>
-    <tr *ngFor="let row of table.rows; let i = index" class="table-body-row">
-      <td class="table-body-cell">{{ row.text }}</td>
-      <td class="table-body-cell">
-        <app-checkbox
-          [value]="row.completed"
+        <fa-icon [icon]="addIcon" size="sm"></fa-icon>
+      </app-button>
+
+      <app-button
+        [color]="isEditing ? 'success' : 'secondary'"
+        (click)="toggleEditDailiesList()"
+        title="{{ isEditing ? 'Confirm' : 'Edit' }} Dailies List"
+      >
+        <fa-icon
+          [icon]="isEditing ? confirmIcon : editIcon"
+          size="sm"
+        ></fa-icon>
+      </app-button>
+
+      <app-button
+        *ngIf="!isEditing"
+        color="info"
+        (click)="checkAllDailies()"
+        title="Complete All Dailies"
+      >
+        <fa-icon [icon]="checkAllIcon" size="sm"></fa-icon>
+      </app-button>
+
+      <app-button
+        *ngIf="!isEditing"
+        color="danger"
+        (click)="resetDailies()"
+        title="Reset All Dailies"
+      >
+        <fa-icon [icon]="resetIcon" size="sm"></fa-icon>
+      </app-button>
+    </div>
+  </div>
+  <ul class="flex flex-col space-y-1 dark:bg-gray-700 max-h-80 overflow-y-auto">
+    <ng-container *ngFor="let daily of dailies; let i = index">
+      <li
+        *ngIf="isEditing || !daily.hidden"
+        class="flex justify-between p-1"
+        [ngClass]="{
+          'line-through italic text-gray-400': daily.completed,
+          'hover:bg-gray-200 dark:hover:bg-gray-500': isEditing
+        }"
+      >
+        <span
+          class="ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis"
+          [ngClass]="{ 'cursor-pointer': !isEditing }"
           (click)="toggleCompletedDaily(i)"
-        ></app-checkbox>
-      </td>
-    </tr>
-  </tbody>
-</app-table>
+        >
+          {{ daily.text }}
+        </span>
+        <div class="flex mr-2 space-x-2 text-black dark:text-white">
+          <span class="cursor-pointer" (click)="toggleDailyVisibility(i)">
+            <fa-icon
+              *ngIf="isEditing"
+              [icon]="daily.hidden ? hiddenIcon : visibleIcon"
+            ></fa-icon>
+          </span>
+          <span class="cursor-pointer" (click)="removeDaily(i)">
+            <fa-icon *ngIf="isEditing" [icon]="removeIcon"></fa-icon>
+          </span>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</div>
