@@ -11,7 +11,9 @@ import {
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { of } from 'rxjs';
+import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { ModalService } from 'src/app/framework/modal/modal.service';
+import { LocalStorageService } from 'src/app/utils/local-storage.service';
 import { ResetTimerService } from 'src/app/utils/reset-timer.service';
 import {
   DeleteDailyListEvent,
@@ -66,6 +68,7 @@ export class DailiesComponent implements OnInit {
     private resetTimerService: ResetTimerService,
     private modalService: ModalService,
     private dailiesService: DailiesService,
+    private localStorage: LocalStorageService,
     private fb: FormBuilder
   ) {}
 
@@ -90,6 +93,14 @@ export class DailiesComponent implements OnInit {
       this.saveDailiesLists(this.dailiesLists);
     });
 
+    this.localStorage
+      .watch<boolean>(LocalStorageKeys.columnLayoutSelected)
+      .subscribe((value: boolean | null) => this.setDailiesListsLayout(value));
+
+    this.buildForms();
+  }
+
+  buildForms() {
     this.dailyListTitleForm = this.fb.group({
       title: new FormControl(null, [Validators.required]),
     });
@@ -236,6 +247,17 @@ export class DailiesComponent implements OnInit {
 
   toggleListLayout() {
     this.columnLayoutSelected = !this.columnLayoutSelected;
+
+    this.localStorage.set(
+      LocalStorageKeys.columnLayoutSelected,
+      this.columnLayoutSelected
+    );
+  }
+
+  setDailiesListsLayout(value: boolean | null) {
+    if (value !== null) {
+      this.columnLayoutSelected = value;
+    }
   }
 
   get listTitle() {
