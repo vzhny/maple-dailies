@@ -16,8 +16,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.localStorage
-      .watch<string>(this.darkModeEnabledKey)
-      .subscribe((value: string | null) => this.setDarkModeOnDocument(value));
+    this.localStorage
+      .watch<string>(LocalStorageKeys.charImgUrl)
+      .subscribe((value: string | null) => this.setCharacterImageUrlSrc(value));
+  }
 
     const darkModeEnabledValue = this.localStorage.get<string>(
       this.darkModeEnabledKey
@@ -31,13 +33,22 @@ export class AppComponent implements OnInit {
     }
   }
 
-  setDarkModeOnDocument(value: string | null) {
-    const darkModeEnabled = value === 'true';
+  handleSettingCharacterImage() {
+    const characterImageUrlSrcValue = this.localStorage.get<string>(
+      LocalStorageKeys.charImgUrl
+    );
+
+    if (characterImageUrlSrcValue !== null) {
+      this.characterImageUrlSrc = characterImageUrlSrcValue;
+    }
+  }
 
     const htmlElement = document.querySelector('html');
 
     if (htmlElement) {
-      htmlElement.className = darkModeEnabled ? 'dark' : 'light';
+  setCharacterImageUrlSrc(value: string | null) {
+    if (value !== null) {
+      this.characterImageUrlSrc = value;
     }
   }
 }
