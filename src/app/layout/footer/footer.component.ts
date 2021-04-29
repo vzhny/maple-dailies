@@ -19,7 +19,11 @@ export class FooterComponent implements OnInit {
   constructor(private localStorage: LocalStorageService) {}
 
   ngOnInit(): void {
-    this.darkModeEnabled = this.localStorage.get('darkModeEnabled') === 'true';
+    const darkModeEnabled = this.localStorage.get<string>('darkModeEnabled');
+
+    if (darkModeEnabled !== null) {
+      this.darkModeEnabled = darkModeEnabled === 'true';
+    }
   }
 
   toggleDarkMode() {
