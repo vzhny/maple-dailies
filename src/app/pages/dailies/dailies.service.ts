@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { LocalStorageService } from 'src/app/utils/local-storage.service';
 import { Daily, DailyList } from './dailies.component';
 
@@ -7,7 +8,6 @@ import { Daily, DailyList } from './dailies.component';
   providedIn: 'root',
 })
 export class DailiesService {
-  private readonly dailiesListsKey = 'dailiesLists';
   private readonly systemDailies: DailyList[] = [
     {
       dailyListId: 1,
@@ -79,15 +79,17 @@ export class DailiesService {
   ];
 
   constructor(private localStorage: LocalStorageService) {
-    this.localStorage.set(this.dailiesListsKey, this.dailiesLists);
+    this.localStorage.set(LocalStorageKeys.dailiesLists, this.dailiesLists);
   }
 
   watchDailiesLists(): Observable<DailyList[] | null> {
-    return this.localStorage.watch<DailyList[] | null>(this.dailiesListsKey);
+    return this.localStorage.watch<DailyList[] | null>(
+      LocalStorageKeys.dailiesLists
+    );
   }
 
   saveDailiesLists(lists: DailyList[]) {
-    this.localStorage.set(this.dailiesListsKey, lists);
+    this.localStorage.set(LocalStorageKeys.dailiesLists, lists);
   }
 
   addDailyList(title: string) {
@@ -133,7 +135,7 @@ export class DailiesService {
 
   private get dailiesLists() {
     const dailiesLists = this.localStorage.get<DailyList[]>(
-      this.dailiesListsKey
+      LocalStorageKeys.dailiesLists
     );
 
     return dailiesLists ?? this.systemDailies;
