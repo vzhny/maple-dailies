@@ -22,7 +22,7 @@ export class ButtonComponent implements OnInit {
   @Input() set color(color: ButtonColor) {
     switch (color) {
       case 'secondary':
-        this.btnColorClass = `${this.baseBtnClasses} bg-gray-400 text-white hover:bg-gray-300 hover:cursor-pointer disabled:bg-gray-200`;
+        this.btnColorClass = `${this.baseBtnClasses} bg-gray-500 text-white hover:bg-gray-400 hover:cursor-pointer disabled:bg-gray-300`;
         break;
       case 'success':
         this.btnColorClass = `${this.baseBtnClasses} bg-green-500 text-white hover:bg-green-400 hover:cursor-pointer disabled:bg-green-300`;
