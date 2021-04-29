@@ -2,10 +2,13 @@
   <div class="flex-none">
     <app-header></app-header>
   </div>
-  <div class="flex-grow overflow-y-scroll">
+  <div class="flex-grow overflow-y-scroll z-10">
     <router-outlet></router-outlet>
   </div>
   <div class="flex-none">
     <app-footer></app-footer>
   </div>
+</div>
+<div *ngIf="characterImageUrlSrc" class="absolute right-1 bottom-20">
+  <img [src]="characterImageUrlSrc" alt="User Maplestory Character Image" />
 </div>
