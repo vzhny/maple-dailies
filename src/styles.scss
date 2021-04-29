@@ -17,7 +17,19 @@
 
   body,
   html {
-    @apply bg-gray-50 dark:bg-gray-900 dark:text-white h-screen;
+    @apply bg-gray-50 dark:bg-gray-900 dark:text-white h-screen overflow-hidden;
+
+    ::-webkit-scrollbar {
+      @apply h-2 w-2;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      @apply bg-indigo-900 hover:bg-indigo-800 dark:bg-gray-900 dark:hover:bg-gray-800;
+    }
+
+    ::-webkit-scrollbar-track {
+      @apply bg-transparent;
+    }
   }
 }
 

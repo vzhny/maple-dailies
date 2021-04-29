@@ -10,28 +10,35 @@ export class StorageService {
     this.subjects = new Map<string, BehaviorSubject<any>>();
   }
 
-  watch(key: string): Observable<any> {
-    let behaviorSubject: BehaviorSubject<any>;
-    let item: any = null;
+  watch<T>(key: string): Observable<T | null> {
+    let behaviorSubject: BehaviorSubject<T | null> = new BehaviorSubject<T | null>(
+      null
+    );
+    const itemString: string | null = this.storage.getItem(key);
+    let itemObj: T | null = null;
 
-    if (!this.subjects.has(key)) {
-      this.subjects.set(key, new BehaviorSubject<any>(null));
-    } else {
-      item = this.storage.getItem(key);
-
-      if (item !== null) {
-        item = JSON.parse(item);
-      }
+    if (itemString !== null) {
+      itemObj = JSON.parse(itemString) as T;
     }
 
-    behaviorSubject = this.subjects.get(key) as BehaviorSubject<any>;
-    behaviorSubject.next(item);
+    if (!this.subjects.has(key)) {
+      this.subjects.set(key, behaviorSubject);
+    }
+
+    behaviorSubject = this.subjects.get(key) as BehaviorSubject<T | null>;
+    behaviorSubject.next(itemObj);
 
     return behaviorSubject.asObservable();
   }
 
-  get(key: string): any {
-    return JSON.parse(this.storage.getItem(key) ?? '');
+  get<T>(key: string): T | null {
+    const item = this.storage.getItem(key);
+
+    if (item !== null) {
+      return JSON.parse(item) as T;
+    } else {
+      return null;
+    }
   }
 
   set(key: string, value: any) {
