@@ -29,7 +29,7 @@
               "path": "webpack.config.js"
             },
             "aot": true,
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": ["src/favicon.ico", "src/assets", "src/_redirects"],
             "styles": ["src/styles.scss"],
             "scripts": []
           },
@@ -49,11 +49,6 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
