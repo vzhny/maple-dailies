@@ -34,9 +34,10 @@ module.exports = {
   plugins: [forms],
   variants: {
     extend: {
-      backgroundColor: ["checked"],
+      backgroundColor: ["checked", "disabled"],
       borderColor: ["checked"],
-      textColor: ["visited"],
+      textColor: ["visited", "disabled"],
+      cursor: ["disabled"],
     },
   },
 };
