@@ -6,6 +6,8 @@
   OnInit,
   OnDestroy,
   HostListener,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -23,6 +25,8 @@ export class ModalComponent implements OnInit, OnDestroy {
   @Input() headerTitle!: string;
   @Input() maxWidth = 600;
 
+  @Output() close = new EventEmitter<void>();
+
   private element: HTMLElement;
 
   closeIcon = faTimesCircle;
@@ -30,7 +34,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(
     event: KeyboardEvent
   ) {
-    this.close();
+    this.closeModal();
   }
 
   constructor(private modalService: ModalService, private el: ElementRef) {
@@ -46,7 +50,7 @@ export class ModalComponent implements OnInit, OnDestroy {
       const el = event?.target as HTMLElement;
 
       if (el.id === this.id) {
-        this.close();
+        this.closeModal();
       }
     });
 
@@ -65,9 +69,10 @@ export class ModalComponent implements OnInit, OnDestroy {
     document.body.classList.add('app-modal-open');
   }
 
-  close() {
+  closeModal() {
     this.element.style.display = 'none';
     document.body.classList.remove('app-modal-open');
+    this.close.emit();
   }
 
   get maxWidthPixels() {
