@@ -16,10 +16,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.localStorage
-      .watch(this.darkModeEnabledKey)
-      .subscribe((value: string) => this.setDarkModeOnDocument(value));
+      .watch<string>(this.darkModeEnabledKey)
+      .subscribe((value: string | null) => this.setDarkModeOnDocument(value));
 
-    const darkModeEnabledValue = this.localStorage.get(this.darkModeEnabledKey);
+    const darkModeEnabledValue = this.localStorage.get<string>(
+      this.darkModeEnabledKey
+    );
 
     if (darkModeEnabledValue === null) {
       this.localStorage.set(this.darkModeEnabledKey, 'true');
@@ -29,7 +31,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  setDarkModeOnDocument(value: string) {
+  setDarkModeOnDocument(value: string | null) {
     const darkModeEnabled = value === 'true';
 
     const htmlElement = document.querySelector('html');
