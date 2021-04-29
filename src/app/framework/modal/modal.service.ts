@@ -1,8 +1,9 @@
 ﻿import { Injectable } from '@angular/core';
+import { ModalComponent } from './modal.component';
 
 @Injectable({ providedIn: 'root' })
 export class ModalService {
-  private modals: any[] = [];
+  private modals: ModalComponent[] = [];
 
   add(modal: any) {
     this.modals.push(modal);
@@ -14,11 +15,17 @@ export class ModalService {
 
   open(id: string) {
     const modal = this.modals.find((x) => x.id === id);
-    modal.open();
+
+    if (modal !== undefined) {
+      modal.open();
+    }
   }
 
   close(id: string) {
     const modal = this.modals.find((x) => x.id === id);
-    modal.close();
+
+    if (modal !== undefined) {
+      modal.closeModal();
+    }
   }
 }

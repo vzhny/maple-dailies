@@ -6,10 +6,17 @@ import { BreadcrumbNavComponent } from './breadcrumb-nav/breadcrumb-nav.componen
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FrameworkModule } from '../framework/framework.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HeaderComponent, BreadcrumbNavComponent, FooterComponent],
-  imports: [CommonModule, RouterModule, FontAwesomeModule, FrameworkModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    FrameworkModule,
+  ],
   exports: [HeaderComponent, BreadcrumbNavComponent, FooterComponent],
 })
 export class LayoutModule {}
