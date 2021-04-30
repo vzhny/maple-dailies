@@ -183,9 +183,12 @@ export class DailiesComponent implements OnInit {
     const listIndex = this.getSelectedDailyListIndex(this.selectedListId);
 
     if (listIndex >= 0) {
-      this.dailiesLists[listIndex].dailies.forEach(
-        (daily) => (daily.completed = allCompleted)
-      );
+      this.dailiesLists[listIndex].dailies.forEach((daily) => {
+        if (!daily.hidden) {
+          daily.completed = allCompleted;
+        }
+      });
+
       this.saveDailiesLists(this.dailiesLists);
     }
 
