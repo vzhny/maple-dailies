@@ -3,4 +3,5 @@ export const LocalStorageKeys = {
   charImgUrl: 'characterImageUrl',
   dailiesLists: 'dailiesLists',
   columnLayoutSelected: 'columnLayoutSelected',
+  lastAppAccessEpochNum: 'lastAppAccessEpochNumber',
 };
