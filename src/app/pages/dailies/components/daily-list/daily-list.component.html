@@ -110,7 +110,11 @@
             >
               <fa-icon *ngIf="isEditing" [icon]="editIcon"></fa-icon>
             </span>
-            <span class="cursor-pointer" (click)="toggleDailyVisibility(i)">
+            <span
+              *ngIf="systemList"
+              class="cursor-pointer"
+              (click)="toggleDailyVisibility(i)"
+            >
               <fa-icon
                 *ngIf="isEditing"
                 [icon]="daily.hidden ? hiddenIcon : visibleIcon"
