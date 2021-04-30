@@ -19,7 +19,7 @@
       </app-button>
 
       <app-button
-        *ngIf="showActions"
+        *ngIf="showActions && dailies.length > 0"
         [color]="isEditing ? 'success' : 'secondary'"
         (click)="toggleEditDailiesList()"
         title="{{ isEditing ? 'Confirm' : 'Edit' }} dailies list"
@@ -31,7 +31,7 @@
       </app-button>
 
       <app-button
-        *ngIf="showActions && !isEditing"
+        *ngIf="showActions && !isEditing && dailies.length > 0"
         color="info"
         (click)="completedList ? resetDailies() : completeAllDailies()"
         title="{{ completedList ? 'Reset' : 'Complete' }} all dailies"
