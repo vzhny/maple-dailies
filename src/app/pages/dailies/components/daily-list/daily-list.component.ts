@@ -62,6 +62,7 @@ export class DailyListComponent implements OnInit {
 
   @Output() addDaily = new EventEmitter<number>();
   @Output() editDaily = new EventEmitter<EditDailyEvent>();
+  @Output() deleteDaily = new EventEmitter<EditDailyEvent>();
   @Output() deleteList = new EventEmitter<DeleteDailyListEvent>();
   @Output() toggleCompletion = new EventEmitter<ToggleCompletionEvent>();
   @Output() toggleAllCompletion = new EventEmitter<ToggleAllCompletionEvent>();

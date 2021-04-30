@@ -135,6 +135,17 @@ export class DailiesComponent implements OnInit {
     }
   }
 
+  onDeleteDaily({ listId, index }: EditDailyEvent) {
+    this.selectedListId = listId;
+    this.selectedDailyIndex = index;
+    const listIndex = this.getSelectedDailyListIndex(this.selectedListId);
+
+    if (listIndex >= 0) {
+      this.dailiesLists[listIndex].dailies.splice(index, 1);
+      this.saveDailiesLists(this.dailiesLists);
+    }
+  }
+
   onDeleteDailyList({ listId, listTitle }: DeleteDailyListEvent) {
     this.selectedListId = listId;
     this.seletedListTitle = listTitle;
