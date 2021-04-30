@@ -3,6 +3,9 @@ import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { LocalStorageKeys } from './constants/local-storage-constants';
 import { LocalStorageService } from './utils/local-storage.service';
+import { ResetTimerService } from './utils/reset-timer.service';
+import * as moment from 'moment';
+import { DailiesService } from './pages/dailies/dailies.service';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +16,18 @@ export class AppComponent implements OnInit {
   title = 'maple-dailies';
   characterImageUrlSrc: string | null = null;
 
-  constructor(private localStorage: LocalStorageService) {}
+  // TODO: move this heavy logic into APP_INITALIZIER in order to keep the app component clean.
+  constructor(
+    private localStorage: LocalStorageService,
+    private resetTimerService: ResetTimerService,
+    private dailiesService: DailiesService
+  ) {}
 
   ngOnInit(): void {
     this.setLocalStorageWatchers();
     this.handleSettingDarkMode();
     this.handleSettingCharacterImage();
+    this.processLatestAppAccess();
   }
 
   setLocalStorageWatchers() {
@@ -66,5 +75,26 @@ export class AppComponent implements OnInit {
     if (value !== null) {
       this.characterImageUrlSrc = value;
     }
+  }
+
+  processLatestAppAccess() {
+    const previousAppAccessEpoch = this.localStorage.get<number>(
+      LocalStorageKeys.lastAppAccessEpochNum
+    );
+
+    if (previousAppAccessEpoch !== null) {
+      const midnightUtcEpoch = this.resetTimerService
+        .getCurrentMidnightUtc()
+        ?.valueOf();
+
+      if (midnightUtcEpoch && previousAppAccessEpoch >= midnightUtcEpoch) {
+        this.dailiesService.resetAllDailiesInLists();
+      }
+    }
+
+    this.localStorage.set(
+      LocalStorageKeys.lastAppAccessEpochNum,
+      moment().utc().valueOf()
+    );
   }
 }

@@ -127,6 +127,16 @@ export class DailiesService {
     }
   }
 
+  resetAllDailiesInLists() {
+    const currentDailiesLists = this.dailiesLists;
+
+    currentDailiesLists.forEach((list) => {
+      list.dailies.forEach((daily) => (daily.completed = false));
+    });
+
+    this.saveDailiesLists(currentDailiesLists);
+  }
+
   private getDailyListIndex(dailyListId: number) {
     return this.dailiesLists.findIndex(
       (list) => list.dailyListId === dailyListId

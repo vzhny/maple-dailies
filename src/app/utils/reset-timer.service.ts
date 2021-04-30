@@ -30,6 +30,14 @@ export class ResetTimerService {
     interval(1000).subscribe(this.calculateRemainingWeeklyDays);
   }
 
+  getCurrentMidnightUtc() {
+    return this.midnightUTC;
+  }
+
+  getCurrentWeeklyMidnightUtc() {
+    return this.weeklyMidnightUTC;
+  }
+
   private setMidnightUTC = () => {
     return moment().utc().endOf('day').add(1, 'second');
   };
@@ -56,7 +64,9 @@ export class ResetTimerService {
 
   private calculateRemainingTime = (_: number) => {
     const difference = moment.utc(
-      moment(this.midnightUTC, this.datetimeFormat).diff(moment(moment().utc(), this.datetimeFormat))
+      moment(this.midnightUTC, this.datetimeFormat).diff(
+        moment(moment().utc(), this.datetimeFormat)
+      )
     );
     const secondsUntilReset = difference.unix();
 
@@ -70,13 +80,17 @@ export class ResetTimerService {
       const secondsRemaining = difference.get('seconds');
       const seconds = secondsRemaining !== 1 ? 'seconds' : 'second';
 
-      this.$remainingTime.next(`${hoursRemaining} hours, ${minutesRemaining} minutes, and ${secondsRemaining} ${seconds}`);
+      this.$remainingTime.next(
+        `${hoursRemaining} hours, ${minutesRemaining} minutes, and ${secondsRemaining} ${seconds}`
+      );
     }
   };
 
   private calculateRemainingWeeklyDays = (_: number) => {
     const difference = moment.utc(
-      moment(this.weeklyMidnightUTC, this.datetimeFormat).diff(moment(moment().utc(), this.datetimeFormat))
+      moment(this.weeklyMidnightUTC, this.datetimeFormat).diff(
+        moment(moment().utc(), this.datetimeFormat)
+      )
     );
     const secondsUntilReset = difference.unix();
 
