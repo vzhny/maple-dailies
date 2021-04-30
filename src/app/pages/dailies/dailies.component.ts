@@ -203,6 +203,11 @@ export class DailiesComponent implements OnInit {
 
     if (listIndex >= 0) {
       this.dailiesLists[listIndex].dailies[index].hidden = visibility;
+
+      if (visibility) {
+        this.dailiesLists[listIndex].dailies[index].completed = false;
+      }
+
       this.saveDailiesLists(this.dailiesLists);
       this.resetAll();
     }
