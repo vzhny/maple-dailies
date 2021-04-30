@@ -135,6 +135,17 @@ export class DailiesComponent implements OnInit {
     }
   }
 
+  onDeleteDaily({ listId, index }: EditDailyEvent) {
+    this.selectedListId = listId;
+    this.selectedDailyIndex = index;
+    const listIndex = this.getSelectedDailyListIndex(this.selectedListId);
+
+    if (listIndex >= 0) {
+      this.dailiesLists[listIndex].dailies.splice(index, 1);
+      this.saveDailiesLists(this.dailiesLists);
+    }
+  }
+
   onDeleteDailyList({ listId, listTitle }: DeleteDailyListEvent) {
     this.selectedListId = listId;
     this.seletedListTitle = listTitle;
@@ -172,9 +183,12 @@ export class DailiesComponent implements OnInit {
     const listIndex = this.getSelectedDailyListIndex(this.selectedListId);
 
     if (listIndex >= 0) {
-      this.dailiesLists[listIndex].dailies.forEach(
-        (daily) => (daily.completed = allCompleted)
-      );
+      this.dailiesLists[listIndex].dailies.forEach((daily) => {
+        if (!daily.hidden) {
+          daily.completed = allCompleted;
+        }
+      });
+
       this.saveDailiesLists(this.dailiesLists);
     }
 
@@ -189,6 +203,11 @@ export class DailiesComponent implements OnInit {
 
     if (listIndex >= 0) {
       this.dailiesLists[listIndex].dailies[index].hidden = visibility;
+
+      if (visibility) {
+        this.dailiesLists[listIndex].dailies[index].completed = false;
+      }
+
       this.saveDailiesLists(this.dailiesLists);
       this.resetAll();
     }

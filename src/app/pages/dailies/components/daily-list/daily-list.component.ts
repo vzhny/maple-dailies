@@ -62,6 +62,7 @@ export class DailyListComponent implements OnInit {
 
   @Output() addDaily = new EventEmitter<number>();
   @Output() editDaily = new EventEmitter<EditDailyEvent>();
+  @Output() deleteDaily = new EventEmitter<EditDailyEvent>();
   @Output() deleteList = new EventEmitter<DeleteDailyListEvent>();
   @Output() toggleCompletion = new EventEmitter<ToggleCompletionEvent>();
   @Output() toggleAllCompletion = new EventEmitter<ToggleAllCompletionEvent>();
@@ -153,6 +154,21 @@ export class DailyListComponent implements OnInit {
   }
 
   get completedList() {
-    return this.dailies.filter((daily) => !daily.completed).length === 0;
+    if (this.dailies.length === 0) {
+      return false;
+    } else {
+      return (
+        this.dailies
+          .filter((daily) => !daily.hidden)
+          .filter((daily) => !daily.completed).length === 0
+      );
+    }
+  }
+
+  get allDailiesHidden() {
+    return (
+      this.dailies.length ===
+      this.dailies.filter((daily) => daily.hidden).length
+    );
   }
 }
