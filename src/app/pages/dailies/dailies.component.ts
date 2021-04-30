@@ -18,6 +18,7 @@ import { ResetTimerService } from 'src/app/utils/reset-timer.service';
 import {
   DeleteDailyListEvent,
   EditDailyEvent,
+  MoveDailyEvent,
   ToggleAllCompletionEvent,
   ToggleCompletionEvent,
   ToggleVisibilityEvent,
@@ -146,6 +147,21 @@ export class DailiesComponent implements OnInit {
     }
   }
 
+  onMoveDaily({ listId, fromIndex, toIndex }: MoveDailyEvent) {
+    this.selectedListId = listId;
+    this.selectedDailyIndex = fromIndex;
+    const listIndex = this.getSelectedDailyListIndex(this.selectedListId);
+
+    if (listIndex >= 0) {
+      const daily = this.dailiesLists[listIndex].dailies[fromIndex];
+
+      this.dailiesLists[listIndex].dailies.splice(fromIndex, 1);
+      this.dailiesLists[listIndex].dailies.splice(toIndex, 0, daily);
+
+      this.saveDailiesLists(this.dailiesLists);
+    }
+  }
+
   onDeleteDailyList({ listId, listTitle }: DeleteDailyListEvent) {
     this.selectedListId = listId;
     this.seletedListTitle = listTitle;
@@ -171,7 +187,6 @@ export class DailiesComponent implements OnInit {
     if (listIndex >= 0) {
       this.dailiesLists[listIndex].dailies[index].completed = completion;
       this.saveDailiesLists(this.dailiesLists);
-      this.resetAll();
     }
   }
 
@@ -191,8 +206,6 @@ export class DailiesComponent implements OnInit {
 
       this.saveDailiesLists(this.dailiesLists);
     }
-
-    this.resetAll();
   }
 
   onToggleDailyVisibilty({ listId, index, visibility }: ToggleVisibilityEvent) {
@@ -209,7 +222,6 @@ export class DailiesComponent implements OnInit {
       }
 
       this.saveDailiesLists(this.dailiesLists);
-      this.resetAll();
     }
   }
 
@@ -241,8 +253,6 @@ export class DailiesComponent implements OnInit {
       this.saveDailiesLists(this.dailiesLists);
       this.modalService.close(this.addEditDailyModalId);
     }
-
-    this.resetAll();
   }
 
   getSelectedDailyListIndex(listId: number) {
@@ -253,6 +263,7 @@ export class DailiesComponent implements OnInit {
 
   saveDailiesLists(lists: DailyList[]) {
     this.dailiesService.saveDailiesLists(lists);
+    this.resetAll();
   }
 
   resetAll() {
