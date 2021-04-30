@@ -90,6 +90,20 @@
           </span>
           <div class="flex mr-2 space-x-2 text-black dark:text-white">
             <span
+              *ngIf="i !== 0"
+              class="cursor-pointer"
+              (click)="moveDailyWithinList(upDirection, i)"
+            >
+              <fa-icon *ngIf="isEditing" [icon]="upIcon"></fa-icon>
+            </span>
+            <span
+              *ngIf="i !== dailies.length - 1"
+              class="cursor-pointer"
+              (click)="moveDailyWithinList(downDirection, i)"
+            >
+              <fa-icon *ngIf="isEditing" [icon]="downIcon"></fa-icon>
+            </span>
+            <span
               *ngIf="!systemList"
               class="cursor-pointer"
               (click)="editExistingDaily(i)"

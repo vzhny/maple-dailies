@@ -10,6 +10,8 @@ import {
   faAngleDoubleRight,
   faCheck,
   faCheckDouble,
+  faChevronDown,
+  faChevronUp,
   faEllipsisH,
   faEye,
   faEyeSlash,
@@ -31,6 +33,11 @@ export interface EditDailyEvent extends DailyEvent {
   index: number;
 }
 
+export interface MoveDailyEvent extends DailyEvent {
+  fromIndex: number;
+  toIndex: number;
+}
+
 export interface DeleteDailyListEvent extends DailyEvent {
   listTitle: string;
 }
@@ -49,6 +56,8 @@ export interface ToggleVisibilityEvent extends DailyEvent {
   visibility: boolean;
 }
 
+type MoveDirection = 'up' | 'down';
+
 @Component({
   selector: 'app-daily-list',
   templateUrl: './daily-list.component.html',
@@ -63,10 +72,14 @@ export class DailyListComponent implements OnInit {
   @Output() addDaily = new EventEmitter<number>();
   @Output() editDaily = new EventEmitter<EditDailyEvent>();
   @Output() deleteDaily = new EventEmitter<EditDailyEvent>();
+  @Output() moveDaily = new EventEmitter<MoveDailyEvent>();
   @Output() deleteList = new EventEmitter<DeleteDailyListEvent>();
   @Output() toggleCompletion = new EventEmitter<ToggleCompletionEvent>();
   @Output() toggleAllCompletion = new EventEmitter<ToggleAllCompletionEvent>();
   @Output() toggleVisibility = new EventEmitter<ToggleVisibilityEvent>();
+
+  upDirection: MoveDirection = 'up';
+  downDirection: MoveDirection = 'down';
 
   showActionsIcon = faEllipsisH;
   hideActionsIcon = faAngleDoubleRight;
@@ -81,6 +94,9 @@ export class DailyListComponent implements OnInit {
 
   visibleIcon = faEye;
   hiddenIcon = faEyeSlash;
+
+  upIcon = faChevronUp;
+  downIcon = faChevronDown;
 
   isEditing = false;
   showActions = false;
@@ -151,6 +167,17 @@ export class DailyListComponent implements OnInit {
         visibility: !this.dailies[index].hidden,
       });
     }
+  }
+
+  moveDailyWithinList(direction: MoveDirection, index: number) {
+    const fromIndex = index;
+    const toIndex = direction === 'up' ? index - 1 : index + 1;
+
+    this.moveDaily.emit({
+      listId: this.listId,
+      fromIndex,
+      toIndex,
+    });
   }
 
   get completedList() {
