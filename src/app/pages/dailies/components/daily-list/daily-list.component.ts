@@ -193,9 +193,13 @@ export class DailyListComponent implements OnInit {
   }
 
   get allDailiesHidden() {
-    return (
-      this.dailies.length ===
-      this.dailies.filter((daily) => daily.hidden).length
-    );
+    if (this.dailies.length === 0) {
+      return false;
+    } else {
+      return (
+        this.dailies.length ===
+        this.dailies.filter((daily) => daily.hidden).length
+      );
+    }
   }
 }
