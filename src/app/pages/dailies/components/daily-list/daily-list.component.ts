@@ -154,6 +154,21 @@ export class DailyListComponent implements OnInit {
   }
 
   get completedList() {
-    return this.dailies.filter((daily) => !daily.completed).length === 0;
+    if (this.dailies.length === 0) {
+      return false;
+    } else {
+      return (
+        this.dailies
+          .filter((daily) => !daily.hidden)
+          .filter((daily) => !daily.completed).length === 0
+      );
+    }
+  }
+
+  get allDailiesHidden() {
+    return (
+      this.dailies.length ===
+      this.dailies.filter((daily) => daily.hidden).length
+    );
   }
 }
