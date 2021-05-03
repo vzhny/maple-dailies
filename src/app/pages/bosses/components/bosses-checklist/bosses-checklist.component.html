@@ -1,0 +1,84 @@
+<div
+  class="flex flex-col p-3 shadow bg-white dark:border-gray-900 dark:bg-gray-800"
+>
+  <div class="h-14 flex justify-between items-center mt-1 mb-3">
+    <span
+      class="uppercase text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis"
+    >
+      {{ weekly ? "Weekly" : "Daily" }} Bosses
+    </span>
+    <span
+      class="uppercase text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis"
+    >
+      {{ amountOfSelectedBosses }}
+      <span *ngIf="weekly">/ {{ bosses.length }}</span>
+    </span>
+  </div>
+  <ul
+    class="h-screen/40 md:h-screen/60 flex flex-col space-y-1 dark:bg-gray-700 overflow-y-auto border dark:border-gray-900"
+  >
+    <li
+      *ngFor="let boss of bosses; let i = index"
+      class="flex justify-between p-1 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-500"
+      [title]="boss.name"
+      (click)="toggleSelectedBossToClear(boss, i)"
+    >
+      <span
+        class="flex justify-center items-center ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis"
+      >
+        <div>
+          <fa-icon
+            [icon]="boss.selected ? selectedIcon : notSelectedIcon"
+            size="sm"
+            class="mr-2"
+            [title]="boss.selected ? 'Deselect' : 'Select'"
+          ></fa-icon>
+          <span
+            *ngIf="!weekly"
+            class="space-x-2 mr-2"
+            [ngClass]="{
+              'text-gray-300 dark:text-gray-500 cursor-not-allowed': !boss.selected
+            }"
+          >
+            <fa-icon
+              [icon]="upIcon"
+              size="sm"
+              (click)="
+                $event.stopPropagation(); incrementPerWeekAmount(boss, i)
+              "
+              [ngClass]="{
+                'text-gray-300 dark:text-gray-500 cursor-not-allowed':
+                  boss.perWeekAmount === 7
+              }"
+              title="Increment"
+            ></fa-icon>
+            <span class="font-mono">{{ boss.perWeekAmount }}</span>
+            <fa-icon
+              [icon]="downIcon"
+              size="sm"
+              (click)="
+                $event.stopPropagation(); decrementPerWeekAmount(boss, i)
+              "
+              [ngClass]="{
+                'text-gray-300 dark:text-gray-500 cursor-not-allowed':
+                  boss.perWeekAmount === 1
+              }"
+              title="Decrement"
+            ></fa-icon>
+          </span>
+        </div>
+        <img
+          src="assets/images/bosses/{{ getBossImageFileName(boss.name) }}.png"
+          alt="Boss Image"
+          class="hidden md:block mr-2 h-7 w-7"
+        />
+        <span class="whitespace-nowrap overflow-hidden overflow-ellipsis">
+          {{ boss.difficulty | titlecase }} {{ boss.name }}
+        </span>
+      </span>
+      <span class="mr-1 font-mono">
+        {{ boss.bossCrystalMesos | mesos }}
+      </span>
+    </li>
+  </ul>
+</div>

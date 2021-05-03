@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { BossesService } from './bosses.service';
+import {
+  Boss,
+  BossSelectionEvent,
+  DailyBossAmountOperationEvent,
+} from './components/bosses-checklist/bosses-checklist.component';
 
 @Component({
   selector: 'app-bosses',
@@ -6,7 +12,104 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bosses.component.scss'],
 })
 export class BossesComponent implements OnInit {
-  constructor() {}
+  dailyBosses: Boss[] = [];
+  weeklyBosses: Boss[] = [];
+  monthlyBosses: Boss[] = [];
 
-  ngOnInit(): void {}
+  totalWeeklyMesos = 0;
+  totalAmountOfPowerCrystals = 0;
+
+  constructor(private bossesService: BossesService) {}
+
+  ngOnInit(): void {
+    this.bossesService.watchBossesChecklists().subscribe((checklists) => {
+      if (checklists !== null) {
+        this.dailyBosses = checklists.dailyBosses;
+        this.weeklyBosses = checklists.weeklyBosses;
+        this.monthlyBosses = checklists.monthlyBosses;
+
+        this.totalWeeklyMesos = checklists.totalWeeklyMesos;
+        this.totalAmountOfPowerCrystals = checklists.totalAmountOfPowerCrystals;
+      }
+    });
+  }
+
+  onSelectBoss({
+    bossIndex,
+    frequency,
+    perWeekAmount,
+    bossCrystalMesos,
+    selected,
+  }: BossSelectionEvent) {
+    switch (frequency) {
+      case 'daily':
+        this.dailyBosses[bossIndex].selected = selected;
+        break;
+      case 'weekly':
+        this.weeklyBosses[bossIndex].selected = selected;
+        break;
+      default:
+        this.monthlyBosses[bossIndex].selected = selected;
+        break;
+    }
+
+    if (selected) {
+      if (frequency === 'daily') {
+        this.totalAmountOfPowerCrystals += perWeekAmount;
+        this.totalWeeklyMesos += perWeekAmount * bossCrystalMesos;
+      } else {
+        this.totalAmountOfPowerCrystals += 1;
+        this.totalWeeklyMesos += bossCrystalMesos;
+      }
+    } else {
+      if (frequency === 'daily') {
+        this.totalAmountOfPowerCrystals -= perWeekAmount;
+        this.totalWeeklyMesos -= perWeekAmount * bossCrystalMesos;
+      } else {
+        this.totalAmountOfPowerCrystals -= 1;
+        this.totalWeeklyMesos -= bossCrystalMesos;
+      }
+    }
+
+    this.saveBossesChecklists();
+  }
+
+  onBossAmountOperation({
+    bossIndex,
+    perWeekAmount,
+    bossCrystalMesos,
+    operation,
+    selected,
+  }: DailyBossAmountOperationEvent) {
+    if (selected) {
+      switch (operation) {
+        case 'increment':
+          if (perWeekAmount < 7) {
+            this.dailyBosses[bossIndex].perWeekAmount += 1;
+            this.totalWeeklyMesos += bossCrystalMesos;
+            this.totalAmountOfPowerCrystals += 1;
+          }
+          break;
+        default:
+          if (perWeekAmount > 1) {
+            this.dailyBosses[bossIndex].perWeekAmount -= 1;
+            this.totalWeeklyMesos -= bossCrystalMesos;
+            this.totalAmountOfPowerCrystals -= 1;
+          }
+          break;
+      }
+    }
+
+    this.saveBossesChecklists();
+  }
+
+  private saveBossesChecklists() {
+    this.bossesService.saveBossesChecklists({
+      dailyBosses: this.dailyBosses,
+      weeklyBosses: this.weeklyBosses,
+      monthlyBosses: this.monthlyBosses,
+      totalAmountOfPowerCrystals: this.totalAmountOfPowerCrystals,
+      totalWeeklyMesos: this.totalWeeklyMesos,
+    });
+  }
 }

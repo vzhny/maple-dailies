@@ -83,11 +83,13 @@ export class AppComponent implements OnInit {
     );
 
     if (previousAppAccessEpoch !== null) {
-      const midnightUtcEpoch = this.resetTimerService
-        .getCurrentMidnightUtc()
-        ?.valueOf();
+      const previousAppAccessUtc = moment(previousAppAccessEpoch).utc();
+      const midnightUtc = this.resetTimerService.getCurrentMidnightUtc();
 
-      if (midnightUtcEpoch && previousAppAccessEpoch >= midnightUtcEpoch) {
+      const difference = midnightUtc.diff(previousAppAccessUtc);
+      const duration = moment.duration(difference);
+
+      if (duration.asHours() >= 24) {
         this.dailiesService.resetAllDailiesInLists();
       }
     }

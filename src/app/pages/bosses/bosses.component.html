@@ -1,5 +1,39 @@
 <app-container>
-  <div class="flex flex-col justify-center h-full mt-10">
-    <h1 class="text-4xl font-medium">Weekly/daily boss lists coming soon!</h1>
+  <div class="md:mb-4 flex justify-between items-center flex-col lg:flex-row">
+    <span
+      class="flex justify-center items-center font-light mb-3 md:mb-0 whitespace-nowrap overflow-hidden overflow-ellipsis"
+    >
+      <img
+        src="assets/images/misc/meso.png"
+        alt="Meso icon"
+        class="mr-2 hidden md:block"
+      />
+      <span class="hidden md:block">Total amount of mesos earned weekly:</span>
+      <span class="block md:hidden"> Total weekly mesos:</span>
+      <span class="ml-1">{{ totalWeeklyMesos | mesos }}</span>
+    </span>
+    <span
+      class="flex justify-center items-center font-light mb-3 md:mb-0 whitespace-nowrap overflow-hidden overflow-ellipsis"
+    >
+      <img
+        src="assets/images/misc/intense-power-crystal.png"
+        alt="Intense power crystal icon"
+        class="mr-2 hidden md:block"
+      />
+      Total amount of intense power crystals: {{ totalAmountOfPowerCrystals }}
+    </span>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 items-start gap-4">
+    <app-bosses-checklist
+      [bosses]="dailyBosses"
+      (selectBoss)="onSelectBoss($event)"
+      (bossAmountOperation)="onBossAmountOperation($event)"
+    ></app-bosses-checklist>
+    <app-bosses-checklist
+      [bosses]="weeklyBosses"
+      [weekly]="true"
+      (selectBoss)="onSelectBoss($event)"
+    ></app-bosses-checklist>
   </div>
 </app-container>

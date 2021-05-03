@@ -31,7 +31,7 @@ export class ResetTimerService {
   }
 
   getCurrentMidnightUtc() {
-    return this.midnightUTC;
+    return this.midnightUTC ?? moment().utc();
   }
 
   getCurrentWeeklyMidnightUtc() {
