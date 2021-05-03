@@ -11,6 +11,18 @@ module.exports = {
   },
   darkMode: "class", // or 'media' or 'class'
   theme: {
+    spacing: {
+      ...defaultTheme.spacing,
+      "screen/10": "10vh",
+      "screen/20": "20vh",
+      "screen/30": "30vh",
+      "screen/40": "40vh",
+      "screen/50": "50vh",
+      "screen/60": "60vh",
+      "screen/70": "70vh",
+      "screen/80": "80vh",
+      "screen/90": "90vh",
+    },
     container: {
       padding: "1rem",
     },
