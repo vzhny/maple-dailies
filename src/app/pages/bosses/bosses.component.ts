@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { BossesService } from './bosses.service';
 import {
   Boss,
+  AllBossesCompletionEvent,
   BossSelectionEvent,
   DailyBossAmountOperationEvent,
+  BossCompletionEvent,
 } from './components/bosses-checklist/bosses-checklist.component';
 
 @Component({
@@ -98,6 +100,26 @@ export class BossesComponent implements OnInit {
           }
           break;
       }
+    }
+
+    this.saveBossesChecklists();
+  }
+
+  onToggleCompletion({ isWeekly, bossIndex, completed }: BossCompletionEvent) {
+    if (isWeekly) {
+      this.weeklyBosses[bossIndex].completed = completed;
+    } else {
+      this.dailyBosses[bossIndex].completed = completed;
+    }
+
+    this.saveBossesChecklists();
+  }
+
+  onAllCompletion({ isWeekly, allCompleted }: AllBossesCompletionEvent) {
+    if (isWeekly) {
+      this.weeklyBosses.forEach((boss) => (boss.completed = allCompleted));
+    } else {
+      this.dailyBosses.forEach((boss) => (boss.completed = allCompleted));
     }
 
     this.saveBossesChecklists();

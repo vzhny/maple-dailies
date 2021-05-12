@@ -24,6 +24,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 200000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Zakum',
@@ -32,6 +33,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 612500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Mori Ranmaru',
@@ -40,6 +42,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 648000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Papulatus',
@@ -48,6 +51,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 684500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Magnus',
@@ -56,6 +60,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 722000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Hilla',
@@ -64,6 +69,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 800000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Horntail',
@@ -72,6 +78,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 882000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Crimson Queen',
@@ -80,6 +87,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 968000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Pierre',
@@ -88,6 +96,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 968000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Vellum',
@@ -96,6 +105,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 968000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Von Bon',
@@ -104,6 +114,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 968000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Horntail',
@@ -112,6 +123,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 1012500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Von Leon',
@@ -120,6 +132,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 1058000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Arkarium',
@@ -128,6 +141,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 1152000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Julieta',
@@ -136,6 +150,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 1200000,
       selected: false,
+      completed: false,
     },
     {
       name: 'OMNI-CLN',
@@ -144,6 +159,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 1250000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Horntail',
@@ -152,6 +168,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 1352000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Pink Bean',
@@ -160,6 +177,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 1404500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Von Leon',
@@ -168,6 +186,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 1458000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Von Leon',
@@ -176,6 +195,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 2450000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Arkarium',
@@ -184,6 +204,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 2520000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Magnus',
@@ -192,6 +213,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 2592000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Papulatus',
@@ -200,6 +222,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 2664500,
       selected: false,
+      completed: false,
     },
   ];
 
@@ -211,6 +234,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 9112500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Hilla',
@@ -219,6 +243,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 11250000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Pink Bean',
@@ -227,6 +252,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 12800000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Cygnus',
@@ -235,6 +261,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 14450000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Princess Nou',
@@ -243,6 +270,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 15312500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Crimson Queen',
@@ -251,6 +279,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 16200000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Pierre',
@@ -259,6 +288,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 16200000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Von Bon',
@@ -267,6 +297,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 16200000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Zakum',
@@ -275,6 +306,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 16200000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Magnus',
@@ -283,6 +315,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 19012500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Vellum',
@@ -291,6 +324,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 21012500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Papulatus',
@@ -299,6 +333,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 26450000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Akechi Mitsuhide',
@@ -307,6 +342,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 28800000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Lotus',
@@ -315,6 +351,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 32512500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Damien',
@@ -323,6 +360,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 33800000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Lucid',
@@ -331,6 +369,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 35112500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Lucid',
@@ -339,6 +378,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 40612500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Will',
@@ -347,6 +387,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 46512500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Gloom',
@@ -355,6 +396,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 49612500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Darknell',
@@ -363,6 +405,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 52812500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Damien',
@@ -371,6 +414,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 70312500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Lotus',
@@ -379,6 +423,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 74112500,
       selected: false,
+      completed: false,
     },
     {
       name: 'Lucid',
@@ -387,6 +432,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 80000000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Will',
@@ -395,6 +441,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 88200000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Gloom',
@@ -403,6 +450,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 92450000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Darknell',
@@ -411,6 +459,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 96800000,
       selected: false,
+      completed: false,
     },
     {
       name: 'Verus Hilla',
@@ -419,6 +468,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 110450000,
       selected: false,
+      completed: false,
     },
   ];
 
@@ -430,6 +480,7 @@ export class BossesService {
       perWeekAmount: 1,
       bossCrystalMesos: 500000000,
       selected: false,
+      completed: false,
     },
   ];
 
