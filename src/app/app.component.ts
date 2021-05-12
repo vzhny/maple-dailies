@@ -7,6 +7,7 @@ import { ResetTimerService } from './utils/reset-timer.service';
 import * as moment from 'moment';
 import { DailiesService } from './pages/dailies/dailies.service';
 import { BossesService } from './pages/bosses/bosses.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
 
   // TODO: move this heavy logic into APP_INITALIZIER in order to keep the app component clean.
   constructor(
+    private router: Router,
     private localStorage: LocalStorageService,
     private resetTimerService: ResetTimerService,
     private dailiesService: DailiesService,
@@ -103,6 +105,9 @@ export class AppComponent implements OnInit {
       if (weeklyDuration.asDays() >= 7) {
         this.bossesService.resetAllWeeklyBosses();
       }
+
+      // Reroute to the dailies page if the app has been accessed at least once
+      this.router.navigate(['/dailies']);
     }
 
     this.localStorage.set(
