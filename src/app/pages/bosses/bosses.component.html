@@ -29,11 +29,15 @@
       [bosses]="dailyBosses"
       (selectBoss)="onSelectBoss($event)"
       (bossAmountOperation)="onBossAmountOperation($event)"
+      (toggleCompletion)="onToggleCompletion($event)"
+      (toggleAllCompletion)="onAllCompletion($event)"
     ></app-bosses-checklist>
     <app-bosses-checklist
       [bosses]="weeklyBosses"
       [weekly]="true"
       (selectBoss)="onSelectBoss($event)"
+      (toggleCompletion)="onToggleCompletion($event)"
+      (toggleAllCompletion)="onAllCompletion($event)"
     ></app-bosses-checklist>
   </div>
 </app-container>
