@@ -13,6 +13,7 @@ export class ResetTimerService {
   private $remainingWeeklyDays = new BehaviorSubject<string | null>(null);
 
   private $onReset = new Subject<void>();
+  private $onWeeklyReset = new Subject<void>();
 
   datetimeFormat = 'MM/DD/YYYY HH: mm: ss';
   thursdayEnum = 4;
@@ -21,6 +22,7 @@ export class ResetTimerService {
   remainingWeeklyDays = this.$remainingWeeklyDays.asObservable();
 
   onReset = this.$onReset.asObservable();
+  onWeeklyReset = this.$onWeeklyReset.asObservable();
 
   constructor() {
     this.midnightUTC = this.setMidnightUTC();
@@ -35,7 +37,7 @@ export class ResetTimerService {
   }
 
   getCurrentWeeklyMidnightUtc() {
-    return this.weeklyMidnightUTC;
+    return this.weeklyMidnightUTC ?? moment().utc();
   }
 
   private setMidnightUTC = () => {
@@ -97,6 +99,7 @@ export class ResetTimerService {
     if (secondsUntilReset === 0) {
       this.weeklyMidnightUTC = this.setWeeklyMidnightUTC();
       this.$remainingWeeklyDays.next(null);
+      this.$onWeeklyReset.next();
     } else {
       const daysRemaining = difference.get('days');
       const days = daysRemaining !== 1 ? 'days' : 'day';
