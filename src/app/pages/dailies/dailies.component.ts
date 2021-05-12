@@ -86,14 +86,6 @@ export class DailiesComponent implements OnInit {
       (remainingTime) => (this.remainingTime = remainingTime)
     );
 
-    this.resetTimerService.onReset.subscribe(() => {
-      this.dailiesLists.forEach((list) =>
-        list.dailies.forEach(this.resetDaily)
-      );
-
-      this.saveDailiesLists(this.dailiesLists);
-    });
-
     this.localStorage
       .watch<boolean>(LocalStorageKeys.columnLayoutSelected)
       .subscribe((value: boolean | null) => this.setDailiesListsLayout(value));
