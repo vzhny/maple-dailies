@@ -6,13 +6,51 @@
       class="uppercase text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis"
     >
       {{ weekly ? "Weekly" : "Daily" }} Bosses
-    </span>
     <span
       class="uppercase text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis"
     >
-      {{ amountOfSelectedBosses }}
-      <span *ngIf="weekly">/ {{ bosses.length }}</span>
+        ({{ amountOfSelectedBosses }})
     </span>
+    </span>
+    <div class="flex justify-center items-center space-x-2">
+      <app-button
+        *ngIf="showActions"
+        [color]="isEditing ? 'success' : 'secondary'"
+        (click)="toggleVisibleBosses()"
+        title="{{ isEditing ? 'Confirm' : 'Edit' }} dailies list"
+      >
+        <fa-icon
+          [icon]="isEditing ? confirmIcon : editIcon"
+          size="sm"
+        ></fa-icon>
+      </app-button>
+
+      <app-button
+        *ngIf="showActions && !isEditing"
+        color="info"
+        (click)="completeAllBosses(!completedList)"
+        title="{{ completedList ? 'Reset' : 'Complete' }} all dailies"
+      >
+        <fa-icon
+          [icon]="completedList ? resetIcon : checkAllIcon"
+          size="sm"
+        ></fa-icon>
+      </app-button>
+
+      <app-button
+        *ngIf="!isEditing"
+        color="outline"
+        (click)="showActions = !showActions"
+        title="{{ showActions ? 'Hide' : 'Show' }} actions"
+      >
+        <div class="w-4">
+          <fa-icon
+            [icon]="showActions ? hideActionsIcon : showActionsIcon"
+            size="sm"
+          ></fa-icon>
+        </div>
+      </app-button>
+    </div>
   </div>
   <ul
     class="h-screen/40 md:h-screen/60 flex flex-col space-y-1 dark:bg-gray-700 overflow-y-auto border dark:border-gray-900"
