@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { LocalStorageService } from 'src/app/utils/local-storage.service';
+import { ResetTimerService } from 'src/app/utils/reset-timer.service';
 import { Daily, DailyList } from './dailies.component';
 
 @Injectable({
@@ -78,8 +79,15 @@ export class DailiesService {
     },
   ];
 
-  constructor(private localStorage: LocalStorageService) {
+  constructor(
+    private localStorage: LocalStorageService,
+    private resetTimerService: ResetTimerService
+  ) {
     this.localStorage.set(LocalStorageKeys.dailiesLists, this.dailiesLists);
+
+    this.resetTimerService.onReset.subscribe(() => {
+      this.resetAllDailiesInLists();
+    });
   }
 
   watchDailiesLists(): Observable<DailyList[] | null> {

@@ -6,6 +6,7 @@ import { LocalStorageService } from './utils/local-storage.service';
 import { ResetTimerService } from './utils/reset-timer.service';
 import * as moment from 'moment';
 import { DailiesService } from './pages/dailies/dailies.service';
+import { BossesService } from './pages/bosses/bosses.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit {
   constructor(
     private localStorage: LocalStorageService,
     private resetTimerService: ResetTimerService,
-    private dailiesService: DailiesService
+    private dailiesService: DailiesService,
+    private bossesService: BossesService
   ) {}
 
   ngOnInit(): void {
@@ -85,12 +87,21 @@ export class AppComponent implements OnInit {
     if (previousAppAccessEpoch !== null) {
       const previousAppAccessUtc = moment(previousAppAccessEpoch).utc();
       const midnightUtc = this.resetTimerService.getCurrentMidnightUtc();
+      const weeklyMidnightUtc = this.resetTimerService.getCurrentMidnightUtc();
 
-      const difference = midnightUtc.diff(previousAppAccessUtc);
-      const duration = moment.duration(difference);
+      const dailyDifference = midnightUtc.diff(previousAppAccessUtc);
+      const dailyDuration = moment.duration(dailyDifference);
 
-      if (duration.asHours() >= 24) {
+      const weeklyDifference = weeklyMidnightUtc.diff(previousAppAccessUtc);
+      const weeklyDuration = moment.duration(weeklyDifference);
+
+      if (dailyDuration.asHours() >= 24) {
         this.dailiesService.resetAllDailiesInLists();
+        this.bossesService.resetAllDailyBosses();
+      }
+
+      if (weeklyDuration.asDays() >= 7) {
+        this.bossesService.resetAllWeeklyBosses();
       }
     }
 
