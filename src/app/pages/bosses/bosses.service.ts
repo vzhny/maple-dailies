@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { LocalStorageService } from 'src/app/utils/local-storage.service';
+import { ResetTimerService } from 'src/app/utils/reset-timer.service';
 import { Boss } from './components/bosses-checklist/bosses-checklist.component';
 
 export interface BossesChecklists {
@@ -484,17 +485,52 @@ export class BossesService {
     },
   ];
 
-  constructor(private localStorage: LocalStorageService) {
+  constructor(
+    private localStorage: LocalStorageService,
+    private resetTimerService: ResetTimerService
+  ) {
     this.localStorage.set(
       LocalStorageKeys.bossesChecklist,
       this.bossesChecklists
     );
+
+    this.resetTimerService.onReset.subscribe(() => {
+      this.resetAllDailyBosses();
+    });
+
+    this.resetTimerService.onWeeklyReset.subscribe(() => {
+      this.resetAllWeeklyBosses();
+    });
   }
 
   watchBossesChecklists(): Observable<BossesChecklists | null> {
     return this.localStorage.watch<BossesChecklists | null>(
       LocalStorageKeys.bossesChecklist
     );
+  }
+
+  resetAllDailyBosses() {
+    const bossesChecklists = this.bossesChecklists;
+
+    bossesChecklists.dailyBosses.forEach((boss) => {
+      if (boss.selected) {
+        boss.completed = false;
+      }
+    });
+
+    this.saveBossesChecklists(bossesChecklists);
+  }
+
+  resetAllWeeklyBosses() {
+    const bossesChecklists = this.bossesChecklists;
+
+    bossesChecklists.weeklyBosses.forEach((boss) => {
+      if (boss.selected) {
+        boss.completed = false;
+      }
+    });
+
+    this.saveBossesChecklists(bossesChecklists);
   }
 
   saveBossesChecklists(checklists: BossesChecklists) {
