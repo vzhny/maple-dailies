@@ -38,4 +38,10 @@ export class MutoRecipeIngredientInfoComponent implements OnInit {
 
     return `assets/images/arcane_river/chu_chu_island/${mobName}.png`;
   }
+
+  getMobDropImageSrc(ingredientName: string) {
+    const mobDrop = ingredientName.replace(' ', '_').toLowerCase();
+
+    return `assets/images/arcane_river/chu_chu_island/mob_drops/${mobDrop}.png`;
+  }
 }

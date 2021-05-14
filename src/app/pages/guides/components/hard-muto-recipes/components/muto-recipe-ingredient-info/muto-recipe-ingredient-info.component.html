@@ -1,4 +1,19 @@
-<div class="font-light">{{ ingredient.name }} x{{ ingredient.amount }}</div>
+<div class="flex space-x-2 font-light relative">
+  <img
+    class="h-10 bg-cover bg-center"
+    [src]="getMobDropImageSrc(ingredient.name)"
+    alt="Mob Drop"
+  />
+  <span
+    class="mt-2 whitespace-nowrap overflow-hidden overflow-ellipsis"
+    title="{{ ingredient.name }} x{{ ingredient.amount }}"
+  >
+    {{ ingredient.name }}
+  </span>
+  <span class="absolute -bottom-1 left-3 text-sm font-bold shadow"
+    >x{{ ingredient.amount }}</span
+  >
+</div>
 
 <!-- TODO: implement popper -->
 <!-- <app-popover>
