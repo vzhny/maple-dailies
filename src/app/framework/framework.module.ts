@@ -4,7 +4,6 @@ import { ContainerComponent } from './container/container.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AccordionComponent } from './accordion/accordion.component';
 import { TableComponent } from './table/table.component';
-import { PopoverComponent } from './popover/popover.component';
 import { FormModule } from './form/form.module';
 import { TableModule } from './table/table.module';
 import { ModalComponent } from './modal/modal.component';
@@ -12,7 +11,6 @@ import { AccordionItemComponent } from './accordion/accordion-item/accordion-ite
 import { AccordionModule } from './accordion/accordion.module';
 import { ContainerModule } from './container/container.module';
 import { ModalModule } from './modal/modal.module';
-import { PopoverModule } from './popover/popover.module';
 import { ButtonModule } from './button/button.module';
 
 @NgModule({
@@ -25,7 +23,6 @@ import { ButtonModule } from './button/button.module';
     ContainerModule,
     FormModule,
     ModalModule,
-    PopoverModule,
     TableModule,
   ],
 })
