@@ -34,6 +34,12 @@ export class TableComponent implements OnInit {
 
       this.subscription = data.subscribe((rows: TableData[]) => {
         this.rows = rows;
+
+        if (this.rows.length > 0) {
+          const firstRow = this.rows[0];
+
+          this.numberOfColumns = Object.keys(firstRow).length;
+        }
       });
     }
   }
@@ -42,6 +48,7 @@ export class TableComponent implements OnInit {
   @Input() tableClasses!: string | string[];
 
   rows: TableData[] = [];
+  numberOfColumns = 0;
 
   emDash = '—';
 
