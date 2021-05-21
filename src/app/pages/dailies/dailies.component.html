@@ -70,11 +70,7 @@
   >
     <label class="block">
       <span>List Name</span>
-      <input
-        type="text"
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm text-black focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-        formControlName="title"
-      />
+      <input type="text" class="form-control" formControlName="title" />
     </label>
   </form>
   <div class="flex justify-end space-x-3" footer-content>
@@ -106,11 +102,7 @@
     (ngSubmit)="dailyTextForm?.valid && saveDailyToList(isEditingDaily)"
   >
     <label class="block">
-      <input
-        type="text"
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm text-black focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-        formControlName="daily"
-      />
+      <input type="text" class="form-control" formControlName="daily" />
     </label>
   </form>
   <div class="flex justify-end space-x-3" footer-content>
