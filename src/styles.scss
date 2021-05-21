@@ -52,6 +52,10 @@
     @apply border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600 hover:bg-gray-100;
   }
 
+  .table-body-row-selected {
+    @apply text-white bg-indigo-900 dark:text-black dark:bg-green-500;
+  }
+
   .table-body-cell {
     @apply py-3 px-6 whitespace-nowrap font-light;
   }
