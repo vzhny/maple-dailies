@@ -5,4 +5,5 @@ export const LocalStorageKeys = {
   bossesChecklist: 'bossesChecklists',
   columnLayoutSelected: 'columnLayoutSelected',
   lastAppAccessEpochNum: 'lastAppAccessEpochNumber',
+  selectedCharacterId: 'selectedCharacterId',
 };
