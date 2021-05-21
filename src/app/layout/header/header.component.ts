@@ -38,6 +38,11 @@ export class HeaderComponent implements OnInit {
       route: '/guides',
       matchExactRouteUrl: false,
     },
+    {
+      name: 'Settings',
+      route: '/settings',
+      matchExactRouteUrl: false,
+    },
   ];
 
   settingsModalId = 'settingsModal';
