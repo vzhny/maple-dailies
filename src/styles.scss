@@ -63,4 +63,9 @@
   .table-no-data-available-cell {
     @apply p-2 bg-gray-300 text-gray-600 text-center uppercase;
   }
+
+  // * Form specific Tailwind components
+  .form-control {
+    @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm text-black focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+  }
 }
