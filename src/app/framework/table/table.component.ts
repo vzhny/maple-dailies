@@ -6,7 +6,7 @@ type Alignment = 'left' | 'center' | 'right';
 export interface TableColumn {
   headerTitle: string;
   textAlign: Alignment;
-  property: string;
+  width?: string;
 }
 
 export interface TableData {
