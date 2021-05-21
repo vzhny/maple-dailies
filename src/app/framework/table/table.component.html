@@ -1,18 +1,19 @@
 <div class="bg-white overflow-x-auto" [ngClass]="tableClasses">
-  <table class="min-w-max w-full table-auto">
+  <table class="min-w-max w-full table-auto border border-gray-900 rounded-md">
     <ng-content select="[table-header]"></ng-content>
     <ng-container *ngIf="rows.length > 0; else noDataAvailable">
       <ng-content select="[table-body]"></ng-content>
     </ng-container>
+    <ng-content select="[table-footer]"> </ng-content>
     <ng-template #noDataAvailable>
-      <!-- <tbody>
+      <tbody>
         <td
-          class="p-2 bg-gray-300 text-gray-600 text-center uppercase"
+          class="p-4 bg-gray-200 text-gray-600 text-center uppercase"
           [attr.colspan]="columns.length"
         >
           No Data Available
         </td>
-      </tbody> -->
+      </tbody>
     </ng-template>
   </table>
 </div>
