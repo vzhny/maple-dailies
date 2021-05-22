@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TableColumn } from 'src/app/framework/table/table.component';
 import {
   ArcaneSymbolInfo,
-  ArcaneSymbolsService,
-} from 'src/app/utils/arcane-symbols.service';
+  ArcaneSymbolService,
+} from 'src/app/utils/arcane-symbol.service';
 import { DisplayService } from 'src/app/utils/display.service';
 import { NumberService } from 'src/app/utils/number.service';
 
@@ -42,7 +42,7 @@ export class ArcaneSymbolCostsComponent implements OnInit {
 
   constructor(
     private displayService: DisplayService,
-    private arcaneSymbolService: ArcaneSymbolsService
+    private arcaneSymbolService: ArcaneSymbolService
   ) {}
 
   ngOnInit(): void {
