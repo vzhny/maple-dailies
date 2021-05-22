@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faGlasses, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { LocalStorageService } from 'src/app/utils/local-storage.service';
+import { ResetTimerService } from 'src/app/utils/reset-timer.service';
 
 @Component({
   selector: 'app-footer',
@@ -16,7 +17,12 @@ export class FooterComponent implements OnInit {
 
   darkModeEnabled = true;
 
-  constructor(private localStorage: LocalStorageService) {}
+  remainingTime: string | null = null;
+
+  constructor(
+    private localStorage: LocalStorageService,
+    private resetTimerService: ResetTimerService
+  ) {}
 
   ngOnInit(): void {
     const darkModeEnabled = this.localStorage.get<boolean>('darkModeEnabled');
@@ -24,6 +30,10 @@ export class FooterComponent implements OnInit {
     if (darkModeEnabled !== null) {
       this.darkModeEnabled = darkModeEnabled;
     }
+
+    this.resetTimerService.remainingTime.subscribe(
+      (remainingTime) => (this.remainingTime = remainingTime)
+    );
   }
 
   toggleDarkMode() {

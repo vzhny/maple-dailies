@@ -1,8 +1,12 @@
 <footer
   class="flex justify-center items-center h-16 p-2 bg-gray-50 border-t border-gray-200 text-gray-700 dark:text-gray-300 dark:border-gray-800 dark:bg-gray-900"
 >
-  <span class="cursor-pointer" title="Visit me!">
-    <a href="https://vizhnay.dev" target="_blank">
+  <span
+    class="w-1/4 font-light ml-2 whitespace-nowrap overflow-hidden overflow-ellipsis"
+  >
+    <span class="hidden md:inline-block">Dailies reset in</span>
+    {{ remainingTime !== null ? remainingTime : "..." }}
+  </span>
       <fa-icon [icon]="homepageIcon"></fa-icon>
     </a>
   </span>
