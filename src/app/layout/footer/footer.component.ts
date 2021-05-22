@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faGlasses, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import {
+  faGlasses,
+  faMoon,
+  faSun,
+  faUsers,
+} from '@fortawesome/free-solid-svg-icons';
 import { LocalStorageService } from 'src/app/utils/local-storage.service';
 import { ResetTimerService } from 'src/app/utils/reset-timer.service';
 
@@ -14,6 +19,7 @@ export class FooterComponent implements OnInit {
   githubIcon = faGithub;
   lightModeIcon = faSun;
   darkModeIcon = faMoon;
+  characterSelectIcon = faUsers;
 
   darkModeEnabled = true;
 
