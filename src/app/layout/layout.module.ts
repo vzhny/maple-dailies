@@ -6,15 +6,26 @@ import { BreadcrumbNavComponent } from './breadcrumb-nav/breadcrumb-nav.componen
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FrameworkModule } from '../framework/framework.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TippyModule } from '@ngneat/helipopper';
+import { CharacterSelectorComponent } from './footer/components/character-selector/character-selector.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  declarations: [HeaderComponent, BreadcrumbNavComponent, FooterComponent],
+  declarations: [
+    HeaderComponent,
+    BreadcrumbNavComponent,
+    FooterComponent,
+    CharacterSelectorComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
     FontAwesomeModule,
+    NgSelectModule,
     ReactiveFormsModule,
+    FormsModule,
+    TippyModule,
     FrameworkModule,
   ],
   exports: [HeaderComponent, BreadcrumbNavComponent, FooterComponent],
