@@ -46,13 +46,13 @@ export class ModalComponent implements OnInit, OnDestroy {
     document.body.appendChild(this.element);
 
     // Close modal on background click
-    this.element.addEventListener('click', (event: MouseEvent) => {
-      const el = event?.target as HTMLElement;
+    // this.element.addEventListener('click', (event: MouseEvent) => {
+    //   const el = event?.target as HTMLElement;
 
-      if (el.id === this.id) {
-        this.closeModal();
-      }
-    });
+    //   if (el.id === this.id) {
+    //     this.closeModal();
+    //   }
+    // });
 
     // Add self (this modal instance) to the modal service so it's accessible from components
     this.modalService.add(this);
