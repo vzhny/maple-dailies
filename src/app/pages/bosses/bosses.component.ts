@@ -124,6 +124,50 @@ export class BossesComponent implements OnInit {
 
     this.saveBossesChecklists();
   }
+  }
+
+  actualWeeklyMesosEarned() {
+    if (this.bossesChecklists !== null) {
+      const dailyActualMesosEarned = this.bossesChecklists.dailyBosses.reduce(
+        (total, boss) => {
+          if (boss.selected && boss.completed) {
+            total += boss.bossCrystalMesos;
+          }
+
+          return total;
+        },
+        0
+      );
+
+      const weeklyActualMesosEarned = this.bossesChecklists.weeklyBosses.reduce(
+        (total, boss) => {
+          if (boss.selected && boss.completed) {
+            total += boss.bossCrystalMesos;
+          }
+
+          return total;
+        },
+        0
+      );
+
+      return dailyActualMesosEarned + weeklyActualMesosEarned;
+    } else {
+      return 0;
+    }
+  }
+
+  getPercentageOfActuallyEarnedMesos() {
+    if (this.bossesChecklists !== null) {
+      const percentage = Math.round(
+        (this.actualWeeklyMesosEarned() /
+          this.bossesChecklists.totalWeeklyMesos) *
+          100
+      );
+      return `${percentage}%`;
+    } else {
+      return '0%';
+    }
+  }
 
   private saveBossesChecklists() {
     this.bossesService.saveBossesChecklists({

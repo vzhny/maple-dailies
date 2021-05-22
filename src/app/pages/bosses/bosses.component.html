@@ -8,9 +8,17 @@
         alt="Meso icon"
         class="mr-2 hidden md:block"
       />
-      <span class="hidden md:block">Total amount of mesos earned weekly:</span>
-      <span class="block md:hidden"> Total weekly mesos:</span>
-      <span class="ml-1">{{ totalWeeklyMesos | mesos }}</span>
+      <span class="hidden md:block"
+        >Total amount of actual vs. potential mesos earned weekly:</span
+      >
+      <span class="block md:hidden">
+        Total actual vs. potential weekly mesos:</span
+      >
+      <span class="ml-1">
+        {{ actualWeeklyMesosEarned() | mesos }} /
+        {{ bossesChecklists.totalWeeklyMesos | mesos }}
+      </span>
+      <span>&nbsp; ({{ getPercentageOfActuallyEarnedMesos() }})</span>
     </span>
     <span
       class="flex justify-center items-center font-light mb-3 md:mb-0 whitespace-nowrap overflow-hidden overflow-ellipsis"
