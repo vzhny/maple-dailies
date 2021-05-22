@@ -1,23 +1,58 @@
 <footer
-  class="flex justify-center items-center h-16 p-2 bg-gray-50 border-t border-gray-200 text-gray-700 dark:text-gray-300 dark:border-gray-800 dark:bg-gray-900"
+  class="flex justify-between items-center h-16 p-2 bg-gray-50 border-t border-gray-200 text-gray-400 dark:text-gray-300 dark:border-gray-800 dark:bg-gray-900"
 >
-  <span class="cursor-pointer" title="Visit me!">
-    <a href="https://vizhnay.dev" target="_blank">
-      <fa-icon [icon]="homepageIcon"></fa-icon>
-    </a>
-  </span>
-  <span class="mx-2">/</span>
-  <span class="cursor-pointer" title="Source code!">
-    <a href="https://github.com/vzhny/maple-dailies" target="_blank">
-      <fa-icon [icon]="githubIcon"></fa-icon>
-    </a>
-  </span>
-  <span class="mx-2">/</span>
   <span
-    class="cursor-pointer"
-    (click)="toggleDarkMode()"
-    title="{{ darkModeEnabled ? 'Disable' : 'Enable' }} dark mode!"
+    class="w-1/4 font-light ml-2 whitespace-nowrap overflow-hidden overflow-ellipsis"
   >
-    <fa-icon [icon]="darkModeEnabled ? darkModeIcon : lightModeIcon"></fa-icon>
+    <span class="hidden md:inline-block">Dailies reset in</span>
+    {{ remainingTime !== null ? remainingTime : "..." }}
   </span>
+
+  <div class="w-1/4 cursor-pointer flex justify-center items-center">
+    <span title="Visit me!">
+      <a class="hover:text-white" href="https://vizhnay.dev" target="_blank">
+        <fa-icon [icon]="homepageIcon"></fa-icon>
+      </a>
+    </span>
+    <span class="mx-2">/</span>
+    <span title="Source code!">
+      <a
+        class="hover:text-white"
+        href="https://github.com/vzhny/maple-dailies"
+        target="_blank"
+      >
+        <fa-icon [icon]="githubIcon"></fa-icon>
+      </a>
+    </span>
+    <span class="mx-2">/</span>
+    <span
+      class="hover:text-white"
+      (click)="toggleDarkMode()"
+      title="{{ darkModeEnabled ? 'Disable' : 'Enable' }} dark mode!"
+    >
+      <fa-icon
+        [icon]="darkModeEnabled ? darkModeIcon : lightModeIcon"
+      ></fa-icon>
+    </span>
+  </div>
+
+  <div
+    class="w-1/4 mr-2 flex justify-end items-end cursor-pointer"
+    title="Character select"
+  >
+    <fa-icon
+      class="hover:text-white"
+      [icon]="characterSelectIcon"
+      [tippy]="characterSelector"
+      placement="left-start"
+      variation="popper"
+      #characterSelectPopper="tippy"
+    ></fa-icon>
+  </div>
 </footer>
+
+<ng-template #characterSelector let-hide>
+  <app-character-selector
+    (characterSelected)="characterSelectPopper.hide()"
+  ></app-character-selector>
+</ng-template>

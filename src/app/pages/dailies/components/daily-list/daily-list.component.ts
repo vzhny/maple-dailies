@@ -23,7 +23,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { TableColumn } from 'src/app/framework/table/table.component';
 import { Daily } from '../../dailies.component';
-import { DailiesService } from '../../dailies.service';
+import { DailyService } from '../../daily.service';
 
 interface DailyEvent {
   listId: number;
@@ -101,7 +101,7 @@ export class DailyListComponent implements OnInit {
   isEditing = false;
   showActions = false;
 
-  constructor(private dailiesService: DailiesService) {}
+  constructor(private dailyService: DailyService) {}
 
   ngOnInit(): void {}
 
@@ -144,7 +144,7 @@ export class DailyListComponent implements OnInit {
     this.isEditing = !this.isEditing;
 
     if (!this.isEditing) {
-      this.dailiesService.saveDailiesToList(this.listId, this.dailies);
+      this.dailyService.saveDailiesToList(this.listId, this.dailies);
     }
   }
 

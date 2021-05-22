@@ -19,6 +19,7 @@ export class ButtonComponent implements OnInit {
   btnColorClass: string = `${this.baseBtnClasses} bg-blue-800 text-white hover:bg-blue-700 hover:cursor-pointer disabled:bg-blue-600`;
 
   @Input() disabled = false;
+  @Input() width = 'auto';
   @Input() set color(color: ButtonColor) {
     switch (color) {
       case 'secondary':
@@ -48,4 +49,12 @@ export class ButtonComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  setWidth() {
+    if (parseInt(this.width) === NaN) {
+      return this.width;
+    } else {
+      return `${this.width}px`;
+    }
+  }
 }

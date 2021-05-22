@@ -2,7 +2,10 @@ export const LocalStorageKeys = {
   darkMode: 'darkModeEnabled',
   charImgUrl: 'characterImageUrl',
   dailiesLists: 'dailiesLists',
-  bossesChecklist: 'bossesChecklists',
+  bossesChecklists: 'bossesChecklists',
   columnLayoutSelected: 'columnLayoutSelected',
   lastAppAccessEpochNum: 'lastAppAccessEpochNumber',
+  characterList: 'characterList',
+  selectedCharacter: 'selectedCharacter',
+  selectedCharacterId: 'selectedCharacterId',
 };

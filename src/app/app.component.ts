@@ -5,9 +5,11 @@ import { LocalStorageKeys } from './constants/local-storage-constants';
 import { LocalStorageService } from './utils/local-storage.service';
 import { ResetTimerService } from './utils/reset-timer.service';
 import * as moment from 'moment';
-import { DailiesService } from './pages/dailies/dailies.service';
-import { BossesService } from './pages/bosses/bosses.service';
+import { DailyService } from './pages/dailies/daily.service';
+import { BossService } from './pages/bosses/boss.service';
 import { Router } from '@angular/router';
+import { CharacterService } from './utils/character.service';
+import { CharacterInfo } from './pages/settings/settings.component';
 
 @Component({
   selector: 'app-root',
@@ -16,21 +18,21 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'maple-dailies';
-  characterImageUrlSrc: string | null = null;
+  selectedCharacter: CharacterInfo | null = null;
 
   // TODO: move this heavy logic into APP_INITALIZIER in order to keep the app component clean.
   constructor(
     private router: Router,
     private localStorage: LocalStorageService,
     private resetTimerService: ResetTimerService,
-    private dailiesService: DailiesService,
-    private bossesService: BossesService
+    private dailyService: DailyService,
+    private bossService: BossService,
+    private characterService: CharacterService
   ) {}
 
   ngOnInit(): void {
     this.setLocalStorageWatchers();
     this.handleSettingDarkMode();
-    this.handleSettingCharacterImage();
     this.processLatestAppAccess();
   }
 
@@ -40,8 +42,10 @@ export class AppComponent implements OnInit {
       .subscribe((value: boolean | null) => this.setDarkModeOnDocument(value));
 
     this.localStorage
-      .watch<string>(LocalStorageKeys.charImgUrl)
-      .subscribe((value: string | null) => this.setCharacterImageUrlSrc(value));
+      .watch<CharacterInfo>(LocalStorageKeys.selectedCharacter)
+      .subscribe((value: CharacterInfo | null) =>
+        this.setSelectedCharacter(value)
+      );
   }
 
   handleSettingDarkMode() {
@@ -57,16 +61,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-  handleSettingCharacterImage() {
-    const characterImageUrlSrcValue = this.localStorage.get<string>(
-      LocalStorageKeys.charImgUrl
-    );
-
-    if (characterImageUrlSrcValue !== null) {
-      this.characterImageUrlSrc = characterImageUrlSrcValue;
-    }
-  }
-
   setDarkModeOnDocument(value: boolean | null) {
     const htmlElement = document.querySelector('html');
 
@@ -75,10 +69,8 @@ export class AppComponent implements OnInit {
     }
   }
 
-  setCharacterImageUrlSrc(value: string | null) {
-    if (value !== null) {
-      this.characterImageUrlSrc = value;
-    }
+  setSelectedCharacter(value: CharacterInfo | null) {
+    this.selectedCharacter = value;
   }
 
   processLatestAppAccess() {
@@ -98,12 +90,12 @@ export class AppComponent implements OnInit {
       const weeklyDuration = moment.duration(weeklyDifference);
 
       if (dailyDuration.asHours() >= 24) {
-        this.dailiesService.resetAllDailiesInLists();
-        this.bossesService.resetAllDailyBosses();
+        this.dailyService.resetAllDailiesInLists();
+        this.bossService.resetAllDailyBosses();
       }
 
       if (weeklyDuration.asDays() >= 7) {
-        this.bossesService.resetAllWeeklyBosses();
+        this.bossService.resetAllWeeklyBosses();
       }
 
       // Reroute to the dailies page if the app has been accessed at least once

@@ -1,5 +1,281 @@
 <app-container>
-  <div class="flex flex-col justify-center h-full mt-10">
-    <h1 class="text-4xl font-medium">Settings coming soon!</h1>
+  <div class="w-full mx-auto">
+    <div class="text-lg mb-2">Manage Characters</div>
+    <app-table [columns]="columns" [data]="data" #table>
+      <thead table-header>
+        <tr class="table-header-row">
+          <th
+            *ngFor="let column of columns"
+            class="table-header-cell"
+            ngClass="text-{{ column.textAlign }}"
+            [ngStyle]="{
+              'min-width': setColumnWidth(column.width),
+              width: setColumnWidth(column.width),
+              'max-width': setColumnWidth(column.width)
+            }"
+          >
+            {{ column.headerTitle }}
+          </th>
+        </tr>
+      </thead>
+      <tbody table-body>
+        <tr
+          *ngFor="let row of table.rows; let i = index"
+          class="cursor-pointer"
+          [ngClass]="{
+            'table-body-row': selectedCharacterId !== row.id,
+            'table-body-row-selected': selectedCharacterId === row.id
+          }"
+          (click)="selectCharacter(row.id)"
+        >
+          <td class="table-body-cell flex justify-center items-center">
+            <img
+              [src]="
+                row.characterImgSrcUrl ||
+                'assets/images/misc/blank_character.png'
+              "
+              alt="User Maplestory Character Image"
+            />
+          </td>
+          <td class="table-body-cell text-center">
+            {{ row.level }}
+          </td>
+          <td class="table-body-cell text-center">
+            <img [src]="getCharacterIcon(row.class)" alt="Class Icon" />
+          </td>
+          <td class="table-body-cell text-center">
+            {{ row.class }}
+          </td>
+          <td class="table-body-cell text-center">
+            {{ row.characterName }}
+          </td>
+          <td class="table-body-cell text-center">
+            <span
+              *ngIf="row.level >= 200; else symbolyNotYetAvailable"
+              class="flex flex-col"
+            >
+              <span
+                >Lvl {{ row.vanishingJourneyArcaneSymbol.currentLevel }}</span
+              >
+              <div
+                class="shadow rounded w-full h-2 bg-gray-700"
+                [title]="
+                  calculateSymbolExperiencePercentage(
+                    row.vanishingJourneyArcaneSymbol
+                  )
+                "
+              >
+                <div
+                  class="rounded bg-yellow-300 h-2"
+                  [ngStyle]="{
+                    width: calculateSymbolExperiencePercentage(
+                      row.vanishingJourneyArcaneSymbol
+                    )
+                  }"
+                ></div>
+              </div>
+            </span>
+          </td>
+          <td class="table-body-cell text-center">
+            <span
+              *ngIf="row.level >= 210; else symbolyNotYetAvailable"
+              class="flex flex-col"
+            >
+              <span>Lvl {{ row.chuChuIslandArcaneSymbol.currentLevel }}</span>
+              <div
+                class="shadow rounded w-full h-2 bg-gray-700"
+                [title]="
+                  calculateSymbolExperiencePercentage(
+                    row.chuChuIslandArcaneSymbol
+                  )
+                "
+              >
+                <div
+                  class="rounded bg-yellow-300 h-2"
+                  [ngStyle]="{
+                    width: calculateSymbolExperiencePercentage(
+                      row.chuChuIslandArcaneSymbol
+                    )
+                  }"
+                ></div>
+              </div>
+            </span>
+          </td>
+          <td class="table-body-cell text-center">
+            <span
+              *ngIf="row.level >= 220; else symbolyNotYetAvailable"
+              class="flex flex-col"
+            >
+              <span>Lvl {{ row.lacheleinArcaneSymbol.currentLevel }}</span>
+              <div
+                class="shadow rounded w-full h-2 bg-gray-700"
+                [title]="
+                  calculateSymbolExperiencePercentage(row.lacheleinArcaneSymbol)
+                "
+              >
+                <div
+                  class="rounded bg-yellow-300 h-2"
+                  [ngStyle]="{
+                    width: calculateSymbolExperiencePercentage(
+                      row.lacheleinArcaneSymbol
+                    )
+                  }"
+                ></div>
+              </div>
+            </span>
+          </td>
+          <td class="table-body-cell text-center">
+            <span
+              *ngIf="row.level >= 225; else symbolyNotYetAvailable"
+              class="flex flex-col"
+            >
+              <span>Lvl {{ row.arcanaArcaneSymbol.currentLevel }}</span>
+              <div
+                class="shadow rounded w-full h-2 bg-gray-700"
+                [title]="
+                  calculateSymbolExperiencePercentage(row.arcanaArcaneSymbol)
+                "
+              >
+                <div
+                  class="rounded bg-yellow-300 h-2"
+                  [ngStyle]="{
+                    width: calculateSymbolExperiencePercentage(
+                      row.arcanaArcaneSymbol
+                    )
+                  }"
+                ></div>
+              </div>
+            </span>
+          </td>
+          <td class="table-body-cell text-center">
+            <span
+              *ngIf="row.level >= 230; else symbolyNotYetAvailable"
+              class="flex flex-col"
+            >
+              <span>Lvl {{ row.morassArcaneSymbol.currentLevel }}</span>
+              <div
+                class="shadow rounded w-full h-2 bg-gray-700"
+                [title]="
+                  calculateSymbolExperiencePercentage(row.morassArcaneSymbol)
+                "
+              >
+                <div
+                  class="rounded bg-yellow-300 h-2"
+                  [ngStyle]="{
+                    width: calculateSymbolExperiencePercentage(
+                      row.morassArcaneSymbol
+                    )
+                  }"
+                ></div>
+              </div>
+            </span>
+          </td>
+          <td class="table-body-cell text-center">
+            <span
+              *ngIf="row.level >= 235; else symbolyNotYetAvailable"
+              class="flex flex-col"
+            >
+              <span>Lvl {{ row.esferaArcaneSymbol.currentLevel }}</span>
+              <div
+                class="shadow rounded w-full h-2 bg-gray-700"
+                [title]="
+                  calculateSymbolExperiencePercentage(row.esferaArcaneSymbol)
+                "
+              >
+                <div
+                  class="rounded bg-yellow-300 h-2"
+                  [ngStyle]="{
+                    width: calculateSymbolExperiencePercentage(
+                      row.esferaArcaneSymbol
+                    )
+                  }"
+                ></div>
+              </div>
+            </span>
+          </td>
+          <td class="table-body-cell text-center space-x-1">
+            <app-button
+              color="secondary"
+              width="40"
+              (click)="$event.stopPropagation(); editCharacter(row)"
+            >
+              <fa-icon [icon]="editIcon"></fa-icon>
+            </app-button>
+            <app-button
+              color="danger"
+              width="40"
+              (click)="$event.stopPropagation(); deleteCharacter(row.id)"
+            >
+              <fa-icon [icon]="deleteIcon" size="lg"></fa-icon>
+            </app-button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot table-footer>
+        <tr class="dark:bg-black">
+          <td class="p-4" [attr.colspan]="columns.length">
+            <div class="flex justify-end">
+              <app-button color="success" (click)="openCharacterModal()"
+                >Add New Character</app-button
+              >
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+    </app-table>
   </div>
 </app-container>
+
+<app-modal
+  headerTitle="{{ isEditing ? 'Edit' : 'Add New' }} Character"
+  [id]="addCharacterModalId"
+  [maxWidth]="900"
+  (close)="addCharacterForm.resetForm()"
+  #characterFormModal
+>
+  <app-add-character-form
+    [characterInfo]="selectedCharacter"
+    [isEditing]="isEditing"
+    (saveCharacter)="onSaveCharacter($event)"
+    #addCharacterForm
+  ></app-add-character-form>
+  <div class="flex justify-end" footer-content>
+    <div class="space-x-3">
+      <app-button
+        color="success"
+        [disabled]="addCharacterForm.characterForm?.invalid || false"
+        (click)="addCharacterForm.onSaveCharacter()"
+        >Save Character</app-button
+      >
+      <app-button color="secondary" (click)="characterFormModal.closeModal()"
+        >Cancel</app-button
+      >
+    </div>
+  </div>
+</app-modal>
+
+<app-modal
+  headerTitle="Delete Character"
+  [id]="deleteCharacterModalId"
+  #deleteCharacterModal
+>
+  <div>
+    Are you sure you want to delete this character? This action cannot be
+    undone.
+  </div>
+
+  <div class="flex justify-end" footer-content>
+    <div class="space-x-3">
+      <app-button color="danger" (click)="confirmDeleteCharacter()"
+        >Delete Character</app-button
+      >
+      <app-button color="secondary" (click)="deleteCharacterModal.closeModal()"
+        >Cancel</app-button
+      >
+    </div>
+  </div>
+</app-modal>
+
+<ng-template #symbolyNotYetAvailable>
+  <span>—</span>
+</ng-template>

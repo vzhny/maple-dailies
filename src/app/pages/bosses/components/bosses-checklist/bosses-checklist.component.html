@@ -16,6 +16,7 @@
       <app-button
         *ngIf="showActions"
         [color]="isEditing ? 'success' : 'secondary'"
+        width="40"
         (click)="toggleVisibleBosses()"
         title="{{ isEditing ? 'Confirm' : 'Edit' }} dailies list"
       >
@@ -28,6 +29,7 @@
       <app-button
         *ngIf="showActions && !isEditing"
         color="info"
+        width="40"
         (click)="completeAllBosses(!completedList)"
         title="{{ completedList ? 'Reset' : 'Complete' }} all dailies"
       >
@@ -40,15 +42,14 @@
       <app-button
         *ngIf="!isEditing"
         color="outline"
+        width="40"
         (click)="showActions = !showActions"
         title="{{ showActions ? 'Hide' : 'Show' }} actions"
       >
-        <div class="w-4">
-          <fa-icon
-            [icon]="showActions ? hideActionsIcon : showActionsIcon"
-            size="sm"
-          ></fa-icon>
-        </div>
+        <fa-icon
+          [icon]="showActions ? hideActionsIcon : showActionsIcon"
+          size="sm"
+        ></fa-icon>
       </app-button>
     </div>
   </div>

@@ -6,15 +6,18 @@ import {
   Validators,
 } from '@angular/forms';
 import {
+  faAsterisk,
   faBars,
   faGripHorizontal,
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
-import { of } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { ModalService } from 'src/app/framework/modal/modal.service';
+import { CharacterService } from 'src/app/utils/character.service';
 import { LocalStorageService } from 'src/app/utils/local-storage.service';
-import { ResetTimerService } from 'src/app/utils/reset-timer.service';
+import {} from 'src/app/utils/reset-timer.service';
+import { CharacterInfo } from '../settings/settings.component';
 import {
   DeleteDailyListEvent,
   EditDailyEvent,
@@ -23,10 +26,11 @@ import {
   ToggleCompletionEvent,
   ToggleVisibilityEvent,
 } from './components/daily-list/daily-list.component';
-import { DailiesService } from './dailies.service';
+import { DailyService } from './daily.service';
 
 export interface DailyList {
   dailyListId: number;
+  characterId: number;
   title: string;
   dailies: Daily[];
   systemFlag: boolean;
@@ -46,13 +50,14 @@ export interface Daily {
 })
 export class DailiesComponent implements OnInit {
   dailiesLists: DailyList[] = [];
+  selectedCharacter: CharacterInfo | null = null;
   columnLayoutSelected = true;
 
   addIcon = faPlus;
   columnLayoutIcon = faBars;
   gridLayoutIcon = faGripHorizontal;
 
-  remainingTime: string | null = null;
+  requiredIcon = faAsterisk;
 
   dailyListTitleForm: FormGroup | null = null;
   dailyTextForm: FormGroup | null = null;
@@ -66,25 +71,36 @@ export class DailiesComponent implements OnInit {
   deleteDailyListModalId = 'deleteDailyListModal';
 
   constructor(
-    private resetTimerService: ResetTimerService,
     private modalService: ModalService,
-    private dailiesService: DailiesService,
+    private dailyService: DailyService,
+    private characterService: CharacterService,
     private localStorage: LocalStorageService,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.dailiesService.watchDailiesLists().subscribe((lists) => {
-      if (lists !== null) {
-        this.dailiesLists = lists;
+    combineLatest([
+      this.characterService.watchSelectedCharacter(),
+      this.dailyService.watchDailiesLists(),
+    ]).subscribe(([character, lists]) => {
+      this.selectedCharacter = character;
+
+      if (character !== null) {
+        if (lists !== null) {
+          this.dailiesLists = lists.filter(
+            (list) => list.characterId === character.id
+          );
+        } else {
+          this.dailiesLists = [];
+        }
       } else {
-        this.dailiesLists = [];
+        if (lists !== null) {
+          this.dailiesLists = lists;
+        } else {
+          this.dailiesLists = [];
+        }
       }
     });
-
-    this.resetTimerService.remainingTime.subscribe(
-      (remainingTime) => (this.remainingTime = remainingTime)
-    );
 
     this.localStorage
       .watch<boolean>(LocalStorageKeys.columnLayoutSelected)
@@ -103,9 +119,13 @@ export class DailiesComponent implements OnInit {
     });
   }
 
+  addNewArcaneRiverDailiesList() {
+    this.dailyService.addDailyList('Arcane River');
+  }
+
   addNewDailyList() {
     if (this.listTitle?.value !== null) {
-      this.dailiesService.addDailyList(this.listTitle.value);
+      this.dailyService.addDailyList(this.listTitle.value);
       this.modalService.close(this.addNewDailyListModalId);
       this.resetAll();
     }
@@ -161,7 +181,7 @@ export class DailiesComponent implements OnInit {
   }
 
   confirmDeleteDailyList() {
-    this.dailiesService.deleteDailyList(this.selectedListId);
+    this.dailyService.deleteDailyList(this.selectedListId);
     this.modalService.close(this.deleteDailyListModalId);
     this.resetAll();
   }
@@ -254,7 +274,7 @@ export class DailiesComponent implements OnInit {
   }
 
   saveDailiesLists(lists: DailyList[]) {
-    this.dailiesService.saveDailiesLists(lists);
+    this.dailyService.saveDailiesLists(lists);
     this.resetAll();
   }
 
@@ -300,5 +320,12 @@ export class DailiesComponent implements OnInit {
 
   get isEditingDaily() {
     return this.selectedDailyIndex !== -1;
+  }
+
+  get alreadyHasArcaneRiverDailiesList() {
+    return (
+      this.dailiesLists.find((list) => list.title === 'Arcane River') !==
+      undefined
+    );
   }
 }

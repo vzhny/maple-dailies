@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+@import "~tippy.js/dist/tippy.css";
+@import "~tippy.js/themes/light.css";
+@import "~tippy.js/animations/scale.css";
 
 @import "tailwindcss/base";
 @import "tailwindcss/components";
@@ -48,11 +53,20 @@
     @apply border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600 hover:bg-gray-100;
   }
 
+  .table-body-row-selected {
+    @apply text-white bg-indigo-900 dark:text-black dark:bg-green-500;
+  }
+
   .table-body-cell {
     @apply py-3 px-6 whitespace-nowrap font-light;
   }
 
   .table-no-data-available-cell {
     @apply p-2 bg-gray-300 text-gray-600 text-center uppercase;
+  }
+
+  // * Form specific Tailwind components
+  .form-control {
+    @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm text-black focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
   }
 }
