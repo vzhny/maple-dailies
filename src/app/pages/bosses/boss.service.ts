@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
+import { CharacterService } from 'src/app/utils/character.service';
 import { LocalStorageService } from 'src/app/utils/local-storage.service';
 import { ResetTimerService } from 'src/app/utils/reset-timer.service';
+import { CharacterInfo } from '../settings/settings.component';
 import { Boss } from './components/bosses-checklist/bosses-checklist.component';
 
 export interface BossesChecklists {
+  characterId?: number;
   dailyBosses: Boss[];
   weeklyBosses: Boss[];
   monthlyBosses: Boss[];
@@ -16,7 +19,7 @@ export interface BossesChecklists {
 @Injectable({
   providedIn: 'root',
 })
-export class BossesService {
+export class BossService {
   private readonly dailyBosses: Boss[] = [
     {
       name: 'Zakum',
@@ -24,7 +27,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 200000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -33,7 +36,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 612500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -42,7 +45,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 648000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -51,7 +54,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 684500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -60,7 +63,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 722000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -69,7 +72,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 800000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -78,7 +81,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 882000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -87,7 +90,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 968000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -96,7 +99,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 968000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -105,7 +108,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 968000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -114,7 +117,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 968000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -123,7 +126,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1012500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -132,7 +135,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1058000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -141,7 +144,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1152000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -150,7 +153,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1200000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -159,7 +162,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1250000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -168,7 +171,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1352000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -177,7 +180,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1404500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -186,7 +189,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1458000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -195,7 +198,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 2450000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -204,7 +207,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 2520000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -213,7 +216,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 2592000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -222,7 +225,7 @@ export class BossesService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 2664500,
-      selected: false,
+      selected: true,
       completed: false,
     },
   ];
@@ -234,7 +237,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 9112500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -243,7 +246,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 11250000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -252,7 +255,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 12800000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -261,7 +264,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 14450000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -270,7 +273,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 15312500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -279,7 +282,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 16200000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -288,7 +291,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 16200000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -297,7 +300,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 16200000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -306,7 +309,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 16200000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -315,7 +318,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 19012500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -324,7 +327,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 21012500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -333,7 +336,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 26450000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -342,7 +345,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 28800000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -351,7 +354,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 32512500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -360,7 +363,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 33800000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -369,7 +372,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 35112500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -378,7 +381,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 40612500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -387,7 +390,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 46512500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -396,7 +399,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 49612500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -405,7 +408,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 52812500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -414,7 +417,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 70312500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -423,7 +426,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 74112500,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -432,7 +435,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 80000000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -441,7 +444,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 88200000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -450,7 +453,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 92450000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -459,7 +462,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 96800000,
-      selected: false,
+      selected: true,
       completed: false,
     },
     {
@@ -468,7 +471,7 @@ export class BossesService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 110450000,
-      selected: false,
+      selected: true,
       completed: false,
     },
   ];
@@ -485,14 +488,21 @@ export class BossesService {
     },
   ];
 
+  selectedCharacter: CharacterInfo | null = null;
+
   constructor(
     private localStorage: LocalStorageService,
-    private resetTimerService: ResetTimerService
+    private resetTimerService: ResetTimerService,
+    private characterService: CharacterService
   ) {
     this.localStorage.set(
-      LocalStorageKeys.bossesChecklist,
+      LocalStorageKeys.bossesChecklists,
       this.bossesChecklists
     );
+
+    this.characterService
+      .watchSelectedCharacter()
+      .subscribe((character) => (this.selectedCharacter = character));
 
     this.resetTimerService.onReset.subscribe(() => {
       this.resetAllDailyBosses();
@@ -503,19 +513,21 @@ export class BossesService {
     });
   }
 
-  watchBossesChecklists(): Observable<BossesChecklists | null> {
-    return this.localStorage.watch<BossesChecklists | null>(
-      LocalStorageKeys.bossesChecklist
+  watchBossesChecklists(): Observable<BossesChecklists[] | null> {
+    return this.localStorage.watch<BossesChecklists[] | null>(
+      LocalStorageKeys.bossesChecklists
     );
   }
 
   resetAllDailyBosses() {
     const bossesChecklists = this.bossesChecklists;
 
-    bossesChecklists.dailyBosses.forEach((boss) => {
-      if (boss.selected) {
-        boss.completed = false;
-      }
+    bossesChecklists.forEach((checklist) => {
+      checklist.dailyBosses.forEach((boss) => {
+        if (boss.selected) {
+          boss.completed = false;
+        }
+      });
     });
 
     this.saveBossesChecklists(bossesChecklists);
@@ -524,32 +536,79 @@ export class BossesService {
   resetAllWeeklyBosses() {
     const bossesChecklists = this.bossesChecklists;
 
-    bossesChecklists.weeklyBosses.forEach((boss) => {
-      if (boss.selected) {
-        boss.completed = false;
-      }
+    bossesChecklists.forEach((checklists) => {
+      checklists.weeklyBosses.forEach((boss) => {
+        if (boss.selected) {
+          boss.completed = false;
+        }
+      });
     });
 
     this.saveBossesChecklists(bossesChecklists);
   }
 
-  saveBossesChecklists(checklists: BossesChecklists) {
-    this.localStorage.set(LocalStorageKeys.bossesChecklist, checklists);
+  saveCharacterBossChecklists(
+    characterId: number,
+    checklists: BossesChecklists
+  ) {
+    const currentBossesChecklists = this.bossesChecklists;
+    const checklistIndex = currentBossesChecklists.findIndex(
+      (checklist) => checklist.characterId === characterId
+    );
+
+    if (checklistIndex >= 0) {
+      currentBossesChecklists[checklistIndex] = checklists;
+    } else {
+      currentBossesChecklists.push(checklists);
+    }
+
+    this.localStorage.set(
+      LocalStorageKeys.bossesChecklists,
+      currentBossesChecklists
+    );
+  }
+
+  saveBossesChecklists(checklists: BossesChecklists[]) {
+    const bossesChecklists = this.bossesChecklists;
+
+    this.localStorage.set(LocalStorageKeys.bossesChecklists, bossesChecklists);
+  }
+
+  getDefaultBossesChecklists() {
+    const totalDailyMesos = this.dailyBosses.reduce((total, boss) => {
+      total += boss.bossCrystalMesos;
+      return total;
+    }, 0);
+
+    const totalWeeklyMesos = this.weeklyBosses.reduce((total, boss) => {
+      total += boss.bossCrystalMesos;
+      return total;
+    }, 0);
+
+    const totalDailySelected = this.dailyBosses.reduce((total, boss) => {
+      total += boss.selected === true ? 1 : 0;
+      return total;
+    }, 0);
+
+    const totalWeeklySelected = this.weeklyBosses.reduce((total, boss) => {
+      total += boss.selected === true ? 1 : 0;
+      return total;
+    }, 0);
+
+    return {
+      dailyBosses: this.dailyBosses,
+      weeklyBosses: this.weeklyBosses,
+      monthlyBosses: this.monthlyBosses,
+      totalWeeklyMesos: totalDailyMesos + totalWeeklyMesos,
+      totalAmountOfPowerCrystals: totalDailySelected + totalWeeklySelected,
+    };
   }
 
   private get bossesChecklists() {
-    const bossesChecklists = this.localStorage.get<BossesChecklists>(
-      LocalStorageKeys.bossesChecklist
+    const bossesChecklists = this.localStorage.get<BossesChecklists[]>(
+      LocalStorageKeys.bossesChecklists
     );
 
-    return (
-      bossesChecklists ?? {
-        dailyBosses: this.dailyBosses,
-        weeklyBosses: this.weeklyBosses,
-        monthlyBosses: this.monthlyBosses,
-        totalWeeklyMesos: 0,
-        totalAmountOfPowerCrystals: 0,
-      }
-    );
+    return bossesChecklists ?? [];
   }
 }

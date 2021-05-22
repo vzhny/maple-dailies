@@ -12,7 +12,7 @@ export interface ArcaneSymbolInfo {
 @Injectable({
   providedIn: 'root',
 })
-export class ArcaneSymbolsService {
+export class ArcaneSymbolService {
   constructor(private numberService: NumberService) {}
 
   buildArcaneInfoData(array: ArcaneSymbolInfo[], isVanishingJourney: boolean) {
