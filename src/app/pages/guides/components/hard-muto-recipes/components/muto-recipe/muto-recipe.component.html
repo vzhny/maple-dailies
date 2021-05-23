@@ -2,8 +2,7 @@
   *ngIf="recipe !== null"
   class="h-full shadow border-b dark:border-black rounded-md bg-white dark:bg-gray-800"
   [ngClass]="{
-    'bg-indigo-800 text-white dark:bg-indigo-800 dark:text-white':
-      recipe.canHaveHiddenIngredientsFlg
+    'bg-indigo-800 text-white dark:bg-indigo-800 dark:text-white': recipe.canHaveHiddenIngredientsFlg
   }"
 >
   <div
@@ -20,12 +19,8 @@
       'bg-indigo-800 dark:bg-indigo-800': recipe.canHaveHiddenIngredientsFlg
     }"
   >
-    <app-muto-recipe-ingredient-info
-      [ingredient]="recipe.ingredient1"
-    ></app-muto-recipe-ingredient-info>
-    <app-muto-recipe-ingredient-info
-      [ingredient]="recipe.ingredient2"
-    ></app-muto-recipe-ingredient-info>
+    <app-muto-recipe-ingredient-info [ingredient]="recipe.ingredient1"></app-muto-recipe-ingredient-info>
+    <app-muto-recipe-ingredient-info [ingredient]="recipe.ingredient2"></app-muto-recipe-ingredient-info>
   </div>
   <div
     class="flex justify-between items-center p-2"
@@ -39,9 +34,7 @@
         'bg-indigo-800 dark:bg-indigo-800': recipe.canHaveHiddenIngredientsFlg
       }"
     >
-      <app-muto-recipe-ingredient-info
-        [ingredient]="recipe.ingredient3"
-      ></app-muto-recipe-ingredient-info>
+      <app-muto-recipe-ingredient-info [ingredient]="recipe.ingredient3"></app-muto-recipe-ingredient-info>
     </div>
     <div
       *ngIf="recipe.ingredient4"
@@ -49,9 +42,7 @@
         'bg-indigo-800 dark:bg-indigo-800': recipe.canHaveHiddenIngredientsFlg
       }"
     >
-      <app-muto-recipe-ingredient-info
-        [ingredient]="recipe.ingredient4"
-      ></app-muto-recipe-ingredient-info>
+      <app-muto-recipe-ingredient-info [ingredient]="recipe.ingredient4"></app-muto-recipe-ingredient-info>
     </div>
   </div>
 </div>

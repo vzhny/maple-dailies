@@ -27,31 +27,20 @@ export class ArcaneSymbolService {
           totalSymbols: 1,
           symbolsToNextLevel: this.calculateRequiredSymbolsToLevelUp(level),
           totalMesosUsed: 0,
-          mesosToNextLevel: this.calculateRequiredMesosToLevelUp(
-            level,
-            isVanishingJourney
-          ),
+          mesosToNextLevel: this.calculateRequiredMesosToLevelUp(level, isVanishingJourney),
         };
       } else {
         const previousSymbolInfo = list[index - 1];
-        const symbolsToNextLevel = this.calculateRequiredSymbolsToLevelUp(
-          level
-        );
-        const mesosToNextLevel = this.calculateRequiredMesosToLevelUp(
-          level,
-          isVanishingJourney
-        );
+        const symbolsToNextLevel = this.calculateRequiredSymbolsToLevelUp(level);
+        const mesosToNextLevel = this.calculateRequiredMesosToLevelUp(level, isVanishingJourney);
 
         const previousTotalSymbols = previousSymbolInfo.totalSymbols ?? 0;
-        const previousSymbolsToNextLevel =
-          previousSymbolInfo.symbolsToNextLevel ?? 0;
+        const previousSymbolsToNextLevel = previousSymbolInfo.symbolsToNextLevel ?? 0;
         const previousTotalMesosUsed = previousSymbolInfo.totalMesosUsed ?? 0;
-        const previousMesosToNextLevel =
-          previousSymbolInfo.mesosToNextLevel ?? 0;
+        const previousMesosToNextLevel = previousSymbolInfo.mesosToNextLevel ?? 0;
 
         const totalSymbols = previousSymbolsToNextLevel + previousTotalSymbols;
-        const totalMesosUsed =
-          previousMesosToNextLevel + previousTotalMesosUsed;
+        const totalMesosUsed = previousMesosToNextLevel + previousTotalMesosUsed;
 
         currentSymbolInfo = {
           level,

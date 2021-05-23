@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   faAngleDoubleRight,
   faCheck,
@@ -184,11 +177,7 @@ export class DailyListComponent implements OnInit {
     if (this.dailies.length === 0) {
       return false;
     } else {
-      return (
-        this.dailies
-          .filter((daily) => !daily.hidden)
-          .filter((daily) => !daily.completed).length === 0
-      );
+      return this.dailies.filter((daily) => !daily.hidden).filter((daily) => !daily.completed).length === 0;
     }
   }
 
@@ -196,10 +185,7 @@ export class DailyListComponent implements OnInit {
     if (this.dailies.length === 0) {
       return false;
     } else {
-      return (
-        this.dailies.length ===
-        this.dailies.filter((daily) => daily.hidden).length
-      );
+      return this.dailies.length === this.dailies.filter((daily) => daily.hidden).length;
     }
   }
 }

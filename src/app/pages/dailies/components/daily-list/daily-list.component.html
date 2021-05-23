@@ -1,11 +1,6 @@
-<div
-  class="flex flex-col p-3 shadow bg-white h-full dark:border-gray-900 dark:bg-gray-800"
->
+<div class="flex flex-col p-3 shadow bg-white h-full dark:border-gray-900 dark:bg-gray-800">
   <div class="h-14 flex justify-between items-center mt-1 mb-3">
-    <div
-      class="uppercase text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis"
-      [ngClass]="{ 'line-through': completedList }"
-    >
+    <div class="uppercase text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis" [ngClass]="{ 'line-through': completedList }">
       {{ listTitle }}
     </div>
     <div class="flex justify-center items-center space-x-2">
@@ -26,10 +21,7 @@
         (click)="toggleEditDailiesList()"
         title="{{ isEditing ? 'Confirm' : 'Edit' }} dailies list"
       >
-        <fa-icon
-          [icon]="isEditing ? confirmIcon : editIcon"
-          size="sm"
-        ></fa-icon>
+        <fa-icon [icon]="isEditing ? confirmIcon : editIcon" size="sm"></fa-icon>
       </app-button>
 
       <app-button
@@ -39,19 +31,10 @@
         (click)="completedList ? resetDailies() : completeAllDailies()"
         title="{{ completedList ? 'Reset' : 'Complete' }} all dailies"
       >
-        <fa-icon
-          [icon]="completedList ? resetIcon : checkAllIcon"
-          size="sm"
-        ></fa-icon>
+        <fa-icon [icon]="completedList ? resetIcon : checkAllIcon" size="sm"></fa-icon>
       </app-button>
 
-      <app-button
-        *ngIf="showActions && !isEditing"
-        color="danger"
-        width="40"
-        (click)="deleteDailyList()"
-        title="Delete dailies list"
-      >
+      <app-button *ngIf="showActions && !isEditing" color="danger" width="40" (click)="deleteDailyList()" title="Delete dailies list">
         <fa-icon [icon]="deleteIcon" size="sm"></fa-icon>
       </app-button>
 
@@ -62,10 +45,7 @@
         (click)="showActions = !showActions"
         title="{{ showActions ? 'Hide' : 'Show' }} actions"
       >
-        <fa-icon
-          [icon]="showActions ? hideActionsIcon : showActionsIcon"
-          size="sm"
-        ></fa-icon>
+        <fa-icon [icon]="showActions ? hideActionsIcon : showActionsIcon" size="sm"></fa-icon>
       </app-button>
     </div>
   </div>
@@ -86,48 +66,23 @@
           [title]="daily.text"
           (click)="toggleCompletedDaily(i)"
         >
-          <span
-            class="ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis"
-          >
+          <span class="ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis">
             {{ daily.text }}
           </span>
           <div class="flex mr-2 space-x-2 text-black dark:text-white">
-            <span
-              *ngIf="i !== 0"
-              class="cursor-pointer"
-              (click)="moveDailyWithinList(upDirection, i)"
-            >
+            <span *ngIf="i !== 0" class="cursor-pointer" (click)="moveDailyWithinList(upDirection, i)">
               <fa-icon *ngIf="isEditing" [icon]="upIcon"></fa-icon>
             </span>
-            <span
-              *ngIf="i !== dailies.length - 1"
-              class="cursor-pointer"
-              (click)="moveDailyWithinList(downDirection, i)"
-            >
+            <span *ngIf="i !== dailies.length - 1" class="cursor-pointer" (click)="moveDailyWithinList(downDirection, i)">
               <fa-icon *ngIf="isEditing" [icon]="downIcon"></fa-icon>
             </span>
-            <span
-              *ngIf="!systemList"
-              class="cursor-pointer"
-              (click)="editExistingDaily(i)"
-            >
+            <span *ngIf="!systemList" class="cursor-pointer" (click)="editExistingDaily(i)">
               <fa-icon *ngIf="isEditing" [icon]="editIcon"></fa-icon>
             </span>
-            <span
-              *ngIf="systemList"
-              class="cursor-pointer"
-              (click)="toggleDailyVisibility(i)"
-            >
-              <fa-icon
-                *ngIf="isEditing"
-                [icon]="daily.hidden ? hiddenIcon : visibleIcon"
-              ></fa-icon>
+            <span *ngIf="systemList" class="cursor-pointer" (click)="toggleDailyVisibility(i)">
+              <fa-icon *ngIf="isEditing" [icon]="daily.hidden ? hiddenIcon : visibleIcon"></fa-icon>
             </span>
-            <span
-              *ngIf="!systemList"
-              class="cursor-pointer"
-              (click)="removeDaily(i)"
-            >
+            <span *ngIf="!systemList" class="cursor-pointer" (click)="removeDaily(i)">
               <fa-icon *ngIf="isEditing" [icon]="removeIcon"></fa-icon>
             </span>
           </div>
@@ -136,20 +91,14 @@
     </ng-container>
     <ng-template #showNoDailiesMessage>
       <li class="flex justify-center p-1">
-        <span class="ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis">
-          Start adding dailies to this list!
-        </span>
+        <span class="ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis"> Start adding dailies to this list! </span>
       </li>
     </ng-template>
   </ul>
   <ng-template #showHiddenDailiesMessage>
-    <ul
-      class="flex flex-col space-y-1 dark:bg-gray-700 max-h-72 overflow-y-auto border dark:border-gray-900"
-    >
+    <ul class="flex flex-col space-y-1 dark:bg-gray-700 max-h-72 overflow-y-auto border dark:border-gray-900">
       <li class="flex justify-center p-1">
-        <span class="ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis">
-          All dailies are currently hidden!
-        </span>
+        <span class="ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis"> All dailies are currently hidden! </span>
       </li>
     </ul>
   </ng-template>

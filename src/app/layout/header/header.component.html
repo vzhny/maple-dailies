@@ -11,12 +11,9 @@
   </div>
   <ul class="flex justify-center items-center lowercase space-x-3">
     <li *ngFor="let navLink of navLinks" class="text-white hover:text-gray-100">
-      <a
-        [routerLink]="navLink.route"
-        [routerLinkActiveOptions]="{ exact: navLink.matchExactRouteUrl }"
-        routerLinkActive="text-green-300"
-        >{{ navLink.name }}</a
-      >
+      <a [routerLink]="navLink.route" [routerLinkActiveOptions]="{ exact: navLink.matchExactRouteUrl }" routerLinkActive="text-green-300">{{
+        navLink.name
+      }}</a>
     </li>
   </ul>
 </header>

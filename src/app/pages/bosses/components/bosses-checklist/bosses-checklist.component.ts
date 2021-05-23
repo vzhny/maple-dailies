@@ -100,10 +100,7 @@ export class BossesChecklistComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  toggleSelectedBossToClear(
-    { frequency, perWeekAmount, bossCrystalMesos, selected }: Boss,
-    index: number
-  ) {
+  toggleSelectedBossToClear({ frequency, perWeekAmount, bossCrystalMesos, selected }: Boss, index: number) {
     this.selectBoss.emit({
       bossIndex: index,
       frequency,
@@ -113,10 +110,7 @@ export class BossesChecklistComponent implements OnInit {
     });
   }
 
-  incrementPerWeekAmount(
-    { perWeekAmount, bossCrystalMesos, selected }: Boss,
-    index: number
-  ) {
+  incrementPerWeekAmount({ perWeekAmount, bossCrystalMesos, selected }: Boss, index: number) {
     this.bossAmountOperation.emit({
       bossIndex: index,
       perWeekAmount,
@@ -126,10 +120,7 @@ export class BossesChecklistComponent implements OnInit {
     });
   }
 
-  decrementPerWeekAmount(
-    { perWeekAmount, bossCrystalMesos, selected }: Boss,
-    index: number
-  ) {
+  decrementPerWeekAmount({ perWeekAmount, bossCrystalMesos, selected }: Boss, index: number) {
     this.bossAmountOperation.emit({
       bossIndex: index,
       perWeekAmount,
@@ -165,11 +156,7 @@ export class BossesChecklistComponent implements OnInit {
   }
 
   get completedList() {
-    return (
-      this.bosses
-        .filter((boss) => boss.selected)
-        .filter((boss) => !boss.completed).length === 0
-    );
+    return this.bosses.filter((boss) => boss.selected).filter((boss) => !boss.completed).length === 0;
   }
 
   get amountOfSelectedBosses() {

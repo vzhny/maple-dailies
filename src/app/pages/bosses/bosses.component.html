@@ -1,39 +1,29 @@
 <app-container>
-  <div *ngIf="bossesChecklists !== null && selectedCharacter !== null" class="md:mb-4 flex justify-between items-center flex-col lg:flex-row">
-    <span
-      class="flex justify-center items-center font-light mb-3 md:mb-0 whitespace-nowrap overflow-hidden overflow-ellipsis"
-    >
-      <img
-        src="assets/images/misc/meso.png"
-        alt="Meso icon"
-        class="mr-2 hidden md:block"
-      />
-      <span class="hidden md:block"
-        >Total amount of actual vs. potential mesos earned weekly:</span
-      >
-      <span class="block md:hidden">
-        Total actual vs. potential weekly mesos:</span
-      >
+  <div
+    *ngIf="bossesChecklists !== null && selectedCharacter !== null"
+    class="md:mb-4 flex justify-between items-center flex-col lg:flex-row"
+  >
+    <span class="flex justify-center items-center font-light mb-3 md:mb-0 whitespace-nowrap overflow-hidden overflow-ellipsis">
+      <img src="assets/images/misc/meso.png" alt="Meso icon" class="mr-2 hidden md:block" />
+      <span class="hidden md:block">Total amount of actual vs. potential mesos earned weekly:</span>
+      <span class="block md:hidden"> Total actual vs. potential weekly mesos:</span>
       <span class="ml-1">
         {{ actualWeeklyMesosEarned() | mesos }} /
         {{ bossesChecklists.totalWeeklyMesos | mesos }}
       </span>
       <span>&nbsp; ({{ getPercentageOfActuallyEarnedMesos() }})</span>
     </span>
-    <span
-      class="flex justify-center items-center font-light mb-3 md:mb-0 whitespace-nowrap overflow-hidden overflow-ellipsis"
-    >
-      <img
-        src="assets/images/misc/intense-power-crystal.png"
-        alt="Intense power crystal icon"
-        class="mr-2 hidden md:block"
-      />
+    <span class="flex justify-center items-center font-light mb-3 md:mb-0 whitespace-nowrap overflow-hidden overflow-ellipsis">
+      <img src="assets/images/misc/intense-power-crystal.png" alt="Intense power crystal icon" class="mr-2 hidden md:block" />
       Total amount of intense power crystals:
       {{ bossesChecklists.totalAmountOfPowerCrystals }}
     </span>
   </div>
 
-  <div *ngIf="bossesChecklists !== null && selectedCharacter !== null; else noSelectedCharacter" class="grid grid-cols-1 lg:grid-cols-2 items-start gap-4">
+  <div
+    *ngIf="bossesChecklists !== null && selectedCharacter !== null; else noSelectedCharacter"
+    class="grid grid-cols-1 lg:grid-cols-2 items-start gap-4"
+  >
     <app-bosses-checklist
       [bosses]="bossesChecklists.dailyBosses"
       (selectBoss)="onSelectBoss($event)"
@@ -58,5 +48,5 @@
         <span>&nbsp; page in order to start checking off bosses!</span>
       </div>
     </div>
-</ng-template>
+  </ng-template>
 </app-container>

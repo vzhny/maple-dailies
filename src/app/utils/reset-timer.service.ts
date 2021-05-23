@@ -49,27 +49,14 @@ export class ResetTimerService {
     const wednesdayEnum = this.thursdayEnum - 1;
 
     if (todayEnum <= this.thursdayEnum) {
-      return moment()
-        .utc()
-        .isoWeekday(wednesdayEnum)
-        .endOf('day')
-        .add(1, 'second');
+      return moment().utc().isoWeekday(wednesdayEnum).endOf('day').add(1, 'second');
     } else {
-      return moment()
-        .utc()
-        .add(1, 'weeks')
-        .isoWeekday(wednesdayEnum)
-        .endOf('day')
-        .add(1, 'second');
+      return moment().utc().add(1, 'weeks').isoWeekday(wednesdayEnum).endOf('day').add(1, 'second');
     }
   };
 
   private calculateRemainingTime = (_: number) => {
-    const difference = moment.utc(
-      moment(this.midnightUTC, this.datetimeFormat).diff(
-        moment(moment().utc(), this.datetimeFormat)
-      )
-    );
+    const difference = moment.utc(moment(this.midnightUTC, this.datetimeFormat).diff(moment(moment().utc(), this.datetimeFormat)));
     const secondsUntilReset = difference.unix();
 
     if (secondsUntilReset === 0) {
@@ -82,18 +69,12 @@ export class ResetTimerService {
       const secondsRemaining = difference.get('seconds');
       const seconds = secondsRemaining !== 1 ? 'seconds' : 'second';
 
-      this.$remainingTime.next(
-        `${hoursRemaining} hours, ${minutesRemaining} minutes, and ${secondsRemaining} ${seconds}`
-      );
+      this.$remainingTime.next(`${hoursRemaining} hours, ${minutesRemaining} minutes, and ${secondsRemaining} ${seconds}`);
     }
   };
 
   private calculateRemainingWeeklyDays = (_: number) => {
-    const difference = moment.utc(
-      moment(this.weeklyMidnightUTC, this.datetimeFormat).diff(
-        moment(moment().utc(), this.datetimeFormat)
-      )
-    );
+    const difference = moment.utc(moment(this.weeklyMidnightUTC, this.datetimeFormat).diff(moment(moment().utc(), this.datetimeFormat)));
     const secondsUntilReset = difference.unix();
 
     if (secondsUntilReset === 0) {

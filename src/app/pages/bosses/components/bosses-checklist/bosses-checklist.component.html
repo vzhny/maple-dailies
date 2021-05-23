@@ -1,16 +1,8 @@
-<div
-  class="flex flex-col p-3 shadow bg-white dark:border-gray-900 dark:bg-gray-800"
->
+<div class="flex flex-col p-3 shadow bg-white dark:border-gray-900 dark:bg-gray-800">
   <div class="h-14 flex justify-between items-center mt-1 mb-3">
-    <span
-      class="uppercase text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis"
-    >
-      {{ weekly ? "Weekly" : "Daily" }} Bosses
-      <span
-        class="uppercase text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis"
-      >
-        ({{ amountOfSelectedBosses }})
-      </span>
+    <span class="uppercase text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis">
+      {{ weekly ? 'Weekly' : 'Daily' }} Bosses
+      <span class="uppercase text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis"> ({{ amountOfSelectedBosses }}) </span>
     </span>
     <div class="flex justify-center items-center space-x-2">
       <app-button
@@ -20,10 +12,7 @@
         (click)="toggleVisibleBosses()"
         title="{{ isEditing ? 'Confirm' : 'Edit' }} dailies list"
       >
-        <fa-icon
-          [icon]="isEditing ? confirmIcon : editIcon"
-          size="sm"
-        ></fa-icon>
+        <fa-icon [icon]="isEditing ? confirmIcon : editIcon" size="sm"></fa-icon>
       </app-button>
 
       <app-button
@@ -33,10 +22,7 @@
         (click)="completeAllBosses(!completedList)"
         title="{{ completedList ? 'Reset' : 'Complete' }} all dailies"
       >
-        <fa-icon
-          [icon]="completedList ? resetIcon : checkAllIcon"
-          size="sm"
-        ></fa-icon>
+        <fa-icon [icon]="completedList ? resetIcon : checkAllIcon" size="sm"></fa-icon>
       </app-button>
 
       <app-button
@@ -46,31 +32,20 @@
         (click)="showActions = !showActions"
         title="{{ showActions ? 'Hide' : 'Show' }} actions"
       >
-        <fa-icon
-          [icon]="showActions ? hideActionsIcon : showActionsIcon"
-          size="sm"
-        ></fa-icon>
+        <fa-icon [icon]="showActions ? hideActionsIcon : showActionsIcon" size="sm"></fa-icon>
       </app-button>
     </div>
   </div>
-  <ul
-    class="h-screen/40 md:h-screen/60 flex flex-col space-y-1 dark:bg-gray-700 overflow-y-auto border dark:border-gray-900"
-  >
+  <ul class="h-screen/40 md:h-screen/60 flex flex-col space-y-1 dark:bg-gray-700 overflow-y-auto border dark:border-gray-900">
     <ng-container *ngFor="let boss of bosses; let i = index">
       <li
         *ngIf="boss.selected || isEditing"
         class="flex justify-between p-1 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-500"
         [ngClass]="{ 'cursor-not-allowed': !boss.selected }"
-        title="{{
-          boss.selected
-            ? boss.name
-            : 'Please select this boss in order to toggle completion'
-        }}"
+        title="{{ boss.selected ? boss.name : 'Please select this boss in order to toggle completion' }}"
         (click)="$event.stopPropagation(); completeBoss(boss, i)"
       >
-        <span
-          class="flex justify-center items-center ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis"
-        >
+        <span class="flex justify-center items-center ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis">
           <div>
             <fa-icon
               *ngIf="isEditing"
@@ -78,11 +53,7 @@
               size="sm"
               class="mr-2 cursor-pointer"
               [title]="boss.selected ? 'Deselect' : 'Select'"
-              (click)="
-                $event.stopPropagation();
-                toggleSelectedBossToClear(boss, i);
-                boss.completed = false
-              "
+              (click)="$event.stopPropagation(); toggleSelectedBossToClear(boss, i); boss.completed = false"
             ></fa-icon>
             <span
               *ngIf="!weekly && isEditing"
@@ -94,12 +65,9 @@
               <fa-icon
                 [icon]="upIcon"
                 size="sm"
-                (click)="
-                  $event.stopPropagation(); incrementPerWeekAmount(boss, i)
-                "
+                (click)="$event.stopPropagation(); incrementPerWeekAmount(boss, i)"
                 [ngClass]="{
-                  'text-gray-300 dark:text-gray-500 cursor-not-allowed':
-                    boss.perWeekAmount === 7
+                  'text-gray-300 dark:text-gray-500 cursor-not-allowed': boss.perWeekAmount === 7
                 }"
                 title="Increment"
               ></fa-icon>
@@ -107,29 +75,20 @@
               <fa-icon
                 [icon]="downIcon"
                 size="sm"
-                (click)="
-                  $event.stopPropagation(); decrementPerWeekAmount(boss, i)
-                "
+                (click)="$event.stopPropagation(); decrementPerWeekAmount(boss, i)"
                 [ngClass]="{
-                  'text-gray-300 dark:text-gray-500 cursor-not-allowed':
-                    boss.perWeekAmount === 1
+                  'text-gray-300 dark:text-gray-500 cursor-not-allowed': boss.perWeekAmount === 1
                 }"
                 title="Decrement"
               ></fa-icon>
             </span>
           </div>
-          <img
-            src="assets/images/bosses/{{ getBossImageFileName(boss.name) }}.png"
-            alt="Boss Image"
-            class="hidden md:block mr-2 h-7 w-7"
-          />
+          <img src="assets/images/bosses/{{ getBossImageFileName(boss.name) }}.png" alt="Boss Image" class="hidden md:block mr-2 h-7 w-7" />
           <span
             class="whitespace-nowrap overflow-hidden overflow-ellipsis"
             [ngClass]="{ 'line-through italic text-gray-400': boss.completed }"
           >
-            <span *ngIf="!isEditing && !weekly"
-              >({{ boss.perWeekAmount }})</span
-            >
+            <span *ngIf="!isEditing && !weekly">({{ boss.perWeekAmount }})</span>
             {{ boss.difficulty | titlecase }} {{ boss.name }}
           </span>
         </span>

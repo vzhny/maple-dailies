@@ -12,22 +12,8 @@ import { CharacterSelectorComponent } from './footer/components/character-select
 import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    BreadcrumbNavComponent,
-    FooterComponent,
-    CharacterSelectorComponent,
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    FontAwesomeModule,
-    NgSelectModule,
-    ReactiveFormsModule,
-    FormsModule,
-    TippyModule,
-    FrameworkModule,
-  ],
+  declarations: [HeaderComponent, BreadcrumbNavComponent, FooterComponent, CharacterSelectorComponent],
+  imports: [CommonModule, RouterModule, FontAwesomeModule, NgSelectModule, ReactiveFormsModule, FormsModule, TippyModule, FrameworkModule],
   exports: [HeaderComponent, BreadcrumbNavComponent, FooterComponent],
 })
 export class LayoutModule {}

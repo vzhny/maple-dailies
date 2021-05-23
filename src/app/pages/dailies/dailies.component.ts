@@ -70,16 +70,11 @@ export class DailiesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    combineLatest([
-      this.characterService.watchSelectedCharacter(),
-      this.dailyService.watchDailiesLists()
-    ]).subscribe(
+    combineLatest([this.characterService.watchSelectedCharacter(), this.dailyService.watchDailiesLists()]).subscribe(
       ([character, lists]) => {
         this.selectedCharacter = character;
         this.allDailiesLists = lists ?? [];
-        this.dailiesLists = character !== null && lists !== null
-          ? lists.filter((list) => list.characterId === character.id)
-          : [];
+        this.dailiesLists = character !== null && lists !== null ? lists.filter((list) => list.characterId === character.id) : [];
       }
     );
 

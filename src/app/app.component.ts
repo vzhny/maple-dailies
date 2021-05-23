@@ -37,21 +37,15 @@ export class AppComponent implements OnInit {
   }
 
   setLocalStorageWatchers() {
-    this.localStorage
-      .watch<boolean>(LocalStorageKeys.darkMode)
-      .subscribe((value: boolean | null) => this.setDarkModeOnDocument(value));
+    this.localStorage.watch<boolean>(LocalStorageKeys.darkMode).subscribe((value: boolean | null) => this.setDarkModeOnDocument(value));
 
     this.localStorage
       .watch<CharacterInfo>(LocalStorageKeys.selectedCharacter)
-      .subscribe((value: CharacterInfo | null) =>
-        this.setSelectedCharacter(value)
-      );
+      .subscribe((value: CharacterInfo | null) => this.setSelectedCharacter(value));
   }
 
   handleSettingDarkMode() {
-    const darkModeEnabledValue = this.localStorage.get<boolean>(
-      LocalStorageKeys.darkMode
-    );
+    const darkModeEnabledValue = this.localStorage.get<boolean>(LocalStorageKeys.darkMode);
 
     if (darkModeEnabledValue === null) {
       this.localStorage.set(LocalStorageKeys.darkMode, true);
@@ -74,9 +68,7 @@ export class AppComponent implements OnInit {
   }
 
   processLatestAppAccess() {
-    const previousAppAccessEpoch = this.localStorage.get<number>(
-      LocalStorageKeys.lastAppAccessEpochNum
-    );
+    const previousAppAccessEpoch = this.localStorage.get<number>(LocalStorageKeys.lastAppAccessEpochNum);
 
     if (previousAppAccessEpoch !== null) {
       const previousAppAccessUtc = moment(previousAppAccessEpoch).utc();
@@ -102,9 +94,6 @@ export class AppComponent implements OnInit {
       this.router.navigate(['/dailies']);
     }
 
-    this.localStorage.set(
-      LocalStorageKeys.lastAppAccessEpochNum,
-      moment().utc().valueOf()
-    );
+    this.localStorage.set(LocalStorageKeys.lastAppAccessEpochNum, moment().utc().valueOf());
   }
 }

@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { LocalStorageKeys } from '../constants/local-storage-constants';
 import { CharacterInfo } from '../pages/settings/settings.component';
@@ -394,12 +389,12 @@ export class CharacterService {
 
   getAvailableArcaneRiverAreas(characterLevel: number) {
     return Object.entries(this.arcaneRiverAreasByLevel).reduce((list, [areaMinLevel, areaName]) => {
-        if (characterLevel >= parseInt(areaMinLevel, 10)) {
-          list.push(areaName);
-        }
+      if (characterLevel >= parseInt(areaMinLevel, 10)) {
+        list.push(areaName);
+      }
 
-        return list;
-      }, new Array<string>());
+      return list;
+    }, new Array<string>());
   }
 
   private getCharacterListIndex(characterId: number) {

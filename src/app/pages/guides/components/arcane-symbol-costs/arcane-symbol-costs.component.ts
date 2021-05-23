@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TableColumn } from 'src/app/framework/table/table.component';
-import {
-  ArcaneSymbolInfo,
-  ArcaneSymbolService,
-} from 'src/app/utils/arcane-symbol.service';
+import { ArcaneSymbolInfo, ArcaneSymbolService } from 'src/app/utils/arcane-symbol.service';
 import { DisplayService } from 'src/app/utils/display.service';
 import { NumberService } from 'src/app/utils/number.service';
 
@@ -40,23 +37,14 @@ export class ArcaneSymbolCostsComponent implements OnInit {
 
   nonVjData: ArcaneSymbolInfo[] = [];
 
-  constructor(
-    private displayService: DisplayService,
-    private arcaneSymbolService: ArcaneSymbolService
-  ) {}
+  constructor(private displayService: DisplayService, private arcaneSymbolService: ArcaneSymbolService) {}
 
   ngOnInit(): void {
     const isVanishingJourney = true;
 
-    this.vjData = this.arcaneSymbolService.buildArcaneInfoData(
-      this.vjData,
-      isVanishingJourney
-    );
+    this.vjData = this.arcaneSymbolService.buildArcaneInfoData(this.vjData, isVanishingJourney);
 
-    this.nonVjData = this.arcaneSymbolService.buildArcaneInfoData(
-      this.nonVjData,
-      !isVanishingJourney
-    );
+    this.nonVjData = this.arcaneSymbolService.buildArcaneInfoData(this.nonVjData, !isVanishingJourney);
   }
 
   displayCurrency(value: number) {

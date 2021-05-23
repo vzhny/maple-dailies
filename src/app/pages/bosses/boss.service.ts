@@ -495,14 +495,9 @@ export class BossService {
     private resetTimerService: ResetTimerService,
     private characterService: CharacterService
   ) {
-    this.localStorage.set(
-      LocalStorageKeys.bossesChecklists,
-      this.bossesChecklists
-    );
+    this.localStorage.set(LocalStorageKeys.bossesChecklists, this.bossesChecklists);
 
-    this.characterService
-      .watchSelectedCharacter()
-      .subscribe((character) => (this.selectedCharacter = character));
+    this.characterService.watchSelectedCharacter().subscribe((character) => (this.selectedCharacter = character));
 
     this.resetTimerService.onReset.subscribe(() => {
       this.resetAllDailyBosses();
@@ -514,9 +509,7 @@ export class BossService {
   }
 
   watchBossesChecklists(): Observable<BossesChecklists[] | null> {
-    return this.localStorage.watch<BossesChecklists[] | null>(
-      LocalStorageKeys.bossesChecklists
-    );
+    return this.localStorage.watch<BossesChecklists[] | null>(LocalStorageKeys.bossesChecklists);
   }
 
   resetAllDailyBosses() {
@@ -547,14 +540,9 @@ export class BossService {
     this.saveBossesChecklists(bossesChecklists);
   }
 
-  saveCharacterBossChecklists(
-    characterId: number,
-    checklists: BossesChecklists
-  ) {
+  saveCharacterBossChecklists(characterId: number, checklists: BossesChecklists) {
     const currentBossesChecklists = this.bossesChecklists;
-    const checklistIndex = currentBossesChecklists.findIndex(
-      (checklist) => checklist.characterId === characterId
-    );
+    const checklistIndex = currentBossesChecklists.findIndex((checklist) => checklist.characterId === characterId);
 
     if (checklistIndex >= 0) {
       currentBossesChecklists[checklistIndex] = checklists;
@@ -562,10 +550,7 @@ export class BossService {
       currentBossesChecklists.push(checklists);
     }
 
-    this.localStorage.set(
-      LocalStorageKeys.bossesChecklists,
-      currentBossesChecklists
-    );
+    this.localStorage.set(LocalStorageKeys.bossesChecklists, currentBossesChecklists);
   }
 
   saveBossesChecklists(checklists: BossesChecklists[]) {
@@ -605,9 +590,7 @@ export class BossService {
   }
 
   private get bossesChecklists() {
-    const bossesChecklists = this.localStorage.get<BossesChecklists[]>(
-      LocalStorageKeys.bossesChecklists
-    );
+    const bossesChecklists = this.localStorage.get<BossesChecklists[]>(LocalStorageKeys.bossesChecklists);
 
     return bossesChecklists ?? [];
   }
