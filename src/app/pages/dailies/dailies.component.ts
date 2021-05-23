@@ -1,16 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import {
-  faAsterisk,
-  faBars,
-  faGripHorizontal,
-  faPlus,
-} from '@fortawesome/free-solid-svg-icons';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { faAsterisk, faBars, faGripHorizontal, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { combineLatest } from 'rxjs';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { ModalService } from 'src/app/framework/modal/modal.service';
@@ -49,6 +39,7 @@ export interface Daily {
   styleUrls: ['./dailies.component.scss'],
 })
 export class DailiesComponent implements OnInit {
+  allDailiesLists: DailyList[] = [];
   dailiesLists: DailyList[] = [];
   selectedCharacter: CharacterInfo | null = null;
   columnLayoutSelected = true;
@@ -81,26 +72,16 @@ export class DailiesComponent implements OnInit {
   ngOnInit(): void {
     combineLatest([
       this.characterService.watchSelectedCharacter(),
-      this.dailyService.watchDailiesLists(),
-    ]).subscribe(([character, lists]) => {
-      this.selectedCharacter = character;
-
-      if (character !== null) {
-        if (lists !== null) {
-          this.dailiesLists = lists.filter(
-            (list) => list.characterId === character.id
-          );
-        } else {
-          this.dailiesLists = [];
-        }
-      } else {
-        if (lists !== null) {
-          this.dailiesLists = lists;
-        } else {
-          this.dailiesLists = [];
-        }
+      this.dailyService.watchDailiesLists()
+    ]).subscribe(
+      ([character, lists]) => {
+        this.selectedCharacter = character;
+        this.allDailiesLists = lists ?? [];
+        this.dailiesLists = character !== null && lists !== null
+          ? lists.filter((list) => list.characterId === character.id)
+          : [];
       }
-    });
+    );
 
     this.localStorage
       .watch<boolean>(LocalStorageKeys.columnLayoutSelected)
@@ -120,161 +101,187 @@ export class DailiesComponent implements OnInit {
   }
 
   addNewArcaneRiverDailiesList() {
-    this.dailyService.addDailyList('Arcane River');
+    if (this.characterIsSelected) {
+      this.dailyService.addDailyList('Arcane River');
+    }
   }
 
   addNewDailyList() {
-    if (this.listTitle?.value !== null) {
-      this.dailyService.addDailyList(this.listTitle.value);
-      this.modalService.close(this.addNewDailyListModalId);
-      this.resetAll();
+    if (this.characterIsSelected) {
+      if (this.listTitle?.value !== null) {
+        this.dailyService.addDailyList(this.listTitle.value);
+        this.modalService.close(this.addNewDailyListModalId);
+        this.resetAll();
+      }
     }
   }
 
   onAddDaily(listId: number) {
-    this.selectedListId = listId;
-    this.modalService.open(this.addEditDailyModalId);
-  }
-
-  onEditDaily({ listId, index }: EditDailyEvent) {
-    this.selectedListId = listId;
-    this.selectedDailyIndex = index;
-    const listIndex = this.getSelectedDailyListIndex(this.selectedListId);
-
-    if (listIndex >= 0) {
-      const { text } = this.dailiesLists[listIndex].dailies[index];
-      this.dailyText.patchValue(text);
+    if (this.selectedCharacter !== null) {
+      this.selectedListId = listId;
       this.modalService.open(this.addEditDailyModalId);
     }
   }
 
-  onDeleteDaily({ listId, index }: EditDailyEvent) {
-    this.selectedListId = listId;
-    this.selectedDailyIndex = index;
-    const listIndex = this.getSelectedDailyListIndex(this.selectedListId);
+  onEditDaily({ listId, index }: EditDailyEvent) {
+    if (this.characterIsSelected) {
+      this.selectedListId = listId;
+      this.selectedDailyIndex = index;
 
-    if (listIndex >= 0) {
-      this.dailiesLists[listIndex].dailies.splice(index, 1);
-      this.saveDailiesLists(this.dailiesLists);
+      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
+
+      if (listIndex >= 0) {
+        const { text } = this.dailiesLists[listIndex].dailies[index];
+        this.dailyText.patchValue(text);
+        this.modalService.open(this.addEditDailyModalId);
+      }
+    }
+  }
+
+  onDeleteDaily({ listId, index }: EditDailyEvent) {
+    if (this.characterIsSelected) {
+      this.selectedListId = listId;
+      this.selectedDailyIndex = index;
+      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
+
+      if (listIndex >= 0) {
+        this.dailiesLists[listIndex].dailies.splice(index, 1);
+        this.saveDailiesLists();
+      }
     }
   }
 
   onMoveDaily({ listId, fromIndex, toIndex }: MoveDailyEvent) {
-    this.selectedListId = listId;
-    this.selectedDailyIndex = fromIndex;
-    const listIndex = this.getSelectedDailyListIndex(this.selectedListId);
+    if (this.characterIsSelected) {
+      this.selectedListId = listId;
+      this.selectedDailyIndex = fromIndex;
+      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
 
-    if (listIndex >= 0) {
-      const daily = this.dailiesLists[listIndex].dailies[fromIndex];
+      if (listIndex >= 0) {
+        const daily = this.dailiesLists[listIndex].dailies[fromIndex];
 
-      this.dailiesLists[listIndex].dailies.splice(fromIndex, 1);
-      this.dailiesLists[listIndex].dailies.splice(toIndex, 0, daily);
+        this.dailiesLists[listIndex].dailies.splice(fromIndex, 1);
+        this.dailiesLists[listIndex].dailies.splice(toIndex, 0, daily);
 
-      this.saveDailiesLists(this.dailiesLists);
+        this.saveDailiesLists();
+      }
     }
   }
 
   onDeleteDailyList({ listId, listTitle }: DeleteDailyListEvent) {
-    this.selectedListId = listId;
-    this.seletedListTitle = listTitle;
-    this.modalService.open(this.deleteDailyListModalId);
-  }
-
-  confirmDeleteDailyList() {
-    this.dailyService.deleteDailyList(this.selectedListId);
-    this.modalService.close(this.deleteDailyListModalId);
-    this.resetAll();
-  }
-
-  onToggleDailyCompletion({
-    listId,
-    index,
-    completion,
-  }: ToggleCompletionEvent) {
-    this.selectedListId = listId;
-    this.selectedDailyIndex = index;
-
-    const listIndex = this.getSelectedDailyListIndex(this.selectedListId);
-
-    if (listIndex >= 0) {
-      this.dailiesLists[listIndex].dailies[index].completed = completion;
-      this.saveDailiesLists(this.dailiesLists);
+    if (this.characterIsSelected) {
+      this.selectedListId = listId;
+      this.seletedListTitle = listTitle;
+      this.modalService.open(this.deleteDailyListModalId);
     }
   }
 
-  onToggleAllDailiesCompletion({
-    listId,
-    allCompleted,
-  }: ToggleAllCompletionEvent) {
-    this.selectedListId = listId;
-    const listIndex = this.getSelectedDailyListIndex(this.selectedListId);
+  confirmDeleteDailyList() {
+    if (this.characterIsSelected) {
+      this.dailyService.deleteDailyList(this.selectedListId);
+      this.modalService.close(this.deleteDailyListModalId);
+      this.resetAll();
+    }
+  }
 
-    if (listIndex >= 0) {
-      this.dailiesLists[listIndex].dailies.forEach((daily) => {
-        if (!daily.hidden) {
-          daily.completed = allCompleted;
-        }
-      });
+  onToggleDailyCompletion({ listId, index, completion }: ToggleCompletionEvent) {
+    if (this.characterIsSelected) {
+      this.selectedListId = listId;
+      this.selectedDailyIndex = index;
+      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
 
-      this.saveDailiesLists(this.dailiesLists);
+      if (listIndex >= 0) {
+        this.dailiesLists[listIndex].dailies[index].completed = completion;
+        this.saveDailiesLists();
+      }
+    }
+  }
+
+  onToggleAllDailiesCompletion({ listId, allCompleted }: ToggleAllCompletionEvent) {
+    if (this.characterIsSelected) {
+      this.selectedListId = listId;
+      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
+
+      if (listIndex >= 0) {
+        this.dailiesLists[listIndex].dailies.forEach((daily) => {
+          if (!daily.hidden) {
+            daily.completed = allCompleted;
+          }
+        });
+
+        this.saveDailiesLists();
+      }
     }
   }
 
   onToggleDailyVisibilty({ listId, index, visibility }: ToggleVisibilityEvent) {
-    this.selectedListId = listId;
-    this.selectedDailyIndex = index;
+    if (this.characterIsSelected) {
+      this.selectedListId = listId;
+      this.selectedDailyIndex = index;
+      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
 
-    const listIndex = this.getSelectedDailyListIndex(this.selectedListId);
+      if (listIndex >= 0) {
+        this.dailiesLists[listIndex].dailies[index].hidden = visibility;
 
-    if (listIndex >= 0) {
-      this.dailiesLists[listIndex].dailies[index].hidden = visibility;
+        if (visibility) {
+          this.dailiesLists[listIndex].dailies[index].completed = false;
+        }
 
-      if (visibility) {
-        this.dailiesLists[listIndex].dailies[index].completed = false;
+        this.saveDailiesLists();
       }
-
-      this.saveDailiesLists(this.dailiesLists);
     }
   }
 
   resetDaily(daily: Daily) {
-    daily.completed = false;
-  }
-
-  openAddNewDailyListModal() {
-    this.modalService.open(this.addNewDailyListModalId);
-  }
-
-  saveDailyToList(isEdited = false) {
-    const index = this.getSelectedDailyListIndex(this.selectedListId);
-
-    if (index >= 0 && this.dailyText?.value) {
-      if (isEdited) {
-        this.dailiesLists[index].dailies[
-          this.selectedDailyIndex
-        ].text = this.dailyText.value;
-      } else {
-        this.dailiesLists[index].dailies.push({
-          dailyListId: this.selectedListId,
-          text: this.dailyText.value,
-          completed: false,
-          hidden: false,
-        });
-      }
-
-      this.saveDailiesLists(this.dailiesLists);
-      this.modalService.close(this.addEditDailyModalId);
+    if (this.characterIsSelected) {
+      daily.completed = false;
     }
   }
 
-  getSelectedDailyListIndex(listId: number) {
-    return this.dailiesLists.findIndex(
-      (list) => list.dailyListId === this.selectedListId
-    );
+  openAddNewDailyListModal() {
+    if (this.characterIsSelected) {
+      this.modalService.open(this.addNewDailyListModalId);
+    }
   }
 
-  saveDailiesLists(lists: DailyList[]) {
-    this.dailyService.saveDailiesLists(lists);
+  saveDailyToList(isEdited = false) {
+    if (this.characterIsSelected) {
+      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
+
+      if (listIndex >= 0 && this.dailyText?.value) {
+        if (isEdited) {
+          this.dailiesLists[listIndex].dailies[this.selectedDailyIndex].text = this.dailyText.value;
+        } else {
+          this.dailiesLists[listIndex].dailies.push({
+            dailyListId: this.selectedListId,
+            text: this.dailyText.value,
+            completed: false,
+            hidden: false,
+          });
+        }
+
+        this.saveDailiesLists();
+        this.modalService.close(this.addEditDailyModalId);
+      }
+    }
+  }
+
+  getSelectedDailyListIndex(characterId: number | undefined, listId: number) {
+    return this.dailiesLists.findIndex((list) => list.characterId === characterId && list.dailyListId === listId);
+  }
+
+  saveDailiesLists() {
+    this.dailiesLists.forEach((list) => {
+      const { characterId, dailyListId } = list;
+
+      const index = this.allDailiesLists.findIndex((list) => list.characterId === characterId && list.dailyListId === dailyListId);
+
+      if (index >= 0) {
+        this.allDailiesLists[index] = list;
+      }
+    });
+
+    this.dailyService.saveDailiesLists(this.allDailiesLists);
     this.resetAll();
   }
 
@@ -290,10 +297,7 @@ export class DailiesComponent implements OnInit {
   toggleListLayout() {
     this.columnLayoutSelected = !this.columnLayoutSelected;
 
-    this.localStorage.set(
-      LocalStorageKeys.columnLayoutSelected,
-      this.columnLayoutSelected
-    );
+    this.localStorage.set(LocalStorageKeys.columnLayoutSelected, this.columnLayoutSelected);
   }
 
   setDailiesListsLayout(value: boolean | null) {
@@ -323,9 +327,10 @@ export class DailiesComponent implements OnInit {
   }
 
   get alreadyHasArcaneRiverDailiesList() {
-    return (
-      this.dailiesLists.find((list) => list.title === 'Arcane River') !==
-      undefined
-    );
+    return this.dailiesLists.find((list) => list.title === 'Arcane River') !== undefined;
+  }
+
+  get characterIsSelected() {
+    return this.selectedCharacter !== null;
   }
 }

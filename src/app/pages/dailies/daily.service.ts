@@ -12,83 +12,68 @@ import { Daily, DailyList } from './dailies.component';
   providedIn: 'root',
 })
 export class DailyService {
-  private arcaneRiverAreasByMinLevelMap: { [key: string]: number } = {
-    'Vanishing Journey': 200,
-    'Chu Chu Island': 210,
-    Lachelein: 220,
-    Arcana: 225,
-    Morass: 230,
-    Esfera: 235,
-  };
-
-  private arcaneRiverDailiesList: DailyList = {
-    characterId: -1,
-    dailyListId: 1,
-    title: 'Arcane River',
-    dailies: [
-      {
-        dailyListId: 1,
-        text: 'Esfera - Kill/Fetch Quests',
-        completed: false,
-        hidden: false,
-      },
-      {
-        dailyListId: 1,
-        text: 'Morass - Kill/Fetch Quests',
-        completed: false,
-        hidden: false,
-      },
-      {
-        dailyListId: 1,
-        text: 'Arcana - Kill/Fetch Quests',
-        completed: false,
-        hidden: false,
-      },
-      {
-        dailyListId: 1,
-        text: 'Arcana - Spirit Savior',
-        completed: false,
-        hidden: false,
-      },
-      {
-        dailyListId: 1,
-        text: 'Lachelein - Kill/Fetch Quests',
-        completed: false,
-        hidden: false,
-      },
-      {
-        dailyListId: 1,
-        text: 'Lachelein - Dream Defender',
-        completed: false,
-        hidden: false,
-      },
-      {
-        dailyListId: 1,
-        text: 'Chu Chu Island - Kill/Fetch Quests',
-        completed: false,
-        hidden: false,
-      },
-      {
-        dailyListId: 1,
-        text: 'Chu Chu Island - Hard Muto PQ',
-        completed: false,
-        hidden: false,
-      },
-      {
-        dailyListId: 1,
-        text: 'Vanishing Journey - Kill/Fetch Quests',
-        completed: false,
-        hidden: false,
-      },
-      {
-        dailyListId: 1,
-        text: 'Vanishing Journey - Edra Spectrum',
-        completed: false,
-        hidden: false,
-      },
-    ],
-    systemFlag: true,
-  };
+  private arcaneRiverDailies: Daily[] = [
+    {
+      dailyListId: 1,
+      text: 'Esfera - Kill/Fetch Quests',
+      completed: false,
+      hidden: false,
+    },
+    {
+      dailyListId: 1,
+      text: 'Morass - Kill/Fetch Quests',
+      completed: false,
+      hidden: false,
+    },
+    {
+      dailyListId: 1,
+      text: 'Arcana - Kill/Fetch Quests',
+      completed: false,
+      hidden: false,
+    },
+    {
+      dailyListId: 1,
+      text: 'Arcana - Spirit Savior',
+      completed: false,
+      hidden: false,
+    },
+    {
+      dailyListId: 1,
+      text: 'Lachelein - Kill/Fetch Quests',
+      completed: false,
+      hidden: false,
+    },
+    {
+      dailyListId: 1,
+      text: 'Lachelein - Dream Defender',
+      completed: false,
+      hidden: false,
+    },
+    {
+      dailyListId: 1,
+      text: 'Chu Chu Island - Kill/Fetch Quests',
+      completed: false,
+      hidden: false,
+    },
+    {
+      dailyListId: 1,
+      text: 'Chu Chu Island - Hard Muto PQ',
+      completed: false,
+      hidden: false,
+    },
+    {
+      dailyListId: 1,
+      text: 'Vanishing Journey - Kill/Fetch Quests',
+      completed: false,
+      hidden: false,
+    },
+    {
+      dailyListId: 1,
+      text: 'Vanishing Journey - Edra Spectrum',
+      completed: false,
+      hidden: false,
+    },
+  ];
 
   selectedCharacter: CharacterInfo | null = null;
 
@@ -97,9 +82,7 @@ export class DailyService {
     private characterService: CharacterService,
     private resetTimerService: ResetTimerService
   ) {
-    this.characterService
-      .watchSelectedCharacter()
-      .subscribe((character) => (this.selectedCharacter = character));
+    this.characterService.watchSelectedCharacter().subscribe((character) => (this.selectedCharacter = character));
 
     this.localStorage.set(LocalStorageKeys.dailiesLists, this.dailiesLists);
 
@@ -109,52 +92,44 @@ export class DailyService {
   }
 
   watchDailiesLists() {
-    return this.localStorage.watch<DailyList[] | null>(
-      LocalStorageKeys.dailiesLists
-    );
-  }
-
-  saveDailiesLists(lists: DailyList[]) {
-    this.localStorage.set(LocalStorageKeys.dailiesLists, lists);
+    return this.localStorage.watch<DailyList[] | null>(LocalStorageKeys.dailiesLists);
   }
 
   addDailyList(title: string) {
     if (this.selectedCharacter !== null) {
       const currentDailiesLists = this.dailiesLists;
+      const riverDailies = [...this.arcaneRiverDailies];
 
-      if (title === 'Arcane River') {
-        currentDailiesLists.push({
-          ...this.arcaneRiverDailiesList,
-          characterId: this.selectedCharacter.id,
-        });
-      } else {
-        currentDailiesLists.push({
-          dailyListId: currentDailiesLists.length + 1,
-          characterId: this.selectedCharacter.id,
-          title,
-          dailies: [],
-          systemFlag: false,
-        });
-      }
+      riverDailies.forEach((daily) => (daily.dailyListId = currentDailiesLists.length + 1));
+
+      currentDailiesLists.push({
+        dailyListId: currentDailiesLists.length + 1,
+        characterId: this.selectedCharacter.id,
+        title,
+        dailies: title === 'Arcane River' ? riverDailies : [],
+        systemFlag: title === 'Arcane River',
+      });
 
       this.saveDailiesLists(currentDailiesLists);
     }
   }
 
   saveDailiesToList(dailyListId: number, dailies: Daily[]) {
-    const currentDailiesLists = this.dailiesLists;
-    const listIndex = this.getDailyListIndex(dailyListId);
+    if (this.selectedCharacter !== null) {
+      const currentDailiesLists = this.dailiesLists;
+      const listIndex = this.getDailyListIndex(this.selectedCharacter?.id, dailyListId);
 
-    if (listIndex >= 0) {
-      currentDailiesLists[listIndex].dailies = [...dailies];
+      if (listIndex >= 0) {
+        currentDailiesLists[listIndex].dailies = [...dailies];
 
-      this.saveDailiesLists(currentDailiesLists);
+        this.saveDailiesLists(currentDailiesLists);
+      }
     }
   }
 
   deleteDailyList(dailyListId: number) {
     const currentDailiesLists = this.dailiesLists;
-    const listIndex = this.getDailyListIndex(dailyListId);
+    const listIndex = this.getDailyListIndex(this.selectedCharacter?.id, dailyListId);
 
     if (listIndex >= 0) {
       currentDailiesLists.splice(listIndex, 1);
@@ -173,16 +148,16 @@ export class DailyService {
     this.saveDailiesLists(currentDailiesLists);
   }
 
-  private getDailyListIndex(dailyListId: number) {
-    return this.dailiesLists.findIndex(
-      (list) => list.dailyListId === dailyListId
-    );
+  saveDailiesLists(lists: DailyList[]) {
+    this.localStorage.set(LocalStorageKeys.dailiesLists, lists);
+  }
+
+  private getDailyListIndex(characterId: number | undefined, dailyListId: number) {
+    return this.dailiesLists.findIndex((list) => list.characterId === characterId && list.dailyListId === dailyListId);
   }
 
   private get dailiesLists() {
-    const dailiesLists = this.localStorage.get<DailyList[]>(
-      LocalStorageKeys.dailiesLists
-    );
+    const dailiesLists = this.localStorage.get<DailyList[]>(LocalStorageKeys.dailiesLists);
 
     return dailiesLists ?? [];
   }

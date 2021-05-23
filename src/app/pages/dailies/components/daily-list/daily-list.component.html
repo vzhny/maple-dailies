@@ -46,7 +46,7 @@
       </app-button>
 
       <app-button
-        *ngIf="!systemList && showActions && !isEditing"
+        *ngIf="showActions && !isEditing"
         color="danger"
         width="40"
         (click)="deleteDailyList()"
