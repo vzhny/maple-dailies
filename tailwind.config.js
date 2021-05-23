@@ -1,30 +1,30 @@
-require("dotenv").config();
+require('dotenv').config();
 const enablePurge = process.env.ENABLE_PURGE || false;
-const defaultTheme = require("tailwindcss/defaultTheme");
-const colors = require("tailwindcss/colors");
-const forms = require("@tailwindcss/forms");
+const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
+const forms = require('@tailwindcss/forms');
 
 module.exports = {
   purge: {
     enabled: enablePurge,
-    content: ["./src/**/*.{html,ts}"],
+    content: ['./src/**/*.{html,ts}'],
   },
-  darkMode: "class", // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     spacing: {
       ...defaultTheme.spacing,
-      "screen/10": "10vh",
-      "screen/20": "20vh",
-      "screen/30": "30vh",
-      "screen/40": "40vh",
-      "screen/50": "50vh",
-      "screen/60": "60vh",
-      "screen/70": "70vh",
-      "screen/80": "80vh",
-      "screen/90": "90vh",
+      'screen/10': '10vh',
+      'screen/20': '20vh',
+      'screen/30': '30vh',
+      'screen/40': '40vh',
+      'screen/50': '50vh',
+      'screen/60': '60vh',
+      'screen/70': '70vh',
+      'screen/80': '80vh',
+      'screen/90': '90vh',
     },
     container: {
-      padding: "1rem",
+      padding: '1rem',
     },
     zIndex: {
       ...defaultTheme.zIndex,
@@ -32,8 +32,8 @@ module.exports = {
       1000: 1000,
     },
     fontFamily: {
-      sans: ["DotGothic16", ...defaultTheme.fontFamily.sans],
-      mono: ["Ubuntu Mono", ...defaultTheme.fontFamily.mono],
+      sans: ['DotGothic16', ...defaultTheme.fontFamily.sans],
+      mono: ['Ubuntu Mono', ...defaultTheme.fontFamily.mono],
     },
     extend: {
       colors: {
@@ -46,10 +46,10 @@ module.exports = {
   plugins: [forms],
   variants: {
     extend: {
-      backgroundColor: ["checked", "disabled"],
-      borderColor: ["checked"],
-      textColor: ["visited", "disabled"],
-      cursor: ["disabled"],
+      backgroundColor: ['checked', 'disabled'],
+      borderColor: ['checked'],
+      textColor: ['visited', 'disabled'],
+      cursor: ['disabled'],
     },
   },
 };

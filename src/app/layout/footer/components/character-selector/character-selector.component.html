@@ -9,26 +9,14 @@
 >
   <ng-template ng-label-tmp let-item="item">
     <div class="flex space-x-2 py-2">
-      <img
-        class="h-6 w-6 bg-cover"
-        src="assets/images/classes/{{ getCharacterIconFileName(item.class) }}"
-        alt="Class Icon"
-      />
-      <span
-        >{{ item.characterName }} (Lv. {{ item.level }} {{ item.class }})</span
-      >
+      <img class="h-6 w-6 bg-cover" src="assets/images/classes/{{ getCharacterIconFileName(item.class) }}" alt="Class Icon" />
+      <span>{{ item.characterName }} (Lv. {{ item.level }} {{ item.class }})</span>
     </div>
   </ng-template>
   <ng-template ng-option-tmp let-item="item" let-index="index">
     <div class="flex space-x-2 py-2">
-      <img
-        class="h-6 w-6 bg-cover"
-        src="assets/images/classes/{{ getCharacterIconFileName(item.class) }}"
-        alt="Class Icon"
-      />
-      <span
-        >{{ item.characterName }} (Lv. {{ item.level }} {{ item.class }})</span
-      >
+      <img class="h-6 w-6 bg-cover" src="assets/images/classes/{{ getCharacterIconFileName(item.class) }}" alt="Class Icon" />
+      <span>{{ item.characterName }} (Lv. {{ item.level }} {{ item.class }})</span>
     </div>
   </ng-template>
 </ng-select>

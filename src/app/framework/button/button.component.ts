@@ -1,13 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-export type ButtonColor =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'info'
-  | 'warning'
-  | 'danger'
-  | 'outline';
+export type ButtonColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'outline';
 
 @Component({
   selector: 'app-button',

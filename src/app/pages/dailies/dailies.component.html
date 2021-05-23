@@ -1,8 +1,5 @@
 <app-container>
-  <div
-    *ngIf="selectedCharacter"
-    class="mb-5 flex justify-center items-center flex-col md:flex-row md:justify-end"
-  >
+  <div *ngIf="selectedCharacter" class="mb-5 flex justify-center items-center flex-col md:flex-row md:justify-end">
     <div class="flex justify-center items-center space-x-2">
       <app-button
         *ngIf="!alreadyHasArcaneRiverDailiesList && selectedCharacter !== null"
@@ -12,11 +9,7 @@
         <fa-icon class="mr-1" [icon]="addIcon"></fa-icon>
         <span>Add Arcane River List</span>
       </app-button>
-      <app-button
-        *ngIf="selectedCharacter !== null"
-        color="success"
-        (click)="openAddNewDailyListModal()"
-      >
+      <app-button *ngIf="selectedCharacter !== null" color="success" (click)="openAddNewDailyListModal()">
         <fa-icon class="mr-1" [icon]="addIcon"></fa-icon>
         <span>Add New List</span>
       </app-button>
@@ -24,14 +17,9 @@
         *ngIf="selectedCharacter !== null"
         color="outline"
         (click)="toggleListLayout()"
-        title="Change to the {{
-          columnLayoutSelected ? 'grid' : 'list'
-        }} layout"
+        title="Change to the {{ columnLayoutSelected ? 'grid' : 'list' }} layout"
       >
-        <fa-icon
-          [icon]="columnLayoutSelected ? gridLayoutIcon : columnLayoutIcon"
-        >
-        </fa-icon>
+        <fa-icon [icon]="columnLayoutSelected ? gridLayoutIcon : columnLayoutIcon"> </fa-icon>
       </app-button>
     </div>
   </div>
@@ -43,11 +31,7 @@
       'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start gap-4': !columnLayoutSelected
     }"
   >
-    <div
-      *ngFor="let list of dailiesLists"
-      class="w-full"
-      [ngClass]="{ 'md:w-2/3': columnLayoutSelected }"
-    >
+    <div *ngFor="let list of dailiesLists" class="w-full" [ngClass]="{ 'md:w-2/3': columnLayoutSelected }">
       <app-daily-list
         [listId]="list.dailyListId"
         [listTitle]="list.title"
@@ -77,12 +61,7 @@
 </app-container>
 
 <!-- Add New List Modal -->
-<app-modal
-  headerTitle="Add a New List"
-  [id]="addNewDailyListModalId"
-  (close)="resetAll()"
-  #addNewDailyListModal
->
+<app-modal headerTitle="Add a New List" [id]="addNewDailyListModalId" (close)="resetAll()" #addNewDailyListModal>
   <form
     *ngIf="dailyListTitleForm"
     [formGroup]="dailyListTitleForm"
@@ -92,38 +71,19 @@
     <label class="block">
       <span class="space-x-2">
         List Name
-        <fa-icon
-          [icon]="requiredIcon"
-          class="text-red-600"
-          size="xs"
-          title="Required"
-        ></fa-icon>
+        <fa-icon [icon]="requiredIcon" class="text-red-600" size="xs" title="Required"></fa-icon>
       </span>
       <input type="text" class="form-control" formControlName="title" />
     </label>
   </form>
   <div class="flex justify-end space-x-3" footer-content>
-    <app-button
-      color="success"
-      (click)="addNewDailyList()"
-      [disabled]="dailyListTitleForm?.invalid || false"
-      >Save</app-button
-    >
-    <app-button
-      color="secondary"
-      (click)="resetAll(); addNewDailyListModal.closeModal()"
-      >Cancel</app-button
-    >
+    <app-button color="success" (click)="addNewDailyList()" [disabled]="dailyListTitleForm?.invalid || false">Save</app-button>
+    <app-button color="secondary" (click)="resetAll(); addNewDailyListModal.closeModal()">Cancel</app-button>
   </div>
 </app-modal>
 
 <!-- Add/Edit Daily Modal -->
-<app-modal
-  headerTitle="{{ isEditingDaily ? 'Edit' : 'Add' }} Daily"
-  [id]="addEditDailyModalId"
-  (close)="resetAll()"
-  #addNewDailyModal
->
+<app-modal headerTitle="{{ isEditingDaily ? 'Edit' : 'Add' }} Daily" [id]="addEditDailyModalId" (close)="resetAll()" #addNewDailyModal>
   <form
     *ngIf="dailyTextForm"
     [formGroup]="dailyTextForm"
@@ -135,38 +95,16 @@
     </label>
   </form>
   <div class="flex justify-end space-x-3" footer-content>
-    <app-button
-      color="success"
-      [disabled]="dailyTextForm?.invalid || false"
-      (click)="saveDailyToList(isEditingDaily)"
-      >Save</app-button
-    >
-    <app-button
-      color="secondary"
-      (click)="resetAll(); addNewDailyModal.closeModal()"
-      >Cancel</app-button
-    >
+    <app-button color="success" [disabled]="dailyTextForm?.invalid || false" (click)="saveDailyToList(isEditingDaily)">Save</app-button>
+    <app-button color="secondary" (click)="resetAll(); addNewDailyModal.closeModal()">Cancel</app-button>
   </div>
 </app-modal>
 
 <!-- Delete Daily List Modal -->
-<app-modal
-  headerTitle="Delete Daily List"
-  [id]="deleteDailyListModalId"
-  (close)="resetAll()"
-  #deleteDailyListModal
->
-  <div class="flex justify-center">
-    Are you sure you want to delete the following list: {{ seletedListTitle }}?
-  </div>
+<app-modal headerTitle="Delete Daily List" [id]="deleteDailyListModalId" (close)="resetAll()" #deleteDailyListModal>
+  <div class="flex justify-center">Are you sure you want to delete the following list: {{ seletedListTitle }}?</div>
   <div class="flex justify-end space-x-3" footer-content>
-    <app-button color="success" (click)="confirmDeleteDailyList()"
-      >Confirm</app-button
-    >
-    <app-button
-      color="secondary"
-      (click)="resetAll(); deleteDailyListModal.closeModal()"
-      >Cancel</app-button
-    >
+    <app-button color="success" (click)="confirmDeleteDailyList()">Confirm</app-button>
+    <app-button color="secondary" (click)="resetAll(); deleteDailyListModal.closeModal()">Cancel</app-button>
   </div>
 </app-modal>

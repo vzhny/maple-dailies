@@ -16,14 +16,6 @@ import { ButtonModule } from './button/button.module';
 @NgModule({
   declarations: [],
   imports: [],
-  exports: [
-    CommonModule,
-    AccordionModule,
-    ButtonModule,
-    ContainerModule,
-    FormModule,
-    ModalModule,
-    TableModule,
-  ],
+  exports: [CommonModule, AccordionModule, ButtonModule, ContainerModule, FormModule, ModalModule, TableModule],
 })
 export class FrameworkModule {}

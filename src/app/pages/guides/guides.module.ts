@@ -22,13 +22,6 @@ import { TableModule } from 'src/app/framework/table/table.module';
     MutoRecipeComponent,
     MutoRecipeIngredientInfoComponent,
   ],
-  imports: [
-    CommonModule,
-    GuidesRoutingModule,
-    LayoutModule,
-    FrameworkModule,
-    FormModule,
-    TableModule,
-  ],
+  imports: [CommonModule, GuidesRoutingModule, LayoutModule, FrameworkModule, FormModule, TableModule],
 })
 export class GuidesModule {}

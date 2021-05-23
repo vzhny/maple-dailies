@@ -12,14 +12,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [DailiesComponent, DailyListComponent],
-  imports: [
-    CommonModule,
-    DailiesRoutingModule,
-    ReactiveFormsModule,
-    FrameworkModule,
-    TableModule,
-    FormModule,
-    FontAwesomeModule,
-  ],
+  imports: [CommonModule, DailiesRoutingModule, ReactiveFormsModule, FrameworkModule, TableModule, FormModule, FontAwesomeModule],
 })
 export class DailiesModule {}

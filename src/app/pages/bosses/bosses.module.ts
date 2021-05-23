@@ -10,12 +10,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [BossesComponent, BossesChecklistComponent],
-  imports: [
-    CommonModule,
-    BossesRoutingModule,
-    FrameworkModule,
-    FontAwesomeModule,
-    CustomPipesModule,
-  ],
+  imports: [CommonModule, BossesRoutingModule, FrameworkModule, FontAwesomeModule, CustomPipesModule],
 })
 export class BossesModule {}

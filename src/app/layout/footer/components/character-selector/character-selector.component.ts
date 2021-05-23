@@ -22,9 +22,7 @@ export class CharacterSelectorComponent implements OnInit {
       }
     });
 
-    this.characterService
-      .watchSelectedCharacter()
-      .subscribe((character) => (this.selectedCharacter = character));
+    this.characterService.watchSelectedCharacter().subscribe((character) => (this.selectedCharacter = character));
   }
 
   selectCharacter(character: CharacterInfo) {
@@ -33,9 +31,7 @@ export class CharacterSelectorComponent implements OnInit {
   }
 
   getCharacterIconFileName(characterClass: string) {
-    const classInfo = this.characterService.getCharacterClassInfo(
-      characterClass
-    );
+    const classInfo = this.characterService.getCharacterClassInfo(characterClass);
 
     if (classInfo !== undefined) {
       return classInfo.fileName;

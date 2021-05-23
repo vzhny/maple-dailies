@@ -128,9 +128,7 @@ export class HardMutoRecipesComponent implements OnInit {
     this.showOnlyHiddenIngredientRecipes = !this.showOnlyHiddenIngredientRecipes;
 
     if (this.showOnlyHiddenIngredientRecipes) {
-      this.filteredRecipes = this.recipes.filter(
-        (recipe) => recipe.canHaveHiddenIngredientsFlg
-      );
+      this.filteredRecipes = this.recipes.filter((recipe) => recipe.canHaveHiddenIngredientsFlg);
     } else {
       this.filteredRecipes = [...this.recipes];
     }

@@ -1,27 +1,16 @@
 <app-container>
   <app-accordion>
-    <app-accordion-item
-      headerTitle="Vanishing Journey"
-      [fluidContent]="true"
-      [expanded]="true"
-    >
+    <app-accordion-item headerTitle="Vanishing Journey" [fluidContent]="true" [expanded]="true">
       <app-table [data]="vjData" #vjTable>
         <thead table-header>
           <tr class="table-header-row">
-            <th
-              *ngFor="let column of columns"
-              class="table-header-cell"
-              ngClass="text-{{ column.textAlign }}"
-            >
+            <th *ngFor="let column of columns" class="table-header-cell" ngClass="text-{{ column.textAlign }}">
               {{ column.headerTitle }}
             </th>
           </tr>
         </thead>
         <tbody table-body>
-          <tr
-            *ngFor="let row of vjTable.rows; let i = index"
-            class="table-body-row"
-          >
+          <tr *ngFor="let row of vjTable.rows; let i = index" class="table-body-row">
             <td class="table-body-cell text-center">
               {{ row.level }}
             </td>
@@ -29,13 +18,13 @@
               {{ displayCurrency(row.totalSymbols) }}
             </td>
             <td class="table-body-cell text-center">
-              {{ row.symbolsToNextLevel || "–" }}
+              {{ row.symbolsToNextLevel || '–' }}
             </td>
             <td class="table-body-cell text-center">
               {{ displayCurrency(row.totalMesosUsed) }}
             </td>
             <td class="table-body-cell text-center">
-              {{ displayCurrency(row.mesosToNextLevel) || "–" }}
+              {{ displayCurrency(row.mesosToNextLevel) || '–' }}
             </td>
           </tr>
         </tbody>
@@ -45,20 +34,13 @@
       <app-table [data]="nonVjData" #nonVjTable>
         <thead table-header>
           <tr class="table-header-row">
-            <th
-              *ngFor="let column of columns"
-              class="table-header-cell"
-              ngClass="text-{{ column.textAlign }}"
-            >
+            <th *ngFor="let column of columns" class="table-header-cell" ngClass="text-{{ column.textAlign }}">
               {{ column.headerTitle }}
             </th>
           </tr>
         </thead>
         <tbody table-body>
-          <tr
-            *ngFor="let row of nonVjTable.rows; let i = index"
-            class="table-body-row"
-          >
+          <tr *ngFor="let row of nonVjTable.rows; let i = index" class="table-body-row">
             <td class="table-body-cell text-center">
               {{ row.level }}
             </td>
@@ -66,13 +48,13 @@
               {{ displayCurrency(row.totalSymbols) }}
             </td>
             <td class="table-body-cell text-center">
-              {{ row.symbolsToNextLevel || "–" }}
+              {{ row.symbolsToNextLevel || '–' }}
             </td>
             <td class="table-body-cell text-center">
               {{ displayCurrency(row.totalMesosUsed) }}
             </td>
             <td class="table-body-cell text-center">
-              {{ displayCurrency(row.mesosToNextLevel) || "–" }}
+              {{ displayCurrency(row.mesosToNextLevel) || '–' }}
             </td>
           </tr>
         </tbody>

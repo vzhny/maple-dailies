@@ -12,14 +12,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [SettingsComponent, AddCharacterFormComponent],
-  imports: [
-    CommonModule,
-    SettingsRoutingModule,
-    ReactiveFormsModule,
-    NgSelectModule,
-    FontAwesomeModule,
-    TippyModule,
-    FrameworkModule,
-  ],
+  imports: [CommonModule, SettingsRoutingModule, ReactiveFormsModule, NgSelectModule, FontAwesomeModule, TippyModule, FrameworkModule],
 })
 export class SettingsModule {}

@@ -8,14 +8,6 @@ import { SettingsComponent } from './settings/settings.component';
 import { SettingsModule } from './settings/settings.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    HomeModule,
-    DailiesModule,
-    BossesModule,
-    GuidesModule,
-    SettingsModule,
-    FrameworkModule,
-  ],
+  imports: [CommonModule, HomeModule, DailiesModule, BossesModule, GuidesModule, SettingsModule, FrameworkModule],
 })
 export class PagesModule {}

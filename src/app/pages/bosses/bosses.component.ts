@@ -20,46 +20,34 @@ export class BossesComponent implements OnInit {
   selectedCharacter: CharacterInfo | null = null;
   bossesChecklists: BossesChecklists | null = null;
 
-  constructor(
-    private bossService: BossService,
-    private characterService: CharacterService
-  ) {}
+  constructor(private bossService: BossService, private characterService: CharacterService) {}
 
   ngOnInit(): void {
-    combineLatest([
-      this.characterService.watchSelectedCharacter(),
-      this.bossService.watchBossesChecklists(),
-    ]).subscribe(([character, checklists]) => {
-      this.selectedCharacter = character;
+    combineLatest([this.characterService.watchSelectedCharacter(), this.bossService.watchBossesChecklists()]).subscribe(
+      ([character, checklists]) => {
+        this.selectedCharacter = character;
 
-      if (character !== null && checklists !== null) {
-        const selectedCharacterBossChecklists = checklists.find(
-          (checklist) => checklist.characterId === character.id
-        );
+        if (character !== null && checklists !== null) {
+          const selectedCharacterBossChecklists = checklists.find((checklist) => checklist.characterId === character.id);
 
-        if (selectedCharacterBossChecklists !== undefined) {
-          this.bossesChecklists = selectedCharacterBossChecklists;
+          if (selectedCharacterBossChecklists !== undefined) {
+            this.bossesChecklists = selectedCharacterBossChecklists;
+          } else {
+            this.bossesChecklists = {
+              ...this.bossService.getDefaultBossesChecklists(),
+              characterId: character.id,
+            };
+
+            this.saveBossesChecklists();
+          }
         } else {
-          this.bossesChecklists = {
-            ...this.bossService.getDefaultBossesChecklists(),
-            characterId: character.id,
-          };
-
-          this.saveBossesChecklists();
+          this.bossesChecklists = null;
         }
-      } else {
-        this.bossesChecklists = null;
       }
-    });
+    );
   }
 
-  onSelectBoss({
-    bossIndex,
-    frequency,
-    perWeekAmount,
-    bossCrystalMesos,
-    selected,
-  }: BossSelectionEvent) {
+  onSelectBoss({ bossIndex, frequency, perWeekAmount, bossCrystalMesos, selected }: BossSelectionEvent) {
     if (this.bossesChecklists !== null) {
       switch (frequency) {
         case 'daily':
@@ -76,8 +64,7 @@ export class BossesComponent implements OnInit {
       if (selected) {
         if (frequency === 'daily') {
           this.bossesChecklists.totalAmountOfPowerCrystals += perWeekAmount;
-          this.bossesChecklists.totalWeeklyMesos +=
-            perWeekAmount * bossCrystalMesos;
+          this.bossesChecklists.totalWeeklyMesos += perWeekAmount * bossCrystalMesos;
         } else {
           this.bossesChecklists.totalAmountOfPowerCrystals += 1;
           this.bossesChecklists.totalWeeklyMesos += bossCrystalMesos;
@@ -85,8 +72,7 @@ export class BossesComponent implements OnInit {
       } else {
         if (frequency === 'daily') {
           this.bossesChecklists.totalAmountOfPowerCrystals -= perWeekAmount;
-          this.bossesChecklists.totalWeeklyMesos -=
-            perWeekAmount * bossCrystalMesos;
+          this.bossesChecklists.totalWeeklyMesos -= perWeekAmount * bossCrystalMesos;
         } else {
           this.bossesChecklists.totalAmountOfPowerCrystals -= 1;
           this.bossesChecklists.totalWeeklyMesos -= bossCrystalMesos;
@@ -97,13 +83,7 @@ export class BossesComponent implements OnInit {
     }
   }
 
-  onBossAmountOperation({
-    bossIndex,
-    perWeekAmount,
-    bossCrystalMesos,
-    operation,
-    selected,
-  }: DailyBossAmountOperationEvent) {
+  onBossAmountOperation({ bossIndex, perWeekAmount, bossCrystalMesos, operation, selected }: DailyBossAmountOperationEvent) {
     if (this.bossesChecklists !== null) {
       if (selected) {
         switch (operation) {
@@ -143,13 +123,9 @@ export class BossesComponent implements OnInit {
   onAllCompletion({ isWeekly, allCompleted }: AllBossesCompletionEvent) {
     if (this.bossesChecklists !== null) {
       if (isWeekly) {
-        this.bossesChecklists.weeklyBosses.forEach(
-          (boss) => (boss.completed = allCompleted)
-        );
+        this.bossesChecklists.weeklyBosses.forEach((boss) => (boss.completed = allCompleted));
       } else {
-        this.bossesChecklists.dailyBosses.forEach(
-          (boss) => (boss.completed = allCompleted)
-        );
+        this.bossesChecklists.dailyBosses.forEach((boss) => (boss.completed = allCompleted));
       }
 
       this.saveBossesChecklists();
@@ -158,27 +134,21 @@ export class BossesComponent implements OnInit {
 
   actualWeeklyMesosEarned() {
     if (this.bossesChecklists !== null) {
-      const dailyActualMesosEarned = this.bossesChecklists.dailyBosses.reduce(
-        (total, boss) => {
-          if (boss.selected && boss.completed) {
-            total += boss.bossCrystalMesos;
-          }
+      const dailyActualMesosEarned = this.bossesChecklists.dailyBosses.reduce((total, boss) => {
+        if (boss.selected && boss.completed) {
+          total += boss.bossCrystalMesos;
+        }
 
-          return total;
-        },
-        0
-      );
+        return total;
+      }, 0);
 
-      const weeklyActualMesosEarned = this.bossesChecklists.weeklyBosses.reduce(
-        (total, boss) => {
-          if (boss.selected && boss.completed) {
-            total += boss.bossCrystalMesos;
-          }
+      const weeklyActualMesosEarned = this.bossesChecklists.weeklyBosses.reduce((total, boss) => {
+        if (boss.selected && boss.completed) {
+          total += boss.bossCrystalMesos;
+        }
 
-          return total;
-        },
-        0
-      );
+        return total;
+      }, 0);
 
       return dailyActualMesosEarned + weeklyActualMesosEarned;
     } else {
@@ -188,11 +158,7 @@ export class BossesComponent implements OnInit {
 
   getPercentageOfActuallyEarnedMesos() {
     if (this.bossesChecklists !== null) {
-      const percentage = Math.round(
-        (this.actualWeeklyMesosEarned() /
-          this.bossesChecklists.totalWeeklyMesos) *
-          100
-      );
+      const percentage = Math.round((this.actualWeeklyMesosEarned() / this.bossesChecklists.totalWeeklyMesos) * 100);
       return `${percentage}%`;
     } else {
       return '0%';
@@ -201,10 +167,7 @@ export class BossesComponent implements OnInit {
 
   private saveBossesChecklists() {
     if (this.selectedCharacter && this.bossesChecklists !== null) {
-      this.bossService.saveCharacterBossChecklists(
-        this.selectedCharacter.id,
-        this.bossesChecklists
-      );
+      this.bossService.saveCharacterBossChecklists(this.selectedCharacter.id, this.bossesChecklists);
     }
   }
 }

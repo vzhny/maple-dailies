@@ -1,20 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {
-  faInfoCircle,
-  faPen,
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle, faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { ModalService } from 'src/app/framework/modal/modal.service';
-import {
-  TableColumn,
-  TableData,
-} from 'src/app/framework/table/table.component';
-import {
-  ArcaneSymbolInfo,
-  ArcaneSymbolService,
-} from 'src/app/utils/arcane-symbol.service';
+import { TableColumn, TableData } from 'src/app/framework/table/table.component';
+import { ArcaneSymbolInfo, ArcaneSymbolService } from 'src/app/utils/arcane-symbol.service';
 import { CharacterService } from 'src/app/utils/character.service';
 import { LocalStorageService } from 'src/app/utils/local-storage.service';
 
@@ -205,10 +195,7 @@ export class SettingsComponent implements OnInit {
       }
     });
 
-    this.symbolData = this.arcaneSymbolService.buildArcaneInfoData(
-      this.symbolData,
-      false
-    );
+    this.symbolData = this.arcaneSymbolService.buildArcaneInfoData(this.symbolData, false);
   }
 
   setColumnWidth(width: string | undefined) {
@@ -230,15 +217,9 @@ export class SettingsComponent implements OnInit {
       this.selectedCharacterId = selectedCharacter.id;
       this.selectedCharacter = selectedCharacter;
 
-      this.localStorage.set(
-        LocalStorageKeys.selectedCharacter,
-        selectedCharacter
-      );
+      this.localStorage.set(LocalStorageKeys.selectedCharacter, selectedCharacter);
 
-      this.localStorage.set(
-        LocalStorageKeys.charImgUrl,
-        selectedCharacter.characterImgSrcUrl
-      );
+      this.localStorage.set(LocalStorageKeys.charImgUrl, selectedCharacter.characterImgSrcUrl);
     }
   }
 
@@ -274,10 +255,7 @@ export class SettingsComponent implements OnInit {
     this.modalService.close(this.deleteCharacterModalId);
   }
 
-  calculateSymbolExperiencePercentage({
-    currentLevel,
-    currentExp,
-  }: ArcaneSymbol) {
+  calculateSymbolExperiencePercentage({ currentLevel, currentExp }: ArcaneSymbol) {
     const defaultPercentage = '0%';
     const symbolData = this.symbolData[currentLevel - 1];
 
@@ -298,8 +276,6 @@ export class SettingsComponent implements OnInit {
   getCharacterIcon(characterClass: string) {
     const info = this.characterService.getCharacterClassInfo(characterClass);
 
-    return this.characterService.buildCharacterIconSrc(
-      info !== undefined ? info.fileName : 'beginner.png'
-    );
+    return this.characterService.buildCharacterIconSrc(info !== undefined ? info.fileName : 'beginner.png');
   }
 }

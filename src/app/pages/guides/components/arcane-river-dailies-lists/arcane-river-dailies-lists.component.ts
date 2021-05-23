@@ -382,13 +382,14 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
   constructor(private characterService: CharacterService) {}
 
   ngOnInit(): void {
-    this.characterService.watchSelectedCharacter().subscribe(character => {
+    this.characterService.watchSelectedCharacter().subscribe((character) => {
       if (character !== null) {
         const availableArcaneRiverAreas = this.characterService.getAvailableArcaneRiverAreas(character.level);
 
-        this.availableDailiesLists = availableArcaneRiverAreas.length !== 0
-          ? this.dailiesLists.filter(list => availableArcaneRiverAreas.includes(list.townName))
-          : this.dailiesLists;
+        this.availableDailiesLists =
+          availableArcaneRiverAreas.length !== 0
+            ? this.dailiesLists.filter((list) => availableArcaneRiverAreas.includes(list.townName))
+            : this.dailiesLists;
       } else {
         this.availableDailiesLists = this.dailiesLists;
       }

@@ -11,9 +11,7 @@ export class StorageService {
   }
 
   watch<T>(key: string): Observable<T | null> {
-    let behaviorSubject: BehaviorSubject<T | null> = new BehaviorSubject<T | null>(
-      null
-    );
+    let behaviorSubject: BehaviorSubject<T | null> = new BehaviorSubject<T | null>(null);
     const itemString: string | null = this.storage.getItem(key);
     let itemObj: T | null = null;
 
