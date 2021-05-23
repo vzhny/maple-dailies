@@ -1,5 +1,5 @@
-<app-container *ngIf="bossesChecklists !== null">
-  <div class="md:mb-4 flex justify-between items-center flex-col lg:flex-row">
+<app-container>
+  <div *ngIf="bossesChecklists !== null && selectedCharacter !== null" class="md:mb-4 flex justify-between items-center flex-col lg:flex-row">
     <span
       class="flex justify-center items-center font-light mb-3 md:mb-0 whitespace-nowrap overflow-hidden overflow-ellipsis"
     >
@@ -33,7 +33,7 @@
     </span>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-2 items-start gap-4">
+  <div *ngIf="bossesChecklists !== null && selectedCharacter !== null; else noSelectedCharacter" class="grid grid-cols-1 lg:grid-cols-2 items-start gap-4">
     <app-bosses-checklist
       [bosses]="bossesChecklists.dailyBosses"
       (selectBoss)="onSelectBoss($event)"
@@ -49,4 +49,14 @@
       (toggleAllCompletion)="onAllCompletion($event)"
     ></app-bosses-checklist>
   </div>
+
+  <ng-template #noSelectedCharacter>
+    <div class="w-full h-full flex justify-center items-center">
+      <div class="text-2xl">
+        <span>Please add and/or select a character in the &nbsp;</span>
+        <a class="inline-block underline text-blue-400" routerLink="/settings">Settings</a>
+        <span>&nbsp; page in order to start checking off bosses!</span>
+      </div>
+    </div>
+</ng-template>
 </app-container>
