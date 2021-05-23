@@ -20,6 +20,18 @@ export interface ClassInfo {
   providedIn: 'root',
 })
 export class CharacterService {
+  private arcaneRiverAreasByLevel: { [key: number]: string } = {
+    200: 'Vanishing Journey',
+    210: 'Chu Chu Island',
+    220: 'Lachelein',
+    225: 'Arcana',
+    230: 'Morass',
+    235: 'Esfera',
+    245: 'Tenebris - Moonbridge',
+    250: 'Tenebris - Labyrinth of Suffering',
+    255: 'Liminia',
+  };
+
   private characterClasses: ClassInfo[] = [
     {
       name: 'Hero',
@@ -258,23 +270,16 @@ export class CharacterService {
     },
   ];
 
-  constructor(
-    private localStorage: LocalStorageService,
-    private fb: FormBuilder
-  ) {
+  constructor(private localStorage: LocalStorageService, private fb: FormBuilder) {
     this.localStorage.set(LocalStorageKeys.characterList, this.characterList);
   }
 
   watchSelectedCharacter() {
-    return this.localStorage.watch<CharacterInfo | null>(
-      LocalStorageKeys.selectedCharacter
-    );
+    return this.localStorage.watch<CharacterInfo | null>(LocalStorageKeys.selectedCharacter);
   }
 
   watchCharacterList() {
-    return this.localStorage.watch<CharacterInfo[] | null>(
-      LocalStorageKeys.characterList
-    );
+    return this.localStorage.watch<CharacterInfo[] | null>(LocalStorageKeys.characterList);
   }
 
   selectCharacter(characterId: number) {
@@ -282,17 +287,11 @@ export class CharacterService {
     const listIndex = this.getCharacterListIndex(characterId);
 
     if (listIndex >= 0) {
-      this.localStorage.set(
-        LocalStorageKeys.selectedCharacter,
-        this.characterList[listIndex]
-      );
+      this.localStorage.set(LocalStorageKeys.selectedCharacter, this.characterList[listIndex]);
 
       this.localStorage.set(LocalStorageKeys.selectedCharacterId, characterId);
 
-      this.localStorage.set(
-        LocalStorageKeys.charImgUrl,
-        this.characterList[listIndex].characterImgSrcUrl
-      );
+      this.localStorage.set(LocalStorageKeys.charImgUrl, this.characterList[listIndex].characterImgSrcUrl);
     }
   }
 
@@ -321,9 +320,7 @@ export class CharacterService {
       this.saveCharacterList(currentCharacterList);
     }
 
-    const selectedCharacter = this.localStorage.get<CharacterInfo>(
-      LocalStorageKeys.selectedCharacter
-    );
+    const selectedCharacter = this.localStorage.get<CharacterInfo>(LocalStorageKeys.selectedCharacter);
 
     if (selectedCharacter !== null && selectedCharacter.id === character.id) {
       this.localStorage.set(LocalStorageKeys.selectedCharacter, character);
@@ -341,9 +338,7 @@ export class CharacterService {
         this.saveCharacterList(currentCharacterList);
       }
 
-      const selectedCharacter = this.localStorage.get<CharacterInfo>(
-        LocalStorageKeys.selectedCharacter
-      );
+      const selectedCharacter = this.localStorage.get<CharacterInfo>(LocalStorageKeys.selectedCharacter);
 
       if (selectedCharacter !== null && selectedCharacter.id === characterId) {
         this.localStorage.set(LocalStorageKeys.selectedCharacter, null);
@@ -397,15 +392,27 @@ export class CharacterService {
     });
   }
 
+  getAvailableArcaneRiverAreas(characterLevel: number) {
+    return Object.entries(this.arcaneRiverAreasByLevel).reduce((list, [areaMinLevel, areaName]) => {
+        if (characterLevel >= parseInt(areaMinLevel, 10)) {
+          list.push(areaName);
+        }
+
+        return list;
+      }, new Array<string>());
+  }
+
   private getCharacterListIndex(characterId: number) {
     return this.characterList.findIndex((list) => list.id === characterId);
   }
 
   private get characterList() {
-    const characterList = this.localStorage.get<CharacterInfo[]>(
-      LocalStorageKeys.characterList
-    );
+    const characterList = this.localStorage.get<CharacterInfo[]>(LocalStorageKeys.characterList);
 
     return characterList ?? [];
+  }
+
+  private get selectedCharacter() {
+    return this.localStorage.get<CharacterInfo>(LocalStorageKeys.selectedCharacter);
   }
 }

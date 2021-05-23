@@ -13,7 +13,7 @@
 
   <app-accordion>
     <app-accordion-item
-      *ngFor="let item of dailiesLists"
+      *ngFor="let item of availableDailiesLists"
       [headerTitle]="item.townName"
     >
       <div *ngIf="item.canExchangeDailiesFlg" class="mb-2">
