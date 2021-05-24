@@ -11,9 +11,8 @@
 </div>
 <div *ngIf="selectedCharacter" class="absolute right-3 bottom-20 w-32 flex flex-col justify-center items-center">
   <img
-    *ngIf="selectedCharacter?.characterImgSrcUrl"
     class="bg-cover h-32 w-32"
-    [src]="selectedCharacter?.characterImgSrcUrl"
+    [src]="selectedCharacter?.characterImgSrcUrl || 'assets/images/misc/blank_character.png'"
     alt="User Maplestory Character Image"
   />
   <div class="px-1 bg-black bg-opacity-75 dark:bg-transparent text-white border border-gray-900">
