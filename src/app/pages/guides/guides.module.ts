@@ -12,6 +12,7 @@ import { MutoRecipeComponent } from './components/hard-muto-recipes/components/m
 import { MutoRecipeIngredientInfoComponent } from './components/hard-muto-recipes/components/muto-recipe-ingredient-info/muto-recipe-ingredient-info.component';
 import { FormModule } from 'src/app/framework/form/form.module';
 import { TableModule } from 'src/app/framework/table/table.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,6 @@ import { TableModule } from 'src/app/framework/table/table.module';
     MutoRecipeComponent,
     MutoRecipeIngredientInfoComponent,
   ],
-  imports: [CommonModule, GuidesRoutingModule, LayoutModule, FrameworkModule, FormModule, TableModule],
+  imports: [CommonModule, GuidesRoutingModule, FontAwesomeModule, LayoutModule, FrameworkModule, FormModule, TableModule],
 })
 export class GuidesModule {}
