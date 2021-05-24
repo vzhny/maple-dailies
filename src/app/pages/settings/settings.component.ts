@@ -164,7 +164,7 @@ export class SettingsComponent implements OnInit {
 
   selectedCharacter: CharacterInfo | null = null;
   selectedCharacterId: number | null = null;
-  characterIdToDelete: number | null = null;
+  characterToDelete: CharacterInfo | null = null;
 
   isEditing = false;
 
@@ -244,15 +244,17 @@ export class SettingsComponent implements OnInit {
     this.modalService.close(this.addCharacterModalId);
   }
 
-  deleteCharacter(characterId: number) {
-    this.characterIdToDelete = characterId;
+  deleteCharacter(character: TableData) {
+    this.characterToDelete = character as CharacterInfo;
     this.modalService.open(this.deleteCharacterModalId);
   }
 
   confirmDeleteCharacter() {
-    this.characterService.deleteCharacter(this.characterIdToDelete);
-    this.characterIdToDelete = null;
-    this.modalService.close(this.deleteCharacterModalId);
+    if (this.characterToDelete !== null) {
+      this.characterService.deleteCharacter(this.characterToDelete?.id);
+      this.characterToDelete = null;
+      this.modalService.close(this.deleteCharacterModalId);
+    }
   }
 
   calculateSymbolExperiencePercentage({ currentLevel, currentExp }: ArcaneSymbol) {
