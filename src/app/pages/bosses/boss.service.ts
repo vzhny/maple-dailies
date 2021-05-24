@@ -27,7 +27,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 200000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -36,7 +36,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 612500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -45,7 +45,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 648000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -54,7 +54,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 684500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -63,7 +63,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 722000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -72,7 +72,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 800000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -81,7 +81,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 882000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -90,7 +90,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 968000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -99,7 +99,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 968000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -108,7 +108,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 968000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -117,7 +117,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 968000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -126,7 +126,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1012500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -135,7 +135,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1058000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -144,7 +144,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1152000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -153,7 +153,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1200000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -162,7 +162,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1250000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -171,7 +171,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1352000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -180,7 +180,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1404500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -189,7 +189,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 1458000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -198,7 +198,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 2450000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -207,7 +207,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 2520000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -216,7 +216,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 2592000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -225,7 +225,7 @@ export class BossService {
       frequency: 'daily',
       perWeekAmount: 1,
       bossCrystalMesos: 2664500,
-      selected: true,
+      selected: false,
       completed: false,
     },
   ];
@@ -237,7 +237,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 9112500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -246,7 +246,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 11250000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -255,7 +255,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 12800000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -264,7 +264,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 14450000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -273,7 +273,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 15312500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -282,7 +282,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 16200000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -291,7 +291,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 16200000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -300,7 +300,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 16200000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -309,7 +309,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 16200000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -318,7 +318,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 19012500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -327,7 +327,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 21012500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -336,7 +336,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 26450000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -345,7 +345,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 28800000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -354,7 +354,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 32512500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -363,7 +363,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 33800000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -372,7 +372,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 35112500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -381,7 +381,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 40612500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -390,7 +390,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 46512500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -399,7 +399,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 49612500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -408,7 +408,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 52812500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -417,7 +417,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 70312500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -426,7 +426,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 74112500,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -435,7 +435,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 80000000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -444,7 +444,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 88200000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -453,7 +453,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 92450000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -462,7 +462,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 96800000,
-      selected: true,
+      selected: false,
       completed: false,
     },
     {
@@ -471,7 +471,7 @@ export class BossService {
       frequency: 'weekly',
       perWeekAmount: 1,
       bossCrystalMesos: 110450000,
-      selected: true,
+      selected: false,
       completed: false,
     },
   ];
