@@ -10,7 +10,7 @@
         [color]="isEditing ? 'success' : 'secondary'"
         width="40"
         (click)="toggleVisibleBosses()"
-        title="{{ isEditing ? 'Confirm' : 'Edit' }} dailies list"
+        title="{{ isEditing ? 'Confirm' : 'Edit' }} bosses checklist"
       >
         <fa-icon [icon]="isEditing ? confirmIcon : editIcon" size="sm"></fa-icon>
       </app-button>
@@ -20,7 +20,7 @@
         color="info"
         width="40"
         (click)="completeAllBosses(!completedList)"
-        title="{{ completedList ? 'Reset' : 'Complete' }} all dailies"
+        title="{{ completedList ? 'Reset' : 'Complete' }} all bosses"
       >
         <fa-icon [icon]="completedList ? resetIcon : checkAllIcon" size="sm"></fa-icon>
       </app-button>
