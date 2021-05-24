@@ -299,7 +299,7 @@ export class CharacterService {
 
     currentCharacterList.push({
       ...character,
-      id: currentCharacterList.length + 1,
+      id: currentCharacterList.length + 2,
     });
 
     this.saveCharacterList(currentCharacterList);
