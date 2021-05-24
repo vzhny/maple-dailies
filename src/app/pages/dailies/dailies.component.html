@@ -14,7 +14,7 @@
         <span>Add New List</span>
       </app-button>
       <app-button
-        *ngIf="selectedCharacter !== null"
+        *ngIf="dailiesLists.length > 0 && selectedCharacter !== null"
         color="outline"
         (click)="toggleListLayout()"
         title="Change to the {{ columnLayoutSelected ? 'grid' : 'list' }} layout"

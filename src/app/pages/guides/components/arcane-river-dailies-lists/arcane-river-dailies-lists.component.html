@@ -9,8 +9,13 @@
     <app-accordion-item *ngFor="let item of availableDailiesLists" [headerTitle]="item.townName">
       <div *ngIf="item.canExchangeDailiesFlg" class="mb-2">These dailies can be exchanged one (1) time before accepting them.</div>
       <ul>
-        <li *ngFor="let daily of item.dailies" class="font-normal md:ml-5" [ngClass]="{ 'font-medium text-red-500': daily.exchangeFlag }">
-          {{ daily.name }}
+        <li
+          *ngFor="let daily of item.dailies"
+          class="font-normal space-x-2 md:ml-5"
+          [ngClass]="{ 'font-medium text-red-500': daily.exchangeFlag }"
+        >
+          <fa-icon [icon]="getDailyIcon(daily.name)"></fa-icon>
+          <span>{{ daily.name }}</span>
           <hr class="block md:hidden my-1" />
         </li>
       </ul>

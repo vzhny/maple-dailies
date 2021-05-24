@@ -25,7 +25,7 @@
       </app-button>
 
       <app-button
-        *ngIf="showActions && !isEditing && dailies.length > 0"
+        *ngIf="!isEditing && dailies.length > 0"
         color="info"
         width="40"
         (click)="completedList ? resetDailies() : completeAllDailies()"
@@ -91,7 +91,11 @@
     </ng-container>
     <ng-template #showNoDailiesMessage>
       <li class="flex justify-center p-1">
-        <span class="ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis"> Start adding dailies to this list! </span>
+        <span class="ml-1 text-center">
+          Start adding dailies to this list using the
+          <fa-icon [icon]="addIcon" size="sm" class="inline-block"></fa-icon> add button inside the
+          <fa-icon [icon]="showActionsIcon" size="sm" class="inline-block"></fa-icon> actions button in the top right of the list header!
+        </span>
       </li>
     </ng-template>
   </ul>

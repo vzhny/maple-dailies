@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faCircle, faCubes, faSkull } from '@fortawesome/free-solid-svg-icons';
 import { CharacterService } from 'src/app/utils/character.service';
 
 interface Daily {
@@ -377,6 +378,10 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
     },
   ];
 
+  killIcon = faSkull;
+  collectIcon = faCubes;
+  otherIcon = faCircle;
+
   availableDailiesLists: DailyList[] = [];
 
   constructor(private characterService: CharacterService) {}
@@ -394,5 +399,18 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
         this.availableDailiesLists = this.dailiesLists;
       }
     });
+  }
+
+  getDailyIcon(name: string) {
+    const isKillQuest = name.toLowerCase().includes('kill');
+    const isCollectQuest = name.toLowerCase().includes('collect');
+
+    if (isKillQuest) {
+      return this.killIcon;
+    } else if (isCollectQuest) {
+      return this.collectIcon;
+    } else {
+      return this.otherIcon;
+    }
   }
 }

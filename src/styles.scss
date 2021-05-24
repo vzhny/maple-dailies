@@ -54,7 +54,7 @@
   }
 
   .table-body-row-selected {
-    @apply text-white bg-indigo-900 dark:text-black dark:bg-green-500;
+    @apply border-b border-indigo-400 text-white bg-indigo-900 dark:text-black dark:bg-green-500 dark:border-green-800;
   }
 
   .table-body-cell {

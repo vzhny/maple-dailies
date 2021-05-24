@@ -299,7 +299,7 @@ export class CharacterService {
 
     currentCharacterList.push({
       ...character,
-      id: currentCharacterList.length + 1,
+      id: currentCharacterList.length + 2,
     });
 
     this.saveCharacterList(currentCharacterList);
@@ -356,7 +356,7 @@ export class CharacterService {
   getDefaultCharacterForm() {
     return this.fb.group({
       id: new FormControl(null),
-      level: new FormControl(1, [Validators.required]),
+      level: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(275)]),
       class: new FormControl(null, [Validators.required]),
       characterName: new FormControl(null, [Validators.required]),
       characterImgSrcUrl: new FormControl(null),
