@@ -1,7 +1,28 @@
 <div class="flex flex-col p-3 shadow bg-white h-full dark:border-gray-900 dark:bg-gray-800">
   <div class="h-14 flex justify-between items-center mt-1 mb-3">
-    <div class="uppercase text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis" [ngClass]="{ 'line-through': completedList }">
-      {{ listTitle }}
+    <div
+      class="flex justify-center items-center space-x-2 whitespace-nowrap overflow-hidden overflow-ellipsis"
+      [ngClass]="{ 'cursor-pointer': hasDailiesInList }"
+      (click)="completedList ? resetDailies() : completeAllDailies()"
+    >
+      <div>
+        <fa-layers *ngIf="characterWideList" [tippy]="getToggleDailiesTooltip()">
+          <fa-icon [icon]="characterWideIcon"></fa-icon>
+          <fa-icon *ngIf="completedList" class="text-red-600 text-lg" [icon]="confirmIcon" transform="down-3 right-2"></fa-icon>
+        </fa-layers>
+
+        <fa-layers *ngIf="!characterWideList" [tippy]="getToggleDailiesTooltip()">
+          <fa-icon *ngIf="!completedList" [icon]="notCompletedIcon"></fa-icon>
+          <fa-icon *ngIf="completedList" [icon]="completedSquareIcon"></fa-icon>
+          <fa-icon *ngIf="completedList" class="text-red-600 text-lg" [icon]="confirmIcon" transform="up-1 right-1"></fa-icon>
+        </fa-layers>
+      </div>
+      <div
+        class="uppercase tracking-wide text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis"
+        [ngClass]="{ 'line-through': completedList }"
+      >
+        {{ listTitle }}
+      </div>
     </div>
     <div class="flex justify-center items-center space-x-2">
       <app-button
@@ -9,7 +30,7 @@
         color="success"
         width="40"
         (click)="addNewDaily()"
-        title="Add a new daily"
+        tippy="Add a new daily"
       >
         <fa-icon [icon]="addIcon" size="sm"></fa-icon>
       </app-button>
@@ -19,22 +40,12 @@
         [color]="isEditing ? 'success' : 'secondary'"
         width="40"
         (click)="toggleEditDailiesList()"
-        title="{{ isEditing ? 'Confirm' : 'Edit' }} dailies list"
+        tippy="{{ isEditing ? 'Confirm' : 'Edit' }} list"
       >
         <fa-icon [icon]="isEditing ? confirmIcon : editIcon" size="sm"></fa-icon>
       </app-button>
 
-      <app-button
-        *ngIf="!isEditing && dailies.length > 0"
-        color="info"
-        width="40"
-        (click)="completedList ? resetDailies() : completeAllDailies()"
-        title="{{ completedList ? 'Reset' : 'Complete' }} all dailies"
-      >
-        <fa-icon [icon]="completedList ? resetIcon : checkAllIcon" size="sm"></fa-icon>
-      </app-button>
-
-      <app-button *ngIf="showActions && !isEditing" color="danger" width="40" (click)="deleteDailyList()" title="Delete dailies list">
+      <app-button *ngIf="showActions && !isEditing" color="danger" width="40" (click)="deleteDailyList()" tippy="Delete list">
         <fa-icon [icon]="deleteIcon" size="sm"></fa-icon>
       </app-button>
 
@@ -43,7 +54,7 @@
         color="outline"
         width="40"
         (click)="showActions = !showActions"
-        title="{{ showActions ? 'Hide' : 'Show' }} actions"
+        tippy="{{ showActions ? 'Hide' : 'Show' }} actions"
       >
         <fa-icon [icon]="showActions ? hideActionsIcon : showActionsIcon" size="sm"></fa-icon>
       </app-button>
@@ -53,7 +64,7 @@
     *ngIf="!allDailiesHidden || isEditing; else showHiddenDailiesMessage"
     class="flex flex-col space-y-1 dark:bg-gray-700 max-h-72 overflow-y-auto border dark:border-gray-900"
   >
-    <ng-container *ngIf="dailies.length > 0; else showNoDailiesMessage">
+    <ng-container *ngIf="hasDailiesInList; else showNoDailiesMessage">
       <ng-container *ngFor="let daily of dailies; let i = index">
         <li
           *ngIf="isEditing || !daily.hidden"

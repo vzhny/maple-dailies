@@ -7,7 +7,10 @@
     <ng-content select="[table-footer]"> </ng-content>
     <ng-template #noDataAvailable>
       <tbody>
-        <td class="p-4 bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-white text-center uppercase" [attr.colspan]="columns.length">
+        <td
+          class="p-4 bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-white text-center uppercase tracking-wide"
+          [attr.colspan]="columns.length"
+        >
           No Data Available
         </td>
       </tbody>

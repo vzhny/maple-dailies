@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { faAsterisk, faBars, faGripHorizontal, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faAsterisk, faBars, faGripHorizontal, faInfoCircle, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { combineLatest } from 'rxjs';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { ModalService } from 'src/app/framework/modal/modal.service';
@@ -9,6 +9,7 @@ import { LocalStorageService } from 'src/app/utils/local-storage.service';
 import {} from 'src/app/utils/reset-timer.service';
 import { CharacterInfo } from '../settings/settings.component';
 import {
+  AddDailyEvent,
   DeleteDailyListEvent,
   EditDailyEvent,
   MoveDailyEvent,
@@ -16,7 +17,7 @@ import {
   ToggleCompletionEvent,
   ToggleVisibilityEvent,
 } from './components/daily-list/daily-list.component';
-import { DailyService } from './daily.service';
+import { DailyListPayload, DailyService } from './daily.service';
 
 export interface DailyList {
   dailyListId: number;
@@ -39,6 +40,8 @@ export interface Daily {
   styleUrls: ['./dailies.component.scss'],
 })
 export class DailiesComponent implements OnInit {
+  readonly characterWideCharId = 0;
+
   allDailiesLists: DailyList[] = [];
   dailiesLists: DailyList[] = [];
   selectedCharacter: CharacterInfo | null = null;
@@ -49,12 +52,14 @@ export class DailiesComponent implements OnInit {
   gridLayoutIcon = faGripHorizontal;
 
   requiredIcon = faAsterisk;
+  infoIcon = faInfoCircle;
 
-  dailyListTitleForm: FormGroup | null = null;
+  dailyListForm: FormGroup | null = null;
   dailyTextForm: FormGroup | null = null;
 
-  seletedListTitle: string | null = null;
+  selectedListTitle: string | null = null;
   selectedListId = -1;
+  isCharacterWideList = false;
   selectedDailyIndex = -1;
 
   addNewDailyListModalId = 'addNewDailyListModal';
@@ -74,7 +79,13 @@ export class DailiesComponent implements OnInit {
       ([character, lists]) => {
         this.selectedCharacter = character;
         this.allDailiesLists = lists ?? [];
-        this.dailiesLists = character !== null && lists !== null ? lists.filter((list) => list.characterId === character.id) : [];
+
+        const characterSpecificDailiesLists =
+          character !== null && lists !== null ? lists.filter((list) => list.characterId === character.id) : [];
+
+        const characterWideDailiesLists = lists !== null ? lists.filter((list) => list.characterId === this.characterWideCharId) : [];
+
+        this.dailiesLists = [...characterSpecificDailiesLists, ...characterWideDailiesLists];
       }
     );
 
@@ -86,8 +97,9 @@ export class DailiesComponent implements OnInit {
   }
 
   buildForms() {
-    this.dailyListTitleForm = this.fb.group({
+    this.dailyListForm = this.fb.group({
       title: new FormControl(null, [Validators.required]),
+      characterWideFlag: new FormControl(false),
     });
 
     this.dailyTextForm = this.fb.group({
@@ -97,33 +109,39 @@ export class DailiesComponent implements OnInit {
 
   addNewArcaneRiverDailiesList() {
     if (this.characterIsSelected) {
-      this.dailyService.addDailyList('Arcane River');
+      this.dailyService.addDailyList({ title: 'Arcane River', characterWideFlag: false });
     }
   }
 
   addNewDailyList() {
     if (this.characterIsSelected) {
-      if (this.listTitle?.value !== null) {
-        this.dailyService.addDailyList(this.listTitle.value);
+      if (this.dailyListForm !== null && this.dailyListForm.valid) {
+        this.dailyService.addDailyList(this.dailyListForm.value as DailyListPayload);
         this.modalService.close(this.addNewDailyListModalId);
         this.resetAll();
       }
     }
   }
 
-  onAddDaily(listId: number) {
+  onAddDaily({ listId, listTitle, characterWideFlag }: AddDailyEvent) {
     if (this.selectedCharacter !== null) {
       this.selectedListId = listId;
+      this.selectedListTitle = listTitle;
+      this.isCharacterWideList = characterWideFlag;
       this.modalService.open(this.addEditDailyModalId);
     }
   }
 
-  onEditDaily({ listId, index }: EditDailyEvent) {
+  onEditDaily({ listId, listTitle, characterWideFlag, index }: EditDailyEvent) {
     if (this.characterIsSelected) {
       this.selectedListId = listId;
+      this.selectedListTitle = listTitle;
+      this.isCharacterWideList = characterWideFlag;
       this.selectedDailyIndex = index;
 
-      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
+      const listIndex = this.isCharacterWideList
+        ? this.getSelectedCharacterWideDailyListIndex(this.characterWideCharId, this.selectedListTitle)
+        : this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
 
       if (listIndex >= 0) {
         const { text } = this.dailiesLists[listIndex].dailies[index];
@@ -133,11 +151,16 @@ export class DailiesComponent implements OnInit {
     }
   }
 
-  onDeleteDaily({ listId, index }: EditDailyEvent) {
+  onDeleteDaily({ listId, listTitle, characterWideFlag, index }: EditDailyEvent) {
     if (this.characterIsSelected) {
       this.selectedListId = listId;
+      this.selectedListTitle = listTitle;
+      this.isCharacterWideList = characterWideFlag;
       this.selectedDailyIndex = index;
-      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
+
+      const listIndex = this.isCharacterWideList
+        ? this.getSelectedCharacterWideDailyListIndex(this.characterWideCharId, this.selectedListTitle)
+        : this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
 
       if (listIndex >= 0) {
         this.dailiesLists[listIndex].dailies.splice(index, 1);
@@ -146,11 +169,15 @@ export class DailiesComponent implements OnInit {
     }
   }
 
-  onMoveDaily({ listId, fromIndex, toIndex }: MoveDailyEvent) {
+  onMoveDaily({ listId, listTitle, characterWideFlag, fromIndex, toIndex }: MoveDailyEvent) {
     if (this.characterIsSelected) {
       this.selectedListId = listId;
+      this.selectedListTitle = listTitle;
+      this.isCharacterWideList = characterWideFlag;
       this.selectedDailyIndex = fromIndex;
-      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
+      const listIndex = this.isCharacterWideList
+        ? this.getSelectedCharacterWideDailyListIndex(this.characterWideCharId, this.selectedListTitle)
+        : this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
 
       if (listIndex >= 0) {
         const daily = this.dailiesLists[listIndex].dailies[fromIndex];
@@ -163,27 +190,33 @@ export class DailiesComponent implements OnInit {
     }
   }
 
-  onDeleteDailyList({ listId, listTitle }: DeleteDailyListEvent) {
+  onDeleteDailyList({ listId, listTitle, characterWideFlag }: DeleteDailyListEvent) {
     if (this.characterIsSelected) {
       this.selectedListId = listId;
-      this.seletedListTitle = listTitle;
+      this.selectedListTitle = listTitle;
+      this.isCharacterWideList = characterWideFlag;
       this.modalService.open(this.deleteDailyListModalId);
     }
   }
 
   confirmDeleteDailyList() {
     if (this.characterIsSelected) {
-      this.dailyService.deleteDailyList(this.selectedListId);
+      this.dailyService.deleteDailyList(this.selectedListId, this.selectedListTitle, this.isCharacterWideList);
       this.modalService.close(this.deleteDailyListModalId);
       this.resetAll();
     }
   }
 
-  onToggleDailyCompletion({ listId, index, completion }: ToggleCompletionEvent) {
+  onToggleDailyCompletion({ listId, listTitle, characterWideFlag, index, completion }: ToggleCompletionEvent) {
     if (this.characterIsSelected) {
       this.selectedListId = listId;
+      this.selectedListTitle = listTitle;
+      this.isCharacterWideList = characterWideFlag;
       this.selectedDailyIndex = index;
-      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
+
+      const listIndex = this.isCharacterWideList
+        ? this.getSelectedCharacterWideDailyListIndex(this.characterWideCharId, this.selectedListTitle)
+        : this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
 
       if (listIndex >= 0) {
         this.dailiesLists[listIndex].dailies[index].completed = completion;
@@ -192,11 +225,15 @@ export class DailiesComponent implements OnInit {
     }
   }
 
-  onToggleAllDailiesCompletion({ listId, allCompleted }: ToggleAllCompletionEvent) {
+  onToggleAllDailiesCompletion({ listId, listTitle, characterWideFlag, allCompleted }: ToggleAllCompletionEvent) {
     if (this.characterIsSelected) {
       this.selectedListId = listId;
-      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
+      this.selectedListTitle = listTitle;
+      this.isCharacterWideList = characterWideFlag;
 
+      const listIndex = this.isCharacterWideList
+        ? this.getSelectedCharacterWideDailyListIndex(this.characterWideCharId, this.selectedListTitle)
+        : this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
       if (listIndex >= 0) {
         this.dailiesLists[listIndex].dailies.forEach((daily) => {
           if (!daily.hidden) {
@@ -209,12 +246,16 @@ export class DailiesComponent implements OnInit {
     }
   }
 
-  onToggleDailyVisibilty({ listId, index, visibility }: ToggleVisibilityEvent) {
+  onToggleDailyVisibilty({ listId, listTitle, characterWideFlag, index, visibility }: ToggleVisibilityEvent) {
     if (this.characterIsSelected) {
       this.selectedListId = listId;
+      this.selectedListTitle = listTitle;
+      this.isCharacterWideList = characterWideFlag;
       this.selectedDailyIndex = index;
-      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
 
+      const listIndex = this.isCharacterWideList
+        ? this.getSelectedCharacterWideDailyListIndex(this.characterWideCharId, this.selectedListTitle)
+        : this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
       if (listIndex >= 0) {
         this.dailiesLists[listIndex].dailies[index].hidden = visibility;
 
@@ -241,7 +282,9 @@ export class DailiesComponent implements OnInit {
 
   saveDailyToList(isEdited = false) {
     if (this.characterIsSelected) {
-      const listIndex = this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
+      const listIndex = this.isCharacterWideList
+        ? this.getSelectedCharacterWideDailyListIndex(this.characterWideCharId, this.selectedListTitle)
+        : this.getSelectedDailyListIndex(this.selectedCharacter?.id, this.selectedListId);
 
       if (listIndex >= 0 && this.dailyText?.value) {
         if (isEdited) {
@@ -261,6 +304,10 @@ export class DailiesComponent implements OnInit {
     }
   }
 
+  getSelectedCharacterWideDailyListIndex(characterId: number, listTitle: string | null) {
+    return this.dailiesLists.findIndex((list) => list.characterId === characterId && list.title === listTitle);
+  }
+
   getSelectedDailyListIndex(characterId: number | undefined, listId: number) {
     return this.dailiesLists.findIndex((list) => list.characterId === characterId && list.dailyListId === listId);
   }
@@ -268,7 +315,6 @@ export class DailiesComponent implements OnInit {
   saveDailiesLists() {
     this.dailiesLists.forEach((list) => {
       const { characterId, dailyListId } = list;
-
       const index = this.allDailiesLists.findIndex((list) => list.characterId === characterId && list.dailyListId === dailyListId);
 
       if (index >= 0) {
@@ -284,8 +330,10 @@ export class DailiesComponent implements OnInit {
     this.listTitle.patchValue(null);
     this.dailyText.patchValue(null);
 
-    this.seletedListTitle = null;
+    this.selectedListTitle = null;
     this.selectedListId = -1;
+    this.selectedListTitle = '';
+    this.isCharacterWideList = false;
     this.selectedDailyIndex = -1;
   }
 
@@ -302,8 +350,16 @@ export class DailiesComponent implements OnInit {
   }
 
   get listTitle() {
-    if (this.dailyListTitleForm !== null) {
-      return this.dailyListTitleForm.controls['title'];
+    if (this.dailyListForm !== null) {
+      return this.dailyListForm.controls['title'];
+    } else {
+      return new FormControl(null);
+    }
+  }
+
+  get characterWideFlag() {
+    if (this.dailyListForm !== null) {
+      return this.dailyListForm.controls['characterWideFlag'] as FormControl;
     } else {
       return new FormControl(null);
     }

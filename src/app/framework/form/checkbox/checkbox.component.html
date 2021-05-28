@@ -1,8 +1,15 @@
-<label class="flex items-center space-x-3 ml-3">
+<label class="flex items-center space-x-3">
   <input
+    *ngIf="control === null"
     type="checkbox"
     class="form-tick cursor-pointer appearance-none h-6 w-6 border border-gray-300 rounded-md bg-gray-50 dark:bg-white checked:bg-indigo-900 dark:checked:bg-indigo-900 checked:border-transparent focus:outline-none"
     [checked]="value"
+  />
+  <input
+    *ngIf="control !== null"
+    type="checkbox"
+    class="form-tick cursor-pointer appearance-none h-6 w-6 border border-gray-300 rounded-md bg-gray-50 dark:bg-white checked:bg-indigo-900 dark:checked:bg-indigo-900 checked:border-transparent focus:outline-none"
+    [formControl]="control"
   />
   <ng-content></ng-content>
 </label>

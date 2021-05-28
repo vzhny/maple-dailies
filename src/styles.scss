@@ -42,7 +42,7 @@
   // * Table specific Tailwind components
 
   .table-header-row {
-    @apply bg-gray-800 dark:bg-black text-white uppercase text-sm leading-normal;
+    @apply bg-gray-800 dark:bg-black text-white uppercase tracking-wide text-sm leading-normal;
   }
 
   .table-header-cell {
@@ -62,7 +62,7 @@
   }
 
   .table-no-data-available-cell {
-    @apply p-2 bg-gray-300 text-gray-600 text-center uppercase;
+    @apply p-2 bg-gray-300 text-gray-600 text-center uppercase tracking-wide;
   }
 
   // * Form specific Tailwind components

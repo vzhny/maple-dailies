@@ -4,26 +4,26 @@
       <app-button
         *ngIf="!alreadyHasArcaneRiverDailiesList && selectedCharacter !== null"
         color="info"
+        width="40"
         (click)="addNewArcaneRiverDailiesList()"
+        tippy="Add an Arcane River list"
       >
-        <fa-icon class="mr-1" [icon]="addIcon"></fa-icon>
-        <span>Add Arcane River List</span>
+        <fa-icon [icon]="addIcon"></fa-icon>
       </app-button>
-      <app-button *ngIf="selectedCharacter !== null" color="success" (click)="openAddNewDailyListModal()">
-        <fa-icon class="mr-1" [icon]="addIcon"></fa-icon>
-        <span>Add New List</span>
+      <app-button *ngIf="selectedCharacter !== null" color="success" width="40" (click)="openAddNewDailyListModal()" tippy="Add a new list">
+        <fa-icon [icon]="addIcon"></fa-icon>
       </app-button>
       <app-button
         *ngIf="dailiesLists.length > 0 && selectedCharacter !== null"
         color="outline"
+        width="40"
         (click)="toggleListLayout()"
-        title="Change to the {{ columnLayoutSelected ? 'grid' : 'list' }} layout"
+        tippy="Change to the {{ columnLayoutSelected ? 'grid' : 'list' }} layout"
       >
         <fa-icon [icon]="columnLayoutSelected ? gridLayoutIcon : columnLayoutIcon"> </fa-icon>
       </app-button>
     </div>
   </div>
-
   <div
     *ngIf="selectedCharacter; else noSelectedCharacter"
     [ngClass]="{
@@ -36,6 +36,7 @@
         [listId]="list.dailyListId"
         [listTitle]="list.title"
         [dailies]="list.dailies"
+        [characterWideList]="list.characterId === characterWideCharId"
         [systemList]="list.systemFlag"
         (addDaily)="onAddDaily($event)"
         (editDaily)="onEditDaily($event)"
@@ -63,10 +64,10 @@
 <!-- Add New List Modal -->
 <app-modal headerTitle="Add a New List" [id]="addNewDailyListModalId" (close)="resetAll()" #addNewDailyListModal>
   <form
-    *ngIf="dailyListTitleForm"
-    [formGroup]="dailyListTitleForm"
+    *ngIf="dailyListForm"
+    [formGroup]="dailyListForm"
     class="grid grid-cols-1 gap-6 mb-2"
-    (submit)="dailyListTitleForm?.valid && addNewDailyList()"
+    (submit)="dailyListForm?.valid && addNewDailyList()"
   >
     <label class="block">
       <span class="space-x-2">
@@ -75,9 +76,15 @@
       </span>
       <input type="text" class="form-control" formControlName="title" />
     </label>
+    <div class="block">
+      <app-checkbox [control]="characterWideFlag">
+        <span class="text-gray-900 dark:text-white font-medium">Character wide?</span>
+        <fa-icon [icon]="infoIcon" tippy="A character-wide list will appear on all dailies pages" maxWidth="150"></fa-icon>
+      </app-checkbox>
+    </div>
   </form>
   <div class="flex justify-end space-x-3" footer-content>
-    <app-button color="success" (click)="addNewDailyList()" [disabled]="dailyListTitleForm?.invalid || false">Save</app-button>
+    <app-button color="success" (click)="addNewDailyList()" [disabled]="dailyListForm?.invalid || false">Save</app-button>
     <app-button color="secondary" (click)="resetAll(); addNewDailyListModal.closeModal()">Cancel</app-button>
   </div>
 </app-modal>
@@ -102,7 +109,7 @@
 
 <!-- Delete Daily List Modal -->
 <app-modal headerTitle="Delete Daily List" [id]="deleteDailyListModalId" (close)="resetAll()" #deleteDailyListModal>
-  <div class="flex justify-center">Are you sure you want to delete the following list: {{ seletedListTitle }}?</div>
+  <div class="flex justify-center">Are you sure you want to delete the following list: {{ selectedListTitle }}?</div>
   <div class="flex justify-end space-x-3" footer-content>
     <app-button color="success" (click)="confirmDeleteDailyList()">Confirm</app-button>
     <app-button color="secondary" (click)="resetAll(); deleteDailyListModal.closeModal()">Cancel</app-button>
