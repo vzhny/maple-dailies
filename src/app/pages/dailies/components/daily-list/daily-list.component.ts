@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import {
   faAngleDoubleRight,
   faCheck,
@@ -25,7 +25,11 @@ import { DailyService } from '../../daily.service';
 
 interface DailyEvent {
   listId: number;
+  listTitle: string | null;
+  characterWideFlag: boolean;
 }
+
+export interface AddDailyEvent extends DailyEvent {}
 
 export interface EditDailyEvent extends DailyEvent {
   index: number;
@@ -36,9 +40,7 @@ export interface MoveDailyEvent extends DailyEvent {
   toIndex: number;
 }
 
-export interface DeleteDailyListEvent extends DailyEvent {
-  listTitle: string;
-}
+export interface DeleteDailyListEvent extends DailyEvent {}
 
 export interface ToggleCompletionEvent extends DailyEvent {
   index: number;
@@ -65,9 +67,10 @@ export class DailyListComponent implements OnInit {
   @Input() listId!: number;
   @Input() listTitle!: string;
   @Input() dailies: Daily[] = [];
+  @Input() characterWideList!: boolean;
   @Input() systemList!: boolean;
 
-  @Output() addDaily = new EventEmitter<number>();
+  @Output() addDaily = new EventEmitter<AddDailyEvent>();
   @Output() editDaily = new EventEmitter<EditDailyEvent>();
   @Output() deleteDaily = new EventEmitter<EditDailyEvent>();
   @Output() moveDaily = new EventEmitter<MoveDailyEvent>();
@@ -112,6 +115,8 @@ export class DailyListComponent implements OnInit {
     if (!this.isEditing) {
       this.toggleCompletion.emit({
         listId: this.listId,
+        listTitle: this.listTitle,
+        characterWideFlag: this.characterWideList,
         index,
         completion: !this.dailies[index].completed,
       });
@@ -121,17 +126,32 @@ export class DailyListComponent implements OnInit {
   completeAllDailies() {
     this.toggleAllCompletion.emit({
       listId: this.listId,
+      listTitle: this.listTitle,
+      characterWideFlag: this.characterWideList,
       allCompleted: true,
     });
   }
 
   addNewDaily() {
-    this.addDaily.emit(this.listId);
+    const payload: AddDailyEvent = {
+      listId: this.listId,
+      listTitle: null,
+      characterWideFlag: false,
+    };
+
+    if (this.characterWideList) {
+      payload.listTitle = this.listTitle;
+      payload.characterWideFlag = true;
+    }
+
+    this.addDaily.emit(payload);
   }
 
   editExistingDaily(index: number) {
     this.editDaily.emit({
       listId: this.listId,
+      listTitle: this.listTitle,
+      characterWideFlag: this.characterWideList,
       index,
     });
   }
@@ -140,6 +160,7 @@ export class DailyListComponent implements OnInit {
     this.deleteList.emit({
       listId: this.listId,
       listTitle: this.listTitle,
+      characterWideFlag: this.characterWideList,
     });
   }
 
@@ -152,12 +173,24 @@ export class DailyListComponent implements OnInit {
   }
 
   removeDaily(index: number) {
-    this.dailies.splice(index, 1);
+    this.deleteDaily.emit({
+      listId: this.listId,
+      listTitle: this.listTitle,
+      characterWideFlag: this.characterWideList,
+      index,
+    });
+
+    if (this.dailies.length === 0) {
+      this.isEditing = false;
+      this.showActions = false;
+    }
   }
 
   resetDailies() {
     this.toggleAllCompletion.emit({
       listId: this.listId,
+      listTitle: this.listTitle,
+      characterWideFlag: this.characterWideList,
       allCompleted: false,
     });
   }
@@ -166,6 +199,8 @@ export class DailyListComponent implements OnInit {
     if (this.isEditing) {
       this.toggleVisibility.emit({
         listId: this.listId,
+        listTitle: this.listTitle,
+        characterWideFlag: this.characterWideList,
         index,
         visibility: !this.dailies[index].hidden,
       });
@@ -178,13 +213,35 @@ export class DailyListComponent implements OnInit {
 
     this.moveDaily.emit({
       listId: this.listId,
+      listTitle: this.listTitle,
+      characterWideFlag: this.characterWideList,
       fromIndex,
       toIndex,
     });
   }
 
+  getToggleDailiesTooltip() {
+    if (!this.hasDailiesInList) {
+      return 'Add dailies first!';
+    }
+
+    let tooltipMessage = `${this.completedList ? 'Reset' : 'Complete'}`;
+
+    if (this.characterWideList) {
+      tooltipMessage = `${tooltipMessage} all character-wide dailies`;
+    } else {
+      tooltipMessage = `${tooltipMessage} all dailies`;
+    }
+
+    return tooltipMessage;
+  }
+
+  get hasDailiesInList() {
+    return this.dailies.length !== 0;
+  }
+
   get completedList() {
-    if (this.dailies.length === 0) {
+    if (!this.hasDailiesInList) {
       return false;
     } else {
       return this.dailies.filter((daily) => !daily.hidden).filter((daily) => !daily.completed).length === 0;
@@ -192,7 +249,7 @@ export class DailyListComponent implements OnInit {
   }
 
   get allDailiesHidden() {
-    if (this.dailies.length === 0) {
+    if (!this.hasDailiesInList) {
       return false;
     } else {
       return this.dailies.length === this.dailies.filter((daily) => daily.hidden).length;

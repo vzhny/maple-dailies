@@ -8,10 +8,16 @@ import { ResetTimerService } from 'src/app/utils/reset-timer.service';
 import { CharacterInfo } from '../settings/settings.component';
 import { Daily, DailyList } from './dailies.component';
 
+export interface DailyListPayload {
+  title: string;
+  characterWideFlag: boolean;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class DailyService {
+  private readonly characterWideCharId = 0;
   private arcaneRiverDailies: Daily[] = [
     {
       dailyListId: 1,
@@ -95,7 +101,7 @@ export class DailyService {
     return this.localStorage.watch<DailyList[] | null>(LocalStorageKeys.dailiesLists);
   }
 
-  addDailyList(title: string) {
+  addDailyList({ title, characterWideFlag }: DailyListPayload) {
     if (this.selectedCharacter !== null) {
       const currentDailiesLists = this.dailiesLists;
       const riverDailies = [...this.arcaneRiverDailies];
@@ -104,7 +110,7 @@ export class DailyService {
 
       currentDailiesLists.push({
         dailyListId: currentDailiesLists.length + 1,
-        characterId: this.selectedCharacter.id,
+        characterId: characterWideFlag ? this.characterWideCharId : this.selectedCharacter.id,
         title,
         dailies: title === 'Arcane River' ? riverDailies : [],
         systemFlag: title === 'Arcane River',
@@ -127,9 +133,11 @@ export class DailyService {
     }
   }
 
-  deleteDailyList(dailyListId: number) {
+  deleteDailyList(dailyListId: number, dailyListTitle: string | null, isCharacterWideList: boolean) {
     const currentDailiesLists = this.dailiesLists;
-    const listIndex = this.getDailyListIndex(this.selectedCharacter?.id, dailyListId);
+    const listIndex = isCharacterWideList
+      ? this.getCharacterWideDailyListIndex(this.characterWideCharId, dailyListTitle)
+      : this.getDailyListIndex(this.selectedCharacter?.id, dailyListId);
 
     if (listIndex >= 0) {
       currentDailiesLists.splice(listIndex, 1);
@@ -148,8 +156,20 @@ export class DailyService {
     this.saveDailiesLists(currentDailiesLists);
   }
 
+  deleteAllAssociatedDailiesLists(characterId: number | null) {
+    if (characterId !== null) {
+      const updatedDailiesLists = this.dailiesLists.filter((list) => list.characterId !== characterId);
+
+      this.saveDailiesLists(updatedDailiesLists);
+    }
+  }
+
   saveDailiesLists(lists: DailyList[]) {
     this.localStorage.set(LocalStorageKeys.dailiesLists, lists);
+  }
+
+  private getCharacterWideDailyListIndex(characterId: number, dailyListTitle: string | null) {
+    return this.dailiesLists.findIndex((list) => list.characterId === characterId && list.title === dailyListTitle);
   }
 
   private getDailyListIndex(characterId: number | undefined, dailyListId: number) {
