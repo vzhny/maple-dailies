@@ -21,8 +21,8 @@
         class="uppercase tracking-wide text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis"
         [ngClass]="{ 'line-through': completedList }"
       >
-      {{ listTitle }}
-    </div>
+        {{ listTitle }}
+      </div>
     </div>
     <div class="flex justify-center items-center space-x-2">
       <app-button
@@ -30,7 +30,7 @@
         color="success"
         width="40"
         (click)="addNewDaily()"
-        title="Add a new daily"
+        tippy="Add a new daily"
       >
         <fa-icon [icon]="addIcon" size="sm"></fa-icon>
       </app-button>
@@ -40,7 +40,7 @@
         [color]="isEditing ? 'success' : 'secondary'"
         width="40"
         (click)="toggleEditDailiesList()"
-        title="{{ isEditing ? 'Confirm' : 'Edit' }} dailies list"
+        tippy="{{ isEditing ? 'Confirm' : 'Edit' }} list"
       >
         <fa-icon [icon]="isEditing ? confirmIcon : editIcon" size="sm"></fa-icon>
       </app-button>
@@ -54,7 +54,7 @@
         color="outline"
         width="40"
         (click)="showActions = !showActions"
-        title="{{ showActions ? 'Hide' : 'Show' }} actions"
+        tippy="{{ showActions ? 'Hide' : 'Show' }} actions"
       >
         <fa-icon [icon]="showActions ? hideActionsIcon : showActionsIcon" size="sm"></fa-icon>
       </app-button>
@@ -64,7 +64,7 @@
     *ngIf="!allDailiesHidden || isEditing; else showHiddenDailiesMessage"
     class="flex flex-col space-y-1 dark:bg-gray-700 max-h-72 overflow-y-auto border dark:border-gray-900"
   >
-    <ng-container *ngIf="dailies.length > 0; else showNoDailiesMessage">
+    <ng-container *ngIf="hasDailiesInList; else showNoDailiesMessage">
       <ng-container *ngFor="let daily of dailies; let i = index">
         <li
           *ngIf="isEditing || !daily.hidden"
