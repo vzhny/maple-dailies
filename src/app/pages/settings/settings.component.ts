@@ -7,6 +7,7 @@ import { TableColumn, TableData } from 'src/app/framework/table/table.component'
 import { ArcaneSymbolInfo, ArcaneSymbolService } from 'src/app/utils/arcane-symbol.service';
 import { CharacterService } from 'src/app/utils/character.service';
 import { LocalStorageService } from 'src/app/utils/local-storage.service';
+import { DailyService } from '../dailies/daily.service';
 
 export interface ArcaneSymbol {
   currentLevel: number;
@@ -112,7 +113,8 @@ export class SettingsComponent implements OnInit {
     private localStorage: LocalStorageService,
     private modalService: ModalService,
     private arcaneSymbolService: ArcaneSymbolService,
-    private characterService: CharacterService
+    private characterService: CharacterService,
+    private dailyService: DailyService
   ) {}
 
   ngOnInit(): void {
@@ -185,6 +187,7 @@ export class SettingsComponent implements OnInit {
   confirmDeleteCharacter() {
     if (this.characterToDelete !== null) {
       this.characterService.deleteCharacter(this.characterToDelete?.id);
+      this.dailyService.deleteAllAssociatedDailiesLists(this.characterToDelete?.id);
       this.characterToDelete = null;
       this.modalService.close(this.deleteCharacterModalId);
     }
