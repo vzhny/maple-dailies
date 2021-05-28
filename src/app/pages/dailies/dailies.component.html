@@ -102,7 +102,7 @@
 
 <!-- Delete Daily List Modal -->
 <app-modal headerTitle="Delete Daily List" [id]="deleteDailyListModalId" (close)="resetAll()" #deleteDailyListModal>
-  <div class="flex justify-center">Are you sure you want to delete the following list: {{ seletedListTitle }}?</div>
+  <div class="flex justify-center">Are you sure you want to delete the following list: {{ selectedListTitle }}?</div>
   <div class="flex justify-end space-x-3" footer-content>
     <app-button color="success" (click)="confirmDeleteDailyList()">Confirm</app-button>
     <app-button color="secondary" (click)="resetAll(); deleteDailyListModal.closeModal()">Cancel</app-button>
