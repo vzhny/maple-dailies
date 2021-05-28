@@ -3,17 +3,22 @@ import {
   faAngleDoubleRight,
   faCheck,
   faCheckDouble,
+  faCheckSquare,
   faChevronDown,
   faChevronUp,
+  faCircle,
   faEllipsisH,
   faEye,
   faEyeSlash,
   faPen,
   faPlus,
+  faSquare,
   faTimes,
   faTimesCircle,
   faUndo,
+  faUserFriends,
 } from '@fortawesome/free-solid-svg-icons';
+import { faSquare as faSquareRegular } from '@fortawesome/free-regular-svg-icons';
 import { TableColumn } from 'src/app/framework/table/table.component';
 import { Daily } from '../../dailies.component';
 import { DailyService } from '../../daily.service';
@@ -90,6 +95,11 @@ export class DailyListComponent implements OnInit {
 
   upIcon = faChevronUp;
   downIcon = faChevronDown;
+
+  noDailiesInListIcon = faCircle;
+  notCompletedIcon = faSquareRegular;
+  completedSquareIcon = faSquare;
+  characterWideIcon = faUserFriends;
 
   isEditing = false;
   showActions = false;
