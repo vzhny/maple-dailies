@@ -4,26 +4,26 @@
       <app-button
         *ngIf="!alreadyHasArcaneRiverDailiesList && selectedCharacter !== null"
         color="info"
+        width="40"
         (click)="addNewArcaneRiverDailiesList()"
+        tippy="Add an Arcane River list"
       >
-        <fa-icon class="mr-1" [icon]="addIcon"></fa-icon>
-        <span>Add Arcane River List</span>
+        <fa-icon [icon]="addIcon"></fa-icon>
       </app-button>
-      <app-button *ngIf="selectedCharacter !== null" color="success" (click)="openAddNewDailyListModal()">
-        <fa-icon class="mr-1" [icon]="addIcon"></fa-icon>
-        <span>Add New List</span>
+      <app-button *ngIf="selectedCharacter !== null" color="success" width="40" (click)="openAddNewDailyListModal()" tippy="Add a new list">
+        <fa-icon [icon]="addIcon"></fa-icon>
       </app-button>
       <app-button
         *ngIf="dailiesLists.length > 0 && selectedCharacter !== null"
         color="outline"
+        width="40"
         (click)="toggleListLayout()"
-        title="Change to the {{ columnLayoutSelected ? 'grid' : 'list' }} layout"
+        tippy="Change to the {{ columnLayoutSelected ? 'grid' : 'list' }} layout"
       >
         <fa-icon [icon]="columnLayoutSelected ? gridLayoutIcon : columnLayoutIcon"> </fa-icon>
       </app-button>
     </div>
   </div>
-
   <div
     *ngIf="selectedCharacter; else noSelectedCharacter"
     [ngClass]="{
