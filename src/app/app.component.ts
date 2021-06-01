@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.setLocalStorageWatchers();
     this.handleSettingDarkMode();
-    this.appAccessService.processLatestAppAccess({ reroute: true, route: '/dailies' });
+    this.appAccessService.processLatestAppAccess({ reroute: true, route: '/dashboard' });
   }
 
   setLocalStorageWatchers() {
