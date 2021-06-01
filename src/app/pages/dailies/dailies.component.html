@@ -31,23 +31,31 @@
       'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start gap-4': !columnLayoutSelected
     }"
   >
-    <div *ngFor="let list of dailiesLists" class="w-full" [ngClass]="{ 'md:w-2/3': columnLayoutSelected }">
-      <app-daily-list
-        [listId]="list.dailyListId"
-        [listTitle]="list.title"
-        [dailies]="list.dailies"
-        [characterWideList]="list.characterId === characterWideCharId"
-        [systemList]="list.systemFlag"
-        (addDaily)="onAddDaily($event)"
-        (editDaily)="onEditDaily($event)"
-        (deleteDaily)="onDeleteDaily($event)"
-        (moveDaily)="onMoveDaily($event)"
-        (deleteList)="onDeleteDailyList($event)"
-        (toggleCompletion)="onToggleDailyCompletion($event)"
-        (toggleAllCompletion)="onToggleAllDailiesCompletion($event)"
-        (toggleVisibility)="onToggleDailyVisibilty($event)"
-      ></app-daily-list>
-    </div>
+    <ng-container *ngIf="dailiesLists.length !== 0; else showAddDailiesListsMessage">
+      <div *ngFor="let list of dailiesLists" class="w-full" [ngClass]="{ 'md:w-2/3': columnLayoutSelected }">
+        <app-daily-list
+          [listId]="list.dailyListId"
+          [listTitle]="list.title"
+          [dailies]="list.dailies"
+          [characterWideList]="list.characterId === characterWideCharId"
+          [systemList]="list.systemFlag"
+          (addDaily)="onAddDaily($event)"
+          (editDaily)="onEditDaily($event)"
+          (deleteDaily)="onDeleteDaily($event)"
+          (moveDaily)="onMoveDaily($event)"
+          (deleteList)="onDeleteDailyList($event)"
+          (toggleCompletion)="onToggleDailyCompletion($event)"
+          (toggleAllCompletion)="onToggleAllDailiesCompletion($event)"
+          (toggleVisibility)="onToggleDailyVisibilty($event)"
+        ></app-daily-list>
+      </div>
+    </ng-container>
+
+    <ng-template #showAddDailiesListsMessage>
+      <div class="w-full h-full flex justify-center items-center col-span-full">
+        <div class="text-2xl">Please add a new dailies list using the add buttons above!</div>
+      </div>
+    </ng-template>
   </div>
 
   <ng-template #noSelectedCharacter>

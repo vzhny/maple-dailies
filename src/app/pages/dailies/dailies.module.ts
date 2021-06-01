@@ -23,5 +23,6 @@ import { TippyModule } from '@ngneat/helipopper';
     FormModule,
     FontAwesomeModule,
   ],
+  exports: [DailyListComponent],
 })
 export class DailiesModule {}
