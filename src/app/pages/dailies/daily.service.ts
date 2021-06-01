@@ -104,6 +104,13 @@ export class DailyService {
   addDailyList({ title, characterWideFlag }: DailyListPayload) {
     if (this.selectedCharacter !== null) {
       const currentDailiesLists = this.dailiesLists;
+
+      this.arcaneRiverDailies.forEach((daily) => {
+        daily.hidden = false;
+        daily.completed = false;
+      });
+
+      // TODO: programmatically hide any dailies from areas the user cannot access yet
       const riverDailies = [...this.arcaneRiverDailies];
 
       riverDailies.forEach((daily) => (daily.dailyListId = currentDailiesLists.length + 1));
