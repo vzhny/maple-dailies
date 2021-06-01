@@ -54,7 +54,12 @@ export class DashboardComponent implements OnInit {
 
     this.bossService.watchBossesChecklists().subscribe((checklists) => {
       if (checklists !== null) {
-        this.bossesChecklists = checklists;
+        this.bossesChecklists = checklists.filter((checklist) => {
+          const hasSelectedDailyBosses = checklist.dailyBosses.filter((boss) => boss.selected).length > 0;
+          const hasSelectedWeeklyBosses = checklist.weeklyBosses.filter((boss) => boss.selected).length > 0;
+
+          return hasSelectedDailyBosses || hasSelectedWeeklyBosses;
+        });
       }
     });
 
