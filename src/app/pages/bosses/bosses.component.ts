@@ -25,23 +25,22 @@ export class BossesComponent implements OnInit {
   ngOnInit(): void {
     combineLatest([this.characterService.watchSelectedCharacter(), this.bossService.watchBossesChecklists()]).subscribe(
       ([character, checklists]) => {
-        this.selectedCharacter = character;
-
-        if (character !== null && checklists !== null) {
-          const selectedCharacterBossChecklists = checklists.find((checklist) => checklist.characterId === character.id);
-
-          if (selectedCharacterBossChecklists !== undefined) {
-            this.bossesChecklists = selectedCharacterBossChecklists;
-          } else {
-            this.bossesChecklists = {
-              ...this.bossService.getDefaultBossesChecklists(),
-              characterId: character.id,
-            };
-
-            this.saveBossesChecklists();
-          }
-        } else {
+        if (character !== null && character.id !== this.selectedCharacter?.id) {
+          this.selectedCharacter = character;
           this.bossesChecklists = null;
+
+          if (checklists !== null) {
+            const selectedCharacterBossChecklists = checklists.find((checklist) => checklist.characterId === character.id);
+
+            if (selectedCharacterBossChecklists !== undefined) {
+              this.bossesChecklists = selectedCharacterBossChecklists;
+            } else {
+              this.bossesChecklists = this.bossService.getDefaultBossesChecklists();
+              this.bossesChecklists.characterId = character.id;
+
+              this.saveBossesChecklists();
+            }
+          }
         }
       }
     );
@@ -123,9 +122,17 @@ export class BossesComponent implements OnInit {
   onAllCompletion({ isWeekly, allCompleted }: AllBossesCompletionEvent) {
     if (this.bossesChecklists !== null) {
       if (isWeekly) {
-        this.bossesChecklists.weeklyBosses.forEach((boss) => (boss.completed = allCompleted));
+        this.bossesChecklists.weeklyBosses.forEach((boss) => {
+          if (boss.selected) {
+            boss.completed = allCompleted;
+          }
+        });
       } else {
-        this.bossesChecklists.dailyBosses.forEach((boss) => (boss.completed = allCompleted));
+        this.bossesChecklists.dailyBosses.forEach((boss) => {
+          if (boss.selected) {
+            boss.completed = allCompleted;
+          }
+        });
       }
 
       this.saveBossesChecklists();
@@ -157,16 +164,23 @@ export class BossesComponent implements OnInit {
   }
 
   getPercentageOfActuallyEarnedMesos() {
+    const zeroPercent = '0%';
+
     if (this.bossesChecklists !== null) {
       const percentage = Math.round((this.actualWeeklyMesosEarned() / this.bossesChecklists.totalWeeklyMesos) * 100);
-      return `${percentage}%`;
+
+      if (!isNaN(percentage)) {
+        return `${percentage}%`;
+      } else {
+        return zeroPercent;
+      }
     } else {
-      return '0%';
+      return zeroPercent;
     }
   }
 
   private saveBossesChecklists() {
-    if (this.selectedCharacter && this.bossesChecklists !== null) {
+    if (this.selectedCharacter !== null && this.bossesChecklists !== null) {
       this.bossService.saveCharacterBossChecklists(this.selectedCharacter.id, this.bossesChecklists);
     }
   }
