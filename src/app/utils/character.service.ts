@@ -283,9 +283,6 @@ export class CharacterService {
 
     if (listIndex >= 0) {
       this.localStorage.set(LocalStorageKeys.selectedCharacter, this.characterList[listIndex]);
-
-      this.localStorage.set(LocalStorageKeys.selectedCharacterId, characterId);
-
       this.localStorage.set(LocalStorageKeys.charImgUrl, this.characterList[listIndex].characterImgSrcUrl);
     }
   }

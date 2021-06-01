@@ -554,38 +554,32 @@ export class BossService {
   }
 
   saveBossesChecklists(checklists: BossesChecklists[]) {
-    const bossesChecklists = this.bossesChecklists;
-
-    this.localStorage.set(LocalStorageKeys.bossesChecklists, bossesChecklists);
+    this.localStorage.set(LocalStorageKeys.bossesChecklists, checklists);
   }
 
   getDefaultBossesChecklists() {
-    const totalDailyMesos = this.dailyBosses.reduce((total, boss) => {
-      total += boss.bossCrystalMesos;
-      return total;
-    }, 0);
+    this.dailyBosses.forEach((boss) => {
+      boss.selected = false;
+      boss.completed = false;
+      boss.perWeekAmount = 1;
+    });
 
-    const totalWeeklyMesos = this.weeklyBosses.reduce((total, boss) => {
-      total += boss.bossCrystalMesos;
-      return total;
-    }, 0);
+    this.weeklyBosses.forEach((boss) => {
+      boss.selected = false;
+      boss.completed = false;
+    });
 
-    const totalDailySelected = this.dailyBosses.reduce((total, boss) => {
-      total += boss.selected === true ? 1 : 0;
-      return total;
-    }, 0);
-
-    const totalWeeklySelected = this.weeklyBosses.reduce((total, boss) => {
-      total += boss.selected === true ? 1 : 0;
-      return total;
-    }, 0);
+    this.monthlyBosses.forEach((boss) => {
+      boss.selected = false;
+      boss.completed = false;
+    });
 
     return {
       dailyBosses: this.dailyBosses,
       weeklyBosses: this.weeklyBosses,
       monthlyBosses: this.monthlyBosses,
-      totalWeeklyMesos: totalDailyMesos + totalWeeklyMesos,
-      totalAmountOfPowerCrystals: totalDailySelected + totalWeeklySelected,
+      totalWeeklyMesos: 0,
+      totalAmountOfPowerCrystals: 0,
     };
   }
 

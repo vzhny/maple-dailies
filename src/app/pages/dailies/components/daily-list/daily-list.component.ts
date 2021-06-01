@@ -69,6 +69,7 @@ export class DailyListComponent implements OnInit {
   @Input() dailies: Daily[] = [];
   @Input() characterWideList!: boolean;
   @Input() systemList!: boolean;
+  @Input() onDashboard = false;
 
   @Output() addDaily = new EventEmitter<AddDailyEvent>();
   @Output() editDaily = new EventEmitter<EditDailyEvent>();

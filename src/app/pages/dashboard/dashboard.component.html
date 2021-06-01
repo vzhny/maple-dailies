@@ -1,0 +1,37 @@
+<app-container>
+  <div class="w-full">
+    <app-dashboard-filters [characterList]="characterList"></app-dashboard-filters>
+
+    <div *ngIf="showDailies">
+      <div class="flex items-center">
+        <div class="text-2xl my-3 uppercase tracking-wide">Dailies Lists</div>
+        <hr class="flex-grow ml-3 border-gray-300 dark:border-gray-700" />
+      </div>
+      <app-character-dailies-lists
+        [dailiesLists]="dailiesLists"
+        [characterList]="characterList"
+        [selectedCharactersIds]="selectedCharactersIds"
+      ></app-character-dailies-lists>
+    </div>
+
+    <div *ngIf="showBosses">
+      <div class="flex items-center">
+        <div class="text-2xl my-3 uppercase tracking-wide">Bosses Checklists</div>
+        <hr class="flex-grow ml-3 border-gray-300 dark:border-gray-700" />
+      </div>
+      <app-character-bosses-checklists
+        [bossesChecklists]="bossesChecklists"
+        [characterList]="characterList"
+        [selectedCharactersIds]="selectedCharactersIds"
+      ></app-character-bosses-checklists>
+    </div>
+
+    <div *ngIf="showHardMutoRecipes">
+      <div class="flex items-center">
+        <div class="text-2xl my-3 uppercase tracking-wide">Hard Muto Recipes</div>
+        <hr class="flex-grow ml-3 border-gray-300 dark:border-gray-700" />
+      </div>
+      <app-hard-muto-recipes [onDashboard]="true"></app-hard-muto-recipes>
+    </div>
+  </div>
+</app-container>

@@ -19,6 +19,11 @@ export class HeaderComponent implements OnInit {
       matchExactRouteUrl: true,
     },
     {
+      name: 'Dashboard',
+      route: '/dashboard',
+      matchExactRouteUrl: false,
+    },
+    {
       name: 'Dailies',
       route: '/dailies',
       matchExactRouteUrl: false,

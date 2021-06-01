@@ -11,8 +11,9 @@ import {
   faAngleDoubleRight,
   faCheckDouble,
   faUndo,
+  faSquare,
 } from '@fortawesome/free-solid-svg-icons';
-import { faCircle as faCircleRegular } from '@fortawesome/free-regular-svg-icons';
+import { faCircle as faCircleRegular, faSquare as faSquareRegular } from '@fortawesome/free-regular-svg-icons';
 
 export type BossFrequency = 'daily' | 'weekly' | 'monthly';
 export type BossDifficulty = 'easy' | 'normal' | 'hard' | 'chaos';
@@ -71,10 +72,10 @@ export interface AllBossesCompletionEvent {
 export class BossesChecklistComponent implements OnInit {
   @Input() bosses: Boss[] = [];
   @Input() weekly = false;
+  @Input() onDashboard = false;
 
   @Output() selectBoss = new EventEmitter<BossSelectionEvent>();
-  @Output()
-  bossAmountOperation = new EventEmitter<DailyBossAmountOperationEvent>();
+  @Output() bossAmountOperation = new EventEmitter<DailyBossAmountOperationEvent>();
   @Output() toggleCompletion = new EventEmitter<BossCompletionEvent>();
   @Output() toggleAllCompletion = new EventEmitter<AllBossesCompletionEvent>();
 
@@ -90,8 +91,8 @@ export class BossesChecklistComponent implements OnInit {
   confirmIcon = faCheck;
   editIcon = faPen;
 
-  checkAllIcon = faCheckDouble;
-  resetIcon = faUndo;
+  notCompletedIcon = faSquareRegular;
+  completedSquareIcon = faSquare;
 
   showActions = false;
   isEditing = false;
@@ -135,7 +136,7 @@ export class BossesChecklistComponent implements OnInit {
   }
 
   completeBoss(boss: Boss, index: number) {
-    if (boss.selected) {
+    if (!this.isEditing && boss.selected) {
       this.toggleCompletion.emit({
         isWeekly: this.weekly,
         bossIndex: index,
@@ -155,21 +156,41 @@ export class BossesChecklistComponent implements OnInit {
     this.isEditing = !this.isEditing;
   }
 
+  getToggleDailiesTooltip() {
+    if (this.bosses.filter((boss) => boss.selected).length === 0) {
+      return 'Select bosses first!';
+    } else {
+      return `${this.completedList ? 'Reset' : 'Complete'} all bosses`;
+    }
+  }
+
+  get selectedBosses() {
+    return this.bosses.filter((boss) => boss.selected);
+  }
+
   get completedList() {
-    return this.bosses.filter((boss) => boss.selected).filter((boss) => !boss.completed).length === 0;
+    return this.selectedBosses.length > 0 ? this.selectedBosses.filter((boss) => !boss.completed).length === 0 : false;
   }
 
   get amountOfSelectedBosses() {
-    const selectedBosses = this.bosses.filter((boss) => boss.selected);
-
     if (this.weekly) {
-      return selectedBosses.length;
+      return this.selectedBosses.length;
     } else {
-      return selectedBosses.reduce((total, boss) => {
+      return this.selectedBosses.reduce((total, boss) => {
         total += boss.perWeekAmount;
 
         return total;
       }, 0);
     }
+  }
+
+  get amountOfEarnedMesos() {
+    return this.selectedBosses.reduce((amount, boss) => {
+      if (boss.selected && boss.completed) {
+        amount += boss.bossCrystalMesos;
+      }
+
+      return amount;
+    }, 0);
   }
 }

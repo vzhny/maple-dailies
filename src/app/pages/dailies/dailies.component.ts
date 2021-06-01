@@ -330,7 +330,6 @@ export class DailiesComponent implements OnInit {
     this.listTitle.patchValue(null);
     this.dailyText.patchValue(null);
 
-    this.selectedListTitle = null;
     this.selectedListId = -1;
     this.selectedListTitle = '';
     this.isCharacterWideList = false;

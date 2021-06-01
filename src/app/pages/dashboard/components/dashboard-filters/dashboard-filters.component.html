@@ -1,0 +1,42 @@
+<div class="flex items-center p-3 shadow bg-white w-full dark:border-gray-900 dark:bg-gray-800">
+  <form *ngIf="filterForm" [formGroup]="filterForm" class="w-full grid grid-cols-6 gap-3 mb-2">
+    <label class="block col-span-3">
+      <span class="space-x-2">Selected Character(s)</span>
+      <ng-select
+        [items]="characterList"
+        [selectOnTab]="true"
+        [multiple]="true"
+        [closeOnSelect]="false"
+        [hideSelected]="true"
+        placeholder="All"
+        class="form-control custom"
+        formControlName="characterIds"
+        bindValue="id"
+      >
+        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+          <span class="p-1">{{ item.characterName }}</span>
+          <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item" let-index="index">
+          <span>{{ item.characterName }} (Lv. {{ item.level }} {{ item.class }})</span>
+        </ng-template>
+      </ng-select>
+    </label>
+
+    <div class="col-span-1 flex justify-center items-end mb-2">
+      <app-checkbox [control]="showDailies">
+        <span class="text-gray-900 dark:text-white font-medium"> Show Dailies</span>
+      </app-checkbox>
+    </div>
+    <div class="col-span-1 flex justify-center items-end mb-2">
+      <app-checkbox [control]="showBosses">
+        <span class="text-gray-900 dark:text-white font-medium"> Show Boss Checklists</span>
+      </app-checkbox>
+    </div>
+    <div class="col-span-1 flex justify-center items-end mb-2">
+      <app-checkbox [control]="showHardMutoRecipes">
+        <span class="text-gray-900 dark:text-white font-medium"> Show Hard Muto Recipes</span>
+      </app-checkbox>
+    </div>
+  </form>
+</div>

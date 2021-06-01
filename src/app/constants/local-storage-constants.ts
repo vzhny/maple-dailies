@@ -7,5 +7,5 @@ export const LocalStorageKeys = {
   lastAppAccessEpochNum: 'lastAppAccessEpochNumber',
   characterList: 'characterList',
   selectedCharacter: 'selectedCharacter',
-  selectedCharacterId: 'selectedCharacterId',
+  dashboardFilters: 'dashboardFilters',
 };

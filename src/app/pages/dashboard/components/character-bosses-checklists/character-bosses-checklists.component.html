@@ -1,0 +1,25 @@
+<div class="my-2">
+  <app-accordion>
+    <app-accordion-item *ngFor="let tuple of characterBossesChecklistsTuplesList" [fluidContent]="true" headerTitle="custom">
+      <div class="flex space-x-2" header-title>
+        <img class="h-6 w-6 bg-cover mt-1" [src]="getCharacterIconFileName(tuple.character.class)" alt="Class Icon" />
+        <span>{{ tuple.character.characterName }} (Lv. {{ tuple.character.level }} {{ tuple.character.class }})</span>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 items-stretch">
+        <app-bosses-checklist
+          [bosses]="tuple.bossesChecklists.dailyBosses"
+          [onDashboard]="true"
+          (toggleCompletion)="onToggleCompletion($event, tuple.character.id)"
+          (toggleAllCompletion)="onAllCompletion($event, tuple.character.id)"
+        ></app-bosses-checklist>
+        <app-bosses-checklist
+          [bosses]="tuple.bossesChecklists.weeklyBosses"
+          [weekly]="true"
+          [onDashboard]="true"
+          (toggleCompletion)="onToggleCompletion($event, tuple.character.id)"
+          (toggleAllCompletion)="onAllCompletion($event, tuple.character.id)"
+        ></app-bosses-checklist>
+      </div>
+    </app-accordion-item>
+  </app-accordion>
+</div>

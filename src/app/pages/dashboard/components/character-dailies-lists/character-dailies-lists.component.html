@@ -1,0 +1,23 @@
+<div class="mt-2">
+  <app-accordion>
+    <app-accordion-item *ngFor="let tuple of characterDailiesListTuplesList" [fluidContent]="true" headerTitle="custom">
+      <div class="flex space-x-2" header-title>
+        <img class="h-6 w-6 bg-cover mt-1" [src]="getCharacterIconFileName(tuple.character.class)" alt="Class Icon" />
+        <span>{{ tuple.character.characterName }} (Lv. {{ tuple.character.level }} {{ tuple.character.class }})</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-start gap-4 p-2">
+        <app-daily-list
+          *ngFor="let list of tuple.dailiesLists"
+          [listId]="list.dailyListId"
+          [listTitle]="list.title"
+          [dailies]="list.dailies"
+          [characterWideList]="list.characterId === characterWideCharId"
+          [systemList]="list.systemFlag"
+          [onDashboard]="true"
+          (toggleCompletion)="onToggleDailyCompletion($event, tuple.character.id)"
+          (toggleAllCompletion)="onToggleAllDailiesCompletion($event, tuple.character.id)"
+        ></app-daily-list>
+      </div>
+    </app-accordion-item>
+  </app-accordion>
+</div>

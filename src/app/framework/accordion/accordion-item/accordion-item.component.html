@@ -1,6 +1,11 @@
 <div class="flex justify-between items-center p-5 pl-8 pr-8 border-b dark:border-gray-900 bg-white dark:bg-gray-800">
   <span class="text-grey-darkest font-normal text-xl">
-    {{ headerTitle }}
+    <span *ngIf="!hasCustomHeader">
+      {{ headerTitle }}
+    </span>
+    <div *ngIf="hasCustomHeader">
+      <ng-content select="[header-title]"></ng-content>
+    </div>
   </span>
   <div class="flex space-x-2 items-center">
     <ng-content *ngIf="isExpanded" select="[item-actions]"></ng-content>
@@ -15,8 +20,9 @@
 </div>
 <div
   *ngIf="isExpanded"
+  class="border-l-4 bg-white dark:bg-gray-700 dark:border-gray-800"
   [ngClass]="{
-    'px-8 py-5 border-l-4 bg-white dark:bg-gray-700 dark:border-gray-800': !fluidContent
+    'px-8 py-5 ': !fluidContent
   }"
 >
   <ng-content></ng-content>

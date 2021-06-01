@@ -1,30 +1,32 @@
-<div class="flex flex-col p-3 shadow bg-white dark:border-gray-900 dark:bg-gray-800">
+<div class="flex flex-col p-3 shadow bg-white dark:border-gray-900 dark:bg-gray-800" [ngClass]="{ 'h-full': onDashboard }">
   <div class="h-14 flex justify-between items-center mt-1 mb-3">
-    <span class="uppercase tracking-wide text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis">
-      {{ weekly ? 'Weekly' : 'Daily' }} Bosses
+    <div
+      class="flex justify-center items-center space-x-2 cursor-pointer whitespace-nowrap overflow-hidden overflow-ellipsis"
+      (click)="completeAllBosses(!completedList)"
+    >
+      <div>
+        <fa-layers [tippy]="getToggleDailiesTooltip()">
+          <fa-icon *ngIf="!completedList" [icon]="notCompletedIcon"></fa-icon>
+          <fa-icon *ngIf="completedList" [icon]="completedSquareIcon"></fa-icon>
+          <fa-icon *ngIf="completedList" class="text-red-600 text-lg" [icon]="confirmIcon" transform="up-1 right-1"></fa-icon>
+        </fa-layers>
+      </div>
       <span class="uppercase tracking-wide text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis">
-        ({{ amountOfSelectedBosses }})
+        {{ weekly ? 'Weekly' : 'Daily' }} Bosses
+        <span class="uppercase tracking-wide text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis">
+          ({{ amountOfSelectedBosses }})
+        </span>
       </span>
-    </span>
-    <div class="flex justify-center items-center space-x-2">
+    </div>
+    <div *ngIf="!onDashboard" class="flex justify-center items-center space-x-2">
       <app-button
         *ngIf="showActions"
         [color]="isEditing ? 'success' : 'secondary'"
         width="40"
         (click)="toggleVisibleBosses()"
-        title="{{ isEditing ? 'Confirm' : 'Edit' }} bosses checklist"
+        tippy="{{ isEditing ? 'Confirm' : 'Edit' }} bosses checklist"
       >
         <fa-icon [icon]="isEditing ? confirmIcon : editIcon" size="sm"></fa-icon>
-      </app-button>
-
-      <app-button
-        *ngIf="!isEditing && amountOfSelectedBosses > 0"
-        color="info"
-        width="40"
-        (click)="completeAllBosses(!completedList)"
-        title="{{ completedList ? 'Reset' : 'Complete' }} all bosses"
-      >
-        <fa-icon [icon]="completedList ? resetIcon : checkAllIcon" size="sm"></fa-icon>
       </app-button>
 
       <app-button
@@ -32,13 +34,19 @@
         color="outline"
         width="40"
         (click)="showActions = !showActions"
-        title="{{ showActions ? 'Hide' : 'Show' }} actions"
+        tippy="{{ showActions ? 'Hide' : 'Show' }} actions"
       >
         <fa-icon [icon]="showActions ? hideActionsIcon : showActionsIcon" size="sm"></fa-icon>
       </app-button>
     </div>
+    <div *ngIf="onDashboard" class="uppercase tracking-wide text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis">
+      Total: {{ amountOfEarnedMesos | mesos }}
+    </div>
   </div>
-  <ul class="h-screen/40 md:h-screen/60 flex flex-col space-y-1 dark:bg-gray-700 overflow-y-auto border dark:border-gray-900">
+  <ul
+    class="flex flex-col space-y-1 dark:bg-gray-700 overflow-y-auto border dark:border-gray-900"
+    [ngClass]="{ 'h-screen/40 md:h-screen/60': !onDashboard, 'h-full': onDashboard }"
+  >
     <ng-container *ngIf="isEditing || amountOfSelectedBosses > 0; else showNoSelectedBossesMessage">
       <ng-container *ngFor="let boss of bosses; let i = index">
         <li
@@ -109,10 +117,14 @@
     </ng-container>
 
     <ng-template #showNoSelectedBossesMessage>
-      <li class="h-full p-4 text-center">
+      <li *ngIf="!onDashboard" class="h-full p-4 text-center">
         Start selecting which bosses you're going to be running each {{ weekly ? 'week' : 'day' }} using the
         <fa-icon [icon]="editIcon" size="sm" class="inline-block"></fa-icon> edit button inside the
         <fa-icon [icon]="showActionsIcon" size="sm" class="inline-block"></fa-icon> actions button in the top right of the list header!
+      </li>
+      <li *ngIf="onDashboard" class="h-full p-4 text-center">
+        Go to the <a class="inline-block underline text-blue-400" routerLink="/bosses">Bosses</a> page to start selecting which bosses
+        you're going to be running each {{ weekly ? 'week' : 'day' }}!
       </li>
     </ng-template>
   </ul>

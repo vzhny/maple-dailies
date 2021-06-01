@@ -1,5 +1,5 @@
 <app-container>
-  <div class="mb-4">
+  <div *ngIf="!onDashboard" class="mb-4">
     <app-checkbox [value]="showOnlyHiddenIngredientRecipes" (click)="filterHiddenIngredientRecipes()">
       <span class="text-gray-900 dark:text-white font-medium"> Show Only Potentially Hidden Ingredient Recipes </span>
     </app-checkbox>
