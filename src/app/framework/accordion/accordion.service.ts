@@ -26,10 +26,12 @@ export class AccordionService {
     });
   }
 
-  collapseAll(headerTitle: string) {
-    this.$collapse.next({
-      headerTitle,
-      collapsed: true,
-    });
+  collapseAll(headerTitle: string | null) {
+    if (headerTitle !== null) {
+      this.$collapse.next({
+        headerTitle,
+        collapsed: true,
+      });
+    }
   }
 }

@@ -8,7 +8,7 @@ import { AccordionService } from '../accordion.service';
   styleUrls: ['./accordion-item.component.scss'],
 })
 export class AccordionItemComponent implements OnInit {
-  @Input() headerTitle!: string;
+  @Input() headerTitle: string | null = null;
   @Input() fluidContent = false;
   @Input() expanded = false;
 
@@ -34,5 +34,9 @@ export class AccordionItemComponent implements OnInit {
     if (this.isExpanded) {
       this.accordionService.collapseAll(this.headerTitle);
     }
+  }
+
+  get hasCustomHeader() {
+    return this.headerTitle === 'custom';
   }
 }
