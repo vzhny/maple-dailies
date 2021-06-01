@@ -24,5 +24,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MutoRecipeIngredientInfoComponent,
   ],
   imports: [CommonModule, GuidesRoutingModule, FontAwesomeModule, LayoutModule, FrameworkModule, FormModule, TableModule],
+  exports: [HardMutoRecipesComponent],
 })
 export class GuidesModule {}

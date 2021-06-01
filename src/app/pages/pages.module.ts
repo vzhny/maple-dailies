@@ -6,8 +6,9 @@ import { BossesModule } from './bosses/bosses.module';
 import { GuidesModule } from './guides/guides.module';
 import { SettingsComponent } from './settings/settings.component';
 import { SettingsModule } from './settings/settings.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
-  imports: [CommonModule, HomeModule, DailiesModule, BossesModule, GuidesModule, SettingsModule, FrameworkModule],
+  imports: [CommonModule, HomeModule, DashboardModule, DailiesModule, BossesModule, GuidesModule, SettingsModule, FrameworkModule],
 })
 export class PagesModule {}

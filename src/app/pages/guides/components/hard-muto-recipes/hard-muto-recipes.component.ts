@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MutoRecipe } from './components/muto-recipe/muto-recipe.component';
 
 @Component({
@@ -7,6 +7,8 @@ import { MutoRecipe } from './components/muto-recipe/muto-recipe.component';
   styleUrls: ['./hard-muto-recipes.component.scss'],
 })
 export class HardMutoRecipesComponent implements OnInit {
+  @Input() onDashboard = false;
+
   recipes: MutoRecipe[] = [
     {
       name: 'Berry Bouquet',
