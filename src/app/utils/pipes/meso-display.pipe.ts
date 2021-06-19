@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DisplayService } from 'src/app/utils/display.service';
+import { DisplayService } from 'src/app/utils/services/display.service';
 
 @Pipe({
   name: 'mesos',
