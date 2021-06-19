@@ -1,6 +1,6 @@
 <app-container>
   <div class="w-full">
-    <div class="text-lg mb-2">Manage Characters</div>
+    <div class="mb-2 text-lg">Manage Characters</div>
     <app-table [columns]="columns" [data]="data" #table>
       <thead table-header>
         <tr class="table-header-row">
@@ -28,34 +28,53 @@
           }"
           (click)="selectCharacter(row.id)"
         >
-          <td class="table-body-cell flex justify-center items-center">
-            <img
-              class="w-20"
-              [src]="row.characterImgSrcUrl || 'assets/images/misc/blank_character.png'"
-              alt="User Maplestory Character Image"
-            />
+          <td
+            class="flex items-center justify-center"
+            [ngClass]="{ 'table-body-cell': selectedCharacterId !== row.id, 'table-body-cell-selected': selectedCharacterId === row.id }"
+          >
+            <app-image
+              classes="w-20"
+              [src]="row.characterImgSrcUrl || defaultCharacterImageSrc"
+              altText="User Maplestory Character Image"
+              (error)="onCharacterImageError(row)"
+            ></app-image>
           </td>
-          <td class="table-body-cell text-center">
+          <td
+            class="text-center"
+            [ngClass]="{ 'table-body-cell': selectedCharacterId !== row.id, 'table-body-cell-selected': selectedCharacterId === row.id }"
+          >
             {{ row.level }}
           </td>
-          <td class="table-body-cell text-center">
+          <td
+            class="text-center"
+            [ngClass]="{ 'table-body-cell': selectedCharacterId !== row.id, 'table-body-cell-selected': selectedCharacterId === row.id }"
+          >
             <img [src]="getCharacterIcon(row.class)" alt="Class Icon" />
           </td>
-          <td class="table-body-cell text-center">
+          <td
+            class="text-center"
+            [ngClass]="{ 'table-body-cell': selectedCharacterId !== row.id, 'table-body-cell-selected': selectedCharacterId === row.id }"
+          >
             {{ row.class }}
           </td>
-          <td class="table-body-cell text-center">
+          <td
+            class="text-center"
+            [ngClass]="{ 'table-body-cell': selectedCharacterId !== row.id, 'table-body-cell-selected': selectedCharacterId === row.id }"
+          >
             {{ row.characterName }}
           </td>
-          <td class="table-body-cell text-center">
+          <td
+            class="text-center"
+            [ngClass]="{ 'table-body-cell': selectedCharacterId !== row.id, 'table-body-cell-selected': selectedCharacterId === row.id }"
+          >
             <span *ngIf="row.level >= 200; else symbolyNotYetAvailable" class="flex flex-col">
               <span>Lvl {{ row.vanishingJourneyArcaneSymbol.currentLevel }}</span>
               <div
-                class="shadow rounded w-full h-2 bg-gray-700"
+                class="w-full h-2 bg-gray-700 rounded shadow"
                 [title]="calculateSymbolExperiencePercentage(row.vanishingJourneyArcaneSymbol)"
               >
                 <div
-                  class="rounded bg-yellow-300 h-2"
+                  class="h-2 bg-yellow-300 rounded"
                   [ngStyle]="{
                     width: calculateSymbolExperiencePercentage(row.vanishingJourneyArcaneSymbol)
                   }"
@@ -63,15 +82,18 @@
               </div>
             </span>
           </td>
-          <td class="table-body-cell text-center">
+          <td
+            class="text-center"
+            [ngClass]="{ 'table-body-cell': selectedCharacterId !== row.id, 'table-body-cell-selected': selectedCharacterId === row.id }"
+          >
             <span *ngIf="row.level >= 210; else symbolyNotYetAvailable" class="flex flex-col">
               <span>Lvl {{ row.chuChuIslandArcaneSymbol.currentLevel }}</span>
               <div
-                class="shadow rounded w-full h-2 bg-gray-700"
+                class="w-full h-2 bg-gray-700 rounded shadow"
                 [title]="calculateSymbolExperiencePercentage(row.chuChuIslandArcaneSymbol)"
               >
                 <div
-                  class="rounded bg-yellow-300 h-2"
+                  class="h-2 bg-yellow-300 rounded"
                   [ngStyle]="{
                     width: calculateSymbolExperiencePercentage(row.chuChuIslandArcaneSymbol)
                   }"
@@ -79,12 +101,15 @@
               </div>
             </span>
           </td>
-          <td class="table-body-cell text-center">
+          <td
+            class="text-center"
+            [ngClass]="{ 'table-body-cell': selectedCharacterId !== row.id, 'table-body-cell-selected': selectedCharacterId === row.id }"
+          >
             <span *ngIf="row.level >= 220; else symbolyNotYetAvailable" class="flex flex-col">
               <span>Lvl {{ row.lacheleinArcaneSymbol.currentLevel }}</span>
-              <div class="shadow rounded w-full h-2 bg-gray-700" [title]="calculateSymbolExperiencePercentage(row.lacheleinArcaneSymbol)">
+              <div class="w-full h-2 bg-gray-700 rounded shadow" [title]="calculateSymbolExperiencePercentage(row.lacheleinArcaneSymbol)">
                 <div
-                  class="rounded bg-yellow-300 h-2"
+                  class="h-2 bg-yellow-300 rounded"
                   [ngStyle]="{
                     width: calculateSymbolExperiencePercentage(row.lacheleinArcaneSymbol)
                   }"
@@ -92,12 +117,15 @@
               </div>
             </span>
           </td>
-          <td class="table-body-cell text-center">
+          <td
+            class="text-center"
+            [ngClass]="{ 'table-body-cell': selectedCharacterId !== row.id, 'table-body-cell-selected': selectedCharacterId === row.id }"
+          >
             <span *ngIf="row.level >= 225; else symbolyNotYetAvailable" class="flex flex-col">
               <span>Lvl {{ row.arcanaArcaneSymbol.currentLevel }}</span>
-              <div class="shadow rounded w-full h-2 bg-gray-700" [title]="calculateSymbolExperiencePercentage(row.arcanaArcaneSymbol)">
+              <div class="w-full h-2 bg-gray-700 rounded shadow" [title]="calculateSymbolExperiencePercentage(row.arcanaArcaneSymbol)">
                 <div
-                  class="rounded bg-yellow-300 h-2"
+                  class="h-2 bg-yellow-300 rounded"
                   [ngStyle]="{
                     width: calculateSymbolExperiencePercentage(row.arcanaArcaneSymbol)
                   }"
@@ -105,12 +133,15 @@
               </div>
             </span>
           </td>
-          <td class="table-body-cell text-center">
+          <td
+            class="text-center"
+            [ngClass]="{ 'table-body-cell': selectedCharacterId !== row.id, 'table-body-cell-selected': selectedCharacterId === row.id }"
+          >
             <span *ngIf="row.level >= 230; else symbolyNotYetAvailable" class="flex flex-col">
               <span>Lvl {{ row.morassArcaneSymbol.currentLevel }}</span>
-              <div class="shadow rounded w-full h-2 bg-gray-700" [title]="calculateSymbolExperiencePercentage(row.morassArcaneSymbol)">
+              <div class="w-full h-2 bg-gray-700 rounded shadow" [title]="calculateSymbolExperiencePercentage(row.morassArcaneSymbol)">
                 <div
-                  class="rounded bg-yellow-300 h-2"
+                  class="h-2 bg-yellow-300 rounded"
                   [ngStyle]="{
                     width: calculateSymbolExperiencePercentage(row.morassArcaneSymbol)
                   }"
@@ -118,12 +149,15 @@
               </div>
             </span>
           </td>
-          <td class="table-body-cell text-center">
+          <td
+            class="text-center"
+            [ngClass]="{ 'table-body-cell': selectedCharacterId !== row.id, 'table-body-cell-selected': selectedCharacterId === row.id }"
+          >
             <span *ngIf="row.level >= 235; else symbolyNotYetAvailable" class="flex flex-col">
               <span>Lvl {{ row.esferaArcaneSymbol.currentLevel }}</span>
-              <div class="shadow rounded w-full h-2 bg-gray-700" [title]="calculateSymbolExperiencePercentage(row.esferaArcaneSymbol)">
+              <div class="w-full h-2 bg-gray-700 rounded shadow" [title]="calculateSymbolExperiencePercentage(row.esferaArcaneSymbol)">
                 <div
-                  class="rounded bg-yellow-300 h-2"
+                  class="h-2 bg-yellow-300 rounded"
                   [ngStyle]="{
                     width: calculateSymbolExperiencePercentage(row.esferaArcaneSymbol)
                   }"
@@ -131,7 +165,10 @@
               </div>
             </span>
           </td>
-          <td class="table-body-cell text-center space-x-2">
+          <td
+            class="space-x-2 text-center"
+            [ngClass]="{ 'table-body-cell': selectedCharacterId !== row.id, 'table-body-cell-selected': selectedCharacterId === row.id }"
+          >
             <app-button color="secondary" width="40" (click)="$event.stopPropagation(); editCharacter(row)">
               <fa-icon [icon]="editIcon"></fa-icon>
             </app-button>
@@ -141,15 +178,9 @@
           </td>
         </tr>
       </tbody>
-      <tfoot table-footer>
-        <tr class="dark:bg-black">
-          <td class="p-4" [attr.colspan]="columns.length">
-            <div class="flex justify-end">
-              <app-button color="success" (click)="openCharacterModal()">Add New Character</app-button>
-            </div>
-          </td>
-        </tr>
-      </tfoot>
+      <div table-footer-actions>
+        <app-button color="success" (click)="openCharacterModal()">Add New Character</app-button>
+      </div>
     </app-table>
   </div>
 </app-container>
