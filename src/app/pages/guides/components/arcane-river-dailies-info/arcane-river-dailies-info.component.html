@@ -1,5 +1,5 @@
-<app-container>
-  <div class="mb-5 font-light">
+<app-container [fluid]="onDashboard">
+  <div *ngIf="!onDashboard" class="mb-5 font-light">
     The following information is from
     <a class="text-blue-400" href="https://strategywiki.org/wiki/MapleStory/Arcane_River" target="_blank">StrategyWiki</a>
     — any <span class="text-red-500">red colored dailies</span> should be exchanged as they take longer than the other available dailies.
@@ -11,12 +11,12 @@
       <ul>
         <li
           *ngFor="let daily of item.dailies"
-          class="font-normal space-x-2 md:ml-5"
+          class="space-x-2 font-normal md:ml-5"
           [ngClass]="{ 'font-medium text-red-500': daily.exchangeFlag }"
         >
           <fa-icon [icon]="getDailyIcon(daily.name)"></fa-icon>
           <span>{{ daily.name }}</span>
-          <hr class="block md:hidden my-1" />
+          <hr class="block my-1 md:hidden" />
         </li>
       </ul>
     </app-accordion-item>
