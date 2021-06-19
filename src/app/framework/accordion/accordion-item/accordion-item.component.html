@@ -1,5 +1,5 @@
-<div class="flex justify-between items-center p-5 pl-8 pr-8 border-b dark:border-gray-900 bg-white dark:bg-gray-800">
-  <span class="text-grey-darkest font-normal text-xl">
+<div class="flex items-center justify-between p-5 pl-8 pr-8 bg-white border-b dark:border-gray-900 dark:bg-gray-800">
+  <span class="text-xl font-normal text-grey-darkest">
     <span *ngIf="!hasCustomHeader">
       {{ headerTitle }}
     </span>
@@ -7,10 +7,10 @@
       <ng-content select="[header-title]"></ng-content>
     </div>
   </span>
-  <div class="flex space-x-2 items-center">
+  <div class="flex items-center space-x-2">
     <ng-content *ngIf="isExpanded" select="[item-actions]"></ng-content>
     <div
-      class="rounded-full border border-grey w-7 h-7 flex items-center justify-center cursor-pointer select-none bg-white text-black"
+      class="flex items-center justify-center text-black bg-white border rounded-full cursor-pointer select-none border-grey w-7 h-7"
       (click)="toggleAccordion()"
       [title]="isExpanded ? 'Collapse' : 'Expand'"
     >

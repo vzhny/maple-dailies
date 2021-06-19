@@ -5,7 +5,6 @@ export type ButtonColor = 'primary' | 'secondary' | 'success' | 'info' | 'warnin
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent implements OnInit {
   baseBtnClasses = 'p-2 rounded shadow disabled:cursor-not-allowed';

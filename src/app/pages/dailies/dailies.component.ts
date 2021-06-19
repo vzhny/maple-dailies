@@ -37,7 +37,6 @@ export interface Daily {
 @Component({
   selector: 'app-dailies',
   templateUrl: './dailies.component.html',
-  styleUrls: ['./dailies.component.scss'],
 })
 export class DailiesComponent implements OnInit {
   readonly characterWideCharId = 0;

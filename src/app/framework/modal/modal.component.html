@@ -1,16 +1,16 @@
-﻿<div [id]="id" class="fixed top-0 right-0 bottom-0 left-0 z-1000 overflow-auto">
+﻿<div [id]="id" class="fixed top-0 bottom-0 left-0 right-0 overflow-auto z-1000">
   <div
-    class="shadow-lg rounded-md my-10 mx-4 md:mx-auto bg-white dark:bg-gray-800 border-gray-800"
+    class="mx-4 my-10 bg-white border-gray-800 rounded-md shadow-lg md:mx-auto dark:bg-gray-800"
     [ngStyle]="{ 'max-width': maxWidthPixels }"
   >
     <div
-      class="uppercase tracking-wide font-semibold text-xl p-3 border-b-2 border-indigo-900 bg-indigo-800 dark:bg-gray-800 dark:border-gray-700 text-white rounded-t-md"
+      class="p-3 text-xl font-semibold tracking-wide text-white uppercase bg-indigo-800 border-b-2 border-indigo-900  dark:bg-gray-800 dark:border-gray-700 rounded-t-md"
     >
       <div class="flex justify-between">
         <span>
           {{ headerTitle }}
         </span>
-        <fa-icon class="dark:text-gray-50 dark:hover:text-white cursor-pointer" [icon]="closeIcon" (click)="closeModal()"></fa-icon>
+        <fa-icon class="cursor-pointer dark:text-gray-50 dark:hover:text-white" [icon]="closeIcon" (click)="closeModal()"></fa-icon>
       </div>
     </div>
     <div class="dark:bg-gray-700">
@@ -23,4 +23,4 @@
     </footer>
   </div>
 </div>
-<div class="fixed top-0 right-0 bottom-0 left-0 bg-black opacity-75 z-900"></div>
+<div class="fixed top-0 bottom-0 left-0 right-0 bg-black opacity-75 z-900"></div>

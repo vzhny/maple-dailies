@@ -14,7 +14,6 @@ export interface TrainingMapsFiltersEvent {
 @Component({
   selector: 'app-training-maps-filters',
   templateUrl: './training-maps-filters.component.html',
-  styleUrls: ['./training-maps-filters.component.scss'],
 })
 export class TrainingMapsFiltersComponent implements OnInit {
   filterForm: FormGroup | null = null;

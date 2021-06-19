@@ -1,6 +1,6 @@
 <app-container>
-  <div *ngIf="selectedCharacter" class="mb-5 flex justify-center items-center flex-col md:flex-row md:justify-end">
-    <div class="flex justify-center items-center space-x-2">
+  <div *ngIf="selectedCharacter" class="flex flex-col items-center justify-center mb-5 md:flex-row md:justify-end">
+    <div class="flex items-center justify-center space-x-2">
       <app-button
         *ngIf="!alreadyHasArcaneRiverDailiesList && selectedCharacter !== null && selectedCharacter.level >= 200"
         color="info"
@@ -52,17 +52,17 @@
     </ng-container>
 
     <ng-template #showAddDailiesListsMessage>
-      <div class="w-full h-full flex justify-center items-center col-span-full">
+      <div class="flex items-center justify-center w-full h-full col-span-full">
         <div class="text-2xl">Please add a new dailies list using the add buttons above!</div>
       </div>
     </ng-template>
   </div>
 
   <ng-template #noSelectedCharacter>
-    <div class="w-full h-full flex justify-center items-center">
+    <div class="flex items-center justify-center w-full h-full">
       <div class="text-2xl">
         <span>Please add and/or select a character in the &nbsp;</span>
-        <a class="inline-block underline text-blue-400" routerLink="/settings">Settings</a>
+        <a class="inline-block text-blue-400 underline" routerLink="/settings">Settings</a>
         <span>&nbsp; page in order to start adding dailies!</span>
       </div>
     </div>
@@ -86,7 +86,7 @@
     </label>
     <div class="block">
       <app-checkbox [control]="characterWideFlag">
-        <span class="text-gray-900 dark:text-white font-medium">Character wide?</span>
+        <span class="font-medium text-gray-900 dark:text-white">Character wide?</span>
         <fa-icon [icon]="infoIcon" tippy="A character-wide list will appear on all dailies pages" maxWidth="150"></fa-icon>
       </app-checkbox>
     </div>

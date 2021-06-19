@@ -16,7 +16,6 @@ interface DailyList {
 @Component({
   selector: 'app-arcane-river-dailies-info',
   templateUrl: './arcane-river-dailies-info.component.html',
-  styleUrls: ['./arcane-river-dailies-info.component.scss'],
 })
 export class ArcaneRiverDailiesInfoComponent implements OnInit {
   @Input() onDashboard = false;

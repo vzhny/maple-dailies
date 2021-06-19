@@ -10,24 +10,24 @@
   (change)="selectCharacter($event)"
 >
   <ng-template ng-label-tmp let-item="item">
-    <div class="flex space-x-2 py-2">
-      <img class="h-6 w-6 bg-cover" src="assets/images/classes/{{ getCharacterIconFileName(item.class) }}" alt="Class Icon" />
+    <div class="flex py-2 space-x-2">
+      <img class="w-6 h-6 bg-cover" src="assets/images/classes/{{ getCharacterIconFileName(item.class) }}" alt="Class Icon" />
       <span>{{ item.characterName }} (Lv. {{ item.level }} {{ item.class }})</span>
     </div>
   </ng-template>
   <ng-template ng-option-tmp let-item="item" let-index="index">
-    <div class="flex space-x-2 py-2">
-      <img class="h-6 w-6 bg-cover" src="assets/images/classes/{{ getCharacterIconFileName(item.class) }}" alt="Class Icon" />
+    <div class="flex py-2 space-x-2">
+      <img class="w-6 h-6 bg-cover" src="assets/images/classes/{{ getCharacterIconFileName(item.class) }}" alt="Class Icon" />
       <span>{{ item.characterName }} (Lv. {{ item.level }} {{ item.class }})</span>
     </div>
   </ng-template>
 </ng-select>
 
 <ng-template #noCharactersAvailable>
-  <div class="w-full h-full flex justify-center items-center">
+  <div class="flex items-center justify-center w-full h-full">
     <div>
       <span>Please add at least two characters in the &nbsp;</span>
-      <a class="inline-block underline text-blue-400" routerLink="/settings">Settings</a>
+      <a class="inline-block text-blue-400 underline" routerLink="/settings">Settings</a>
       <span>&nbsp; page in order to start switching between them!</span>
     </div>
   </div>

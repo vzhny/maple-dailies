@@ -4,7 +4,6 @@ import { MutoRecipe } from './components/muto-recipe/muto-recipe.component';
 @Component({
   selector: 'app-hard-muto-recipes',
   templateUrl: './hard-muto-recipes.component.html',
-  styleUrls: ['./hard-muto-recipes.component.scss'],
 })
 export class HardMutoRecipesComponent implements OnInit {
   @Input() onDashboard = false;

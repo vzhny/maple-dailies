@@ -16,7 +16,6 @@ export interface TableData {
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, OnChanges {
   @Input() data: TableData[] = [];

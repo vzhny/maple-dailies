@@ -1,24 +1,24 @@
-<div class="flex flex-col p-3 shadow bg-white dark:border-gray-900 dark:bg-gray-800" [ngClass]="{ 'h-full': onDashboard }">
-  <div class="h-14 flex justify-between items-center mt-1 mb-3">
+<div class="flex flex-col p-3 bg-white shadow dark:border-gray-900 dark:bg-gray-800" [ngClass]="{ 'h-full': onDashboard }">
+  <div class="flex items-center justify-between mt-1 mb-3 h-14">
     <div
-      class="flex justify-center items-center space-x-2 cursor-pointer whitespace-nowrap overflow-hidden overflow-ellipsis"
+      class="flex items-center justify-center space-x-2 overflow-hidden cursor-pointer whitespace-nowrap overflow-ellipsis"
       (click)="completeAllBosses(!completedList)"
     >
       <div>
         <fa-layers [tippy]="getToggleDailiesTooltip()">
           <fa-icon *ngIf="!completedList" [icon]="notCompletedIcon"></fa-icon>
           <fa-icon *ngIf="completedList" [icon]="completedSquareIcon"></fa-icon>
-          <fa-icon *ngIf="completedList" class="text-red-600 text-lg" [icon]="confirmIcon" transform="up-1 right-1"></fa-icon>
+          <fa-icon *ngIf="completedList" class="text-lg text-red-600" [icon]="confirmIcon" transform="up-1 right-1"></fa-icon>
         </fa-layers>
       </div>
-      <span class="uppercase tracking-wide text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis">
+      <span class="overflow-hidden text-2xl tracking-wide uppercase whitespace-nowrap overflow-ellipsis">
         {{ weekly ? 'Weekly' : 'Daily' }} Bosses
-        <span class="uppercase tracking-wide text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis">
+        <span class="overflow-hidden text-2xl tracking-wide uppercase whitespace-nowrap overflow-ellipsis">
           ({{ amountOfSelectedBosses }})
         </span>
       </span>
     </div>
-    <div *ngIf="!onDashboard" class="flex justify-center items-center space-x-2">
+    <div *ngIf="!onDashboard" class="flex items-center justify-center space-x-2">
       <app-button
         *ngIf="showActions"
         [color]="isEditing ? 'success' : 'secondary'"
@@ -39,12 +39,12 @@
         <fa-icon [icon]="showActions ? hideActionsIcon : showActionsIcon" size="sm"></fa-icon>
       </app-button>
     </div>
-    <div *ngIf="onDashboard" class="uppercase tracking-wide text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis">
+    <div *ngIf="onDashboard" class="overflow-hidden text-2xl tracking-wide uppercase whitespace-nowrap overflow-ellipsis">
       Total: {{ amountOfEarnedMesos | mesos }}
     </div>
   </div>
   <ul
-    class="flex flex-col space-y-1 dark:bg-gray-700 overflow-y-auto border dark:border-gray-900"
+    class="flex flex-col space-y-1 overflow-y-auto border dark:bg-gray-700 dark:border-gray-900"
     [ngClass]="{ 'h-screen/40 md:h-screen/60': !onDashboard, 'h-full': onDashboard }"
   >
     <ng-container *ngIf="isEditing || amountOfSelectedBosses > 0; else showNoSelectedBossesMessage">
@@ -56,7 +56,7 @@
           title="{{ boss.selected ? boss.name : 'Please select this boss in order to toggle completion' }}"
           (click)="$event.stopPropagation(); completeBoss(boss, i)"
         >
-          <span class="flex justify-center items-center ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis">
+          <span class="flex items-center justify-center ml-1 overflow-hidden whitespace-nowrap overflow-ellipsis">
             <div>
               <fa-icon
                 *ngIf="isEditing"
@@ -68,7 +68,7 @@
               ></fa-icon>
               <span
                 *ngIf="!weekly && isEditing"
-                class="space-x-2 mr-2"
+                class="mr-2 space-x-2"
                 [ngClass]="{
                   'text-gray-300 dark:text-gray-500 cursor-not-allowed': !boss.selected
                 }"
@@ -97,10 +97,10 @@
             <img
               src="assets/images/bosses/{{ getBossImageFileName(boss.name) }}.png"
               alt="Boss Image"
-              class="hidden md:block mr-2 h-7 w-7"
+              class="hidden mr-2 md:block h-7 w-7"
             />
             <span
-              class="whitespace-nowrap overflow-hidden overflow-ellipsis"
+              class="overflow-hidden whitespace-nowrap overflow-ellipsis"
               [ngClass]="{ 'line-through italic text-gray-400': boss.completed }"
             >
               <span *ngIf="!isEditing && !weekly">({{ boss.perWeekAmount }})</span>
@@ -123,7 +123,7 @@
         <fa-icon [icon]="showActionsIcon" size="sm" class="inline-block"></fa-icon> actions button in the top right of the list header!
       </li>
       <li *ngIf="onDashboard" class="h-full p-4 text-center">
-        Go to the <a class="inline-block underline text-blue-400" routerLink="/bosses">Bosses</a> page to start selecting which bosses
+        Go to the <a class="inline-block text-blue-400 underline" routerLink="/bosses">Bosses</a> page to start selecting which bosses
         you're going to be running each {{ weekly ? 'week' : 'day' }}!
       </li>
     </ng-template>

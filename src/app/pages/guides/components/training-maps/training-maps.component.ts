@@ -19,7 +19,6 @@ export interface TrainingMap {
 @Component({
   selector: 'app-training-maps',
   templateUrl: './training-maps.component.html',
-  styleUrls: ['./training-maps.component.scss'],
 })
 export class TrainingMapsComponent implements OnInit {
   columns: TableColumn[] = [

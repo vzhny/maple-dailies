@@ -1,15 +1,15 @@
 <header
-  class="flex md:justify-between justify-center items-center h-16 w-auto px-8 bg-indigo-900 dark:bg-black dark:text-white shadow-lg overflow-x-auto"
+  class="flex items-center justify-center w-auto h-16 px-8 overflow-x-auto bg-indigo-900 shadow-lg  md:justify-between dark:bg-black dark:text-white"
 >
   <div class="flex">
     <img
-      class="h-16 -mt-2 outline-none cursor-pointer md:block hidden"
+      class="hidden h-16 -mt-2 outline-none cursor-pointer md:block"
       src="assets/images/logos/maple_dailies_logo.png"
       alt="Maple Dailies Logo"
       routerLink="/"
     />
   </div>
-  <ul class="flex justify-center items-center lowercase space-x-3">
+  <ul class="flex items-center justify-center space-x-3 lowercase">
     <li *ngFor="let navLink of navLinks" class="text-white hover:text-gray-100">
       <a [routerLink]="navLink.route" [routerLinkActiveOptions]="{ exact: navLink.matchExactRouteUrl }" routerLinkActive="text-green-300">{{
         navLink.name
