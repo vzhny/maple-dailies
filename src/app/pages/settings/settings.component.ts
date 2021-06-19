@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faInfoCircle, faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FilePaths } from 'src/app/constants/file-paths-constants';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { ModalService } from 'src/app/framework/modal/modal.service';
 import { TableColumn, TableData } from 'src/app/framework/table/table.component';
@@ -109,6 +110,8 @@ export class SettingsComponent implements OnInit {
   addCharacterModalId = 'addCharacterModalId';
   deleteCharacterModalId = 'deleteCharacterModalId';
 
+  defaultCharacterImageSrc = FilePaths.blankCharacterImgSrc;
+
   constructor(
     private localStorage: LocalStorageService,
     private modalService: ModalService,
@@ -215,5 +218,9 @@ export class SettingsComponent implements OnInit {
     const info = this.characterService.getCharacterClassInfo(characterClass);
 
     return this.characterService.buildCharacterIconSrc(info !== undefined ? info.fileName : 'beginner.png');
+  }
+
+  onCharacterImageError(row: TableData) {
+    row.characterImgSrcUrl = this.defaultCharacterImageSrc;
   }
 }
