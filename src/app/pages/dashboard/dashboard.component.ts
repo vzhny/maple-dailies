@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { combineLatest } from 'rxjs';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
-import { CharacterService } from 'src/app/utils/character.service';
-import { LocalStorageService } from 'src/app/utils/local-storage.service';
+import { CharacterService } from 'src/app/utils/services/character.service';
+import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
 import { BossesChecklists, BossService } from '../bosses/boss.service';
 import { DailyList } from '../dailies/dailies.component';
 import { DailyService } from '../dailies/daily.service';

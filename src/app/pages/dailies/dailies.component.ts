@@ -4,9 +4,9 @@ import { faAsterisk, faBars, faGripHorizontal, faInfoCircle, faPlus } from '@for
 import { combineLatest } from 'rxjs';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { ModalService } from 'src/app/framework/modal/modal.service';
-import { CharacterService } from 'src/app/utils/character.service';
-import { LocalStorageService } from 'src/app/utils/local-storage.service';
-import {} from 'src/app/utils/reset-timer.service';
+import { CharacterService } from 'src/app/utils/services/character.service';
+import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
+import {} from 'src/app/utils/services/reset-timer.service';
 import { CharacterInfo } from '../settings/settings.component';
 import {
   AddDailyEvent,

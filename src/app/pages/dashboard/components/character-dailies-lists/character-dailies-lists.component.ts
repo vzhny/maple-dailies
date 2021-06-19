@@ -3,7 +3,7 @@ import { DailyList } from 'src/app/pages/dailies/dailies.component';
 import { ToggleCompletionEvent, ToggleAllCompletionEvent } from 'src/app/pages/dailies/components/daily-list/daily-list.component';
 import { DailyService } from 'src/app/pages/dailies/daily.service';
 import { CharacterInfo } from 'src/app/pages/settings/settings.component';
-import { CharacterService } from 'src/app/utils/character.service';
+import { CharacterService } from 'src/app/utils/services/character.service';
 import { DashboardService } from '../../dashboard.service';
 
 interface CharacterDailiesListsTuple {

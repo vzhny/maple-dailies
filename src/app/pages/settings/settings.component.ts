@@ -4,9 +4,9 @@ import { faInfoCircle, faPen, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { ModalService } from 'src/app/framework/modal/modal.service';
 import { TableColumn, TableData } from 'src/app/framework/table/table.component';
-import { ArcaneSymbolInfo, ArcaneSymbolService } from 'src/app/utils/arcane-symbol.service';
-import { CharacterService } from 'src/app/utils/character.service';
-import { LocalStorageService } from 'src/app/utils/local-storage.service';
+import { ArcaneSymbolInfo, ArcaneSymbolService } from 'src/app/utils/services/arcane-symbol.service';
+import { CharacterService } from 'src/app/utils/services/character.service';
+import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
 import { DailyService } from '../dailies/daily.service';
 
 export interface ArcaneSymbol {

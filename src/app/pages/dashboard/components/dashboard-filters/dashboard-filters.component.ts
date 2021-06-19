@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { CharacterInfo } from 'src/app/pages/settings/settings.component';
-import { LocalStorageService } from 'src/app/utils/local-storage.service';
+import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
 import { DashboardFilters, DashboardService } from '../../dashboard.service';
 
 @Component({

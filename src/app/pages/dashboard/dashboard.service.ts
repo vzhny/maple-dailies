@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
-import { LocalStorageService } from 'src/app/utils/local-storage.service';
+import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
 
 export interface DashboardFilters {
   characterIds: number[];

@@ -6,7 +6,7 @@ import {
   BossCompletionEvent,
 } from 'src/app/pages/bosses/components/bosses-checklist/bosses-checklist.component';
 import { CharacterInfo } from 'src/app/pages/settings/settings.component';
-import { CharacterService } from 'src/app/utils/character.service';
+import { CharacterService } from 'src/app/utils/services/character.service';
 import { DashboardService } from '../../dashboard.service';
 
 interface CharacterBossesChecklistsTuple {

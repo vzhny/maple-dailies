@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CharacterInfo } from 'src/app/pages/settings/settings.component';
-import { CharacterService } from 'src/app/utils/character.service';
+import { CharacterService } from 'src/app/utils/services/character.service';
 
 @Component({
   selector: 'app-character-selector',

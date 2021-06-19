@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
-import { CharacterService } from 'src/app/utils/character.service';
-import { LocalStorageService } from 'src/app/utils/local-storage.service';
-import { ResetTimerService } from 'src/app/utils/reset-timer.service';
+import { CharacterService } from 'src/app/utils/services/character.service';
+import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
+import { ResetTimerService } from 'src/app/utils/services/reset-timer.service';
 import { CharacterInfo } from '../settings/settings.component';
 import { Daily, DailyList } from './dailies.component';
 
