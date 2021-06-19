@@ -1,6 +1,6 @@
 <div
   *ngIf="recipe !== null"
-  class="h-full shadow border border-black dark:border-black rounded-md bg-white dark:bg-gray-800"
+  class="h-full bg-white border border-black shadow dark:bg-gray-800"
   [ngClass]="{
     'bg-indigo-800 text-white dark:bg-indigo-800 dark:text-white': recipe.canHaveHiddenIngredientsFlg
   }"
@@ -14,7 +14,7 @@
     {{ recipe.name }}
   </div>
   <div
-    class="flex justify-between items-center p-2"
+    class="flex items-center justify-between p-2"
     [ngClass]="{
       'bg-indigo-800 dark:bg-indigo-800': recipe.canHaveHiddenIngredientsFlg
     }"
@@ -23,7 +23,7 @@
     <app-muto-recipe-ingredient-info [ingredient]="recipe.ingredient2"></app-muto-recipe-ingredient-info>
   </div>
   <div
-    class="flex justify-between items-center p-2"
+    class="flex items-center justify-between p-2"
     [ngClass]="{
       'bg-indigo-800 dark:bg-indigo-800': recipe.canHaveHiddenIngredientsFlg
     }"

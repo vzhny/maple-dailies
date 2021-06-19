@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { combineLatest } from 'rxjs';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
-import { CharacterService } from 'src/app/utils/character.service';
-import { LocalStorageService } from 'src/app/utils/local-storage.service';
+import { CharacterService } from 'src/app/utils/services/character.service';
+import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
 import { BossesChecklists, BossService } from '../bosses/boss.service';
 import { DailyList } from '../dailies/dailies.component';
 import { DailyService } from '../dailies/daily.service';
@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
 
   showDailies: boolean | null = false;
   showBosses: boolean | null = false;
+  showArcaneDailiesInfo: boolean | null = false;
   showHardMutoRecipes: boolean | null = false;
 
   characterList: CharacterInfo[] = [];
@@ -65,11 +66,12 @@ export class DashboardComponent implements OnInit {
 
     this.dashboardService.watchDashboardFilters().subscribe((filters) => {
       if (filters !== null) {
-        const { characterIds, showDailies, showBosses, showHardMutoRecipes } = filters;
+        const { characterIds, showDailies, showBosses, showArcaneDailiesInfo, showHardMutoRecipes } = filters;
 
         this.selectedCharactersIds = characterIds;
         this.showDailies = showDailies;
         this.showBosses = showBosses;
+        this.showArcaneDailiesInfo = showArcaneDailiesInfo;
         this.showHardMutoRecipes = showHardMutoRecipes;
       }
     });

@@ -6,7 +6,7 @@ import {
   BossCompletionEvent,
 } from 'src/app/pages/bosses/components/bosses-checklist/bosses-checklist.component';
 import { CharacterInfo } from 'src/app/pages/settings/settings.component';
-import { CharacterService } from 'src/app/utils/character.service';
+import { CharacterService } from 'src/app/utils/services/character.service';
 import { DashboardService } from '../../dashboard.service';
 
 interface CharacterBossesChecklistsTuple {
@@ -39,9 +39,7 @@ export class CharacterBossesChecklistsComponent implements OnInit {
         const { characterIds } = filters;
 
         const selectedCharactersList =
-          this.selectedCharactersIds.length > 0
-            ? this.characterList.filter((character) => characterIds.includes(character.id))
-            : this.characterList;
+          characterIds.length > 0 ? this.characterList.filter((character) => characterIds.includes(character.id)) : this.characterList;
 
         this.characterBossesChecklistsTuplesList = this.generateCharacterBossesChecklistsTupleList(selectedCharactersList);
       }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { faCircle, faCubes, faSkull } from '@fortawesome/free-solid-svg-icons';
-import { CharacterService } from 'src/app/utils/character.service';
+import { CharacterService } from 'src/app/utils/services/character.service';
 
 interface Daily {
   name: string;
@@ -14,14 +14,16 @@ interface DailyList {
 }
 
 @Component({
-  selector: 'app-arcane-river-dailies-lists',
-  templateUrl: './arcane-river-dailies-lists.component.html',
-  styleUrls: ['./arcane-river-dailies-lists.component.scss'],
+  selector: 'app-arcane-river-dailies-info',
+  templateUrl: './arcane-river-dailies-info.component.html',
+  styleUrls: ['./arcane-river-dailies-info.component.scss'],
 })
-export class ArcaneRiverDailiesListsComponent implements OnInit {
+export class ArcaneRiverDailiesInfoComponent implements OnInit {
+  @Input() onDashboard = false;
+
   dailiesLists: DailyList[] = [
     {
-      townName: 'Vanishing Journey',
+      townName: 'Vanishing Journey & Reverse City',
       canExchangeDailiesFlg: true,
       dailies: [
         {
@@ -29,7 +31,7 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           exchangeFlag: false,
         },
         {
-          name: `Collect 50 Happy Erda's Samples`,
+          name: `Collect 50 Happy Erda Samples`,
           exchangeFlag: false,
         },
         {
@@ -37,7 +39,7 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           exchangeFlag: false,
         },
         {
-          name: `Collect 50 Raging Erda's Samples`,
+          name: `Collect 50 Raging Erda Samples`,
           exchangeFlag: false,
         },
         {
@@ -45,7 +47,7 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           exchangeFlag: false,
         },
         {
-          name: `Collect 50 Sad Erda's Samples`,
+          name: `Collect 50 Sad Erda Samples`,
           exchangeFlag: false,
         },
         {
@@ -53,7 +55,7 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           exchangeFlag: false,
         },
         {
-          name: `Collect 50 Joyful Erda's Samples`,
+          name: `Collect 50 Joyful Erda Samples`,
           exchangeFlag: false,
         },
         {
@@ -61,7 +63,7 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           exchangeFlag: false,
         },
         {
-          name: `Collect 50 Stone Erda's Samples`,
+          name: `Collect 50 Stone Erda Samples`,
           exchangeFlag: false,
         },
         {
@@ -69,7 +71,7 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           exchangeFlag: false,
         },
         {
-          name: `Collect 50 Blazing Erda's Samples`,
+          name: `Collect 50 Blazing Erda Samples`,
           exchangeFlag: false,
         },
         {
@@ -77,7 +79,7 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           exchangeFlag: false,
         },
         {
-          name: `Collect 50 Soulful Erda's Samples`,
+          name: `Collect 50 Soulful Erda Samples`,
           exchangeFlag: false,
         },
         {
@@ -85,7 +87,7 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           exchangeFlag: true,
         },
         {
-          name: `Collect 50 Tranquil Erda's Samples`,
+          name: `Collect 50 Tranquil Erda Samples`,
           exchangeFlag: true,
         },
         {
@@ -93,7 +95,7 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           exchangeFlag: false,
         },
         {
-          name: `Collect 33 Lantern Erda's Samples (anti-AFK monster excluded)`,
+          name: `Collect 33 Lantern Erda Samples (anti-AFK monster excluded)`,
           exchangeFlag: false,
         },
         {
@@ -108,14 +110,23 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           name: `Collect 30 Repose Inhibitors and deliver to Jenna (found in Cave of Repose: Below the Cave)`,
           exchangeFlag: false,
         },
+        { name: `Kill 200 Edra Rats`, exchangeFlag: false },
+        { name: `kill 200 Montos`, exchangeFlag: false },
+        { name: `Kill 200 Seeker T-Drone Type As`, exchangeFlag: false },
+        { name: `Kill 200 Seeker T-Drone Type Bs`, exchangeFlag: false },
+        { name: `Collect 50 T-Boy's Drone Parts from momsters in Reverse City`, exchangeFlag: false },
+        { name: `Kill 200 Combat T-Drone Type As`, exchangeFlag: false },
+        { name: `Kill 200 Combat T-Drone Type Bs`, exchangeFlag: false },
+        { name: `Kill 200 Exterminator T-Drone Type As`, exchangeFlag: true },
+        { name: `Kill 200 Exterminator T-Drone Type Bs`, exchangeFlag: true },
       ],
     },
     {
-      townName: 'Chu Chu Island',
+      townName: 'Chu Chu Island & Yum Yum Island',
       canExchangeDailiesFlg: true,
       dailies: [
         {
-          name: `Collect 50 Master Lyck's Recipes from any monsters`,
+          name: `Collect 50 Master Lyck's Recipes from any monsters in Chu Chu Island`,
           exchangeFlag: false,
         },
         {
@@ -182,6 +193,12 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           name: `Kill 200 Patriarch Birdsharks`,
           exchangeFlag: false,
         },
+        { name: `Kill 200 Monkeylogs`, exchangeFlag: false },
+        { name: `Kill 200 Bushrooms`, exchangeFlag: false },
+        { name: `Kill 200 Lytones`, exchangeFlag: false },
+        { name: `Kill 200 Stonpys`, exchangeFlag: false },
+        { name: `Kill 200 Kumpiders`, exchangeFlag: false },
+        { name: `Kill 200 Squirrenons`, exchangeFlag: false },
       ],
     },
     {
@@ -189,29 +206,29 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
       canExchangeDailiesFlg: true,
       dailies: [
         {
-          name: `Collect 50 Sleeping Dusts from any monsters`,
+          name: `Collect 50 Sleeping Powder from any monsters`,
           exchangeFlag: false,
         },
         {
-          name: `Kill 200 Paper Bag Back Street Residents`,
+          name: `Kill 200 Paper Bag Alley Citizens`,
           exchangeFlag: false,
         },
         {
-          name: `Kill 200 Wooden Board Back Street Residents`,
+          name: `Kill 200 Wood Board Alley Citizens`,
           exchangeFlag: false,
         },
-        { name: `Kill 200 Galinas`, exchangeFlag: false },
-        { name: `Kill 200 Galus`, exchangeFlag: false },
-        { name: `Kill 200 Angry Champion's Plates`, exchangeFlag: false },
-        { name: `Kill 200 Crooked Champion's Plates`, exchangeFlag: false },
-        { name: `Kill 200 Angry Partygoers`, exchangeFlag: false },
-        { name: `Kill 200 Insane Partygoers`, exchangeFlag: false },
-        { name: `Kill 200 Softened Cleaners`, exchangeFlag: false },
-        { name: `Kill 200 Dancing Red Heels`, exchangeFlag: false },
-        { name: `Kill 200 Cleaners`, exchangeFlag: false },
-        { name: `Kill 200 Blue Eyes Gargoyles`, exchangeFlag: false },
+        { name: `Kill 200 Gallinas`, exchangeFlag: false },
+        { name: `Kill 200 Gallus`, exchangeFlag: false },
+        { name: `Kill 200 Angry Victory Plates`, exchangeFlag: false },
+        { name: `Kill 200 Crooked Victory Plates`, exchangeFlag: false },
+        { name: `Kill 200 Angry Masquerade Citizens`, exchangeFlag: false },
+        { name: `Kill 200 Insane Masquerade Citizens`, exchangeFlag: false },
+        { name: `Kill 200 Weakened Dreamkeepers`, exchangeFlag: false },
+        { name: `Kill 200 Red Dancing Shoes`, exchangeFlag: false },
+        { name: `Kill 200 Dreamkeepers`, exchangeFlag: false },
+        { name: `Kill 200 Blue-Eyed Gargoyles`, exchangeFlag: false },
         {
-          name: `Kill 200 Red Eyes Gargoyles (anti-AFK monster excluded)`,
+          name: `Kill 200 Red-Eyed Gargoyles (anti-AFK monster excluded)`,
           exchangeFlag: false,
         },
       ],
@@ -224,44 +241,44 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           name: `Collect 50 Spirits of Forest Spirit from any monsters`,
           exchangeFlag: false,
         },
-        { name: `Kill 200 Spirit of Water`, exchangeFlag: false },
-        { name: `Kill 200 Spirit of Sunshine`, exchangeFlag: false },
-        { name: `Kill 200 Spirit of Earth`, exchangeFlag: false },
-        { name: `Kill 200 Spirit of Frost Cloud`, exchangeFlag: false },
-        { name: `Kill 200 Spirit of Lightning Cloud`, exchangeFlag: false },
-        { name: `Kill 200 Spirit of Deadly Poison`, exchangeFlag: false },
-        { name: `Kill 200 Spirit of Explosion`, exchangeFlag: false },
+        { name: `Kill 200 Water Spirits`, exchangeFlag: false },
+        { name: `Kill 200 Sun Spirits`, exchangeFlag: false },
+        { name: `Kill 200 Earth Spirits`, exchangeFlag: false },
+        { name: `Kill 200 Snow Cloud Spirits`, exchangeFlag: false },
+        { name: `Kill 200 Thunder Cloud Spirits`, exchangeFlag: false },
+        { name: `Kill 200 Toxic Spirits`, exchangeFlag: false },
+        { name: `Kill 200 Volatile Spirits`, exchangeFlag: false },
         {
-          name: `Collect 50 Spirit of Cave Spirit from monsters in the Arcana Cave`,
+          name: `Collect 50 Cave Spirits from monsters in the Arcana Cave`,
           exchangeFlag: false,
         },
-        { name: `Kill 200 Spirit of Chaos`, exchangeFlag: false },
-        { name: `Kill 200 Spirit of Anguish`, exchangeFlag: false },
-        { name: `Kill 200 Spirit of Despair`, exchangeFlag: false },
-        { name: `Kill 200 Spirit of Disharmony`, exchangeFlag: false },
+        { name: `Kill 200 Befuddled Spirits`, exchangeFlag: false },
+        { name: `Kill 200 Anguished Spirits`, exchangeFlag: false },
+        { name: `Kill 200 Mournful Spirits`, exchangeFlag: false },
+        { name: `Kill 200 Discordant Spirits`, exchangeFlag: false },
       ],
     },
     {
       townName: 'Morass',
       canExchangeDailiesFlg: true,
       dailies: [
-        { name: `Kill 200 Xenoroid Echo Type B`, exchangeFlag: false },
+        { name: `Kill 200 Xenoroid Echo Type Bs`, exchangeFlag: false },
         {
-          name: `Collect 50 Tasty Seedfoods (from Xenoroid Echo Type A/B)`,
+          name: `Collect 50 Tasty Seafood (from Xenoroid Echo Type As/Bs)`,
           exchangeFlag: false,
         },
         { name: `Kill 200 Nameless Cats`, exchangeFlag: false },
         {
-          name: `Collect 50 Glittering Powders (from Nameless Cats)`,
+          name: `Collect 50 Glittering Powder (from Nameless Cats)`,
           exchangeFlag: false,
         },
         {
-          name: `Collect 50 Stolen Fruits (from Strong Gangsters)`,
+          name: `Collect 50 Stolen Fruit (from Strong Gangsters)`,
           exchangeFlag: false,
         },
-        { name: `Kill 200 Mighty Brothers`, exchangeFlag: false },
+        { name: `Kill 200 Powerful Gangsters`, exchangeFlag: false },
         {
-          name: `Collect 30 Anti-magic Fragments (from Xenoroid Echo Type A/B, Nameless Cats, Strong/Powerful Gangsters)`,
+          name: `Collect 30 Anti-magic Fragments (from Xenoroid Echo Type As/Bs, Nameless Cats, Strong/Powerful Gangsters)`,
           exchangeFlag: false,
         },
         { name: `Kill 200 Blue Shadows`, exchangeFlag: false },
@@ -271,7 +288,7 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           exchangeFlag: false,
         },
         {
-          name: `Collect 50 Experimental Residues (from Experiments Gone Wrong)`,
+          name: `Collect 50 Experimental Fragments (from Experiments Gone Wrong)`,
           exchangeFlag: false,
         },
         { name: `Kill 200 Big Experiments Gone Wrong`, exchangeFlag: false },
@@ -280,7 +297,7 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           name: `Collect 50 Broken Hammers (from Thralled Warhammer Knights)`,
           exchangeFlag: true,
         },
-        { name: `Kill 200 Thralled Wizard`, exchangeFlag: true },
+        { name: `Kill 200 Thralled Wizards`, exchangeFlag: true },
         {
           name: `Collect 50 Broken Bows (from Thralled Archer)`,
           exchangeFlag: true,
@@ -298,7 +315,7 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
           exchangeFlag: false,
         },
         {
-          name: `Stabilising the Closed Area (Find a hidden portal in Closed Area 1/2/3, then fight through 3 maps of monsters. Transport to Truffet Square once done.)`,
+          name: `Abandoned Area Sweep (Find a hidden portal in Closed Area 1/2/3, then fight through 3 maps of monsters. Transport to Truffet Square once done.)`,
           exchangeFlag: false,
         },
         {
@@ -312,25 +329,25 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
       canExchangeDailiesFlg: true,
       dailies: [
         { name: `Kill 200 Ahtuins`, exchangeFlag: false },
-        { name: `Collect 50 Ahtuin's Shells`, exchangeFlag: false },
-        { name: `Kill 200 Atuses`, exchangeFlag: false },
-        { name: `Collect 50 Atus's Shells`, exchangeFlag: false },
+        { name: `Collect 50 Ahtuin Shells`, exchangeFlag: false },
+        { name: `Kill 200 Atus`, exchangeFlag: false },
+        { name: `Collect 50 Atus Shells`, exchangeFlag: false },
         { name: `Kill 200 Bellalions`, exchangeFlag: false },
-        { name: `Collect 50 Bellalion's Scales`, exchangeFlag: false },
+        { name: `Collect 50 Bellalion Scales`, exchangeFlag: false },
         { name: `Kill 200 Bellalises`, exchangeFlag: false },
-        { name: `Collect 50 Bellalis' Scales`, exchangeFlag: false },
+        { name: `Collect 50 Bellalis Scales`, exchangeFlag: false },
         { name: `Kill 200 Aranyas`, exchangeFlag: false },
-        { name: `Collect 50 Aranya's Claws`, exchangeFlag: false },
+        { name: `Collect 50 Aranya Claws`, exchangeFlag: false },
         { name: `Kill 200 Araneas`, exchangeFlag: false },
-        { name: `Collect 50 Aranea's Claws`, exchangeFlag: false },
+        { name: `Collect 50 Aranea Claws`, exchangeFlag: false },
         { name: `Kill 200 Keepers of Light`, exchangeFlag: false },
-        { name: `Collect 50 Keepers of Light's Rings`, exchangeFlag: false },
+        { name: `Collect 50 Keepers of Light Rings`, exchangeFlag: false },
         { name: `Kill 200 Keepers of Dark`, exchangeFlag: false },
-        { name: `Collect 50 Keepers of Dark's Rings`, exchangeFlag: false },
+        { name: `Collect 50 Keepers of Dark Rings`, exchangeFlag: false },
         { name: `Kill 200 Light Executors`, exchangeFlag: false },
-        { name: `Collect 50 Light Executors' Rings`, exchangeFlag: false },
+        { name: `Collect 50 Light Executor Rings`, exchangeFlag: false },
         { name: `Kill 200 Dark Executors`, exchangeFlag: false },
-        { name: `Collect 50 Dark Executors' Rings `, exchangeFlag: false },
+        { name: `Collect 50 Dark Executor Rings `, exchangeFlag: false },
       ],
     },
     {
@@ -388,7 +405,7 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
 
   ngOnInit(): void {
     this.characterService.watchSelectedCharacter().subscribe((character) => {
-      if (character !== null) {
+      if (character !== null && !this.onDashboard) {
         const availableArcaneRiverAreas = this.characterService.getAvailableArcaneRiverAreas(character.level);
 
         this.availableDailiesLists =
@@ -396,7 +413,13 @@ export class ArcaneRiverDailiesListsComponent implements OnInit {
             ? this.dailiesLists.filter((list) => availableArcaneRiverAreas.includes(list.townName))
             : this.dailiesLists;
       } else {
-        this.availableDailiesLists = this.dailiesLists;
+        const onlyShouldExchangeDailiesList = [...this.dailiesLists];
+
+        onlyShouldExchangeDailiesList.forEach((list) => {
+          list.dailies = list.dailies.filter((daily) => daily.exchangeFlag);
+        });
+
+        this.availableDailiesLists = onlyShouldExchangeDailiesList.filter((list) => list.dailies.length > 0);
       }
     });
   }

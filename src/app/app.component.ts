@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { LocalStorageKeys } from './constants/local-storage-constants';
-import { LocalStorageService } from './utils/local-storage.service';
+import { LocalStorageService } from './utils/services/local-storage.service';
 import { CharacterInfo } from './pages/settings/settings.component';
-import { AppAccessService } from './utils/app-access.service';
+import { AppAccessService } from './utils/services/app-access.service';
+import { FilePaths } from './constants/file-paths-constants';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,8 @@ import { AppAccessService } from './utils/app-access.service';
 })
 export class AppComponent implements OnInit {
   selectedCharacter: CharacterInfo | null = null;
+  defaultCharacterImageSrc = FilePaths.blankCharacterImgSrc;
+  characterImageSrc = this.defaultCharacterImageSrc;
 
   // TODO: move this heavy logic into APP_INITALIZIER in order to keep the app component clean.
   constructor(private localStorage: LocalStorageService, private appAccessService: AppAccessService) {}
@@ -52,5 +55,9 @@ export class AppComponent implements OnInit {
 
   setSelectedCharacter(value: CharacterInfo | null) {
     this.selectedCharacter = value;
+
+    if (value !== null) {
+      this.characterImageSrc = value.characterImgSrcUrl;
+    }
   }
 }

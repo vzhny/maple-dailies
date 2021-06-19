@@ -1,0 +1,62 @@
+<app-container>
+  <div class="mb-4 font-light">
+    The following information is from this
+    <a
+      class="text-blue-400"
+      href="https://docs.google.com/spreadsheets/d/1QqtsUcnB5WBMGplKvpJI3qZQYAR5HSKn7VdHsJvRTtg/edit#gid=0"
+      target="_blank"
+      >Sheets</a
+    >
+    document, the author is <span class="font-semibold">Proof#8868</span>!
+  </div>
+
+  <!-- TODO: Implement the filters component and associated logic in a later update -->
+  <!-- <app-training-maps-filters (filter)="onFilterChanges($event)"></app-training-maps-filters> -->
+
+  <!-- <div class="mb-4">
+    <app-checkbox [value]="showOnlyAboveSelectedCharacterLevelMaps" (click)="toggleDisplayedLevels()">
+      <span class="font-medium text-gray-900 dark:text-white"> Show Only Maps Within Selected Character Level </span>
+    </app-checkbox>
+  </div> -->
+
+  <app-table *ngIf="filteredData" [columns]="columns" [data]="filteredData" [fixed]="true" [pagination]="true" #table>
+    <thead table-header>
+      <tr class="sticky top-0 table-header-row">
+        <th
+          *ngFor="let column of columns"
+          class="table-header-cell"
+          ngClass="text-{{ column.textAlign }}"
+          [ngStyle]="{
+            'min-width': setColumnWidth(column.width),
+            width: setColumnWidth(column.width),
+            'max-width': setColumnWidth(column.width)
+          }"
+        >
+          {{ column.headerTitle }}
+        </th>
+      </tr>
+    </thead>
+    <tbody table-body>
+      <tr *ngFor="let row of table.rows; let i = index" class="table-body-row">
+        <td class="text-center table-body-cell">
+          {{ row.level }}
+        </td>
+        <td class="text-left table-body-cell">
+          {{ row.area }}
+        </td>
+        <td class="text-left table-body-cell">
+          {{ row.name }}
+        </td>
+        <td class="text-center table-body-cell">
+          {{ row.minimumForce }}
+        </td>
+        <td class="text-center table-body-cell">
+          {{ row.recommendedForce }}
+        </td>
+        <td class="text-center table-body-cell">
+          {{ row.popularity }}
+        </td>
+      </tr>
+    </tbody>
+  </app-table>
+</app-container>

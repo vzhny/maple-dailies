@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { ArcaneRiverDailiesListsComponent } from './components/arcane-river-dailies-lists/arcane-river-dailies-lists.component';
-import { ArcaneSymbolCostsComponent } from './components/arcane-symbol-costs/arcane-symbol-costs.component';
+import { ArcaneRiverDailiesInfoComponent } from './components/arcane-river-dailies-info/arcane-river-dailies-info.component';
 import { HardMutoRecipesComponent } from './components/hard-muto-recipes/hard-muto-recipes.component';
+import { TrainingMapsComponent } from './components/training-maps/training-maps.component';
 import { GuidesComponent } from './guides.component';
 
 export const routes: Routes = [
@@ -11,20 +11,20 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'arcane-river-dailies',
+        redirectTo: 'training-maps',
         pathMatch: 'full',
       },
       {
-        path: 'arcane-river-dailies',
-        component: ArcaneRiverDailiesListsComponent,
+        path: 'training-maps',
+        component: TrainingMapsComponent,
+      },
+      {
+        path: 'arcane-river-dailies-info',
+        component: ArcaneRiverDailiesInfoComponent,
       },
       {
         path: 'hard-muto-recipes',
         component: HardMutoRecipesComponent,
-      },
-      {
-        path: 'arcane-symbol-costs',
-        component: ArcaneSymbolCostsComponent,
       },
     ],
   },

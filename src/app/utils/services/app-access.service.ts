@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { LocalStorageKeys } from '../constants/local-storage-constants';
+import { LocalStorageKeys } from '../../constants/local-storage-constants';
 import { LocalStorageService } from './local-storage.service';
 import * as moment from 'moment';
 import { ResetTimerService } from './reset-timer.service';
-import { DailyService } from '../pages/dailies/daily.service';
-import { BossService } from '../pages/bosses/boss.service';
+import { DailyService } from '../../pages/dailies/daily.service';
+import { BossService } from '../../pages/bosses/boss.service';
 import { environment } from 'src/environments/environment';
 
 export interface RerouteOptions {

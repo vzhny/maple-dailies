@@ -1,0 +1,38 @@
+<div class="flex items-center justify-center space-x-2">
+  <div class="w-20">
+    <ng-select
+      [items]="pageSizeOptions"
+      [(ngModel)]="pageSize"
+      [clearable]="false"
+      appendTo="body"
+      (change)="onPageSizeChange()"
+    ></ng-select>
+  </div>
+  <div class="flex items-center justify-center text-xs text-black border border-gray-400 rounded-md dark:border-gray-700 dark:text-white">
+    <div
+      class="p-2 border-r border-gray-700 cursor-pointer rounded-l-md"
+      [ngClass]="{ 'text-gray-300 dark:bg-gray-500 cursor-not-allowed': selectedPage === 1, 'dark:bg-gray-800': selectedPage !== 1 }"
+      (click)="movePage(selectedPage - 1)"
+    >
+      <fa-icon [icon]="previousIcon"></fa-icon>
+    </div>
+    <div
+      *ngFor="let page of pages"
+      (click)="selectPage(page)"
+      class="flex items-center justify-center w-8 p-2 bg-white border-r border-gray-700 cursor-pointer dark:bg-gray-800"
+      [ngClass]="{ 'bg-indigo-900 text-white dark:bg-green-500 dark:text-white': page === selectedPage }"
+    >
+      <span>{{ page }}</span>
+    </div>
+    <div
+      class="p-2 cursor-pointer rounded-r-md"
+      [ngClass]="{
+        'text-gray-300 dark:bg-gray-500 cursor-not-allowed': selectedPage === pages.length,
+        'dark:bg-gray-800': selectedPage !== pages.length
+      }"
+      (click)="movePage(selectedPage + 1)"
+    >
+      <fa-icon [icon]="nextIcon"></fa-icon>
+    </div>
+  </div>
+</div>

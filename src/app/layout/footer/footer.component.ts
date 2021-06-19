@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faGlasses, faMoon, faSun, faUsers } from '@fortawesome/free-solid-svg-icons';
-import { LocalStorageService } from 'src/app/utils/local-storage.service';
-import { ResetTimerService } from 'src/app/utils/reset-timer.service';
+import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
+import { ResetTimerService } from 'src/app/utils/services/reset-timer.service';
 
 @Component({
   selector: 'app-footer',

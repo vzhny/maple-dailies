@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { combineLatest } from 'rxjs';
-import { CharacterService } from 'src/app/utils/character.service';
+import { CharacterService } from 'src/app/utils/services/character.service';
 import { CharacterInfo } from '../settings/settings.component';
 import { BossesChecklists, BossService } from './boss.service';
 import {

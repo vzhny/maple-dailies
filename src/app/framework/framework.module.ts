@@ -12,10 +12,22 @@ import { AccordionModule } from './accordion/accordion.module';
 import { ContainerModule } from './container/container.module';
 import { ModalModule } from './modal/modal.module';
 import { ButtonModule } from './button/button.module';
+import { PaginationModule } from './pagination/pagination.module';
+import { ImageModule } from './image/image.module';
 
 @NgModule({
   declarations: [],
   imports: [],
-  exports: [CommonModule, AccordionModule, ButtonModule, ContainerModule, FormModule, ModalModule, TableModule],
+  exports: [
+    CommonModule,
+    AccordionModule,
+    ButtonModule,
+    ContainerModule,
+    FormModule,
+    ImageModule,
+    ModalModule,
+    PaginationModule,
+    TableModule,
+  ],
 })
 export class FrameworkModule {}
