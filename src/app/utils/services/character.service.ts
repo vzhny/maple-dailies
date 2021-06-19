@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
-import { LocalStorageKeys } from '../constants/local-storage-constants';
-import { CharacterInfo } from '../pages/settings/settings.component';
+import { LocalStorageKeys } from '../../constants/local-storage-constants';
+import { CharacterInfo } from '../../pages/settings/settings.component';
 import { LocalStorageService } from './local-storage.service';
 
 export interface ClassInfo {
@@ -16,8 +16,8 @@ export interface ClassInfo {
 })
 export class CharacterService {
   private arcaneRiverAreasByLevel: { [key: number]: string } = {
-    200: 'Vanishing Journey',
-    210: 'Chu Chu Island',
+    200: 'Vanishing Journey & Reverse City',
+    210: 'Chu Chu Island & Yum Yum Island',
     220: 'Lachelein',
     225: 'Arcana',
     230: 'Morass',
