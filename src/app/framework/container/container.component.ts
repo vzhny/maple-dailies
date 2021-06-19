@@ -6,6 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./container.component.scss'],
 })
 export class ContainerComponent implements OnInit {
+  @Input() fluid = false;
+
   constructor() {}
 
   ngOnInit(): void {}
