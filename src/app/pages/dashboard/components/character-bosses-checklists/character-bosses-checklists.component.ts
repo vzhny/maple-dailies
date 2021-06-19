@@ -39,9 +39,7 @@ export class CharacterBossesChecklistsComponent implements OnInit {
         const { characterIds } = filters;
 
         const selectedCharactersList =
-          this.selectedCharactersIds.length > 0
-            ? this.characterList.filter((character) => characterIds.includes(character.id))
-            : this.characterList;
+          characterIds.length > 0 ? this.characterList.filter((character) => characterIds.includes(character.id)) : this.characterList;
 
         this.characterBossesChecklistsTuplesList = this.generateCharacterBossesChecklistsTupleList(selectedCharactersList);
       }
