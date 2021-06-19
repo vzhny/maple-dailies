@@ -15,7 +15,6 @@ interface CharacterDailiesListsTuple {
 @Component({
   selector: 'app-character-dailies-lists',
   templateUrl: './character-dailies-lists.component.html',
-  styleUrls: ['./character-dailies-lists.component.scss'],
 })
 export class CharacterDailiesListsComponent implements OnInit {
   readonly characterWideCharId = 0;

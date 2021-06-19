@@ -5,7 +5,6 @@ import { AccordionService } from '../accordion.service';
 @Component({
   selector: 'app-accordion-item',
   templateUrl: './accordion-item.component.html',
-  styleUrls: ['./accordion-item.component.scss'],
 })
 export class AccordionItemComponent implements OnInit {
   @Input() headerTitle: string | null = null;

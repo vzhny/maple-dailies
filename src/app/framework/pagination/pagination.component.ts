@@ -9,7 +9,6 @@ export type PageSize = 5 | 10 | 20 | 50 | 100 | 'All';
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnInit, OnChanges {
   @Input() data: TableData[] = [];

@@ -1,27 +1,27 @@
-<div class="flex items-center p-3 shadow bg-white w-full dark:border-gray-900 dark:bg-gray-800 mb-3">
-  <form *ngIf="filterForm" [formGroup]="filterForm" class="w-full grid grid-cols-6 gap-3 mb-2">
+<div class="flex items-center w-full p-3 mb-3 bg-white shadow dark:border-gray-900 dark:bg-gray-800">
+  <form *ngIf="filterForm" [formGroup]="filterForm" class="grid w-full grid-cols-6 gap-3 mb-2">
     <label class="block col-span-1">
-      <span class="block whitespace-nowrap overflow-hidden overflow-ellipsis"> From Level </span>
+      <span class="block overflow-hidden whitespace-nowrap overflow-ellipsis"> From Level </span>
       <input type="number" min="0" max="300" class="form-control" placeholder="0 - 300" formControlName="fromLevel" />
     </label>
     <label class="block col-span-1">
-      <span class="block whitespace-nowrap overflow-hidden overflow-ellipsis"> To Level </span>
+      <span class="block overflow-hidden whitespace-nowrap overflow-ellipsis"> To Level </span>
       <input type="number" min="0" max="300" class="form-control" placeholder="0 - 300" formControlName="toLevel" />
     </label>
     <label class="block col-span-1">
-      <span class="block whitespace-nowrap overflow-hidden overflow-ellipsis"> Min. Req. Star/Arcane Force </span>
+      <span class="block overflow-hidden whitespace-nowrap overflow-ellipsis"> Min. Req. Star/Arcane Force </span>
       <input type="number" min="0" max="1320" class="form-control" placeholder="0 - 1320" formControlName="minForceRequired" />
     </label>
     <label class="block col-span-1">
-      <span class="block whitespace-nowrap overflow-hidden overflow-ellipsis"> Max. Req. Arcane Force </span>
+      <span class="block overflow-hidden whitespace-nowrap overflow-ellipsis"> Max. Req. Arcane Force </span>
       <input type="number" min="0" max="1320" class="form-control" placeholder="0 - 1320" formControlName="maxForceRequired" />
     </label>
     <label class="block col-span-1">
-      <span class="block whitespace-nowrap overflow-hidden overflow-ellipsis"> Min. Rec. Star/Arcane Force </span>
+      <span class="block overflow-hidden whitespace-nowrap overflow-ellipsis"> Min. Rec. Star/Arcane Force </span>
       <input type="number" min="0" max="1320" class="form-control" placeholder="0 - 1320" formControlName="minRecommendedForceRequired" />
     </label>
     <label class="block col-span-1">
-      <span class="block whitespace-nowrap overflow-hidden overflow-ellipsis"> Max. Rec. Star/Arcane Force </span>
+      <span class="block overflow-hidden whitespace-nowrap overflow-ellipsis"> Max. Rec. Star/Arcane Force </span>
       <input type="number" min="0" max="1320" class="form-control" placeholder="0 - 1320" formControlName="maxRecommendedForceRequired" />
     </label>
   </form>

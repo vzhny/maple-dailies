@@ -67,7 +67,6 @@ export interface AllBossesCompletionEvent {
 @Component({
   selector: 'app-bosses-checklist',
   templateUrl: './bosses-checklist.component.html',
-  styleUrls: ['./bosses-checklist.component.scss'],
 })
 export class BossesChecklistComponent implements OnInit {
   @Input() bosses: Boss[] = [];

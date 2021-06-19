@@ -27,16 +27,16 @@
       bindValue="name"
     >
       <ng-template ng-label-tmp let-item="item">
-        <div class="flex space-x-2 py-2">
-          <img class="h-6 w-6 bg-cover" src="assets/images/classes/{{ item.fileName }}" alt="Class Icon" />
+        <div class="flex py-2 space-x-2">
+          <img class="w-6 h-6 bg-cover" src="assets/images/classes/{{ item.fileName }}" alt="Class Icon" />
           <span>
             {{ item.name }}
           </span>
         </div>
       </ng-template>
       <ng-template ng-option-tmp let-item="item" let-index="index">
-        <div class="flex space-x-2 p-1">
-          <img class="h-6 w-6 bg-cover" src="assets/images/classes/{{ item.fileName }}" alt="Class Icon" />
+        <div class="flex p-1 space-x-2">
+          <img class="w-6 h-6 bg-cover" src="assets/images/classes/{{ item.fileName }}" alt="Class Icon" />
           <span>
             {{ item.name }}
           </span>
@@ -61,11 +61,11 @@
     <input type="text" class="form-control" formControlName="characterImgSrcUrl" />
   </label>
 
-  <hr *ngIf="characterLevel.value >= 200" class="col-span-full my-4" />
+  <hr *ngIf="characterLevel.value >= 200" class="my-4 col-span-full" />
 
   <label *ngIf="characterLevel.value >= 200" class="block col-span-full md:col-span-3 lg:col-span-2">
     <span class="flex space-x-1">
-      <img class="h-6 w-6" src="assets/images/arcane_symbols/arcane_symbol_vj.png" alt="Vanishing Journey Arcane Symbol Image" />
+      <img class="w-6 h-6" src="assets/images/arcane_symbols/arcane_symbol_vj.png" alt="Vanishing Journey Arcane Symbol Image" />
       <span>Vanishing Journey Arcane Symbol</span>
     </span>
     <div class="grid grid-cols-2 gap-2" formGroupName="vanishingJourneyArcaneSymbol">
@@ -82,7 +82,7 @@
 
   <label *ngIf="characterLevel.value >= 210" class="block col-span-full md:col-span-3 lg:col-span-2">
     <span class="flex space-x-1">
-      <img class="h-6 w-6" src="assets/images/arcane_symbols/arcane_symbol_chu_chu.png" alt="Chu Chu Island Arcane Symbol Image" />
+      <img class="w-6 h-6" src="assets/images/arcane_symbols/arcane_symbol_chu_chu.png" alt="Chu Chu Island Arcane Symbol Image" />
       <span>Chu Chu Island Arcane Symbol</span>
     </span>
     <div class="grid grid-cols-2 gap-2" formGroupName="chuChuIslandArcaneSymbol">
@@ -99,7 +99,7 @@
 
   <label *ngIf="characterLevel.value >= 220" class="block col-span-full md:col-span-3 lg:col-span-2">
     <span class="flex space-x-1">
-      <img class="h-6 w-6" src="assets/images/arcane_symbols/arcane_symbol_lachelein.png" alt="Lachelein Arcane Symbol Image" />
+      <img class="w-6 h-6" src="assets/images/arcane_symbols/arcane_symbol_lachelein.png" alt="Lachelein Arcane Symbol Image" />
       <span>Lachelein Arcane Symbol</span>
     </span>
 
@@ -117,7 +117,7 @@
 
   <label *ngIf="characterLevel.value >= 225" class="block col-span-full md:col-span-3 lg:col-span-2">
     <span class="flex space-x-1">
-      <img class="h-6 w-6" src="assets/images/arcane_symbols/arcane_symbol_arcana.png" alt="Arcana Arcane Symbol Image" />
+      <img class="w-6 h-6" src="assets/images/arcane_symbols/arcane_symbol_arcana.png" alt="Arcana Arcane Symbol Image" />
       <span>Arcana Arcane Symbol</span>
     </span>
 
@@ -135,7 +135,7 @@
 
   <label *ngIf="characterLevel.value >= 230" class="block col-span-full md:col-span-3 lg:col-span-2">
     <span class="flex space-x-1">
-      <img class="h-6 w-6" src="assets/images/arcane_symbols/arcane_symbol_morass.png" alt="Morass Arcane Symbol Image" />
+      <img class="w-6 h-6" src="assets/images/arcane_symbols/arcane_symbol_morass.png" alt="Morass Arcane Symbol Image" />
       <span>Morass Arcane Symbol</span>
     </span>
 
@@ -153,7 +153,7 @@
 
   <label *ngIf="characterLevel.value >= 235" class="block col-span-full md:col-span-3 lg:col-span-2">
     <span class="flex space-x-1">
-      <img class="h-6 w-6" src="assets/images/arcane_symbols/arcane_symbol_esfera.png" alt="Esfera Arcane Symbol Image" />
+      <img class="w-6 h-6" src="assets/images/arcane_symbols/arcane_symbol_esfera.png" alt="Esfera Arcane Symbol Image" />
       <span>Esfera Arcane Symbol</span>
     </span>
 
@@ -173,10 +173,10 @@
 <ng-template #characterImageUrlInfo let-hide>
   <div class="text-sm">
     Currently, there is no offical MapleStory API (and
-    <a class="underline text-blue-400" href="https://maplestory.gg" target="_blank">maplestory.gg</a>
+    <a class="text-blue-400 underline" href="https://maplestory.gg" target="_blank">maplestory.gg</a>
     does not yet have a public API) available, so in order to get your character to show up, you'll have to manually search them on the
     offical MapleStory Rankings
-    <a class="underline text-blue-400" href="https://maplestory.nexon.net/rankings/overall-ranking/legendary" target="_blank">here</a>,
+    <a class="text-blue-400 underline" href="https://maplestory.nexon.net/rankings/overall-ranking/legendary" target="_blank">here</a>,
     right click and copy the image URL, and paste it above. You should then see your character appear at the bottom right corner of the app!
   </div>
 </ng-template>

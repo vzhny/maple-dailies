@@ -14,7 +14,6 @@ import {
 @Component({
   selector: 'app-bosses',
   templateUrl: './bosses.component.html',
-  styleUrls: ['./bosses.component.scss'],
 })
 export class BossesComponent implements OnInit {
   selectedCharacter: CharacterInfo | null = null;

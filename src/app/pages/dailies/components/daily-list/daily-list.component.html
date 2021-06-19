@@ -1,30 +1,30 @@
-<div class="flex flex-col p-3 shadow bg-white h-full dark:border-gray-900 dark:bg-gray-800">
-  <div class="h-14 flex justify-between items-center mt-1 mb-3">
+<div class="flex flex-col h-full p-3 bg-white shadow dark:border-gray-900 dark:bg-gray-800">
+  <div class="flex items-center justify-between mt-1 mb-3 h-14">
     <div
-      class="flex justify-center items-center space-x-2 whitespace-nowrap overflow-hidden overflow-ellipsis"
+      class="flex items-center justify-center space-x-2 overflow-hidden whitespace-nowrap overflow-ellipsis"
       [ngClass]="{ 'cursor-pointer': hasDailiesInList }"
       (click)="completedList ? resetDailies() : completeAllDailies()"
     >
       <div>
         <fa-layers *ngIf="characterWideList" [tippy]="getToggleDailiesTooltip()">
           <fa-icon [icon]="characterWideIcon"></fa-icon>
-          <fa-icon *ngIf="completedList" class="text-red-600 text-lg" [icon]="confirmIcon" transform="down-3 right-2"></fa-icon>
+          <fa-icon *ngIf="completedList" class="text-lg text-red-600" [icon]="confirmIcon" transform="down-3 right-2"></fa-icon>
         </fa-layers>
 
         <fa-layers *ngIf="!characterWideList" [tippy]="getToggleDailiesTooltip()">
           <fa-icon *ngIf="!completedList" [icon]="notCompletedIcon"></fa-icon>
           <fa-icon *ngIf="completedList" [icon]="completedSquareIcon"></fa-icon>
-          <fa-icon *ngIf="completedList" class="text-red-600 text-lg" [icon]="confirmIcon" transform="up-1 right-1"></fa-icon>
+          <fa-icon *ngIf="completedList" class="text-lg text-red-600" [icon]="confirmIcon" transform="up-1 right-1"></fa-icon>
         </fa-layers>
       </div>
       <div
-        class="uppercase tracking-wide text-2xl whitespace-nowrap overflow-hidden overflow-ellipsis"
+        class="overflow-hidden text-2xl tracking-wide uppercase whitespace-nowrap overflow-ellipsis"
         [ngClass]="{ 'line-through': completedList }"
       >
         {{ listTitle }}
       </div>
     </div>
-    <div *ngIf="!onDashboard" class="flex justify-center items-center space-x-2">
+    <div *ngIf="!onDashboard" class="flex items-center justify-center space-x-2">
       <app-button
         *ngIf="!systemList && showActions && !isEditing"
         color="success"
@@ -62,7 +62,7 @@
   </div>
   <ul
     *ngIf="!allDailiesHidden || isEditing; else showHiddenDailiesMessage"
-    class="flex flex-col space-y-1 dark:bg-gray-700 max-h-72 overflow-y-auto border dark:border-gray-900"
+    class="flex flex-col space-y-1 overflow-y-auto border dark:bg-gray-700 max-h-72 dark:border-gray-900"
   >
     <ng-container *ngIf="hasDailiesInList; else showNoDailiesMessage">
       <ng-container *ngFor="let daily of dailies; let i = index">
@@ -77,7 +77,7 @@
           [title]="daily.text"
           (click)="toggleCompletedDaily(i)"
         >
-          <span class="ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis">
+          <span class="ml-1 overflow-hidden whitespace-nowrap overflow-ellipsis">
             {{ daily.text }}
           </span>
           <div class="flex mr-2 space-x-2 text-black dark:text-white">
@@ -111,9 +111,9 @@
     </ng-template>
   </ul>
   <ng-template #showHiddenDailiesMessage>
-    <ul class="flex flex-col space-y-1 dark:bg-gray-700 max-h-72 overflow-y-auto border dark:border-gray-900">
+    <ul class="flex flex-col space-y-1 overflow-y-auto border dark:bg-gray-700 max-h-72 dark:border-gray-900">
       <li class="flex justify-center p-1">
-        <span class="ml-1 whitespace-nowrap overflow-hidden overflow-ellipsis"> All dailies are currently hidden! </span>
+        <span class="ml-1 overflow-hidden whitespace-nowrap overflow-ellipsis"> All dailies are currently hidden! </span>
       </li>
     </ul>
   </ng-template>

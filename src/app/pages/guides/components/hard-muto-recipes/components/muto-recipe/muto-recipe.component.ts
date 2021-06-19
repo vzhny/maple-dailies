@@ -17,7 +17,6 @@ export interface MutoRecipe {
 @Component({
   selector: 'app-muto-recipe',
   templateUrl: './muto-recipe.component.html',
-  styleUrls: ['./muto-recipe.component.scss'],
 })
 export class MutoRecipeComponent implements OnInit {
   @Input() recipe!: MutoRecipe;

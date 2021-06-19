@@ -1,10 +1,10 @@
 <app-container>
   <div
     *ngIf="bossesChecklists !== null && selectedCharacter !== null"
-    class="md:mb-4 flex justify-between items-center flex-col lg:flex-row"
+    class="flex flex-col items-center justify-between md:mb-4 lg:flex-row"
   >
-    <span class="flex justify-center items-center font-light mb-3 md:mb-0 whitespace-nowrap overflow-hidden overflow-ellipsis">
-      <img src="assets/images/misc/meso.png" alt="Meso icon" class="mr-2 hidden md:block" />
+    <span class="flex items-center justify-center mb-3 overflow-hidden font-light md:mb-0 whitespace-nowrap overflow-ellipsis">
+      <img src="assets/images/misc/meso.png" alt="Meso icon" class="hidden mr-2 md:block" />
       <span class="hidden md:block">Total amount of actual vs. potential mesos earned weekly:</span>
       <span class="block md:hidden"> Total actual vs. potential weekly mesos:</span>
       <span class="ml-1">
@@ -13,8 +13,8 @@
       </span>
       <span>&nbsp; ({{ getPercentageOfActuallyEarnedMesos() }})</span>
     </span>
-    <span class="flex justify-center items-center font-light mb-3 md:mb-0 whitespace-nowrap overflow-hidden overflow-ellipsis">
-      <img src="assets/images/misc/intense-power-crystal.png" alt="Intense power crystal icon" class="mr-2 hidden md:block" />
+    <span class="flex items-center justify-center mb-3 overflow-hidden font-light md:mb-0 whitespace-nowrap overflow-ellipsis">
+      <img src="assets/images/misc/intense-power-crystal.png" alt="Intense power crystal icon" class="hidden mr-2 md:block" />
       Total amount of intense power crystals:
       {{ bossesChecklists.totalAmountOfPowerCrystals }}
     </span>
@@ -22,7 +22,7 @@
 
   <div
     *ngIf="bossesChecklists !== null && selectedCharacter !== null; else noSelectedCharacter"
-    class="grid grid-cols-1 lg:grid-cols-2 items-start gap-4"
+    class="grid items-start grid-cols-1 gap-4 lg:grid-cols-2"
   >
     <app-bosses-checklist
       [bosses]="bossesChecklists.dailyBosses"
@@ -41,10 +41,10 @@
   </div>
 
   <ng-template #noSelectedCharacter>
-    <div class="w-full h-full flex justify-center items-center">
+    <div class="flex items-center justify-center w-full h-full">
       <div class="text-2xl">
         <span>Please add and/or select a character in the &nbsp;</span>
-        <a class="inline-block underline text-blue-400" routerLink="/settings">Settings</a>
+        <a class="inline-block text-blue-400 underline" routerLink="/settings">Settings</a>
         <span>&nbsp; page in order to start checking off bosses!</span>
       </div>
     </div>

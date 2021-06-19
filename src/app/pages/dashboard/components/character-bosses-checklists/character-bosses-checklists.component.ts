@@ -18,7 +18,6 @@ interface CharacterBossesChecklistsTuple {
 @Component({
   selector: 'app-character-bosses-checklists',
   templateUrl: './character-bosses-checklists.component.html',
-  styleUrls: ['./character-bosses-checklists.component.scss'],
 })
 export class CharacterBossesChecklistsComponent implements OnInit {
   @Input() bossesChecklists: BossesChecklists[] = [];
