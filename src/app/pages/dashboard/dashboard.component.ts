@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
 
   showDailies: boolean | null = false;
   showBosses: boolean | null = false;
+  showArcaneDailiesInfo: boolean | null = false;
   showHardMutoRecipes: boolean | null = false;
 
   characterList: CharacterInfo[] = [];
@@ -65,11 +66,12 @@ export class DashboardComponent implements OnInit {
 
     this.dashboardService.watchDashboardFilters().subscribe((filters) => {
       if (filters !== null) {
-        const { characterIds, showDailies, showBosses, showHardMutoRecipes } = filters;
+        const { characterIds, showDailies, showBosses, showArcaneDailiesInfo, showHardMutoRecipes } = filters;
 
         this.selectedCharactersIds = characterIds;
         this.showDailies = showDailies;
         this.showBosses = showBosses;
+        this.showArcaneDailiesInfo = showArcaneDailiesInfo;
         this.showHardMutoRecipes = showHardMutoRecipes;
       }
     });

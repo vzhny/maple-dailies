@@ -9,18 +9,18 @@ import { NavLink } from 'src/app/layout/header/header.component';
 export class GuidesComponent implements OnInit {
   guideNavLinks: NavLink[] = [
     {
-      name: 'Arcane River Dailies',
-      route: 'arcane-river-dailies',
+      name: 'Training Maps',
+      route: 'training-maps',
+      matchExactRouteUrl: false,
+    },
+    {
+      name: 'Arcane River Dailies Info',
+      route: 'arcane-river-dailies-info',
       matchExactRouteUrl: false,
     },
     {
       name: 'Hard Muto Recipes',
       route: 'hard-muto-recipes',
-      matchExactRouteUrl: false,
-    },
-    {
-      name: 'Arcane Symbol Costs',
-      route: 'arcane-symbol-costs',
       matchExactRouteUrl: false,
     },
   ];

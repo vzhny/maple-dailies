@@ -47,6 +47,14 @@ export class DashboardFiltersComponent implements OnInit {
     }
   }
 
+  get showArcaneDailiesInfo() {
+    if (this.filterForm !== null) {
+      return this.filterForm.get('showArcaneDailiesInfo') as FormControl;
+    } else {
+      return new FormControl(null);
+    }
+  }
+
   get showHardMutoRecipes() {
     if (this.filterForm !== null) {
       return this.filterForm.get('showHardMutoRecipes') as FormControl;

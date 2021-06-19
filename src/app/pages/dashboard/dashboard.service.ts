@@ -7,6 +7,7 @@ export interface DashboardFilters {
   characterIds: number[];
   showDailies: boolean;
   showBosses: boolean;
+  showArcaneDailiesInfo: boolean;
   showHardMutoRecipes: boolean;
 }
 
@@ -18,6 +19,7 @@ export class DashboardService {
     characterIds: [],
     showDailies: false,
     showBosses: false,
+    showArcaneDailiesInfo: false,
     showHardMutoRecipes: false,
   };
 
@@ -36,6 +38,7 @@ export class DashboardService {
       characterIds: new FormControl([]),
       showDailies: new FormControl(false),
       showBosses: new FormControl(false),
+      showArcaneDailiesInfo: new FormControl(false),
       showHardMutoRecipes: new FormControl(false),
     });
 
