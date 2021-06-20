@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MutoRecipe } from './components/muto-recipe/muto-recipe.component';
+import { MutoRecipe } from '../../guides.types';
 
 @Component({
   selector: 'app-hard-muto-recipes',

@@ -4,17 +4,8 @@ import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { CharacterService } from 'src/app/utils/services/character.service';
 import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
 import { ResetTimerService } from 'src/app/utils/services/reset-timer.service';
-import { CharacterInfo } from '../settings/settings.component';
-import { Boss } from './components/bosses-checklist/bosses-checklist.component';
-
-export interface BossesChecklists {
-  characterId?: number;
-  dailyBosses: Boss[];
-  weeklyBosses: Boss[];
-  monthlyBosses: Boss[];
-  totalWeeklyMesos: number;
-  totalAmountOfPowerCrystals: number;
-}
+import { CharacterInfo } from '../settings/settings.types';
+import { Boss, BossesChecklists } from './bosses.types';
 
 @Injectable({
   providedIn: 'root',

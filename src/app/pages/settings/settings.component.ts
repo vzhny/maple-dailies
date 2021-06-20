@@ -4,30 +4,12 @@ import { faInfoCircle, faPen, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FilePaths } from 'src/app/constants/file-paths-constants';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { ModalService } from 'src/app/framework/modal/modal.service';
-import { TableColumn, TableData } from 'src/app/framework/table/table.component';
+import { TableColumn, TableData } from 'src/app/framework/table/table.types';
 import { ArcaneSymbolInfo, ArcaneSymbolService } from 'src/app/utils/services/arcane-symbol.service';
 import { CharacterService } from 'src/app/utils/services/character.service';
 import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
 import { DailyService } from '../dailies/daily.service';
-
-export interface ArcaneSymbol {
-  currentLevel: number;
-  currentExp: number;
-}
-
-export interface CharacterInfo {
-  id: number;
-  level: number;
-  class: string;
-  characterName: string;
-  characterImgSrcUrl: string;
-  vanishingJourneyArcaneSymbol: ArcaneSymbol;
-  chuChuIslandArcaneSymbol: ArcaneSymbol;
-  lacheleinArcaneSymbol: ArcaneSymbol;
-  arcanaArcaneSymbol: ArcaneSymbol;
-  morassArcaneSymbol: ArcaneSymbol;
-  esferaArcaneSymbol: ArcaneSymbol;
-}
+import { ArcaneSymbol, CharacterInfo } from './settings.types';
 
 @Component({
   selector: 'app-settings',

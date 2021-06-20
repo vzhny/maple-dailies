@@ -1,15 +1,10 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { DailyList } from 'src/app/pages/dailies/dailies.component';
-import { ToggleCompletionEvent, ToggleAllCompletionEvent } from 'src/app/pages/dailies/components/daily-list/daily-list.component';
+import { ToggleCompletionEvent, ToggleAllCompletionEvent, Daily, DailyList } from 'src/app/pages/dailies/dailies.types';
 import { DailyService } from 'src/app/pages/dailies/daily.service';
-import { CharacterInfo } from 'src/app/pages/settings/settings.component';
+import { CharacterInfo } from 'src/app/pages/settings/settings.types';
 import { CharacterService } from 'src/app/utils/services/character.service';
 import { DashboardService } from '../../dashboard.service';
-
-interface CharacterDailiesListsTuple {
-  character: CharacterInfo;
-  dailiesLists: DailyList[];
-}
+import { CharacterDailiesListsTuple } from '../../dashboard.types';
 
 // TODO: move all the duplicated code below and in the dailies component to a shared abstract class/service
 @Component({
@@ -92,7 +87,7 @@ export class CharacterDailiesListsComponent implements OnInit {
       ? this.getSelectedCharacterWideDailyListIndex(this.characterWideCharId, this.selectedListTitle)
       : this.getSelectedDailyListIndex(characterId, this.selectedListId);
     if (listIndex >= 0) {
-      this.dailiesLists[listIndex].dailies.forEach((daily) => {
+      this.dailiesLists[listIndex].dailies.forEach((daily: Daily) => {
         if (!daily.hidden) {
           daily.completed = allCompleted;
         }

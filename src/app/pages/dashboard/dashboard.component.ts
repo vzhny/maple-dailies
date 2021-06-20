@@ -3,10 +3,11 @@ import { combineLatest } from 'rxjs';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { CharacterService } from 'src/app/utils/services/character.service';
 import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
-import { BossesChecklists, BossService } from '../bosses/boss.service';
-import { DailyList } from '../dailies/dailies.component';
+import { BossService } from '../bosses/boss.service';
+import { BossesChecklists } from '../bosses/bosses.types';
+import { DailyList } from '../dailies/dailies.types';
 import { DailyService } from '../dailies/daily.service';
-import { CharacterInfo } from '../settings/settings.component';
+import { CharacterInfo } from '../settings/settings.types';
 import { DashboardService } from './dashboard.service';
 
 @Component({

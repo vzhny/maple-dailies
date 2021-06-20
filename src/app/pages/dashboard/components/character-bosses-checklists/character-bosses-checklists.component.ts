@@ -1,18 +1,10 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { BossesChecklists, BossService } from 'src/app/pages/bosses/boss.service';
-import {
-  AllBossesCompletionEvent,
-  Boss,
-  BossCompletionEvent,
-} from 'src/app/pages/bosses/components/bosses-checklist/bosses-checklist.component';
-import { CharacterInfo } from 'src/app/pages/settings/settings.component';
+import { BossService } from 'src/app/pages/bosses/boss.service';
+import { BossesChecklists, AllBossesCompletionEvent, Boss, BossCompletionEvent } from 'src/app/pages/bosses/bosses.types';
+import { CharacterInfo } from 'src/app/pages/settings/settings.types';
 import { CharacterService } from 'src/app/utils/services/character.service';
 import { DashboardService } from '../../dashboard.service';
-
-interface CharacterBossesChecklistsTuple {
-  character: CharacterInfo;
-  bossesChecklists: BossesChecklists;
-}
+import { CharacterBossesChecklistsTuple } from '../../dashboard.types';
 
 // TODO: move all the duplicated code below and in the bosses component to a shared abstract class/service
 @Component({

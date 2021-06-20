@@ -2,9 +2,8 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { NumberService } from 'src/app/utils/services/number.service';
-import { TableData } from '../table/table.component';
-
-export type PageSize = 5 | 10 | 20 | 50 | 100 | 'All';
+import { TableData } from '../table/table.types';
+import { PageSize } from './pagination.types';
 
 @Component({
   selector: 'app-pagination',

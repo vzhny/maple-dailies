@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-
-export interface CollapseEvent {
-  headerTitle: string | null;
-  collapsed: boolean;
-}
+import { CollapseEvent } from './accordion.types';
 
 @Injectable({
   providedIn: 'root',

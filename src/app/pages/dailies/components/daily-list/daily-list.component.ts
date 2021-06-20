@@ -19,44 +19,18 @@ import {
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons';
 import { faSquare as faSquareRegular } from '@fortawesome/free-regular-svg-icons';
-import { TableColumn } from 'src/app/framework/table/table.component';
-import { Daily } from '../../dailies.component';
 import { DailyService } from '../../daily.service';
-
-interface DailyEvent {
-  listId: number;
-  listTitle: string | null;
-  characterWideFlag: boolean;
-}
-
-export interface AddDailyEvent extends DailyEvent {}
-
-export interface EditDailyEvent extends DailyEvent {
-  index: number;
-}
-
-export interface MoveDailyEvent extends DailyEvent {
-  fromIndex: number;
-  toIndex: number;
-}
-
-export interface DeleteDailyListEvent extends DailyEvent {}
-
-export interface ToggleCompletionEvent extends DailyEvent {
-  index: number;
-  completion: boolean;
-}
-
-export interface ToggleAllCompletionEvent extends DailyEvent {
-  allCompleted: boolean;
-}
-
-export interface ToggleVisibilityEvent extends DailyEvent {
-  index: number;
-  visibility: boolean;
-}
-
-type MoveDirection = 'up' | 'down';
+import {
+  AddDailyEvent,
+  DeleteDailyListEvent,
+  EditDailyEvent,
+  MoveDailyEvent,
+  MoveDirection,
+  ToggleAllCompletionEvent,
+  ToggleCompletionEvent,
+  ToggleVisibilityEvent,
+  Daily,
+} from '../../dailies.types';
 
 @Component({
   selector: 'app-daily-list',

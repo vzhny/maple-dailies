@@ -1,20 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FilePaths } from 'src/app/constants/file-paths-constants';
-import { TableColumn } from 'src/app/framework/table/table.component';
-import { CharacterInfo } from 'src/app/pages/settings/settings.component';
+import { TableColumn } from 'src/app/framework/table/table.types';
 import { CharacterService } from 'src/app/utils/services/character.service';
 import { CsvToJsonService } from 'src/app/utils/services/csv-to-json.service';
-import { TrainingMapsFiltersEvent } from './components/training-maps-filters/training-maps-filters.component';
-
-export interface TrainingMap {
-  level: number | null;
-  name: string | null;
-  area: string | null;
-  minimumForce: number | null;
-  recommendedForce: number | null;
-  popularity: string | null;
-}
+import { TrainingMapsFiltersEvent, TrainingMap } from '../../guides.types';
 
 @Component({
   selector: 'app-training-maps',

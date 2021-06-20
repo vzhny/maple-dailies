@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { CharacterInfo } from 'src/app/pages/settings/settings.types';
 import { LocalStorageKeys } from '../../constants/local-storage-constants';
-import { CharacterInfo } from '../../pages/settings/settings.component';
 import { LocalStorageService } from './local-storage.service';
 
 export interface ClassInfo {
