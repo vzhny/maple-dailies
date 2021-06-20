@@ -5,9 +5,8 @@ import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { CharacterService } from 'src/app/utils/services/character.service';
 import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
 import { ResetTimerService } from 'src/app/utils/services/reset-timer.service';
-import { CharacterInfo } from '../settings/settings.component';
-import { Daily, DailyList } from './dailies.component';
-
+import { CharacterInfo } from '../settings/settings.types';
+import { Daily, DailyList } from './dailies.types';
 export interface DailyListPayload {
   title: string;
   characterWideFlag: boolean;

@@ -1,17 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faCircle, faCubes, faSkull } from '@fortawesome/free-solid-svg-icons';
 import { CharacterService } from 'src/app/utils/services/character.service';
-
-interface Daily {
-  name: string;
-  exchangeFlag: boolean;
-}
-
-interface DailyList {
-  townName: string;
-  canExchangeDailiesFlg: boolean;
-  dailies: Daily[];
-}
+import { DailyInfoList } from '../../guides.types';
 
 @Component({
   selector: 'app-arcane-river-dailies-info',
@@ -20,7 +10,7 @@ interface DailyList {
 export class ArcaneRiverDailiesInfoComponent implements OnInit {
   @Input() onDashboard = false;
 
-  dailiesLists: DailyList[] = [
+  dailiesLists: DailyInfoList[] = [
     {
       townName: 'Vanishing Journey & Reverse City',
       canExchangeDailiesFlg: true,
@@ -398,7 +388,7 @@ export class ArcaneRiverDailiesInfoComponent implements OnInit {
   collectIcon = faCubes;
   otherIcon = faCircle;
 
-  availableDailiesLists: DailyList[] = [];
+  availableDailiesLists: DailyInfoList[] = [];
 
   constructor(private characterService: CharacterService) {}
 

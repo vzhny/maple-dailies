@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavLink } from 'src/app/layout/header/header.component';
+import { NavLink } from 'src/app/layout/header/header.types';
 
 @Component({
   selector: 'app-guides',

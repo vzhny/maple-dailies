@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { AccordionService } from '../accordion.service';
-
 @Component({
   selector: 'app-accordion-item',
   templateUrl: './accordion-item.component.html',

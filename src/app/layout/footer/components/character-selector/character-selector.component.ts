@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { CharacterInfo } from 'src/app/pages/settings/settings.component';
+import { CharacterInfo } from 'src/app/pages/settings/settings.types';
 import { CharacterService } from 'src/app/utils/services/character.service';
 
 @Component({

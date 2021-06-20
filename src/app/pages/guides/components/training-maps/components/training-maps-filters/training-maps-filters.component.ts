@@ -1,15 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
-export interface TrainingMapsFiltersEvent {
-  fromLevel: number | null;
-  toLevel: number | null;
-  minForceRequired: number | null;
-  maxForceRequired: number | null;
-  minRecommendedForceRequired: number | null;
-  maxRecommendedForceRequired: number | null;
-  popularity: number | null;
-}
+import { TrainingMapsFiltersEvent } from 'src/app/pages/guides/guides.types';
 
 @Component({
   selector: 'app-training-maps-filters',

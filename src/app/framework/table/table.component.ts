@@ -1,17 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { PageSize } from 'src/app/framework/pagination/pagination.component';
-
-type Alignment = 'left' | 'center' | 'right';
-
-export interface TableColumn {
-  headerTitle: string;
-  textAlign: Alignment;
-  width?: string;
-}
-
-export interface TableData {
-  [key: string]: any;
-}
+import { PageSize } from '../pagination/pagination.types';
+import { TableColumn, TableData } from './table.types';
 
 @Component({
   selector: 'app-table',

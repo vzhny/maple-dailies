@@ -2,14 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
 import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
-
-export interface DashboardFilters {
-  characterIds: number[];
-  showDailies: boolean;
-  showBosses: boolean;
-  showArcaneDailiesInfo: boolean;
-  showHardMutoRecipes: boolean;
-}
+import { DashboardFilters } from './dashboard.types';
 
 @Injectable({
   providedIn: 'root',

@@ -3,9 +3,9 @@ import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { LocalStorageKeys } from './constants/local-storage-constants';
 import { LocalStorageService } from './utils/services/local-storage.service';
-import { CharacterInfo } from './pages/settings/settings.component';
 import { AppAccessService } from './utils/services/app-access.service';
 import { FilePaths } from './constants/file-paths-constants';
+import { CharacterInfo } from './pages/settings/settings.types';
 
 @Component({
   selector: 'app-root',

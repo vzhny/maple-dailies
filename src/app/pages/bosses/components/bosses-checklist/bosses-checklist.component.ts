@@ -14,55 +14,7 @@ import {
   faSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import { faCircle as faCircleRegular, faSquare as faSquareRegular } from '@fortawesome/free-regular-svg-icons';
-
-export type BossFrequency = 'daily' | 'weekly' | 'monthly';
-export type BossDifficulty = 'easy' | 'normal' | 'hard' | 'chaos';
-export type BossAmountOperation = 'increment' | 'decrement';
-
-export interface Boss {
-  name: string;
-  difficulty: BossDifficulty;
-  frequency: BossFrequency;
-  perWeekAmount: number;
-  bossCrystalMesos: number;
-  selected: boolean;
-  completed: boolean;
-}
-
-export interface BossEvent {
-  bossIndex: number;
-  frequency: BossFrequency;
-  perWeekAmount: number;
-  bossCrystalMesos: number;
-  selected: boolean;
-}
-
-export interface BossSelectionEvent {
-  bossIndex: number;
-  frequency: BossFrequency;
-  perWeekAmount: number;
-  bossCrystalMesos: number;
-  selected: boolean;
-}
-
-export interface DailyBossAmountOperationEvent {
-  bossIndex: number;
-  perWeekAmount: number;
-  bossCrystalMesos: number;
-  operation: BossAmountOperation;
-  selected: boolean;
-}
-
-export interface BossCompletionEvent {
-  isWeekly: boolean;
-  bossIndex: number;
-  completed: boolean;
-}
-
-export interface AllBossesCompletionEvent {
-  isWeekly: boolean;
-  allCompleted: boolean;
-}
+import { AllBossesCompletionEvent, Boss, BossCompletionEvent, BossSelectionEvent, DailyBossAmountOperationEvent } from '../../bosses.types';
 
 @Component({
   selector: 'app-bosses-checklist',

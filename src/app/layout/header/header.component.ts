@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface NavLink {
-  name: string;
-  route: string;
-  matchExactRouteUrl: boolean;
-}
+import { NavLink } from './header.types';
 
 @Component({
   selector: 'app-header',

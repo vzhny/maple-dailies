@@ -7,7 +7,7 @@ import { ModalService } from 'src/app/framework/modal/modal.service';
 import { CharacterService } from 'src/app/utils/services/character.service';
 import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
 import {} from 'src/app/utils/services/reset-timer.service';
-import { CharacterInfo } from '../settings/settings.component';
+import { CharacterInfo } from '../settings/settings.types';
 import {
   AddDailyEvent,
   DeleteDailyListEvent,
@@ -16,23 +16,10 @@ import {
   ToggleAllCompletionEvent,
   ToggleCompletionEvent,
   ToggleVisibilityEvent,
-} from './components/daily-list/daily-list.component';
+  Daily,
+  DailyList,
+} from './dailies.types';
 import { DailyListPayload, DailyService } from './daily.service';
-
-export interface DailyList {
-  dailyListId: number;
-  characterId: number;
-  title: string;
-  dailies: Daily[];
-  systemFlag: boolean;
-}
-
-export interface Daily {
-  dailyListId: number;
-  text: string;
-  completed: boolean;
-  hidden: boolean;
-}
 
 @Component({
   selector: 'app-dailies',

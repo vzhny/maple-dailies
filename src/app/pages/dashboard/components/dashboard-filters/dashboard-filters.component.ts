@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LocalStorageKeys } from 'src/app/constants/local-storage-constants';
-import { CharacterInfo } from 'src/app/pages/settings/settings.component';
+import { CharacterInfo } from 'src/app/pages/settings/settings.types';
 import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
-import { DashboardFilters, DashboardService } from '../../dashboard.service';
+import { DashboardService } from '../../dashboard.service';
+import { DashboardFilters } from '../../dashboard.types';
 
 @Component({
   selector: 'app-dashboard-filters',

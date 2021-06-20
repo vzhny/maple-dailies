@@ -1,18 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-export interface MutoRecipeIngredient {
-  name: string;
-  amount: number;
-}
-
-export interface MutoRecipe {
-  name: string;
-  ingredient1: MutoRecipeIngredient;
-  ingredient2: MutoRecipeIngredient;
-  ingredient3?: MutoRecipeIngredient;
-  ingredient4?: MutoRecipeIngredient;
-  canHaveHiddenIngredientsFlg: boolean;
-}
+import { MutoRecipe } from 'src/app/pages/guides/guides.types';
 
 @Component({
   selector: 'app-muto-recipe',

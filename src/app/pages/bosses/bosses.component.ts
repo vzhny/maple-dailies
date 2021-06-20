@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { combineLatest } from 'rxjs';
 import { CharacterService } from 'src/app/utils/services/character.service';
-import { CharacterInfo } from '../settings/settings.component';
-import { BossesChecklists, BossService } from './boss.service';
+import { CharacterInfo } from '../settings/settings.types';
+import { BossService } from './boss.service';
 import {
+  BossesChecklists,
   Boss,
   AllBossesCompletionEvent,
   BossSelectionEvent,
   DailyBossAmountOperationEvent,
   BossCompletionEvent,
-} from './components/bosses-checklist/bosses-checklist.component';
+} from './bosses.types';
 
 @Component({
   selector: 'app-bosses',

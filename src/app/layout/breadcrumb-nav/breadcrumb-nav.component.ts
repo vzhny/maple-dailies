@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NavLink } from 'src/app/layout/header/header.component';
+import { NavLink } from '../header/header.types';
 
 @Component({
   selector: 'app-breadcrumb-nav',
