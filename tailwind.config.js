@@ -31,11 +31,12 @@ module.exports = {
       900: 900,
       1000: 1000,
     },
-    fontFamily: {
-      sans: ['DotGothic16', ...defaultTheme.fontFamily.sans],
-      mono: ['Ubuntu Mono', ...defaultTheme.fontFamily.mono],
-    },
     extend: {
+      fontFamily: {
+        serif: ['Merriweather', ...defaultTheme.fontFamily.serif],
+        sans: ['IBM Plex Sans Condensed', ...defaultTheme.fontFamily.sans],
+        mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono],
+      },
       colors: {
         ...defaultTheme.colors,
         gray: colors.trueGray,

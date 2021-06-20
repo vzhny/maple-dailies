@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@ng-select/ng-select/themes/default.theme.css';
 
+@import '@fontsource/merriweather';
+@import '@fontsource/ibm-plex-sans-condensed';
+@import '@fontsource/ibm-plex-mono';
+
 @import '~tippy.js/dist/tippy.css';
 @import '~tippy.js/themes/light.css';
 @import '~tippy.js/animations/scale.css';
@@ -10,16 +14,6 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
-  @font-face {
-    font-family: 'DotGothic16';
-    src: url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
-  }
-
-  @font-face {
-    font-family: 'Ubuntu Mono';
-    src: url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400&display=swap');
-  }
-
   body,
   html {
     @apply bg-gray-50 dark:bg-gray-900 dark:text-white h-screen overflow-hidden;

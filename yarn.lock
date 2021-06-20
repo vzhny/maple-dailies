@@ -1126,6 +1126,21 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@fontsource/ibm-plex-mono@^4.4.5":
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-mono/-/ibm-plex-mono-4.4.5.tgz#691c535cb649356f57c0810620b4a314dea0d3aa"
+  integrity sha512-93865aR4zyXhWR5HNZ1gOI2AlezlSJ+MaZ1bKhjqCTCNlSB6TNPwGOzkLApUwucs5JPX/LS10ATfCms8+GkBVw==
+
+"@fontsource/ibm-plex-sans-condensed@^4.4.5":
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-sans-condensed/-/ibm-plex-sans-condensed-4.4.5.tgz#89fe577e84c5f10807701ff752c54de8b5577de1"
+  integrity sha512-dvqoZ1ZZlQoXjVdk8046zjKVXysCKa9FsEnR4WrLwZguM7gojERY+7h7jr815T3emV0j0IaULDgklT9aitHcIg==
+
+"@fontsource/merriweather@^4.4.5":
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/@fontsource/merriweather/-/merriweather-4.4.5.tgz#751ab07aff9f0a25a7e5f786b75900079e28f9ef"
+  integrity sha512-8m/wWbU6cEkufpp67Hm4VwOGVLdz8S2GuCM5haVKNb+NJ9USrl0cREJfkoNs157rsbcjKpuj7tZA/jXEDvlyTA==
+
 "@fortawesome/angular-fontawesome@0.8.2":
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/@fortawesome/angular-fontawesome/-/angular-fontawesome-0.8.2.tgz#fe0401c66dd237fd78d3f29d540ef7302bb40e5a"
