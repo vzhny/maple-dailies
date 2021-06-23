@@ -85,8 +85,7 @@
       <input type="text" class="form-control" formControlName="title" />
     </label>
     <div class="block">
-      <app-checkbox [control]="characterWideFlag">
-        <span class="font-medium text-gray-900 dark:text-white">Character wide?</span>
+      <app-checkbox label="Character wide?" [control]="characterWideFlag">
         <fa-icon [icon]="infoIcon" tippy="A character-wide list will appear on all dailies pages" maxWidth="150"></fa-icon>
       </app-checkbox>
     </div>

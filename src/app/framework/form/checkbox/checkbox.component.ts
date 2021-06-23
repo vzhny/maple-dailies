@@ -7,6 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./checkbox.component.scss'],
 })
 export class CheckboxComponent implements OnInit {
+  @Input() label!: string;
   @Input() value!: boolean;
   @Input() control: FormControl | null = null;
 
