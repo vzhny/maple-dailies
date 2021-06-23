@@ -31,10 +31,13 @@ module.exports = {
       900: 900,
       1000: 1000,
     },
+    fontFamily: {
+      condensed: ['IBM Plex Sans Condensed', ...defaultTheme.fontFamily.sans],
+    },
     extend: {
       fontFamily: {
         serif: ['Merriweather', ...defaultTheme.fontFamily.serif],
-        sans: ['IBM Plex Sans Condensed', ...defaultTheme.fontFamily.sans],
+        sans: ['IBM Plex Sans', ...defaultTheme.fontFamily.sans],
         mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono],
       },
       colors: {
@@ -52,6 +55,7 @@ module.exports = {
       borderWidth: ['last'],
       textColor: ['visited', 'disabled'],
       cursor: ['disabled'],
+      margin: ['last'],
     },
   },
 };
