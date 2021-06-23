@@ -27,7 +27,7 @@
     }
 
     ::-webkit-scrollbar-track {
-      @apply bg-transparent;
+      @apply bg-gray-50 dark:bg-gray-700;
     }
   }
 }
