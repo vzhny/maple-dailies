@@ -3,7 +3,7 @@
     *ngIf="bossesChecklists !== null && selectedCharacter !== null"
     class="flex flex-col items-center justify-between md:mb-4 lg:flex-row"
   >
-    <span class="flex items-center justify-center mb-3 overflow-hidden font-light md:mb-0 whitespace-nowrap overflow-ellipsis">
+    <span class="flex items-center justify-center h-8 mb-3 overflow-hidden font-light md:mb-0 whitespace-nowrap overflow-ellipsis">
       <img src="assets/images/misc/meso.png" alt="Meso icon" class="hidden mr-2 md:block" />
       <span class="hidden md:block">Total amount of actual vs. potential mesos earned weekly:</span>
       <span class="block md:hidden"> Total actual vs. potential weekly mesos:</span>
@@ -13,7 +13,7 @@
       </span>
       <span>&nbsp; ({{ getPercentageOfActuallyEarnedMesos() }})</span>
     </span>
-    <span class="flex items-center justify-center mb-3 overflow-hidden font-light md:mb-0 whitespace-nowrap overflow-ellipsis">
+    <span class="flex items-center justify-center h-8 mb-3 overflow-hidden font-light md:mb-0 whitespace-nowrap overflow-ellipsis">
       <img src="assets/images/misc/intense-power-crystal.png" alt="Intense power crystal icon" class="hidden mr-2 md:block" />
       Total amount of intense power crystals:
       {{ bossesChecklists.totalAmountOfPowerCrystals }}
