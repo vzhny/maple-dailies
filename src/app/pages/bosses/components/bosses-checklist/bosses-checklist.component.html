@@ -11,9 +11,9 @@
           <fa-icon *ngIf="completedList" class="text-lg text-red-600" [icon]="confirmIcon" transform="up-1 right-1"></fa-icon>
         </fa-layers>
       </div>
-      <span class="overflow-hidden text-2xl tracking-wide uppercase whitespace-nowrap overflow-ellipsis">
+      <span class="overflow-hidden text-2xl tracking-wide uppercase font-condensed whitespace-nowrap overflow-ellipsis">
         {{ weekly ? 'Weekly' : 'Daily' }} Bosses
-        <span class="overflow-hidden text-2xl tracking-wide uppercase whitespace-nowrap overflow-ellipsis">
+        <span class="overflow-hidden text-2xl tracking-wide uppercase font-condensed whitespace-nowrap overflow-ellipsis">
           ({{ amountOfSelectedBosses }})
         </span>
       </span>
@@ -39,7 +39,7 @@
         <fa-icon [icon]="showActions ? hideActionsIcon : showActionsIcon" size="sm"></fa-icon>
       </app-button>
     </div>
-    <div *ngIf="onDashboard" class="overflow-hidden text-2xl tracking-wide uppercase whitespace-nowrap overflow-ellipsis">
+    <div *ngIf="onDashboard" class="overflow-hidden text-2xl tracking-wide uppercase font-condensed whitespace-nowrap overflow-ellipsis">
       Total: {{ amountOfEarnedMesos | mesos }}
     </div>
   </div>

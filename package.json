@@ -1,6 +1,6 @@
 {
   "name": "maple-dailies",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
     "@fontsource/ibm-plex-mono": "^4.4.5",
+    "@fontsource/ibm-plex-sans": "^4.4.5",
     "@fontsource/ibm-plex-sans-condensed": "^4.4.5",
     "@fontsource/merriweather": "^4.4.5",
     "@fortawesome/angular-fontawesome": "0.8.2",

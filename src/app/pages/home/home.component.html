@@ -1,12 +1,18 @@
 <app-container>
-  <div class="flex flex-col justify-center h-full mt-10">
-    <h1 class="text-4xl font-semibold">Track your dailies, check off your boss to-do list, and more!</h1>
-    <div class="mt-2 text-xl font-thin">
-      <p>
-        Set up your dailies that will reset each day, check off which bosses you've completed with built-in meso tracking, and quickly check
-        useful information to help your progression. Supports multiple characters, full editing functionality, and no account needed -- just
-        start adding dailies!
-      </p>
+  <div class="flex flex-col justify-center">
+    <div class="mx-auto mt-6 mb-6 text-center xl:mb-0">
+      <div class="text-4xl">
+        Welcome to <span class="text-indigo-800 dark:text-green-300">Maple Dailies </span>
+        <span class="hidden xl:inline-block"> — a tool built by a fellow player, for fellow players!</span>
+      </div>
+      <div class="mb-4 text-xl font-thin lg:mb-0">Check out some of the app features available to you below!</div>
     </div>
+    <app-home-details-hero-section
+      *ngFor="let info of sections; let i = index"
+      [headerTitle]="info.headerTitle"
+      [bodyText]="info.bodyText"
+      [imageSrc]="info.imageSrc"
+      [imageFirst]="i % 2 === 0"
+    ></app-home-details-hero-section>
   </div>
 </app-container>
