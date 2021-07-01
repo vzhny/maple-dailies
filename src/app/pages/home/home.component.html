@@ -1,11 +1,8 @@
 <app-container>
   <div class="flex flex-col justify-center">
     <div class="mx-auto mt-6 mb-6 text-center xl:mb-0">
-      <div class="text-4xl">
-        Welcome to <span class="text-indigo-800 dark:text-green-300">Maple Dailies </span>
-        <span class="hidden xl:inline-block"> — a tool built by a fellow player, for fellow players!</span>
-      </div>
-      <div class="mb-4 text-xl font-thin lg:mb-0">Check out some of the app features available to you below!</div>
+      <div class="text-2xl md:text-4xl lg:text-5xl">Welcome to <span class="text-indigo-800 dark:text-green-300">Maple Dailies</span>!</div>
+      <div class="hidden mb-4 text-xl font-thin lg:block lg:mb-0">Check out some of the app features available to you below!</div>
     </div>
     <app-home-details-hero-section
       *ngFor="let info of sections; let i = index"

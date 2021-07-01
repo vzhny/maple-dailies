@@ -16,12 +16,15 @@ export class FooterComponent implements OnInit {
   characterSelectIcon = faUsers;
 
   darkModeEnabled = true;
+  innerWidth = 0;
 
   remainingTime: string | null = null;
 
   constructor(private localStorage: LocalStorageService, private resetTimerService: ResetTimerService) {}
 
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+
     const darkModeEnabled = this.localStorage.get<boolean>('darkModeEnabled');
 
     if (darkModeEnabled !== null) {
