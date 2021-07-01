@@ -8,11 +8,6 @@ import { NavLink } from './header.types';
 export class HeaderComponent implements OnInit {
   navLinks: NavLink[] = [
     {
-      name: 'Home',
-      route: '/',
-      matchExactRouteUrl: true,
-    },
-    {
       name: 'Dashboard',
       route: '/dashboard',
       matchExactRouteUrl: false,
