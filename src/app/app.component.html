@@ -9,7 +9,7 @@
     <app-footer></app-footer>
   </div>
 </div>
-<div *ngIf="selectedCharacter" class="absolute flex flex-col items-center justify-center w-32 right-3 bottom-20">
+<div *ngIf="selectedCharacter" class="absolute flex-col items-center justify-center hidden w-32 md:flex right-3 bottom-20">
   <img
     class="w-32 h-32 bg-cover"
     [src]="characterImageSrc"
