@@ -1,36 +1,41 @@
-<div class="flex items-center w-full p-3 bg-white shadow dark:border-gray-900 dark:bg-gray-800">
-  <form *ngIf="filterForm" [formGroup]="filterForm" class="grid w-full grid-cols-1 gap-3 mb-2 md:grid-cols-3 lg:grid-cols-6">
-    <label class="block col-span-3">
-      <span class="space-x-2">Selected Character(s)</span>
-      <ng-select
-        [items]="characterList"
-        [selectOnTab]="true"
-        [multiple]="true"
-        [closeOnSelect]="false"
-        [hideSelected]="true"
-        placeholder="All"
-        class="form-control custom"
-        formControlName="characterIds"
-        bindValue="id"
-      >
-        <ng-template ng-label-tmp let-item="item" let-clear="clear">
-          <span class="p-1">{{ item.characterName }}</span>
-          <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
-        </ng-template>
-        <ng-template ng-option-tmp let-item="item" let-index="index">
-          <span>{{ item.characterName }} (Lv. {{ item.level }} {{ item.class }})</span>
-        </ng-template>
-      </ng-select>
-    </label>
+<div class="border shadow-lg border-neutral rounded-box card bg-base-100">
+  <div class="card-body">
+    <div class="flex items-center w-full">
+      <form *ngIf="filterForm" [formGroup]="filterForm" class="grid w-full grid-cols-1 gap-3 mb-2 md:grid-cols-3 lg:grid-cols-6">
+        <label class="block col-span-3">
+          <span class="space-x-2">Selected Character(s)</span>
+          <ng-select
+            [items]="characterList"
+            [selectOnTab]="true"
+            [multiple]="true"
+            [closeOnSelect]="false"
+            [hideSelected]="true"
+            placeholder="All"
+            class="form-control custom"
+            formControlName="characterIds"
+            bindValue="id"
+            appendTo="body"
+          >
+            <ng-template ng-label-tmp let-item="item" let-clear="clear">
+              <span class="p-1">{{ item.characterName }}</span>
+              <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-index="index">
+              <span>{{ item.characterName }} (Lv. {{ item.level }} {{ item.class }})</span>
+            </ng-template>
+          </ng-select>
+        </label>
 
-    <div class="col-span-3">
-      <div class="mb-3">Show Sections</div>
-      <div class="flex flex-col pb-2 space-y-2 overflow-x-auto md:space-x-4 md:items-center sm:flex-row sm:space-y-0">
-        <app-checkbox label="Dailies" [control]="showDailies"> </app-checkbox>
-        <app-checkbox label="Bosses Checklists" [control]="showBosses"> </app-checkbox>
-        <app-checkbox label="Arcane Dailies Exchange Info" [control]="showArcaneDailiesInfo"> </app-checkbox>
-        <app-checkbox label="Hard Muto Recipes" [control]="showHardMutoRecipes"> </app-checkbox>
-      </div>
+        <div class="col-span-3">
+          <div class="mb-3">Show Sections</div>
+          <div class="flex flex-col pb-2 space-y-2 overflow-x-auto md:space-x-4 md:items-center sm:flex-row sm:space-y-0">
+            <app-checkbox label="Dailies" [control]="showDailies"> </app-checkbox>
+            <app-checkbox label="Bosses Checklists" [control]="showBosses"> </app-checkbox>
+            <app-checkbox label="Arcane Dailies Exchange Info" [control]="showArcaneDailiesInfo"> </app-checkbox>
+            <app-checkbox label="Hard Muto Recipes" [control]="showHardMutoRecipes"> </app-checkbox>
+          </div>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 </div>

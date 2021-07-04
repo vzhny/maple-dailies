@@ -1,48 +1,17 @@
-<div
-  *ngIf="recipe !== null"
-  class="h-full bg-white border border-black shadow dark:bg-gray-800"
-  [ngClass]="{
-    'bg-indigo-800 text-white dark:bg-indigo-800 dark:text-white': recipe.canHaveHiddenIngredientsFlg
-  }"
->
-  <div
-    class="p-2 border-b border-black"
-    [ngClass]="{
-      'bg-indigo-900 dark:bg-indigo-900': recipe.canHaveHiddenIngredientsFlg
-    }"
-  >
-    {{ recipe.name }}
-  </div>
-  <div
-    class="flex items-center justify-between p-2"
-    [ngClass]="{
-      'bg-indigo-800 dark:bg-indigo-800': recipe.canHaveHiddenIngredientsFlg
-    }"
-  >
-    <app-muto-recipe-ingredient-info [ingredient]="recipe.ingredient1"></app-muto-recipe-ingredient-info>
-    <app-muto-recipe-ingredient-info [ingredient]="recipe.ingredient2"></app-muto-recipe-ingredient-info>
-  </div>
-  <div
-    class="flex items-center justify-between p-2"
-    [ngClass]="{
-      'bg-indigo-800 dark:bg-indigo-800': recipe.canHaveHiddenIngredientsFlg
-    }"
-  >
-    <div
-      *ngIf="recipe.ingredient3"
-      [ngClass]="{
-        'bg-indigo-800 dark:bg-indigo-800': recipe.canHaveHiddenIngredientsFlg
-      }"
-    >
-      <app-muto-recipe-ingredient-info [ingredient]="recipe.ingredient3"></app-muto-recipe-ingredient-info>
+<div *ngIf="recipe !== null" class="h-full shadow-lg card rounded-box bg-primary text-primary-content">
+  <div class="p-0 card-body">
+    <h2 class="p-3 mb-0 card-title bg-primary-focus">{{ recipe.name }}</h2>
+    <div class="flex items-center justify-between p-2">
+      <app-muto-recipe-ingredient-info [ingredient]="recipe.ingredient1"></app-muto-recipe-ingredient-info>
+      <app-muto-recipe-ingredient-info [ingredient]="recipe.ingredient2"></app-muto-recipe-ingredient-info>
     </div>
-    <div
-      *ngIf="recipe.ingredient4"
-      [ngClass]="{
-        'bg-indigo-800 dark:bg-indigo-800': recipe.canHaveHiddenIngredientsFlg
-      }"
-    >
-      <app-muto-recipe-ingredient-info [ingredient]="recipe.ingredient4"></app-muto-recipe-ingredient-info>
+    <div class="flex items-center justify-between p-2" [ngClass]="{ 'bg-primary': recipe.canHaveHiddenIngredientsFlg }">
+      <div *ngIf="recipe.ingredient3" [ngClass]="{ 'bg-primary': recipe.canHaveHiddenIngredientsFlg }">
+        <app-muto-recipe-ingredient-info [ingredient]="recipe.ingredient3"></app-muto-recipe-ingredient-info>
+      </div>
+      <div *ngIf="recipe.ingredient4" [ngClass]="{ 'bg-primary': recipe.canHaveHiddenIngredientsFlg }">
+        <app-muto-recipe-ingredient-info [ingredient]="recipe.ingredient4"></app-muto-recipe-ingredient-info>
+      </div>
     </div>
   </div>
 </div>

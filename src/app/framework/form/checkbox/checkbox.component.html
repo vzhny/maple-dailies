@@ -1,16 +1,9 @@
-<label class="flex items-center space-x-3" [title]="label">
-  <input
-    *ngIf="control === null"
-    type="checkbox"
-    class="w-6 h-6 border border-gray-300 rounded-md appearance-none cursor-pointer  form-tick bg-gray-50 dark:bg-white checked:bg-indigo-900 dark:checked:bg-indigo-900 checked:border-transparent focus:outline-none"
-    [checked]="value"
-  />
-  <input
-    *ngIf="control !== null"
-    type="checkbox"
-    class="w-6 h-6 border border-gray-300 rounded-md appearance-none cursor-pointer  form-tick bg-gray-50 dark:bg-white checked:bg-indigo-900 dark:checked:bg-indigo-900 checked:border-transparent focus:outline-none"
-    [formControl]="control"
-  />
-  <span class="font-medium text-gray-900 dark:text-white whitespace-nowrap">{{ label }}</span>
+<label class="flex items-center space-x-2 cursor-pointer" [title]="label">
+  <div>
+    <input *ngIf="control === null" class="checkbox checkbox-primary" type="checkbox" [checked]="value" />
+    <input *ngIf="control !== null" class="checkbox checkbox-primary" type="checkbox" [formControl]="control" />
+    <span class="checkbox-mark"></span>
+  </div>
+  <span class="whitespace-nowrap">{{ label }}</span>
   <ng-content></ng-content>
 </label>

@@ -16,10 +16,15 @@ export class AppComponent implements OnInit {
   defaultCharacterImageSrc = FilePaths.blankCharacterImgSrc;
   characterImageSrc = this.defaultCharacterImageSrc;
 
+  arcaneRiverTownMapFilePaths = FilePaths.arcaneRiverTownMaps;
+  backgroundImage = '';
+
   // TODO: move this heavy logic into APP_INITALIZIER in order to keep the app component clean.
   constructor(private localStorage: LocalStorageService, private appAccessService: AppAccessService) {}
 
   ngOnInit(): void {
+    this.backgroundImage = this.getHeroBackgroundImage();
+
     this.setLocalStorageWatchers();
     this.handleSettingDarkMode();
     this.appAccessService.processLatestAppAccess({ reroute: true, route: '/dashboard' });
@@ -48,7 +53,8 @@ export class AppComponent implements OnInit {
     const htmlElement = document.querySelector('html');
 
     if (htmlElement) {
-      htmlElement.className = value ? 'dark' : 'light';
+      // htmlElement.className = value ? 'dark' : 'light';
+      htmlElement.setAttribute('data-theme', `maple-dailies-${value ? 'light' : 'dark'}`);
     }
   }
 
@@ -58,5 +64,13 @@ export class AppComponent implements OnInit {
     if (value !== null) {
       this.characterImageSrc = value.characterImgSrcUrl;
     }
+  }
+
+  getHeroBackgroundImage() {
+    return `url('${this.arcaneRiverTownMapFilePaths[this.generateRandomTownMapIndex()]}')`;
+  }
+
+  generateRandomTownMapIndex() {
+    return Math.floor(Math.random() * 5);
   }
 }

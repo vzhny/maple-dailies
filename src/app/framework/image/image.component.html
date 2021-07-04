@@ -1,1 +1,2 @@
-<img [ngClass]="classes" [src]="src" [alt]="altText" (error)="error.emit()" />
+<app-loader *ngIf="!isLoaded"></app-loader>
+<img class="bg-cover" [ngClass]="imageClasses" [src]="src" [alt]="altText" (error)="error.emit()" (load)="imageLoaded()" />

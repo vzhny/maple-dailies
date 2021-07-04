@@ -7,8 +7,9 @@ import { GuidesModule } from './guides/guides.module';
 import { SettingsComponent } from './settings/settings.component';
 import { SettingsModule } from './settings/settings.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { FrameworkModule } from '../framework/framework.module';
 
 @NgModule({
-  imports: [CommonModule, HomeModule, DashboardModule, DailiesModule, BossesModule, GuidesModule, SettingsModule, FrameworkModule],
+  imports: [CommonModule, FrameworkModule, HomeModule, DashboardModule, DailiesModule, BossesModule, GuidesModule, SettingsModule],
 })
 export class PagesModule {}

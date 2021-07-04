@@ -1,11 +1,11 @@
-<div class="overflow-x-auto bg-white" [ngClass]="tableClasses">
-  <table class="table w-full border border-gray-200 min-w-max dark:border-gray-800" [ngClass]="setTableBorderClass()">
+<div class="overflow-y-auto bg-base-100">
+  <table class="table min-w-full table-zebra" [ngClass]="{ 'table-compact': compact }">
     <ng-content select="[table-header]"></ng-content>
     <ng-container *ngIf="rows.length > 0; else noDataAvailable">
       <ng-content select="[table-body]"></ng-content>
     </ng-container>
-    <tfoot class="border-t border-gray-200 dark:border-gray-800">
-      <tr class="dark:bg-black">
+    <tfoot>
+      <tr>
         <td class="p-4" [attr.colspan]="columns.length">
           <div class="flex" [ngClass]="setFlexJustifyClass()">
             <div>
@@ -18,12 +18,7 @@
     </tfoot>
     <ng-template #noDataAvailable>
       <tbody>
-        <td
-          class="p-4 tracking-wide text-center text-gray-600 uppercase bg-gray-200 font-condensed dark:bg-gray-800 dark:text-white"
-          [attr.colspan]="columns.length"
-        >
-          No Data Available
-        </td>
+        <td class="p-4 tracking-wide text-center uppercase font-condensed" [attr.colspan]="columns.length">No Data Available</td>
       </tbody>
     </ng-template>
   </table>

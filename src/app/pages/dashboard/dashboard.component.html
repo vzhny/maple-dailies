@@ -1,11 +1,11 @@
 <app-container>
-  <div class="w-full">
+  <div class="w-full h-full mb-20 mt-28">
     <app-dashboard-filters [characterList]="characterList"></app-dashboard-filters>
 
     <div *ngIf="showDailies">
-      <div class="flex items-center">
-        <div class="my-3 text-2xl tracking-wide uppercase font-condensed">Dailies Lists</div>
-        <hr class="flex-grow ml-3 border-gray-300 dark:border-gray-700" />
+      <div class="flex items-center justify-center md:justify-start">
+        <div class="my-3 text-2xl tracking-wide uppercase font-condensed text-base-content">Dailies Lists</div>
+        <hr class="flex-grow hidden ml-3 border border-base-content md:block" />
       </div>
       <app-character-dailies-lists
         [dailiesLists]="dailiesLists"
@@ -15,9 +15,9 @@
     </div>
 
     <div *ngIf="showBosses">
-      <div class="flex items-center">
-        <div class="my-3 text-2xl tracking-wide uppercase font-condensed">Bosses Checklists</div>
-        <hr class="flex-grow ml-3 border-gray-300 dark:border-gray-700" />
+      <div class="flex items-center justify-center md:justify-start">
+        <div class="my-3 text-2xl tracking-wide uppercase font-condensed text-base-content">Bosses Checklists</div>
+        <hr class="flex-grow hidden ml-3 border border-base-content md:block" />
       </div>
       <app-character-bosses-checklists
         [bossesChecklists]="bossesChecklists"
@@ -27,17 +27,17 @@
     </div>
 
     <div *ngIf="showArcaneDailiesInfo">
-      <div class="flex items-center">
-        <div class="my-3 text-2xl tracking-wide uppercase font-condensed">Arcane Dailies Exchange Info</div>
-        <hr class="flex-grow ml-3 border-gray-300 dark:border-gray-700" />
+      <div class="flex items-center justify-center md:justify-start">
+        <div class="my-3 text-2xl tracking-wide uppercase font-condensed text-base-content">Arcane Dailies Exchange Info</div>
+        <hr class="flex-grow hidden ml-3 border border-base-content md:block" />
       </div>
       <app-arcane-river-dailies-info [onDashboard]="true"></app-arcane-river-dailies-info>
     </div>
 
     <div *ngIf="showHardMutoRecipes">
-      <div class="flex items-center">
-        <div class="my-3 text-2xl tracking-wide uppercase font-condensed">Hard Muto Recipes</div>
-        <hr class="flex-grow ml-3 border-gray-300 dark:border-gray-700" />
+      <div class="flex items-center justify-center md:justify-start">
+        <div class="my-3 text-2xl tracking-wide uppercase font-condensed text-base-content">Hard Muto Recipes</div>
+        <hr class="flex-grow hidden ml-3 border border-base-content md:block" />
       </div>
       <app-hard-muto-recipes [onDashboard]="true"></app-hard-muto-recipes>
     </div>

@@ -1,19 +1,49 @@
-<header
-  class="flex items-center justify-center w-auto h-16 px-8 overflow-x-auto bg-indigo-900 shadow-lg  md:justify-between dark:bg-black dark:text-white"
->
-  <div class="flex">
-    <img
-      class="hidden h-16 -mt-2 outline-none cursor-pointer md:block"
-      src="assets/images/logos/maple_dailies_logo.png"
-      alt="Maple Dailies Logo"
-      routerLink="/"
-    />
-  </div>
-  <ul class="flex items-center justify-center space-x-3 lowercase">
-    <li *ngFor="let navLink of navLinks" class="text-white hover:text-gray-100">
-      <a [routerLink]="navLink.route" [routerLinkActiveOptions]="{ exact: navLink.matchExactRouteUrl }" routerLinkActive="text-green-300">{{
-        navLink.name
-      }}</a>
-    </li>
-  </ul>
-</header>
+<app-container>
+  <header class="mb-2 shadow-lg navbar bg-base-200 text-base-content rounded-box">
+    <a class="flex-1 px-2 mx-2" routerLink="/">
+      <img
+        class="hidden h-16 py-2 -mt-2 outline-none cursor-pointer md:block"
+        src="assets/images/arcane_river/arcana/single_rock_spirit.png"
+        alt="Rock Spirit"
+      />
+      <div class="ml-2 text-xl font-cursive">maple dailies</div>
+    </a>
+    <div class="flex-none hidden px-2 mx-2 lg:flex">
+      <ul class="flex items-stretch">
+        <li *ngFor="let navLink of navLinks">
+          <a
+            class="space-x-2 lowercase btn btn-ghost btn-sm rounded-btn"
+            [routerLink]="navLink.route"
+            [routerLinkActiveOptions]="{ exact: navLink.matchExactRouteUrl }"
+            routerLinkActive="text-primary"
+          >
+            <fa-icon *ngIf="navLink.icon" [icon]="navLink.icon"></fa-icon>
+            <span>{{ navLink.name }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="flex-none">
+      <div class="dropdown">
+        <button tabindex="0" class="btn btn-square btn-ghost lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <ul class="right-0 shadow menu dropdown-content bg-base-100 rounded-box top-16">
+            <li *ngFor="let navLink of navLinks">
+              <a
+                class="space-x-2 lowercase"
+                [routerLink]="navLink.route"
+                [routerLinkActiveOptions]="{ exact: navLink.matchExactRouteUrl }"
+                routerLinkActive="text-primary"
+              >
+                <fa-icon *ngIf="navLink.icon" [icon]="navLink.icon"></fa-icon>
+                <span>{{ navLink.name }}</span>
+              </a>
+            </li>
+          </ul>
+        </button>
+      </div>
+    </div>
+  </header>
+</app-container>

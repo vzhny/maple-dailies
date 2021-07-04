@@ -1,8 +1,8 @@
 <app-container [fluid]="onDashboard">
   <div *ngIf="!onDashboard" class="mb-5 font-light">
     The following information is from
-    <a class="text-blue-400" href="https://strategywiki.org/wiki/MapleStory/Arcane_River" target="_blank">StrategyWiki</a>
-    — any <span class="text-red-500">red colored dailies</span> should be exchanged as they take longer than the other available dailies.
+    <a class="link link-primary" href="https://strategywiki.org/wiki/MapleStory/Arcane_River" target="_blank">StrategyWiki</a>
+    — any <span class="text-error">red colored dailies</span> should be exchanged as they take longer than the other available dailies.
   </div>
 
   <app-accordion>
@@ -12,7 +12,7 @@
         <li
           *ngFor="let daily of item.dailies"
           class="space-x-2 font-normal md:ml-5"
-          [ngClass]="{ 'font-medium text-red-500': daily.exchangeFlag }"
+          [ngClass]="{ 'font-medium text-error': daily.exchangeFlag }"
         >
           <fa-icon [icon]="getDailyIcon(daily.name)"></fa-icon>
           <span>{{ daily.name }}</span>

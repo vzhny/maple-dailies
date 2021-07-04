@@ -4,7 +4,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss'],
 })
 export class CheckboxComponent implements OnInit {
   @Input() label!: string;
@@ -13,5 +12,9 @@ export class CheckboxComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('label', this.label);
+    console.log('value', this.value);
+    console.log('control', this.control);
+  }
 }

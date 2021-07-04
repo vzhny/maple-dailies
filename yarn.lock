@@ -1126,25 +1126,15 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@fontsource/ibm-plex-mono@^4.4.5":
-  version "4.4.5"
-  resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-mono/-/ibm-plex-mono-4.4.5.tgz#691c535cb649356f57c0810620b4a314dea0d3aa"
-  integrity sha512-93865aR4zyXhWR5HNZ1gOI2AlezlSJ+MaZ1bKhjqCTCNlSB6TNPwGOzkLApUwucs5JPX/LS10ATfCms8+GkBVw==
-
 "@fontsource/ibm-plex-sans-condensed@^4.4.5":
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-sans-condensed/-/ibm-plex-sans-condensed-4.4.5.tgz#89fe577e84c5f10807701ff752c54de8b5577de1"
   integrity sha512-dvqoZ1ZZlQoXjVdk8046zjKVXysCKa9FsEnR4WrLwZguM7gojERY+7h7jr815T3emV0j0IaULDgklT9aitHcIg==
 
-"@fontsource/ibm-plex-sans@^4.4.5":
+"@fontsource/pacifico@^4.4.5":
   version "4.4.5"
-  resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-sans/-/ibm-plex-sans-4.4.5.tgz#1cb3e5227b7cf8013d200ed9ebfed5cbb7edad88"
-  integrity sha512-drv21ZST1g2SykNsScizLLIJ1hbPgsBq9x5cbcIDGqiJ9f2Rt1XBIj0PUcXXjsHKxMKnaSeYAIUjI+NK9hIwOQ==
-
-"@fontsource/merriweather@^4.4.5":
-  version "4.4.5"
-  resolved "https://registry.yarnpkg.com/@fontsource/merriweather/-/merriweather-4.4.5.tgz#751ab07aff9f0a25a7e5f786b75900079e28f9ef"
-  integrity sha512-8m/wWbU6cEkufpp67Hm4VwOGVLdz8S2GuCM5haVKNb+NJ9USrl0cREJfkoNs157rsbcjKpuj7tZA/jXEDvlyTA==
+  resolved "https://registry.yarnpkg.com/@fontsource/pacifico/-/pacifico-4.4.5.tgz#71fe53875c911e403e0d8c29672c769d23c67d2f"
+  integrity sha512-8PzqVfgZNdeqL7tZo+yrrDQd3ddfiM/iv60CzHuq9Wc8udtKYWeyLOTa2ir7Bpy2YgKvfB07pAv/JbkwWsX42w==
 
 "@fortawesome/angular-fontawesome@0.8.2":
   version "0.8.2"
@@ -1365,6 +1355,16 @@
   integrity sha512-aj2/rJsGb2whAZ/BQWHWWQRSbhH0r/l1ozOByiv+ZNjBD84GMvb5dhAyfpeasFky+EJrAwX5eaqft8NQMZFWvA==
   dependencies:
     mini-svg-data-uri "^1.2.3"
+
+"@tailwindcss/typography@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/typography/-/typography-0.4.1.tgz#51ddbceea6a0ee9902c649dbe58871c81a831212"
+  integrity sha512-ovPPLUhs7zAIJfr0y1dbGlyCuPhpuv/jpBoFgqAc658DWGGrOBWBMpAWLw2KlzbNeVk4YBJMzue1ekvIbdw6XA==
+  dependencies:
+    lodash.castarray "^4.4.0"
+    lodash.isplainobject "^4.0.6"
+    lodash.merge "^4.6.2"
+    lodash.uniq "^4.5.0"
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -3233,6 +3233,11 @@ d@1, d@^1.0.1:
   dependencies:
     es5-ext "^0.10.50"
     type "^1.0.1"
+
+daisyui@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-1.6.0.tgz#cb8cc1546c9fe78dc0c089d02391f775fd0319ed"
+  integrity sha512-pNe6lFuE5/AOJdDrBeXHBl2y+49deiePzwl6BAdlm7nBeemq5aNk/2y1YRT5t/veuMGcYk85PZcX8It6HJGB7Q==
 
 damerau-levenshtein@^1.0.4:
   version "1.0.6"
@@ -5550,10 +5555,25 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash.castarray@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.castarray/-/lodash.castarray-4.4.0.tgz#c02513515e309daddd4c24c60cfddcf5976d9115"
+  integrity sha1-wCUTUV4wna3dTCTGDP3c9ZdtkRU=
+
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+  integrity sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=
+
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
+
+lodash.merge@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
+  integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
 lodash.toarray@^4.4.0:
   version "4.4.0"
