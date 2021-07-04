@@ -1,11 +1,14 @@
 <app-container [fluid]="onDashboard">
   <div *ngIf="!onDashboard" class="mb-4">
-    <app-checkbox
-      label="Show Only Potentially Hidden Ingredient Recipes"
-      [value]="showOnlyHiddenIngredientRecipes"
-      (click)="filterHiddenIngredientRecipes()"
-    >
-    </app-checkbox>
+    <div class="flex items-center space-x-2" (click)="filterHiddenIngredientRecipes()">
+      <div class="block">
+        <input type="checkbox" [checked]="showOnlyHiddenIngredientRecipes" class="toggle" />
+        <span class="toggle-mark"></span>
+      </div>
+      <label class="cursor-pointer label">
+        <span class="label-text">Show Only Potentially Hidden Ingredient Recipes</span>
+      </label>
+    </div>
   </div>
 
   <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">

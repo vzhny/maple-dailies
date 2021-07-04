@@ -1,45 +1,21 @@
-<footer
-  class="flex flex-col items-center justify-between h-24 p-2 text-gray-800 border-t border-gray-200  md:flex-row md:h-16 bg-gray-50 dark:text-gray-300 dark:border-gray-800 dark:bg-gray-900"
->
-  <span class="ml-2 overflow-hidden font-light md:w-1/3 whitespace-nowrap overflow-ellipsis">
-    <span class="hidden lg:inline-block">Dailies reset in</span>
-    {{ remainingTime !== null ? remainingTime : '...' }}
-  </span>
-
-  <div class="flex items-center justify-center cursor-pointer md:w-1/3">
-    <span title="Visit me!">
-      <a class="hover:text-gray-900 dark:hover:text-white" href="https://vizhnay.dev" target="_blank">
-        <fa-icon [icon]="homepageIcon"></fa-icon>
-      </a>
-    </span>
-    <span class="mx-2">/</span>
-    <span title="Source code!">
-      <a class="hover:text-gray-900 dark:hover:text-white" href="https://github.com/vzhny/maple-dailies" target="_blank">
-        <fa-icon [icon]="githubIcon"></fa-icon>
-      </a>
-    </span>
-    <span class="mx-2">/</span>
-    <span
-      class="hover:text-gray-900 dark:hover:text-white"
-      (click)="toggleDarkMode()"
-      title="{{ darkModeEnabled ? 'Disable' : 'Enable' }} dark mode!"
-    >
-      <fa-icon [icon]="darkModeEnabled ? darkModeIcon : lightModeIcon"></fa-icon>
-    </span>
-  </div>
-
-  <div class="flex items-end justify-end mr-2 cursor-pointer md:w-1/3" title="Character select">
-    <fa-icon
-      class="hover:text-gray-900 dark:hover:text-white"
-      [icon]="characterSelectIcon"
-      [tippy]="characterSelector"
-      [placement]="innerWidth <= 767 ? 'top' : 'left-start'"
-      variation="popper"
-      #characterSelectPopper="tippy"
-    ></fa-icon>
-  </div>
-</footer>
-
-<ng-template #characterSelector let-hide>
-  <app-character-selector (characterSelected)="characterSelectPopper.hide()"></app-character-selector>
-</ng-template>
+<app-container>
+  <footer class="h-12 mb-1 shadow-lg navbar bg-base-200 text-base-content rounded-box">
+    <div class="flex-1 px-2 mx-2 ml-2 overflow-hidden font-light md:w-1/3 whitespace-nowrap overflow-ellipsis">
+      <span class="hidden lg:inline-block">Dailies reset in</span><span>&nbsp;</span>
+      <span> {{ remainingTime !== null ? remainingTime : '...' }} </span>
+    </div>
+    <div class="flex items-end justify-end flex-none mr-4 cursor-pointer md:w-1/3" title="Character select">
+      <fa-icon
+        class="hover:neutral-focus"
+        [icon]="characterSelectIcon"
+        [tippy]="characterSelector"
+        [placement]="innerWidth <= 767 ? 'top' : 'left-start'"
+        variation="popper"
+        #characterSelectPopper="tippy"
+      ></fa-icon>
+    </div>
+  </footer>
+  <ng-template #characterSelector let-hide>
+    <app-character-selector (characterSelected)="characterSelectPopper.hide()"></app-character-selector>
+  </ng-template>
+</app-container>

@@ -1,4 +1,4 @@
-<div class="flex items-center justify-between p-5 pl-8 pr-8 bg-white border-b dark:border-gray-900 dark:bg-gray-800">
+<div class="flex items-center justify-between px-8 py-5 border-b border-neutral bg-base-100" (click)="toggleAccordion()">
   <span class="text-xl font-normal text-grey-darkest">
     <span *ngIf="!hasCustomHeader">
       {{ headerTitle }}
@@ -10,21 +10,13 @@
   <div class="flex items-center space-x-2">
     <ng-content *ngIf="isExpanded" select="[item-actions]"></ng-content>
     <div
-      class="flex items-center justify-center text-black bg-white border rounded-full cursor-pointer select-none border-grey w-7 h-7"
-      (click)="toggleAccordion()"
+      class="flex items-center justify-center rounded-full cursor-pointer select-none text-neutral bg-neutral-content w-7 h-7"
       [title]="isExpanded ? 'Collapse' : 'Expand'"
     >
       <fa-icon [icon]="isExpanded ? collapseIcon : expandIcon"></fa-icon>
     </div>
   </div>
 </div>
-<div
-  *ngIf="isExpanded"
-  class="bg-white dark:bg-gray-700"
-  [ngClass]="{
-    'px-8 py-5': fluidContent,
-    'px-8 py-5 border-l-4 dark:border-gray-800': !fluidContent
-  }"
->
+<div *ngIf="isExpanded" class="border-b border-neutral bg-base-200" [ngClass]="{ 'px-8 py-5': !fluidContent }">
   <ng-content></ng-content>
 </div>

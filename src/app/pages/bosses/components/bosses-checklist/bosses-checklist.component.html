@@ -1,131 +1,133 @@
-<div class="flex flex-col p-3 bg-white shadow dark:border-gray-900 dark:bg-gray-800" [ngClass]="{ 'h-full': onDashboard }">
-  <div class="flex items-center justify-between mt-1 mb-3 h-14">
-    <div
-      class="flex items-center justify-center space-x-2 overflow-hidden cursor-pointer whitespace-nowrap overflow-ellipsis"
-      (click)="completeAllBosses(!completedList)"
-    >
-      <div>
-        <fa-layers [tippy]="getToggleDailiesTooltip()">
-          <fa-icon *ngIf="!completedList" [icon]="notCompletedIcon"></fa-icon>
-          <fa-icon *ngIf="completedList" [icon]="completedSquareIcon"></fa-icon>
-          <fa-icon *ngIf="completedList" class="text-lg text-red-600" [icon]="confirmIcon" transform="up-1 right-1"></fa-icon>
-        </fa-layers>
-      </div>
-      <span class="overflow-hidden text-2xl tracking-wide uppercase font-condensed whitespace-nowrap overflow-ellipsis">
-        {{ weekly ? 'Weekly' : 'Daily' }} Bosses
-        <span class="overflow-hidden text-2xl tracking-wide uppercase font-condensed whitespace-nowrap overflow-ellipsis">
-          ({{ amountOfSelectedBosses }})
+<div class="border shadow-lg card border-neutral rounded-box bg-base-100" [ngClass]="{ 'h-full': onDashboard }">
+  <div class="p-3 card-body">
+    <div class="flex items-center justify-between mt-1 mb-3 h-14 card-title">
+      <div
+        class="flex items-center justify-center space-x-2 overflow-hidden cursor-pointer whitespace-nowrap overflow-ellipsis"
+        (click)="completeAllBosses(!completedList)"
+      >
+        <div>
+          <fa-layers [tippy]="getToggleDailiesTooltip()">
+            <fa-icon *ngIf="!completedList" [icon]="notCompletedIcon"></fa-icon>
+            <fa-icon *ngIf="completedList" [icon]="completedSquareIcon"></fa-icon>
+            <fa-icon *ngIf="completedList" class="text-lg text-red-600" [icon]="confirmIcon" transform="up-1 right-1"></fa-icon>
+          </fa-layers>
+        </div>
+        <span class="hidden overflow-hidden text-2xl tracking-wide uppercase md:block font-condensed whitespace-nowrap overflow-ellipsis">
+          {{ weekly ? 'Weekly' : 'Daily' }} Bosses
+          <span class="overflow-hidden text-2xl tracking-wide uppercase font-condensed whitespace-nowrap overflow-ellipsis">
+            ({{ amountOfSelectedBosses }})
+          </span>
         </span>
-      </span>
-    </div>
-    <div *ngIf="!onDashboard" class="flex items-center justify-center space-x-2">
-      <app-button
-        *ngIf="showActions"
-        [color]="isEditing ? 'success' : 'secondary'"
-        width="40"
-        (click)="toggleVisibleBosses()"
-        tippy="{{ isEditing ? 'Confirm' : 'Edit' }} bosses checklist"
-      >
-        <fa-icon [icon]="isEditing ? confirmIcon : editIcon" size="sm"></fa-icon>
-      </app-button>
-
-      <app-button
-        *ngIf="!isEditing"
-        color="outline"
-        width="40"
-        (click)="showActions = !showActions"
-        tippy="{{ showActions ? 'Hide' : 'Show' }} actions"
-      >
-        <fa-icon [icon]="showActions ? hideActionsIcon : showActionsIcon" size="sm"></fa-icon>
-      </app-button>
-    </div>
-    <div *ngIf="onDashboard" class="overflow-hidden text-2xl tracking-wide uppercase font-condensed whitespace-nowrap overflow-ellipsis">
-      Total: {{ amountOfEarnedMesos | mesos }}
-    </div>
-  </div>
-  <ul
-    class="flex flex-col space-y-1 overflow-y-auto border dark:bg-gray-700 dark:border-gray-900"
-    [ngClass]="{ 'h-screen/40 md:h-screen/60': !onDashboard, 'h-full': onDashboard }"
-  >
-    <ng-container *ngIf="isEditing || amountOfSelectedBosses > 0; else showNoSelectedBossesMessage">
-      <ng-container *ngFor="let boss of bosses; let i = index">
-        <li
-          *ngIf="boss.selected || isEditing"
-          class="flex justify-between p-1 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-500"
-          [ngClass]="{ 'cursor-not-allowed': !boss.selected }"
-          title="{{ boss.selected ? boss.name : 'Please select this boss in order to toggle completion' }}"
-          (click)="$event.stopPropagation(); completeBoss(boss, i)"
+      </div>
+      <div *ngIf="!onDashboard" class="flex items-center justify-center space-x-2">
+        <app-button
+          *ngIf="showActions"
+          [color]="isEditing ? 'success' : 'info'"
+          width="48"
+          (click)="toggleVisibleBosses()"
+          tippy="{{ isEditing ? 'Confirm' : 'Edit' }} bosses checklist"
         >
-          <span class="flex items-center justify-center ml-1 overflow-hidden whitespace-nowrap overflow-ellipsis">
-            <div>
-              <fa-icon
-                *ngIf="isEditing"
-                [icon]="boss.selected ? selectedIcon : notSelectedIcon"
-                size="sm"
-                class="mr-2 cursor-pointer"
-                [title]="boss.selected ? 'Deselect' : 'Select'"
-                (click)="$event.stopPropagation(); toggleSelectedBossToClear(boss, i); boss.completed = false"
-              ></fa-icon>
+          <fa-icon [icon]="isEditing ? confirmIcon : editIcon" size="sm"></fa-icon>
+        </app-button>
+
+        <app-button
+          *ngIf="!isEditing"
+          color="ghost"
+          width="48"
+          (click)="showActions = !showActions"
+          tippy="{{ showActions ? 'Hide' : 'Show' }} actions"
+        >
+          <fa-icon [icon]="showActions ? hideActionsIcon : showActionsIcon" size="sm"></fa-icon>
+        </app-button>
+      </div>
+      <div *ngIf="onDashboard" class="overflow-hidden text-2xl tracking-wide uppercase font-condensed whitespace-nowrap overflow-ellipsis">
+        Total: {{ amountOfEarnedMesos | mesos }}
+      </div>
+    </div>
+    <ul
+      class="flex flex-col space-y-1 overflow-y-auto border bg-base-200 border-neutral"
+      [ngClass]="{ 'h-screen/40 md:h-screen/60': !onDashboard, 'h-full': onDashboard }"
+    >
+      <ng-container *ngIf="isEditing || amountOfSelectedBosses > 0; else showNoSelectedBossesMessage">
+        <ng-container *ngFor="let boss of bosses; let i = index">
+          <li
+            *ngIf="boss.selected || isEditing"
+            class="flex justify-between p-1 cursor-pointer hover:bg-base-300"
+            [ngClass]="{ 'cursor-not-allowed': !boss.selected }"
+            title="{{ boss.selected ? boss.name : 'Please select this boss in order to toggle completion' }}"
+            (click)="$event.stopPropagation(); completeBoss(boss, i)"
+          >
+            <span class="flex items-center justify-center ml-1 overflow-hidden whitespace-nowrap overflow-ellipsis">
+              <div>
+                <fa-icon
+                  *ngIf="isEditing"
+                  [icon]="boss.selected ? selectedIcon : notSelectedIcon"
+                  size="sm"
+                  class="mr-2 cursor-pointer"
+                  [title]="boss.selected ? 'Deselect' : 'Select'"
+                  (click)="$event.stopPropagation(); toggleSelectedBossToClear(boss, i); boss.completed = false"
+                ></fa-icon>
+                <span
+                  *ngIf="!weekly && isEditing"
+                  class="mr-2 space-x-2"
+                  [ngClass]="{
+                    'text-gray-300 dark:text-gray-500 cursor-not-allowed': !boss.selected
+                  }"
+                >
+                  <fa-icon
+                    [icon]="upIcon"
+                    size="sm"
+                    (click)="$event.stopPropagation(); incrementPerWeekAmount(boss, i)"
+                    [ngClass]="{
+                      'text-gray-300 dark:text-gray-500 cursor-not-allowed': boss.perWeekAmount === 7
+                    }"
+                    title="Increment"
+                  ></fa-icon>
+                  <span class="font-mono">{{ boss.perWeekAmount }}</span>
+                  <fa-icon
+                    [icon]="downIcon"
+                    size="sm"
+                    (click)="$event.stopPropagation(); decrementPerWeekAmount(boss, i)"
+                    [ngClass]="{
+                      'text-gray-300 dark:text-gray-500 cursor-not-allowed': boss.perWeekAmount === 1
+                    }"
+                    title="Decrement"
+                  ></fa-icon>
+                </span>
+              </div>
+              <img
+                src="assets/images/bosses/{{ getBossImageFileName(boss.name) }}.png"
+                alt="Boss Image"
+                class="hidden mr-2 md:inline-block h-7 w-7"
+              />
               <span
-                *ngIf="!weekly && isEditing"
-                class="mr-2 space-x-2"
-                [ngClass]="{
-                  'text-gray-300 dark:text-gray-500 cursor-not-allowed': !boss.selected
-                }"
+                class="overflow-hidden whitespace-nowrap overflow-ellipsis"
+                [ngClass]="{ 'line-through italic text-gray-400': boss.completed }"
               >
-                <fa-icon
-                  [icon]="upIcon"
-                  size="sm"
-                  (click)="$event.stopPropagation(); incrementPerWeekAmount(boss, i)"
-                  [ngClass]="{
-                    'text-gray-300 dark:text-gray-500 cursor-not-allowed': boss.perWeekAmount === 7
-                  }"
-                  title="Increment"
-                ></fa-icon>
-                <span class="font-mono">{{ boss.perWeekAmount }}</span>
-                <fa-icon
-                  [icon]="downIcon"
-                  size="sm"
-                  (click)="$event.stopPropagation(); decrementPerWeekAmount(boss, i)"
-                  [ngClass]="{
-                    'text-gray-300 dark:text-gray-500 cursor-not-allowed': boss.perWeekAmount === 1
-                  }"
-                  title="Decrement"
-                ></fa-icon>
+                <span *ngIf="!isEditing && !weekly">({{ boss.perWeekAmount }})</span>
+                {{ boss.difficulty | titlecase }} {{ boss.name }}
+              </span>
+            </span>
+            <div>
+              <span class="mr-1 font-mono">
+                {{ boss.bossCrystalMesos | mesos }}
               </span>
             </div>
-            <img
-              src="assets/images/bosses/{{ getBossImageFileName(boss.name) }}.png"
-              alt="Boss Image"
-              class="hidden mr-2 md:block h-7 w-7"
-            />
-            <span
-              class="overflow-hidden whitespace-nowrap overflow-ellipsis"
-              [ngClass]="{ 'line-through italic text-gray-400': boss.completed }"
-            >
-              <span *ngIf="!isEditing && !weekly">({{ boss.perWeekAmount }})</span>
-              {{ boss.difficulty | titlecase }} {{ boss.name }}
-            </span>
-          </span>
-          <div>
-            <span class="mr-1 font-mono">
-              {{ boss.bossCrystalMesos | mesos }}
-            </span>
-          </div>
-        </li>
+          </li>
+        </ng-container>
       </ng-container>
-    </ng-container>
 
-    <ng-template #showNoSelectedBossesMessage>
-      <li *ngIf="!onDashboard" class="h-full p-4 text-center">
-        Start selecting which bosses you're going to be running each {{ weekly ? 'week' : 'day' }} using the
-        <fa-icon [icon]="editIcon" size="sm" class="inline-block"></fa-icon> edit button inside the
-        <fa-icon [icon]="showActionsIcon" size="sm" class="inline-block"></fa-icon> actions button in the top right of the list header!
-      </li>
-      <li *ngIf="onDashboard" class="h-full p-4 text-center">
-        Go to the <a class="inline-block text-blue-400 underline" routerLink="/bosses">Bosses</a> page to start selecting which bosses
-        you're going to be running each {{ weekly ? 'week' : 'day' }}!
-      </li>
-    </ng-template>
-  </ul>
+      <ng-template #showNoSelectedBossesMessage>
+        <li *ngIf="!onDashboard" class="h-full p-4 text-center">
+          Start selecting which bosses you're going to be running each {{ weekly ? 'week' : 'day' }} using the
+          <fa-icon [icon]="editIcon" size="sm" class="inline-block"></fa-icon> edit button inside the
+          <fa-icon [icon]="showActionsIcon" size="sm" class="inline-block"></fa-icon> actions button in the top right of the list header!
+        </li>
+        <li *ngIf="onDashboard" class="h-full p-4 text-center">
+          Go to the <a class="link link-primary" routerLink="/bosses">Bosses</a> page to start selecting which bosses you're going to be
+          running each {{ weekly ? 'week' : 'day' }}!
+        </li>
+      </ng-template>
+    </ul>
+  </div>
 </div>

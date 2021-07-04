@@ -1,71 +1,204 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@ng-select/ng-select/themes/default.theme.css';
 
-@import '@fontsource/merriweather';
-@import '@fontsource/ibm-plex-sans';
 @import '@fontsource/ibm-plex-sans-condensed';
-@import '@fontsource/ibm-plex-mono';
+@import '@fontsource/pacifico';
 
 @import '~tippy.js/dist/tippy.css';
-@import '~tippy.js/themes/light.css';
+@import '~tippy.js/themes/translucent.css';
 @import '~tippy.js/animations/scale.css';
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+html,
+body {
+  height: fit-content;
+}
+
+.ng-select.custom {
+  .ng-select-container {
+    height: 3rem !important;
+  }
+}
+
 @layer base {
   body,
   html {
-    @apply bg-gray-50 dark:bg-gray-900 dark:text-white h-screen overflow-hidden;
+    @apply bg-base-300 min-h-screen;
 
     ::-webkit-scrollbar {
       @apply h-2 w-2;
     }
 
     ::-webkit-scrollbar-thumb {
-      @apply bg-indigo-900 hover:bg-indigo-800 dark:bg-gray-900 dark:hover:bg-gray-800;
+      @apply bg-base-300;
     }
 
     ::-webkit-scrollbar-track {
-      @apply bg-gray-50 dark:bg-gray-700;
+      @apply bg-base-200;
     }
   }
 }
 
 @layer components {
-  // * Table specific Tailwind components
-
-  .table-header-row {
-    @apply bg-gray-800 dark:bg-black text-white uppercase tracking-wide font-condensed leading-normal;
+  .tippy-box {
+    @apply bg-base-300;
   }
 
-  .table-header-cell {
-    @apply py-3 px-6;
+  .ng-select.custom.ng-select-single,
+  .ng-select.custom.ng-select-multiple {
+    .ng-value-container {
+      .ng-placeholder {
+        @apply text-base-content text-base top-3;
+      }
+    }
   }
 
-  .table-body-row {
-    @apply border-b last:border-b-0 border-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600 hover:bg-gray-100;
+  .ng-select.custom {
+    .ng-select-container {
+      @apply input input-bordered h-12 text-base-content;
+    }
+
+    .ng-dropdown-panel {
+      @apply bg-base-100 text-base-content border-0 shadow-lg;
+
+      .ng-option,
+      .ng-option.ng-option-marked {
+        @apply bg-base-100 text-base-content;
+
+        &:hover {
+          @apply bg-base-300 text-base-content;
+        }
+      }
+
+      .ng-dropdown-panel-items {
+        @apply bg-base-100 text-base-content;
+
+        .ng-option-label {
+          @apply text-base-content;
+        }
+      }
+
+      &.ng-select-multiple {
+        @apply bg-base-100 text-base-content border-0 shadow-lg;
+
+        .ng-option,
+        .ng-option.ng-option-marked {
+          @apply bg-base-100 text-base-content;
+
+          &:hover {
+            @apply bg-base-300 text-base-content;
+          }
+        }
+
+        .ng-dropdown-panel-items {
+          @apply bg-base-100 text-base-content;
+
+          .ng-option-label {
+            @apply text-base-content;
+          }
+        }
+      }
+    }
   }
 
-  .table-body-row-selected {
-    @apply border-b last:border-b-0 border-indigo-400 dark:border-green-800 text-white bg-indigo-900 dark:text-black dark:bg-green-500;
+  .ng-select.custom.ng-select-multiple {
+    .ng-select-container {
+      .ng-value-container {
+        .ng-value {
+          @apply badge;
+          .p-1 {
+            @apply bg-base-300;
+          }
+
+          .ng-value-icon {
+            @apply bg-base-300;
+
+            &.right {
+              @apply border-0 hover:bg-base-300;
+            }
+          }
+        }
+      }
+    }
   }
 
-  .table-body-cell {
-    @apply py-3 px-6 whitespace-nowrap font-light border-r last:border-r-0 border-gray-200 dark:border-gray-700;
+  // Applicable when appendTo="body" is set
+  .ng-dropdown-panel {
+    @apply bg-base-100 text-base-content border-0 shadow-lg;
+
+    .ng-option,
+    .ng-option.ng-option-marked {
+      @apply bg-base-100 text-base-content;
+
+      &:hover {
+        @apply bg-base-300 text-base-content;
+      }
+    }
+
+    .ng-dropdown-panel-items {
+      @apply bg-base-100 text-base-content;
+
+      .ng-option-label {
+        @apply text-base-content;
+      }
+    }
+
+    &.ng-select-multiple {
+      @apply bg-base-100 text-base-content border-0 shadow-lg;
+
+      .ng-option,
+      .ng-option.ng-option-marked {
+        @apply bg-base-100 text-base-content;
+
+        &:hover {
+          @apply bg-base-300 text-base-content;
+        }
+      }
+
+      .ng-dropdown-panel-items {
+        @apply bg-base-100 text-base-content;
+
+        .ng-option-label {
+          @apply text-base-content;
+        }
+      }
+    }
   }
 
-  .table-body-cell-selected {
-    @apply py-3 px-6 whitespace-nowrap font-light border-r last:border-r-0 border-indigo-800 dark:border-green-400;
-  }
+  .table {
+    &.table-zebra {
+      tbody {
+        tr {
+          td:first-child,
+          td:last-child {
+            @apply rounded-none;
+          }
+        }
+      }
+    }
 
-  .table-no-data-available-cell {
-    @apply p-2 bg-gray-300 text-gray-600 text-center uppercase tracking-wide font-condensed;
+    th:first-child {
+      @apply relative;
+    }
   }
+}
 
-  // * Form specific Tailwind components
-  .form-control {
-    @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm text-black focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+@layer utilities {
+  @variants responsive {
+    .text-shadow {
+      text-shadow: 2px 2px 4px rgba(#000000, 0.4);
+    }
+    .text-shadow-md {
+      text-shadow: 4px 4px 8px rgba(#000000, 0.4);
+    }
+    .text-shadow-lg {
+      text-shadow: 15px 15px 30px rgba(#000000, 0.4);
+    }
+    .text-shadow-none {
+      text-shadow: none;
+    }
   }
 }

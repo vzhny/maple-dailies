@@ -1,21 +1,21 @@
-<div class="flex flex-col h-screen">
-  <div class="flex-none">
+<div class="relative flex">
+  <div class="absolute top-0 z-20 w-full mx-auto">
     <app-header></app-header>
   </div>
-  <div class="z-10 flex-grow overflow-y-scroll">
+  <div class="z-10 flex-1 min-h-screen">
     <router-outlet></router-outlet>
   </div>
-  <div class="flex-none">
+  <div class="absolute bottom-0 z-20 w-full mx-auto">
     <app-footer></app-footer>
   </div>
 </div>
-<div *ngIf="selectedCharacter" class="absolute flex-col items-center justify-center hidden w-32 md:flex right-3 bottom-20">
-  <img
-    class="w-32 h-32 bg-cover"
+<div *ngIf="selectedCharacter" class="fixed flex-col items-center justify-center hidden w-32 lg:flex right-3 bottom-3">
+  <app-image
+    classes="w-32 h-32"
     [src]="characterImageSrc"
-    alt="User Maplestory Character Image"
+    altText="User Maplestory Character Image"
     (error)="characterImageSrc = defaultCharacterImageSrc"
-  />
+  ></app-image>
   <div class="px-1 text-white bg-black bg-opacity-75 border border-gray-900 dark:bg-transparent">
     {{ selectedCharacter?.characterName }}
   </div>

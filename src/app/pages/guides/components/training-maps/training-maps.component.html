@@ -2,7 +2,7 @@
   <div class="mb-4 font-light">
     The following information is from this
     <a
-      class="text-blue-400"
+      class="link link-primary"
       href="https://docs.google.com/spreadsheets/d/1QqtsUcnB5WBMGplKvpJI3qZQYAR5HSKn7VdHsJvRTtg/edit#gid=0"
       target="_blank"
       >Sheets</a
@@ -22,12 +22,11 @@
     </app-checkbox>
   </div> -->
 
-  <app-table *ngIf="filteredData" [columns]="columns" [data]="filteredData" [fixed]="true" [pagination]="true" #table>
+  <app-table *ngIf="filteredData" [columns]="columns" [data]="filteredData" [pagination]="true" #table>
     <thead table-header>
-      <tr class="sticky top-0 table-header-row">
+      <tr>
         <th
           *ngFor="let column of columns"
-          class="table-header-cell"
           ngClass="text-{{ column.textAlign }}"
           [ngStyle]="{
             'min-width': setColumnWidth(column.width),
@@ -40,23 +39,23 @@
       </tr>
     </thead>
     <tbody table-body>
-      <tr *ngFor="let row of table.rows; let i = index" class="table-body-row">
-        <td class="text-center table-body-cell">
+      <tr *ngFor="let row of table.rows; let i = index">
+        <td class="text-center">
           {{ row.level }}
         </td>
-        <td class="text-left table-body-cell">
+        <td class="text-left">
           {{ row.area }}
         </td>
-        <td class="text-left table-body-cell">
+        <td class="text-left">
           {{ row.name }}
         </td>
-        <td class="text-center table-body-cell">
+        <td class="text-center">
           {{ row.minimumForce }}
         </td>
-        <td class="text-center table-body-cell">
+        <td class="text-center">
           {{ row.recommendedForce }}
         </td>
-        <td class="text-center table-body-cell">
+        <td class="text-center">
           {{ row.popularity }}
         </td>
       </tr>

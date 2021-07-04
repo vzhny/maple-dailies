@@ -1,26 +1,22 @@
 ﻿<div [id]="id" class="fixed top-0 bottom-0 left-0 right-0 overflow-auto z-1000">
   <div
-    class="mx-4 my-10 bg-white border-gray-800 rounded-md shadow-lg md:mx-auto dark:bg-gray-800"
+    class="mx-auto my-10 border shadow-lg card border-neutral-focus rounded-box bg-neutral-focus"
     [ngStyle]="{ 'max-width': maxWidthPixels }"
   >
-    <div
-      class="p-3 text-xl font-semibold tracking-wide text-white uppercase bg-indigo-800 border-b-2 border-indigo-900  font-condensed dark:bg-gray-800 dark:border-gray-700 rounded-t-md"
-    >
-      <div class="flex justify-between">
+    <div class="card-body">
+      <h2 class="flex justify-between card-title">
         <span>
           {{ headerTitle }}
         </span>
-        <fa-icon class="cursor-pointer dark:text-gray-50 dark:hover:text-white" [icon]="closeIcon" (click)="closeModal()"></fa-icon>
-      </div>
-    </div>
-    <div class="dark:bg-gray-700">
+        <fa-icon class="cursor-pointer" [icon]="closeIcon" (click)="closeModal()"></fa-icon>
+      </h2>
       <app-container>
         <ng-content></ng-content>
       </app-container>
+      <div class="justify-end card-actions">
+        <ng-content select="[footer-content]"></ng-content>
+      </div>
     </div>
-    <footer class="p-3 dark:bg-gray-800 rounded-b-md">
-      <ng-content select="[footer-content]"></ng-content>
-    </footer>
   </div>
 </div>
-<div class="fixed top-0 bottom-0 left-0 right-0 bg-black opacity-75 z-900"></div>
+<div class="fixed top-0 bottom-0 left-0 right-0 bg-black opacity-60 z-900"></div>

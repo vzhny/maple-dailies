@@ -2,10 +2,17 @@
   <app-accordion>
     <app-accordion-item *ngFor="let tuple of characterDailiesListTuplesList" [fluidContent]="true" headerTitle="custom">
       <div class="flex space-x-2" header-title>
-        <img class="w-6 h-6 mt-1 bg-cover" [src]="getCharacterIconFileName(tuple.character.class)" alt="Class Icon" />
-        <span>{{ tuple.character.characterName }} (Lv. {{ tuple.character.level }} {{ tuple.character.class }})</span>
+        <img
+          class="hidden w-6 h-6 mt-1 bg-cover md:inline-block"
+          [src]="getCharacterIconFileName(tuple.character.class)"
+          alt="Class Icon"
+        />
+        <span>
+          {{ tuple.character.characterName }}
+          <span class="hidden md:inline-block">(Lv. {{ tuple.character.level }} {{ tuple.character.class }})</span>
+        </span>
       </div>
-      <div class="grid items-start grid-cols-1 gap-4 p-2 md:grid-cols-2 lg:grid-cols-4">
+      <div class="grid items-start grid-cols-1 gap-2 p-2 md:grid-cols-2 lg:grid-cols-4">
         <app-daily-list
           *ngFor="let list of tuple.dailiesLists"
           [listId]="list.dailyListId"

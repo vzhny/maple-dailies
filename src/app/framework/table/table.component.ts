@@ -9,8 +9,7 @@ import { TableColumn, TableData } from './table.types';
 export class TableComponent implements OnInit, OnChanges {
   @Input() data: TableData[] = [];
   @Input() columns: TableColumn[] = [];
-  @Input() tableClasses!: string | string[];
-  @Input() fixed = false;
+  @Input() compact = false;
   @Input() pagination = false;
   @Input() pageSize: PageSize = 10;
 
@@ -26,14 +25,6 @@ export class TableComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (!this.pagination) {
       this.rows = [...this.data];
-    }
-  }
-
-  setTableBorderClass() {
-    if (this.fixed) {
-      return 'border-fixed';
-    } else {
-      return 'border-auto';
     }
   }
 
