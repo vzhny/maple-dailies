@@ -3,6 +3,8 @@ const enablePurge = process.env.ENABLE_PURGE || false;
 const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
 const forms = require('@tailwindcss/forms');
+const typography = require('@tailwindcss/typography');
+const daisyui = require('daisyui');
 
 module.exports = {
   purge: {
@@ -33,13 +35,9 @@ module.exports = {
     },
     fontFamily: {
       condensed: ['IBM Plex Sans Condensed', ...defaultTheme.fontFamily.sans],
+      cursive: ['Pacifico', ...defaultTheme.fontFamily.sans],
     },
     extend: {
-      fontFamily: {
-        serif: ['Merriweather', ...defaultTheme.fontFamily.serif],
-        sans: ['IBM Plex Sans', ...defaultTheme.fontFamily.sans],
-        mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono],
-      },
       colors: {
         ...defaultTheme.colors,
         gray: colors.trueGray,
