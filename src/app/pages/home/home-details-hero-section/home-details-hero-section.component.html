@@ -1,18 +1,16 @@
-<section
-  class="flex items-center justify-center mb-8 bg-gray-50 dark:bg-gray-900 md:mx-24 lg:mb-0 lg:h-screen/50"
-  [ngClass]="{ 'flex-row-reverse': imageFirst }"
->
-  <div class="flex-1">
-    <h1
-      class="pb-1 mb-3 text-2xl font-bold text-center border-b-4 border-indigo-800  md:text-3xl md:pb-3 md:border-b-8 lg:text-5xl dark:border-green-300 whitespace-nowrap"
-    >
-      {{ headerTitle }}
-    </h1>
-    <div class="text-lg font-thin text-center lg:text-2xl lg:text-left">
-      {{ bodyText }}
+<div class="min-h-screen hero" [ngStyle]="{ 'background-image': getHeroBackgroundImage() }">
+  <div class="hero-overlay bg-opacity-70"></div>
+  <div class="hero-content text-neutral-content">
+    <div class="md:w-1/2">
+      <h1 class="pb-1 mb-3 text-2xl text-center border-b-4 border-primary md:text-3xl md:pb-3 md:border-b-8 lg:text-5xl whitespace-nowrap">
+        {{ headerTitle }}
+      </h1>
+      <div class="text-lg font-thin text-center text-shadow-md lg:text-2xl lg:text-left">
+        {{ bodyText }}
+      </div>
+      <div *ngIf="additionalBodyText !== null" class="mt-4 text-lg font-thin text-center text-shadow-md lg:text-2xl">
+        {{ additionalBodyText }}
+      </div>
     </div>
   </div>
-  <div class="flex-1 hidden lg:block" ngClass="{{ imageSrc !== null && imageFirst ? 'mr-12' : 'ml-12' }}">
-    <app-image *ngIf="imageSrc !== null" [src]="imageSrc"></app-image>
-  </div>
-</section>
+</div>

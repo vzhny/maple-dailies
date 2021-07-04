@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FilePaths } from 'src/app/constants/file-paths-constants';
 
 @Component({
   selector: 'app-home-details-hero-section',
@@ -7,10 +8,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HomeDetailsHeroSectionComponent implements OnInit {
   @Input() headerTitle!: string;
   @Input() bodyText!: string;
+  @Input() additionalBodyText: string | null = null;
   @Input() imageSrc: string | null = null;
-  @Input() imageFirst = false;
+  @Input() arcaneMapIndex!: number;
+
+  arcaneRiverTownMapFilePaths = FilePaths.arcaneRiverTownMaps;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  getHeroBackgroundImage() {
+    return `url('${this.arcaneRiverTownMapFilePaths[this.arcaneMapIndex]}')`;
+  }
 }
