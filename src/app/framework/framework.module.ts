@@ -14,6 +14,7 @@ import { ModalModule } from './modal/modal.module';
 import { ButtonModule } from './button/button.module';
 import { PaginationModule } from './pagination/pagination.module';
 import { ImageModule } from './image/image.module';
+import { LoaderModule } from './loader/loader.module';
 
 @NgModule({
   declarations: [],
@@ -25,6 +26,7 @@ import { ImageModule } from './image/image.module';
     ContainerModule,
     FormModule,
     ImageModule,
+    LoaderModule,
     ModalModule,
     PaginationModule,
     TableModule,
