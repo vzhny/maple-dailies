@@ -71,14 +71,18 @@
             *ngIf="isEditing || !daily.hidden"
             class="flex justify-between p-1 hover:bg-base-300"
             [ngClass]="{
-              'line-through italic text-gray-400': daily.completed,
               'cursor-default': isEditing,
               'cursor-pointer': !isEditing
             }"
             [title]="daily.text"
             (click)="toggleCompletedDaily(i)"
           >
-            <span class="ml-1 overflow-hidden whitespace-nowrap overflow-ellipsis">
+            <span
+              class="ml-1 overflow-hidden whitespace-nowrap overflow-ellipsis"
+              [ngClass]="{
+                'line-through italic opacity-70': daily.completed
+              }"
+            >
               {{ daily.text }}
             </span>
             <div class="flex mr-2 space-x-2">

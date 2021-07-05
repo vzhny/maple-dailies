@@ -102,7 +102,7 @@
               />
               <span
                 class="overflow-hidden whitespace-nowrap overflow-ellipsis"
-                [ngClass]="{ 'line-through italic text-gray-400': boss.completed }"
+                [ngClass]="{ 'line-through italic opacity-70': boss.completed }"
               >
                 <span *ngIf="!isEditing && !weekly">({{ boss.perWeekAmount }})</span>
                 {{ boss.difficulty | titlecase }} {{ boss.name }}
