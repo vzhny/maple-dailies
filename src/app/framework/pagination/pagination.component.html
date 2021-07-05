@@ -1,12 +1,17 @@
 <div class="flex items-center justify-center space-x-2">
-  <div class="w-20 h-8">
-    <ng-select
-      [items]="pageSizeOptions"
-      [(ngModel)]="pageSize"
-      [clearable]="false"
-      appendTo="body"
-      (change)="onPageSizeChange()"
-    ></ng-select>
+  <div class="outline-none" tabindex="0" #dropdown>
+    <div class="flex-1 outline-none dropdown dropdown-top" tabindex="0">
+      <button class="btn btn-square btn-outline btn-primary">
+        {{ pageSize }}
+      </button>
+      <ul class="w-20 shadow menu dropdown-content bg-base-100 rounded-box">
+        <li *ngFor="let option of pageSizeOptions" tabindex="0" (click)="onPageSizeChange(option); dropdown.focus()">
+          <a>
+            {{ option }}
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <div class="btn-group">
