@@ -23,14 +23,14 @@
         (click)="selectCharacter(row.id)"
       >
         <td
-          class="flex items-center justify-center border-l-4"
+          class="flex items-center justify-center w-20 h-20 border-l-4 2xl:w-full"
           [ngClass]="{
             'border-primary': selectedCharacterId === row.id,
             'border-transparent': selectedCharacterId !== row.id
           }"
         >
           <app-image
-            classes="w-20"
+            classes="w-20 h-full"
             [src]="row.characterImgSrcUrl || defaultCharacterImageSrc"
             altText="User Maplestory Character Image"
             (error)="onCharacterImageError(row)"

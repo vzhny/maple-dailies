@@ -9,7 +9,7 @@ const daisyui = require('daisyui');
 module.exports = {
   purge: {
     enabled: enablePurge,
-    content: ['./src/**/*.{html,ts}'],
+    content: ['./src/**/*.{html,ts,css,scss}'],
   },
   darkMode: 'class', // or 'media' or 'class'
   theme: {

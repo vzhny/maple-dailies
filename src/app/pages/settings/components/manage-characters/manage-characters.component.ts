@@ -18,7 +18,7 @@ import { ArcaneSymbol, CharacterInfo } from '../../settings.types';
 export class ManageCharactersComponent implements OnInit {
   columns: TableColumn[] = [
     {
-      headerTitle: '', // Character image column
+      headerTitle: ' ', // Character image column
       textAlign: 'center',
     },
     {
