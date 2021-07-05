@@ -1,4 +1,4 @@
-<div class="overflow-y-auto bg-base-100">
+<div class="overflow-x-auto bg-base-100">
   <table class="table min-w-full table-zebra" [ngClass]="{ 'table-compact': compact }">
     <ng-content select="[table-header]"></ng-content>
     <ng-container *ngIf="rows.length > 0; else noDataAvailable">
@@ -6,7 +6,7 @@
     </ng-container>
     <tfoot>
       <tr>
-        <td class="p-4" [attr.colspan]="columns.length">
+        <td class="p-4 border-t-2 border-opacity-20 border-base-300" [attr.colspan]="columns.length">
           <div class="flex" [ngClass]="setFlexJustifyClass()">
             <div>
               <ng-content select="[table-footer-actions]"></ng-content>
