@@ -33,11 +33,11 @@ body {
     }
 
     ::-webkit-scrollbar-thumb {
-      @apply bg-base-300;
+      @apply bg-neutral-focus;
     }
 
     ::-webkit-scrollbar-track {
-      @apply bg-base-200;
+      @apply bg-neutral;
     }
   }
 }
