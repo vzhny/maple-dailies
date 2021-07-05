@@ -47,7 +47,8 @@ export class PaginationComponent implements OnInit, OnChanges {
     this.getPaginatedData();
   }
 
-  onPageSizeChange() {
+  onPageSizeChange(selectedPageSize: PageSize) {
+    this.pageSize = selectedPageSize;
     this.pages = this.generatePages();
 
     if (this.selectedPage !== 1 && !this.pages.includes(this.selectedPage)) {

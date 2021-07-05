@@ -170,6 +170,13 @@ body {
 
   .table {
     &.table-zebra {
+      thead {
+        tr {
+          th {
+            @apply border-b-2 border-opacity-50 border-base-300;
+          }
+        }
+      }
       tbody {
         tr {
           td:first-child,
