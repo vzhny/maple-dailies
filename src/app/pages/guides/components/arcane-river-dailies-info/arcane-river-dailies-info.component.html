@@ -7,16 +7,16 @@
 
   <app-accordion>
     <app-accordion-item *ngFor="let item of availableDailiesLists" [headerTitle]="item.townName">
-      <div *ngIf="item.canExchangeDailiesFlg" class="mb-2">These dailies can be exchanged one (1) time before accepting them.</div>
+      <div *ngIf="item.canExchangeDailiesFlg && !onDashboard" class="mb-2">
+        These dailies can be exchanged one (1) time before accepting them.
+      </div>
       <ul>
-        <li
-          *ngFor="let daily of item.dailies"
-          class="space-x-2 font-normal md:ml-5"
-          [ngClass]="{ 'font-medium text-error': daily.exchangeFlag }"
-        >
-          <fa-icon [icon]="getDailyIcon(daily.name)"></fa-icon>
-          <span>{{ daily.name }}</span>
-          <hr class="block my-1 md:hidden" />
+        <li *ngFor="let daily of item.dailies" class="font-normal md:ml-5" [ngClass]="{ 'font-semibold text-error': daily.exchangeFlag }">
+          <div class="space-x-2">
+            <fa-icon [icon]="getDailyIcon(daily.name)"></fa-icon>
+            <span>{{ daily.name }}</span>
+          </div>
+          <div *ngIf="!onDashboard" class="my-1 ml-0 divider md:hidden"></div>
         </li>
       </ul>
     </app-accordion-item>
