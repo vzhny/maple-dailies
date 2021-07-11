@@ -11,7 +11,7 @@ export class ButtonComponent implements OnInit {
   @Input() color!: ButtonColor;
 
   lightTextColor = 'text-base-content';
-  darkTextColor = 'text-base-100';
+  darkTextColor = 'text-base-300';
 
   buttonClasses = `btn-primary ${this.darkTextColor}`;
   buttonWidth = 'auto';
@@ -28,13 +28,13 @@ export class ButtonComponent implements OnInit {
       case 'secondary':
         return `btn-secondary text-secondary-content`;
       case 'success':
-        return `btn-success ${this.lightTextColor}`;
+        return `btn-success ${this.darkTextColor}`;
       case 'info':
-        return `btn-info ${this.lightTextColor}`;
+        return `btn-info ${this.darkTextColor}`;
       case 'warning':
-        return `btn-warning ${this.lightTextColor}`;
+        return `btn-warning ${this.darkTextColor}`;
       case 'danger':
-        return `btn-error ${this.lightTextColor}`;
+        return `btn-error ${this.darkTextColor}`;
       case 'outline':
         return `btn-outline ${this.lightTextColor}`;
       case 'ghost':
