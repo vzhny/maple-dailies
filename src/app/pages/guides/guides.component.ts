@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faGlobe, faMap, faUtensils } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faInfo, faMap, faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'src/app/layout/header/header.types';
 
 @Component({
@@ -25,6 +25,12 @@ export class GuidesComponent implements OnInit {
       route: 'hard-muto-recipes',
       matchExactRouteUrl: false,
       icon: faUtensils,
+    },
+    {
+      name: 'Maple Info Corner',
+      route: 'maple-info-corner',
+      matchExactRouteUrl: false,
+      icon: faInfo,
     },
   ];
 

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ArcaneRiverDailiesInfoComponent } from './components/arcane-river-dailies-info/arcane-river-dailies-info.component';
 import { HardMutoRecipesComponent } from './components/hard-muto-recipes/hard-muto-recipes.component';
+import { MapleInfoCornerComponent } from './components/maple-info-corner/maple-info-corner.component';
 import { TrainingMapsComponent } from './components/training-maps/training-maps.component';
 import { GuidesComponent } from './guides.component';
 
@@ -25,6 +26,10 @@ export const routes: Routes = [
       {
         path: 'hard-muto-recipes',
         component: HardMutoRecipesComponent,
+      },
+      {
+        path: 'maple-info-corner',
+        component: MapleInfoCornerComponent,
       },
     ],
   },

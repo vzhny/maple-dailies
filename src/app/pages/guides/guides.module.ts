@@ -15,6 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TrainingMapsComponent } from './components/training-maps/training-maps.component';
 import { TrainingMapsFiltersComponent } from './components/training-maps/components/training-maps-filters/training-maps-filters.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MapleInfoCornerComponent } from './components/maple-info-corner/maple-info-corner.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MutoRecipeIngredientInfoComponent,
     TrainingMapsComponent,
     TrainingMapsFiltersComponent,
+    MapleInfoCornerComponent,
   ],
   imports: [
     CommonModule,
