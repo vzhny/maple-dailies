@@ -4,7 +4,7 @@
     <ng-container *ngIf="rows.length > 0; else noDataAvailable">
       <ng-content select="[table-body]"></ng-content>
     </ng-container>
-    <tfoot>
+    <tfoot *ngIf="pagination || showFooter">
       <tr>
         <td class="p-4 border-t-2 border-opacity-20 border-base-300" [attr.colspan]="columns.length">
           <div class="flex" [ngClass]="setFlexJustifyClass()">

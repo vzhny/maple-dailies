@@ -1,0 +1,73 @@
+<app-container>
+  <div class="mb-2">
+    Full credit goes to
+    <a
+      class="link link-primary"
+      href="https://www.reddit.com/r/Maplestory/comments/hccui0/easyish_way_to_get_reach_daily_max_guild/"
+      target="_blank"
+      >u/RizenNZ</a
+    >
+    for providing the following data. Use this guide in case you can't find someone in your guild to GP cap with or if you want collect all
+    MCC/Meister cubes that drop!
+  </div>
+
+  <div class="mb-2">
+    Notes: Magnus is highly recommended over Julieta since the Julieta fight is terribly buggy. Going down the list should get you to at
+    least 4,000 GP.
+  </div>
+  <app-table [columns]="dailyColumns" [data]="dailyBosses" #dailyTable>
+    <thead table-header>
+      <tr>
+        <th *ngFor="let column of dailyColumns" ngClass="text-{{ column.textAlign }}">
+          {{ column.headerTitle }}
+        </th>
+      </tr>
+    </thead>
+    <tbody table-body>
+      <tr *ngFor="let row of dailyTable.rows; let i = index">
+        <td class="text-left">
+          <div class="flex space-x-2">
+            <img src="assets/images/bosses/{{ row.iconFileName }}" alt="Boss Image" class="h-7 w-7" />
+            <div>
+              {{ row.bossName }}
+            </div>
+          </div>
+        </td>
+        <td class="text-center">
+          {{ row.contributionPoints }}
+        </td>
+      </tr>
+    </tbody>
+  </app-table>
+
+  <div class="divider"></div>
+
+  <div class="mb-2">
+    Notes: Select one weekly boss to reach 5,000 GP. Until the Marble of Chaos change gets reverted, remember that you can't defeat both
+    daily and weekly Pink Bean on the same day.
+  </div>
+  <app-table [columns]="weeklyColumns" [data]="weeklyBosses" #weeklyTable>
+    <thead table-header>
+      <tr>
+        <th *ngFor="let column of weeklyColumns" ngClass="text-{{ column.textAlign }}">
+          {{ column.headerTitle }}
+        </th>
+      </tr>
+    </thead>
+    <tbody table-body>
+      <tr *ngFor="let row of weeklyTable.rows; let i = index">
+        <td class="text-left">
+          <div class="flex space-x-2">
+            <img src="assets/images/bosses/{{ row.iconFileName }}" alt="Boss Image" class="h-7 w-7" />
+            <div>
+              {{ row.bossName }}
+            </div>
+          </div>
+        </td>
+        <td class="text-center">
+          {{ row.contributionPoints }}
+        </td>
+      </tr>
+    </tbody>
+  </app-table>
+</app-container>
