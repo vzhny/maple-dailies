@@ -31,6 +31,11 @@ export const routes: Routes = [
         path: 'maple-info-corner',
         component: MapleInfoCornerComponent,
       },
+      // Commented out due to maple info corner only being http and being unable to load when app is built
+      // {
+      //   path: 'maple-info-corner',
+      //   component: MapleInfoCornerComponent,
+      // },
     ],
   },
 ];
