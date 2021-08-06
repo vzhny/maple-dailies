@@ -11,6 +11,7 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() columns: TableColumn[] = [];
   @Input() compact = false;
   @Input() pagination = false;
+  @Input() showFooter = false;
   @Input() pageSize: PageSize = 10;
 
   rows: TableData[] = [];
