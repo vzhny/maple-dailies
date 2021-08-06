@@ -17,6 +17,7 @@ import { TrainingMapsFiltersComponent } from './components/training-maps/compone
 import { ReactiveFormsModule } from '@angular/forms';
 import { MapleInfoCornerComponent } from './components/maple-info-corner/maple-info-corner.component';
 import { GuildPointCapComponent } from './components/guild-point-cap/guild-point-cap.component';
+import { SuckHardCalculatorsComponent } from './components/suckhard-calculators/suckhard-calculators.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { GuildPointCapComponent } from './components/guild-point-cap/guild-point
     TrainingMapsFiltersComponent,
     MapleInfoCornerComponent,
     GuildPointCapComponent,
+    SuckHardCalculatorsComponent,
   ],
   imports: [
     CommonModule,
