@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faGlobe, faInfo, faMap, faScroll, faUtensils } from '@fortawesome/free-solid-svg-icons';
+import { faCalculator, faGlobe, faInfo, faMap, faScroll, faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'src/app/layout/header/header.types';
 
 @Component({
@@ -31,6 +31,12 @@ export class GuidesComponent implements OnInit {
       route: 'guild-point-cap',
       matchExactRouteUrl: false,
       icon: faScroll,
+    },
+    {
+      name: `SuckHard's Calculators`,
+      route: 'suckhard-calculators',
+      matchExactRouteUrl: false,
+      icon: faCalculator,
     },
     // Commented out due to maple info corner only being http and being unable to load when app is built
     // {
