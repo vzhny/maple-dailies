@@ -16,6 +16,7 @@ import { TrainingMapsComponent } from './components/training-maps/training-maps.
 import { TrainingMapsFiltersComponent } from './components/training-maps/components/training-maps-filters/training-maps-filters.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MapleInfoCornerComponent } from './components/maple-info-corner/maple-info-corner.component';
+import { GuildPointCapComponent } from './components/guild-point-cap/guild-point-cap.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MapleInfoCornerComponent } from './components/maple-info-corner/maple-i
     TrainingMapsComponent,
     TrainingMapsFiltersComponent,
     MapleInfoCornerComponent,
+    GuildPointCapComponent,
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faGlobe, faInfo, faMap, faUtensils } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faInfo, faMap, faScroll, faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'src/app/layout/header/header.types';
 
 @Component({
@@ -27,10 +27,10 @@ export class GuidesComponent implements OnInit {
       icon: faUtensils,
     },
     {
-      name: 'Maple Info Corner',
-      route: 'maple-info-corner',
+      name: 'Guild Point Cap',
+      route: 'guild-point-cap',
       matchExactRouteUrl: false,
-      icon: faInfo,
+      icon: faScroll,
     },
     // Commented out due to maple info corner only being http and being unable to load when app is built
     // {

@@ -42,4 +42,10 @@ interface TrainingMap {
   popularity: string | null;
 }
 
-export { DailyInfo, DailyInfoList, MutoRecipeIngredient, MutoRecipe, TrainingMapsFiltersEvent, TrainingMap };
+interface GuildPointCapInfo {
+  bossName: string;
+  contributionPoints: number;
+  iconFileName: string;
+}
+
+export { DailyInfo, DailyInfoList, MutoRecipeIngredient, MutoRecipe, TrainingMapsFiltersEvent, TrainingMap, GuildPointCapInfo };
