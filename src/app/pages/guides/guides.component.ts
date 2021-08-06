@@ -33,18 +33,17 @@ export class GuidesComponent implements OnInit {
       icon: faScroll,
     },
     {
+      name: 'Maple Info Corner',
+      route: 'maple-info-corner',
+      matchExactRouteUrl: false,
+      icon: faInfo,
+    },
+    {
       name: `SuckHard's Calculators`,
       route: 'suckhard-calculators',
       matchExactRouteUrl: false,
       icon: faCalculator,
     },
-    // Commented out due to maple info corner only being http and being unable to load when app is built
-    // {
-    //   name: 'Maple Info Corner',
-    //   route: 'maple-info-corner',
-    //   matchExactRouteUrl: false,
-    //   icon: faInfo,
-    // },
   ];
 
   constructor() {}

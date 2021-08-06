@@ -34,14 +34,13 @@ export const routes: Routes = [
         component: GuildPointCapComponent,
       },
       {
+        path: 'maple-info-corner',
+        component: MapleInfoCornerComponent,
+      },
+      {
         path: 'suckhard-calculators',
         component: SuckHardCalculatorsComponent,
       },
-      // Commented out due to maple info corner only being http and being unable to load when app is built
-      // {
-      //   path: 'maple-info-corner',
-      //   component: MapleInfoCornerComponent,
-      // },
     ],
   },
 ];
