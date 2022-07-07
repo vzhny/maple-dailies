@@ -2,7 +2,7 @@
   *ngIf="characterForm"
   [formGroup]="characterForm"
   class="grid grid-cols-6 gap-3 mb-2"
-  (submit)="characterForm?.valid && onSaveCharacter()"
+  (submit)="characterForm?.valid && isValidCharacter() && onSaveCharacter()"
 >
   <div class="col-span-2 form-control">
     <label class="label">
@@ -11,7 +11,7 @@
         <fa-icon [icon]="requiredIcon" class="text-red-600" size="xs" title="Required"></fa-icon>
       </span>
     </label>
-    <input type="number" class="input input-bordered" formControlName="level" min="1" max="275" />
+    <input type="number" class="input input-bordered" formControlName="level" min="1" max="300" />
   </div>
 
   <div class="col-span-2 form-control">
@@ -61,7 +61,7 @@
     <input type="text" class="input input-bordered" formControlName="characterName" />
   </div>
 
-  <div class="col-span-full form-control">
+  <!-- <div class="col-span-full form-control">
     <label class="label">
       <span class="space-x-2 label-text">
         Image URL
@@ -69,150 +69,9 @@
       </span>
     </label>
     <input type="text" class="input input-bordered" formControlName="characterImgSrcUrl" />
-  </div>
+  </div> -->
 
-  <hr *ngIf="characterLevel.value >= 200" class="my-4 border-base-200 col-span-full" />
-
-  <div *ngIf="characterLevel.value >= 200" class="col-span-full md:col-span-3 lg:col-span-2 form-control">
-    <label class="pb-0 label">
-      <span class="flex space-x-1 text-base label-text">
-        <img class="w-6 h-6" src="assets/images/arcane_symbols/arcane_symbol_vj.png" alt="Vanishing Journey Arcane Symbol Image" />
-        <span>Vanishing Journey Arcane Symbol</span>
-      </span>
-    </label>
-    <div class="grid grid-cols-2 gap-2" formGroupName="vanishingJourneyArcaneSymbol">
-      <div class="form-control">
-        <label class="label">
-          <span class="text-sm label-text"> Level </span>
-        </label>
-        <input type="number" min="1" max="20" class="input input-bordered" formControlName="currentLevel" />
-      </div>
-
-      <div class="form-control">
-        <label class="label">
-          <span class="text-sm label-text"> Experience </span>
-        </label>
-        <input type="number" min="0" max="372" class="input input-bordered" formControlName="currentExp" />
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="characterLevel.value >= 210" class="col-span-full md:col-span-3 lg:col-span-2 form-control">
-    <label class="pb-0 label">
-      <span class="flex space-x-1 text-base label-text">
-        <img class="w-6 h-6" src="assets/images/arcane_symbols/arcane_symbol_chu_chu.png" alt="Chu Chu Island Arcane Symbol Image" />
-        <span>Chu Chu Island Arcane Symbol</span>
-      </span>
-    </label>
-    <div class="grid grid-cols-2 gap-2" formGroupName="chuChuIslandArcaneSymbol">
-      <div class="form-control">
-        <label class="label">
-          <span class="text-sm label-text"> Level </span>
-        </label>
-        <input type="number" min="1" max="20" class="input input-bordered" formControlName="currentLevel" />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="text-sm label-text"> Experience </span>
-        </label>
-        <input type="number" min="0" max="372" class="input input-bordered" formControlName="currentExp" />
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="characterLevel.value >= 220" class="col-span-full md:col-span-3 lg:col-span-2 form-control">
-    <label class="pb-0 label">
-      <span class="flex space-x-1 text-base label-text">
-        <img class="w-6 h-6" src="assets/images/arcane_symbols/arcane_symbol_lachelein.png" alt="Lachelein Arcane Symbol Image" />
-        <span>Lachelein Arcane Symbol</span>
-      </span>
-    </label>
-    <div class="grid grid-cols-2 gap-2" formGroupName="lacheleinArcaneSymbol">
-      <div class="form-control">
-        <label class="label">
-          <span class="text-sm label-text"> Level </span>
-        </label>
-        <input type="number" min="1" max="20" class="input input-bordered" formControlName="currentLevel" />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="text-sm label-text"> Experience </span>
-        </label>
-        <input type="number" min="0" max="372" class="input input-bordered" formControlName="currentExp" />
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="characterLevel.value >= 225" class="col-span-full md:col-span-3 lg:col-span-2 form-control">
-    <label class="pb-0 label">
-      <span class="flex space-x-1 text-base label-text">
-        <img class="w-6 h-6" src="assets/images/arcane_symbols/arcane_symbol_arcana.png" alt="Arcana Arcane Symbol Image" />
-        <span>Arcana Arcane Symbol</span>
-      </span>
-    </label>
-    <div class="grid grid-cols-2 gap-2" formGroupName="arcanaArcaneSymbol">
-      <div class="form-control">
-        <label class="label">
-          <span class="text-sm label-text"> Level </span>
-        </label>
-        <input type="number" min="1" max="20" class="input input-bordered" formControlName="currentLevel" />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="text-sm label-text"> Experience </span>
-        </label>
-        <input type="number" min="0" max="372" class="input input-bordered" formControlName="currentExp" />
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="characterLevel.value >= 230" class="col-span-full md:col-span-3 lg:col-span-2 form-control">
-    <label class="pb-0 label">
-      <span class="flex space-x-1 text-base label-text">
-        <img class="w-6 h-6" src="assets/images/arcane_symbols/arcane_symbol_morass.png" alt="Morass Arcane Symbol Image" />
-        <span>Morass Arcane Symbol</span>
-      </span>
-    </label>
-    <div class="grid grid-cols-2 gap-2" formGroupName="morassArcaneSymbol">
-      <div class="form-control">
-        <label class="label">
-          <span class="text-sm label-text"> Level </span>
-        </label>
-        <input type="number" min="1" max="20" class="input input-bordered" formControlName="currentLevel" />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="text-sm label-text"> Experience </span>
-        </label>
-        <input type="number" min="0" max="372" class="input input-bordered" formControlName="currentExp" />
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="characterLevel.value >= 235" class="col-span-full md:col-span-3 lg:col-span-2 form-control">
-    <label class="pb-0 label">
-      <span class="flex space-x-1 text-base label-text">
-        <img class="w-6 h-6" src="assets/images/arcane_symbols/arcane_symbol_esfera.png" alt="Esfera Arcane Symbol Image" />
-        <span>Esfera Arcane Symbol</span>
-      </span>
-    </label>
-    <div class="grid grid-cols-2 gap-2" formGroupName="esferaArcaneSymbol">
-      <div class="form-control">
-        <label class="label">
-          <span class="text-sm label-text"> Level </span>
-        </label>
-        <input type="number" min="1" max="20" class="input input-bordered" formControlName="currentLevel" />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="text-sm label-text"> Experience </span>
-        </label>
-        <input type="number" min="0" max="372" class="input input-bordered" formControlName="currentExp" />
-      </div>
-    </div>
-  </div>
-
-  <ng-template #characterImageUrlInfo let-hide>
+  <!-- <ng-template #characterImageUrlInfo let-hide>
     <div class="text-sm">
       Currently, there is no offical MapleStory API (and
       <a class="link link-primary" href="https://maplestory.gg" target="_blank">maplestory.gg</a>
@@ -221,5 +80,5 @@
       <a class="link link-primary" href="https://maplestory.nexon.net/rankings/overall-ranking/legendary" target="_blank">here</a>, right
       click and copy the image URL, and paste it above. You should then see your character appear at the bottom right corner of the app!
     </div>
-  </ng-template>
+  </ng-template> -->
 </form>

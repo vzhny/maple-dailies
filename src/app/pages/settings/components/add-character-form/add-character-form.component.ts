@@ -33,7 +33,13 @@ export class AddCharacterFormComponent implements OnInit, OnChanges {
   }
 
   onSaveCharacter() {
-    this.saveCharacter.emit(this.characterForm.value);
+    if (this.isValidCharacter()) {
+      this.saveCharacter.emit(this.characterForm.value);
+    }
+  }
+
+  isValidCharacter() {
+    return this.characterForm.controls['level'].value <= 300
   }
 
   resetForm() {

@@ -9,7 +9,7 @@ import { DailyService } from 'src/app/pages/dailies/daily.service';
 import { ArcaneSymbolInfo, ArcaneSymbolService } from 'src/app/utils/services/arcane-symbol.service';
 import { CharacterService } from 'src/app/utils/services/character.service';
 import { LocalStorageService } from 'src/app/utils/services/local-storage.service';
-import { ArcaneSymbol, CharacterInfo } from '../../settings.types';
+import { CharacterInfo } from '../../settings.types';
 
 @Component({
   selector: 'app-manage-characters',
@@ -18,11 +18,12 @@ import { ArcaneSymbol, CharacterInfo } from '../../settings.types';
 export class ManageCharactersComponent implements OnInit {
   columns: TableColumn[] = [
     {
-      headerTitle: ' ', // Character image column
+      headerTitle: 'Character Name',
       textAlign: 'center',
+      width: '400',
     },
     {
-      headerTitle: 'Level',
+      headerTitle: 'Class',
       textAlign: 'center',
     },
     {
@@ -31,42 +32,8 @@ export class ManageCharactersComponent implements OnInit {
       width: '80',
     },
     {
-      headerTitle: 'Class',
+      headerTitle: 'Level',
       textAlign: 'center',
-    },
-    {
-      headerTitle: 'Character Name',
-      textAlign: 'center',
-    },
-    {
-      headerTitle: 'VJ',
-      textAlign: 'center',
-      width: '120',
-    },
-    {
-      headerTitle: 'Chu Chu',
-      textAlign: 'center',
-      width: '120',
-    },
-    {
-      headerTitle: 'Lachelein',
-      textAlign: 'center',
-      width: '120',
-    },
-    {
-      headerTitle: 'Arcana',
-      textAlign: 'center',
-      width: '120',
-    },
-    {
-      headerTitle: 'Morass',
-      textAlign: 'center',
-      width: '120',
-    },
-    {
-      headerTitle: 'Esfera',
-      textAlign: 'center',
-      width: '120',
     },
     {
       headerTitle: '',
@@ -76,7 +43,6 @@ export class ManageCharactersComponent implements OnInit {
   ];
 
   data: CharacterInfo[] = [];
-  symbolData: ArcaneSymbolInfo[] = [];
 
   selectedCharacter: CharacterInfo | null = null;
   selectedCharacterId: number | null = null;
@@ -98,7 +64,6 @@ export class ManageCharactersComponent implements OnInit {
   constructor(
     private localStorage: LocalStorageService,
     private modalService: ModalService,
-    private arcaneSymbolService: ArcaneSymbolService,
     private characterService: CharacterService,
     private dailyService: DailyService
   ) {}
@@ -115,8 +80,6 @@ export class ManageCharactersComponent implements OnInit {
         this.selectedCharacterId = character.id;
       }
     });
-
-    this.symbolData = this.arcaneSymbolService.buildArcaneInfoData(this.symbolData, false);
   }
 
   setColumnWidth(width: string | undefined) {
@@ -176,24 +139,6 @@ export class ManageCharactersComponent implements OnInit {
       this.dailyService.deleteAllAssociatedDailiesLists(this.characterToDelete?.id);
       this.characterToDelete = null;
       this.modalService.close(this.deleteCharacterModalId);
-    }
-  }
-
-  calculateSymbolExperiencePercentage({ currentLevel, currentExp }: ArcaneSymbol) {
-    const defaultPercentage = '0%';
-    const symbolData = this.symbolData[currentLevel - 1];
-
-    if (symbolData) {
-      const { symbolsToNextLevel } = symbolData;
-
-      if (symbolsToNextLevel !== null) {
-        const percentage = Math.round((currentExp / symbolsToNextLevel) * 100);
-        return `${percentage}%`;
-      } else {
-        return defaultPercentage;
-      }
-    } else {
-      return defaultPercentage;
     }
   }
 
