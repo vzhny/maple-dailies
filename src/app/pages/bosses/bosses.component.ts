@@ -63,7 +63,7 @@ export class BossesComponent implements OnInit {
       if (selected) {
         if (frequency === 'daily') {
           this.bossesChecklists.totalAmountOfPowerCrystals += perWeekAmount;
-          this.bossesChecklists.totalWeeklyMesos += perWeekAmount * bossCrystalMesos;
+          this.bossesChecklists.totalWeeklyMesos += (perWeekAmount * bossCrystalMesos);
         } else {
           this.bossesChecklists.totalAmountOfPowerCrystals += 1;
           this.bossesChecklists.totalWeeklyMesos += bossCrystalMesos;
@@ -71,7 +71,7 @@ export class BossesComponent implements OnInit {
       } else {
         if (frequency === 'daily') {
           this.bossesChecklists.totalAmountOfPowerCrystals -= perWeekAmount;
-          this.bossesChecklists.totalWeeklyMesos -= perWeekAmount * bossCrystalMesos;
+          this.bossesChecklists.totalWeeklyMesos -= (perWeekAmount * bossCrystalMesos);
         } else {
           this.bossesChecklists.totalAmountOfPowerCrystals -= 1;
           this.bossesChecklists.totalWeeklyMesos -= bossCrystalMesos;

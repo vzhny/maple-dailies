@@ -45,7 +45,7 @@ export class BossesChecklistComponent implements OnInit {
   notCompletedIcon = faSquareRegular;
   completedSquareIcon = faSquare;
 
-  showActions = false;
+  showActions = true;
   isEditing = false;
 
   constructor() {}
